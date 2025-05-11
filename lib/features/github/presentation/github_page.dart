@@ -58,7 +58,7 @@ class _GitHubPageState extends State<GitHubPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final cardColor = isDark ? Colors.grey[900] : Colors.grey[50];
+    final cardColor = isDark ? Colors.grey[800] : Colors.grey[50];
     final textColor = theme.colorScheme.onBackground;
     final screenWidth = MediaQuery.of(context).size.width;
 
