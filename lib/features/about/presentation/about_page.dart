@@ -7,98 +7,158 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final textColor = isDark ? Colors.white : Colors.black87;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About tadstech'),
+        title: const Text('About Tadstech'),
+        backgroundColor: theme.primaryColor,
+        foregroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: CircleAvatar(
-                radius: 80,
-                backgroundColor: AppTheme.primaryColor.withOpacity(0.2),
-                child: const Icon(
-                  Icons.person,
-                  size: 60,
-                  color: AppTheme.primaryColor,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final isWide = constraints.maxWidth > 600;
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 1000),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 80,
+                      backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+                      child: const Icon(
+                        Icons.person,
+                        size: 60,
+                        color: AppTheme.primaryColor,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      'The Average Data Scientist',
+                      style: theme.textTheme.headlineMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Tadstech is a budding tech initiative focused on building clean, efficient, and cross-platform applications for web and mobile. '
+                      'With a foundation in mathematics and a growing passion for data science, we aim to bridge the gap between insights and implementation.',
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: textColor,
+                        height: 1.5,
+                      ),
+                    ),
+
+                    const SizedBox(height: 40),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Our Story',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: textColor,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Column(
+                      children: [
+                        TimelineItem(
+                          year: '2024',
+                          title: 'Started the Journey',
+                          description:
+                              'Began learning Python, Flutter, and the fundamentals of data science and software development.',
+                        ),
+                        TimelineItem(
+                          year: '2024',
+                          title: 'First Client Projects',
+                          description:
+                              'Delivered mobile and web app solutions for 3 local businesses using Flutter.',
+                        ),
+                        TimelineItem(
+                          year: '2025',
+                          title: 'Launched Tadstech',
+                          description:
+                              'Branded personal development and freelance work under the name Tadstech — offering simple, effective digital solutions.',
+                        ),
+                        TimelineItem(
+                          year: '2025',
+                          title: 'Looking Ahead',
+                          description:
+                              'Currently building real-world experience while preparing for open-source contributions in data science.',
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 40),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Our Stack',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: textColor,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: const [
+                        _TechChip(label: 'Flutter'),
+                        _TechChip(label: 'Dart'),
+                        _TechChip(label: 'Python'),
+                        _TechChip(label: 'Git'),
+                        _TechChip(label: 'SQL'),
+                        _TechChip(label: 'Pandas'),
+                        _TechChip(label: 'NumPy'),
+                        _TechChip(label: 'Scikit-learn'),
+                        _TechChip(label: 'TensorFlow'),
+                        _TechChip(label: 'Docker'),
+                      ],
+                    ),
+
+                    const SizedBox(height: 32),
+                  ],
                 ),
               ),
             ),
-            const SizedBox(height: 24),
-            Text(
-              'The Average Data Scientist',
-              style: Theme.of(context).textTheme.headlineMedium,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Our mission is to make data science accessible and practical for businesses of all sizes. '
-              'We believe in clean code, reproducible research, and clear communication of insights.',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 32),
-            Text(
-              'Our Story',
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            const SizedBox(height: 16),
-            const Column(
-              children: [
-                TimelineItem(
-                  year: '2018',
-                  title: 'Founded',
-                  description: 'Started as a solo data science consultant',
-                ),
-                TimelineItem(
-                  year: '2019',
-                  title: 'First Major Project',
-                  description: 'Built predictive models for retail client',
-                ),
-                TimelineItem(
-                  year: '2020',
-                  title: 'Team Expansion',
-                  description: 'Added two more data scientists to the team',
-                ),
-                TimelineItem(
-                  year: '2022',
-                  title: 'Open Source',
-                  description: 'Began releasing tools and templates on GitHub',
-                ),
-                TimelineItem(
-                  year: '2023',
-                  title: 'Current',
-                  description: 'Serving clients across multiple industries',
-                ),
-              ],
-            ),
-            const SizedBox(height: 32),
-            Text(
-              'Our Stack',
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            const SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: const [
-                Chip(label: Text('Python')),
-                Chip(label: Text('Pandas')),
-                Chip(label: Text('NumPy')),
-                Chip(label: Text('Scikit-learn')),
-                Chip(label: Text('TensorFlow')),
-                Chip(label: Text('Flutter')),
-                Chip(label: Text('Dart')),
-                Chip(label: Text('SQL')),
-                Chip(label: Text('Git')),
-                Chip(label: Text('Docker')),
-              ],
-            ),
-          ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _TechChip extends StatelessWidget {
+  final String label;
+
+  const _TechChip({required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Chip(
+      label: Text(
+        label,
+        style: TextStyle(
+          color:
+              theme.brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black87,
         ),
       ),
+      backgroundColor: theme.colorScheme.secondary.withOpacity(0.1),
+      side: BorderSide(color: theme.colorScheme.primary.withOpacity(0.2)),
     );
   }
 }

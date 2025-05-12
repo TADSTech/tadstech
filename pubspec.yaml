@@ -29,6 +29,7 @@ dependencies:
   flutter_email_sender: ^7.0.0
   flutter_form_builder: ^10.0.1
   form_builder_validators: ^11.1.2
+  visibility_detector: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:

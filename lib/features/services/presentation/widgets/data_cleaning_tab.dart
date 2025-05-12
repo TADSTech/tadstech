@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tadstech/core/widgets/casestudy_card.dart';
 import 'package:tadstech/core/widgets/responsive_layout.dart';
 import 'package:tadstech/core/widgets/skill_chip.dart';
-import 'package:tadstech/core/widgets/tool_card.dart';
 
 class DataCleaningTab extends StatelessWidget {
   const DataCleaningTab({super.key});
@@ -67,49 +65,64 @@ class DataCleaningTab extends StatelessWidget {
           const SizedBox(height: 16),
           ResponsiveLayout(
             mobile: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                ToolCard(
-                  icon: Icons.table_chart,
-                  name: 'Pandas',
-                  description: 'Data manipulation and analysis',
+              children: [
+                _caseStudy(
+                  title: 'Local Store Sales Cleanup',
+                  description:
+                      'Cleaned weekly Excel files and standardized sales records for a small retail shop.',
+                  tags: ['Excel', 'Missing Values', 'Pandas'],
+                  icon: Icons.storefront,
+                  ctaLabel: 'Demo Available on Request',
                 ),
-                SizedBox(height: 16),
-                ToolCard(
-                  icon: Icons.functions,
-                  name: 'NumPy',
-                  description: 'Numerical computing',
+                const SizedBox(height: 16),
+                _caseStudy(
+                  title: 'Student Survey Data Formatting',
+                  description:
+                      'Processed raw Google Forms data into anonymized, structured CSVs for departmental analysis.',
+                  tags: ['Survey Data', 'Data Formatting', 'CSV'],
+                  icon: Icons.school,
                 ),
-                SizedBox(height: 16),
-                ToolCard(
-                  icon: Icons.cleaning_services,
-                  name: 'OpenRefine',
-                  description: 'Data cleaning tool',
+                const SizedBox(height: 16),
+                _caseStudy(
+                  title: 'Bank CSV Cleanup Tool',
+                  description:
+                      'Built a script to parse and clean messy bank statements for personal budgeting.',
+                  tags: ['CSV', 'Text Cleaning', 'Python'],
+                  icon: Icons.account_balance,
+                  ctaLabel: 'Open Notebook',
                 ),
               ],
             ),
             desktop: GridView.count(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 3,
-              childAspectRatio: 3.5,
-              crossAxisSpacing: 20,
+              crossAxisCount: 2,
               mainAxisSpacing: 20,
-              children: const [
-                ToolCard(
-                  icon: Icons.table_chart,
-                  name: 'Pandas',
-                  description: 'Data manipulation and analysis',
+              crossAxisSpacing: 20,
+              childAspectRatio: 1.8,
+              children: [
+                _caseStudy(
+                  title: 'Local Store Sales Cleanup',
+                  description:
+                      'Cleaned weekly Excel files and standardized sales records for a small retail shop.',
+                  tags: ['Excel', 'Missing Values', 'Pandas'],
+                  icon: Icons.storefront,
+                  ctaLabel: 'Demo Available on Request',
                 ),
-                ToolCard(
-                  icon: Icons.functions,
-                  name: 'NumPy',
-                  description: 'Numerical computing',
+                _caseStudy(
+                  title: 'Student Survey Data Formatting',
+                  description:
+                      'Processed raw Google Forms data into anonymized, structured CSVs for departmental analysis.',
+                  tags: ['Survey Data', 'Data Formatting', 'CSV'],
+                  icon: Icons.school,
                 ),
-                ToolCard(
-                  icon: Icons.cleaning_services,
-                  name: 'OpenRefine',
-                  description: 'Data cleaning tool',
+                _caseStudy(
+                  title: 'Bank CSV Cleanup Tool',
+                  description:
+                      'Built a script to parse and clean messy bank statements for personal budgeting.',
+                  tags: ['CSV', 'Text Cleaning', 'Python'],
+                  icon: Icons.account_balance,
+                  ctaLabel: 'Open Notebook',
                 ),
               ],
             ),
@@ -140,6 +153,7 @@ class DataCleaningTab extends StatelessWidget {
                       'Resolved schema conflicts and imputed missing medical data across 3 datasets.',
                   tags: ['Healthcare', 'Missing Data', 'Data Merging'],
                   icon: Icons.health_and_safety,
+                  ctaLabel: 'Demo Available on Request',
                 ),
               ],
             ),
@@ -164,6 +178,7 @@ class DataCleaningTab extends StatelessWidget {
                       'Resolved schema conflicts and imputed missing medical data across 3 datasets.',
                   tags: ['Healthcare', 'Missing Data', 'Data Merging'],
                   icon: Icons.health_and_safety,
+                  ctaLabel: 'Demo Available on Request',
                 ),
               ],
             ),
@@ -178,12 +193,94 @@ class DataCleaningTab extends StatelessWidget {
     required String description,
     required List<String> tags,
     required IconData icon,
+    String? ctaLabel,
   }) {
     return CaseStudyCard(
       title: title,
       description: description,
       tags: tags,
       icon: icon,
+      ctaLabel: ctaLabel,
+    );
+  }
+}
+
+class CaseStudyCard extends StatelessWidget {
+  final String title;
+  final String description;
+  final List<String> tags;
+  final IconData icon;
+  final String? ctaLabel;
+
+  const CaseStudyCard({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.tags,
+    required this.icon,
+    this.ctaLabel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.onSurface;
+    final border = Theme.of(context).dividerColor;
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        border: Border.all(color: border),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, size: 32, color: color),
+          const SizedBox(height: 12),
+          Text(
+            title,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            description,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: color.withOpacity(0.85)),
+          ),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children:
+                tags
+                    .map(
+                      (tag) => Chip(
+                        label: Text(tag),
+                        backgroundColor:
+                            Theme.of(context).colorScheme.surfaceVariant,
+                      ),
+                    )
+                    .toList(),
+          ),
+          if (ctaLabel != null) ...[
+            const SizedBox(height: 16),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: TextButton.icon(
+                onPressed: () {
+                  // Later: Add link to demo or notebook
+                },
+                icon: const Icon(Icons.open_in_new),
+                label: Text(ctaLabel!),
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 }
