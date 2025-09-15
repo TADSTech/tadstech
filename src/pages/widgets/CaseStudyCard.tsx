@@ -10,6 +10,7 @@ interface CaseStudyCardProps {
   tags: string[];
   icon: IconDefinition;
   ctaLabel?: string;
+  ctalink?: string;
 }
 
 const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ 
@@ -17,7 +18,8 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
   description, 
   tags, 
   icon, 
-  ctaLabel 
+  ctaLabel,
+  ctalink,
 }) => {
   return (
     <div className="case-study-card">
@@ -36,7 +38,7 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
       
       {ctaLabel && (
         <div className="case-study-cta">
-          <button className="cta-button">
+          <button className="cta-button" onClick={() => window.open(ctalink, "_blank")}>
             {ctaLabel}
             <span className="cta-arrow">→</span>
           </button>

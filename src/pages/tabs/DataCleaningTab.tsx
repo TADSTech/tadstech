@@ -49,6 +49,7 @@ const DataCleaningTab: React.FC = () => {
             tags={['Excel', 'Missing Values', 'Pandas']}
             icon={faStore}
             ctaLabel="Demo Available on Request"
+            ctalink='https://wa.me/2347041029093'
           />
           <CaseStudyCard
             title="Student Survey Data Formatting"
@@ -75,6 +76,7 @@ const DataCleaningTab: React.FC = () => {
             tags={['Healthcare', 'Missing Data', 'Data Merging']}
             icon={faHeartbeat}
             ctaLabel="Demo Available on Request"
+            ctalink='https://wa.me/2347041029093'
           />
         </div>
       </div>
