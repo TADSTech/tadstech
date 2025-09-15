@@ -9,7 +9,7 @@ import Footer from './components/Footer.tsx';
 function App() {
 
   return (
-    <div className="bg-background dark:bg-dark-background h-screen w-screen m-0 p-0">
+    <div className="bg-background dark:bg-dark-background min-h-screen w-full m-0 p-0">
     <AppBar />
     <HeroSection />
     <ServicesPreview />

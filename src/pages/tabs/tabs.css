@@ -40,6 +40,8 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 1rem;
+  justify-content: flex-start;
+  padding: 0.25rem 0;
 }
 
 .tools-grid {
@@ -67,6 +69,47 @@
   }
 }
 
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  background: transparent;
+  color: #fff;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.10), 0 1.5px 6px rgba(0,0,0,0.04);
+  letter-spacing: 0.01em;
+  transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s, background 0.25s;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.skill-chip:hover,
+.skill-chip:focus {
+  transform: scale(1.07);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.18), 0 2px 8px rgba(0,0,0,0.08);
+  background: linear-gradient(90deg, var(--color-primary, #3b82f6) 0%, var(--color-secondary, #818cf8) 100%);
+}
+
+@media (max-width: 600px) {
+  .skills-container {
+    gap: 0.5rem;
+    justify-content: flex-start;
+    padding: 0.15rem 0;
+  }
+  .skill-chip {
+    font-size: 0.97rem;
+    padding: 0.5rem 1rem;
+    min-width: 0;
+    flex: 1 1 auto;
+    justify-content: center;
+    background: transparent;
+  }
+}
+
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .service-tab {
@@ -82,5 +125,17 @@
 
   .service-tab p {
     color: #d1d5db;
+  }
+
+  .skill-chip {
+    background: transparent;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(49, 60, 100, 0.18), 0 1.5px 6px rgba(0,0,0,0.12);
+    border: none;
+  }
+  .skill-chip:hover,
+  .skill-chip:focus {
+    background: linear-gradient(90deg, var(--color-primary, #3b82f6) 0%, var(--color-secondary, #818cf8) 100%);
+    box-shadow: 0 4px 16px rgba(49, 60, 100, 0.28), 0 2px 8px rgba(0,0,0,0.18);
   }
 }

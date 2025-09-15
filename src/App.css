@@ -6,6 +6,7 @@ html, body, #root {
   padding: 0;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 @theme {
@@ -14,5 +15,33 @@ html, body, #root {
   --color-background: #FAFAFA;
   --color-dark-background: #111827;
   --color-accent: #8B5CF6;
+  --scroll-track: transparent;
+  --scroll-thumb: #8B5CF6;
 }
 
+.dark {
+  --scroll-track: transparent;
+  --scroll-thumb: #8B5CF6; 
+}
+
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary, 0.5);
+  height: 5px;
+  border-radius: 5px;
+  border-color: var(--color-accent);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
