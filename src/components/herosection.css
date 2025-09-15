@@ -1,0 +1,230 @@
+
+.hero-section {
+  padding: 5rem 1.5rem;
+  background: linear-gradient(to bottom, var(--color-primary)/5 0%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding: 6rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    padding: 8rem 1.5rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-section {
+    background: linear-gradient(to bottom, var(--color-dark-background)/5 0%, transparent 100%);
+  }
+}
+
+.hero-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.hero-text-content {
+  width: 100%;
+  animation: fade-in-slide-left 0.5s ease-out forwards;
+}
+
+@media (min-width: 1024px) {
+  .hero-text-content {
+    width: 50%;
+    animation: fade-in-slide-up 0.6s ease-out forwards;
+  }
+}
+
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-title {
+    color: #ffffff;
+  }
+}
+
+.hero-description {
+  margin: 1rem 0;
+  font-size: 1.125rem;
+  color: #374151;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .hero-description {
+    font-size: 1.25rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-description {
+    color: #d1d5db;
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hero-primary-button {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hero-primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #60a5fa 0%, #374151 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-primary-button {
+    box-shadow: 0 4px 12px rgba(31, 41, 55, 0.3);
+  }
+  
+  .hero-primary-button:hover {
+    box-shadow: 0 6px 16px rgba(31, 41, 55, 0.4);
+  }
+}
+
+.hero-secondary-button {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  color: white;
+  background: var(--color-primary);
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hero-secondary-button:hover {
+  transform: translateY(2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+  background: #374151;
+  -webkit-transform: translateY(2px);
+  -moz-transform: translateY(2px);
+  -ms-transform: translateY(2px);
+  -o-transform: translateY(2px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-secondary-button {
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  
+  .hero-secondary-button:hover {
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+  }
+}
+
+.hero-image-container {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--color-primary)/20;
+  background: var(--color-primary)/5;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px var(--color-primary)/10;
+  animation: fade-in-slide-right 0.6s ease-out forwards;
+}
+
+@media (min-width: 1024px) {
+  .hero-image-container {
+    width: 50%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-image-container {
+    border: 2px solid var(--color-dark-background)/20;
+    background: var(--color-dark-background)/5;
+    box-shadow: 0 10px 25px var(--color-dark-background)/10;
+  }
+
+}
+
+.hero-image-wrapper {
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(31, 41, 55, 0.2);
+  box-shadow: 0 4px 12px rgba(31, 41, 55, 0.1);
+  background-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-image-wrapper {
+    border: 2px solid rgba(31, 41, 55, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    background-color: #1f2937;
+  }
+}
+
+.hero-image {
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .hero-image {
+    height: 24rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .dark\:focus\:ring-offset-dark-background:focus {
+    --tw-ring-offset-color: var(--color-dark-background);
+  }
+}

@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "tailwindcss/preflight";
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+@theme {
+  --color-primary: #1F2937;
+  --color-secondary: #3B82F6;
+  --color-background: #FAFAFA;
+  --color-dark-background: #111827;
+  --color-accent: #8B5CF6;
+}
+
