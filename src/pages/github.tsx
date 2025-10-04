@@ -9,6 +9,7 @@ import {
   faUsers
 } from '@fortawesome/free-solid-svg-icons';
 import './styles/GitHubPage.css';
+import Footer from '../components/Footer.tsx';
 
 interface GitHubRepo {
   id: number;
@@ -237,6 +238,7 @@ const GitHubPage: React.FC = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

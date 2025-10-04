@@ -13,6 +13,7 @@ import DataVizTab from './tabs/DataVizTab.tsx';
 import ModelingTab from './tabs/ModelingTab.tsx';
 import EDATab from './tabs/EDATab.tsx';
 import './styles/ServicesPage.css';
+import Footer from '../components/Footer.tsx';
 
 interface Tab {
   id: string;
@@ -90,6 +91,7 @@ const ServicesPage: React.FC = () => {
       <div className="services-content">
         <ActiveComponent />
       </div>
+      <Footer />
     </div>
   );
 };
