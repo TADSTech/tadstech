@@ -51,7 +51,7 @@ const DataCleaningTab: React.FC = () => {
           />
           <CaseStudyCard
             title="Student Performance Dataset"
-            description="Cleaned and anonymized survey data from 500+ students, enabling accurate academic trend analysis."
+            description="Cleaned and anonymized survey data from 12k+ students, enabling accurate academic trend analysis."
             tags={['Survey Data', 'Data Formatting', 'CSV']}
             icon={faSchool}
           />
