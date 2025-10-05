@@ -72,7 +72,7 @@ const ServicesPreview: React.FC = () => {
           content="Discover Michael Tunwashe's data services: from cleaning messy datasets to building predictive models and insightful visualizations."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://tadstech.com/services-preview" />
+        <link rel="canonical" href="https://tadstech.web.app/services-preview" />
       </Helmet>
 
       <div className="services-container">

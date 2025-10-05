@@ -87,7 +87,7 @@ const ServicesPage: React.FC = () => {
           content="Discover TADS' expertise in data cleaning, visualization, modeling, and EDA. Tailored solutions for data-driven decision making."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://tadstech.com/services" />
+        <link rel="canonical" href="https://tadstech.web.app/services" />
       </Helmet>
 
       <header className="services-header" aria-label="Services Header">

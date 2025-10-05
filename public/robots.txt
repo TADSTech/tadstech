@@ -1,0 +1,5 @@
+NEW_FILE_CODE
+User-agent: *
+Allow: /
+
+Sitemap: https://tadstech.web.app/sitemap.xml

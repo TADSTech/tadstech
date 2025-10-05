@@ -62,7 +62,7 @@ const About: React.FC = () => {
           content="Discover Michael Tunwashe's journey in data science and full-stack development, building innovative solutions with React, Flutter, and Python."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://tadstech.com/about" />
+        <link rel="canonical" href="https://tadstech.web.app/about" />
       </Helmet>
 
       <div className="about-container">
