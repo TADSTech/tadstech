@@ -43,7 +43,7 @@ const DataCleaningTab: React.FC = () => {
         <div className="case-studies-grid">
           <CaseStudyCard
             title="Retail Sales Data Cleanup"
-            description="Processed and standardized 6 months of sales data from multiple stores, improving reporting accuracy by 40%."
+            description="Processed and standardized 12 months of sales data from multiple stores, improving reporting accuracy by 40%."
             tags={['Excel', 'Missing Values', 'Pandas']}
             icon={faStore}
             ctaLabel="Demo Available on Request"
@@ -54,6 +54,8 @@ const DataCleaningTab: React.FC = () => {
             description="Cleaned and anonymized survey data from 12k+ students, enabling accurate academic trend analysis."
             tags={['Survey Data', 'Data Formatting', 'CSV']}
             icon={faSchool}
+            ctaLabel="View on GitHub"
+            ctalink='https://github.com/TADSTech/Student-survery-data-formatting'
           />
           <CaseStudyCard
             title="Personal Finance Tracker"
