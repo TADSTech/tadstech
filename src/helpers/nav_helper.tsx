@@ -6,6 +6,7 @@ import About from '../pages/about.tsx';
 import Contact from '../pages/contact.tsx';
 import Github from '../pages/github.tsx';
 import Services from '../pages/services.tsx';
+import CV from '../pages/CV'
 
 const NavigationLoader = () => {
   const location = useLocation();
@@ -81,6 +82,16 @@ const router = createBrowserRouter([
       </>
     ),
   },
+
+  {
+    path: "/cv",
+    element: (
+      <>
+        <NavigationLoader />
+        <CV />
+      </>
+    )
+  }
 ]);
 
 const RootComponent = () => {

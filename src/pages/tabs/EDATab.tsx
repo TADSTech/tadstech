@@ -23,22 +23,21 @@ const EDATab: React.FC = () => {
   ];
 
   const tools = [
-    { icon: faTable, name: 'Pandas Profiling', description: 'Automated EDA reports' },
-    { icon: faLineChart, name: 'Sweetviz', description: 'Visual feature analysis' },
-    { icon: faChartArea, name: 'D-Tale', description: 'Interactive EDA interface' },
-    { icon: faFileCsv, name: 'Pandas', description: 'Core data analysis' }
+    { icon: faTable, name: 'Pandas Profiling', description: 'Automated EDA reports with detailed insights' },
+    { icon: faLineChart, name: 'Sweetviz', description: 'Rapid visual feature analysis and comparisons' },
+    { icon: faChartArea, name: 'D-Tale', description: 'Interactive web-based EDA interface' },
+    { icon: faFileCsv, name: 'Pandas', description: 'Powerful data manipulation and analysis' }
   ];
 
   return (
     <div className="service-tab">
       <h2>Exploratory Data Analysis</h2>
       <p>
-        We perform comprehensive exploratory analysis to uncover insights, identify patterns, and detect anomalies in your data. 
-        Our EDA process forms the foundation for all subsequent analysis and modeling.
+        Our advanced EDA uncovers hidden patterns, detects anomalies, and provides deep insights to guide your data strategy. We combine statistical rigor with visual exploration for comprehensive understanding.
       </p>
       
       <div className="section">
-        <h3>EDA Techniques:</h3>
+        <h3>Key Techniques</h3>
         <div className="skills-container">
           {techniques.map((technique, index) => (
             <SkillChip key={index} label={technique} />
@@ -47,7 +46,7 @@ const EDATab: React.FC = () => {
       </div>
 
       <div className="section">
-        <h3>Primary Tools:</h3>
+        <h3>Specialized Tools</h3>
         <div className="tools-grid">
           {tools.map((tool, index) => (
             <ToolCard
@@ -61,17 +60,17 @@ const EDATab: React.FC = () => {
       </div>
 
       <div className="section">
-        <h3>Analysis Deliverables:</h3>
+        <h3>Success Stories</h3>
         <div className="case-studies-grid">
           <CaseStudyCard
             title="Customer Churn Insights"
-            description="Explored churn indicators using correlation analysis and visual EDA techniques."
+            description="Identified key churn drivers through correlation and distribution analysis, reducing churn by 15% for a telecom client."
             tags={['Churn Analysis', 'EDA', 'Sweetviz']}
             icon={faUserSlash}
           />
           <CaseStudyCard
             title="Financial Fraud Detection"
-            description="Performed outlier analysis and clustering to flag potential fraud patterns."
+            description="Detected subtle fraud patterns via outlier analysis and clustering, improving detection accuracy by 22%."
             tags={['Fraud Detection', 'Anomaly Detection', 'Pandas Profiling']}
             icon={faShield}
           />

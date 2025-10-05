@@ -1,24 +1,32 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from 'tailwindcss'
 
-export default {
+const config: Config = {
+  darkMode: 'class', // Enables dark mode via the `.dark` class
   content: [
     './index.html',
-    './src/**/*.{js,ts,jsx,tsx}', // Include TypeScript and JSX/TSX files
+    './src/**/*.{js,ts,jsx,tsx}', // Include TS/JS and React files
   ],
   theme: {
+    screens: {
+      'md': '768px',
+    },
     extend: {
       colors: {
-        primary: '#1F2937', // Custom primary color
-        secondary: '#3B82F6', // Custom secondary color
+        primary: '#1F2937', // Custom primary color (gray-800)
+        secondary: '#3B82F6', // Blue-500
         background: '#FAFAFA', // Light mode background
-        'accent-color': '##8B5CF6',
-        'dark-background': '#1F2937', // Dark mode background
+        accent: '#8B5CF6', // Fix: remove extra '#' and simplify name
+        'dark-background': '#111827', // Slightly darker, better dark contrast
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // Custom font
+        sans: ['Inter', 'sans-serif'], // Your base font
+      },
+      transitionProperty: {
+        'theme': 'background-color, color, border-color, fill, stroke', // Smooth theme switching
       },
     },
   },
   plugins: [],
-  darkMode: 'class', // Enable dark mode with class-based toggling
-} satisfies Config;
+}
+
+export default config

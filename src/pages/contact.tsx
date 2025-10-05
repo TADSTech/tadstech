@@ -1,77 +1,55 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faUser, 
-  faEnvelope, 
-  faPaperPlane,
-  faComment,
-  faCode,
-} from '@fortawesome/free-solid-svg-icons';
-import { 
-  faGithub, 
-  faLinkedin, 
-  faTwitter 
-} from '@fortawesome/free-brands-svg-icons';
-import './styles/ContactPage.css';
+import { faEnvelope, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from 'react-helmet';
+import SocialMedia from '../helpers/socialMedia/SocialMedia';
+import './styles/contact.css';
+import Footer from '../components/Footer';
 
 interface ContactForm {
   name: string;
   email: string;
   subject: string;
   message: string;
-  captcha: string;
 }
 
+interface AddressItem {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icon: any;
+  title: string;
+  description: string;
+}
+
+const addressData: AddressItem[] = [
+  {
+    icon: faMapMarkerAlt,
+    title: 'Location',
+    description: 'Lagos, Nigeria',
+  },
+  {
+    icon: faEnvelope,
+    title: 'Email',
+    description: 'motrenewed@gmail.com',
+  },
+  {
+    icon: faPhone,
+    title: 'Phone',
+    description: '+234-704-102-9093',
+  },
+];
+
 const ContactPage: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<ContactForm>();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactForm>();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [captchaText, setCaptchaText] = useState(generateCaptcha());
-  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
-  const captchaInputRef = useRef<HTMLInputElement>(null);
-
-  // Generate random CAPTCHA text
-  function generateCaptcha(): string {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
-    let captcha = '';
-    for (let i = 0; i < 6; i++) {
-      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return captcha;
-  }
-
-  const refreshCaptcha = () => {
-    setCaptchaText(generateCaptcha());
-    setIsCaptchaVerified(false);
-    if (captchaInputRef.current) {
-      captchaInputRef.current.value = '';
-    }
-  };
-
-  const verifyCaptcha = () => {
-    const enteredCaptcha = watch('captcha');
-    setIsCaptchaVerified(enteredCaptcha === captchaText);
-  };
 
   const onSubmit = async (data: ContactForm) => {
-    if (!isCaptchaVerified) {
-      alert('Please verify the CAPTCHA correctly');
-      return;
-    }
-
     setIsSubmitting(true);
-    
     try {
       const { name, email, subject, message } = data;
       const mailtoLink = `mailto:motrenewed@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
-      
       window.location.href = mailtoLink;
-      
-      // Reset form after successful submission
       reset();
-      refreshCaptcha();
-      
-      alert('Thank you for your message! We will get back to you soon.');
     } catch (error) {
       console.error('Error sending message:', error);
       alert('There was an error sending your message. Please try again.');
@@ -80,185 +58,142 @@ const ContactPage: React.FC = () => {
     }
   };
 
-  const socialLinks = [
-    {
-      icon: faGithub,
-      url: 'https://github.com/tadstech',
-      label: 'GitHub'
-    },
-    {
-      icon: faLinkedin,
-      url: 'https://linkedin.com/company/tadstech',
-      label: 'LinkedIn'
-    },
-    {
-      icon: faTwitter,
-      url: 'https://twitter.com/tadstech',
-      label: 'Twitter'
-    }
-  ];
-
   return (
-    <div className="contact-page">
-      <div className="contact-container">
-        <div className="contact-header">
-          <h1>Get in Touch</h1>
-          <p>
-            Have questions about our services or want to discuss a project? 
-            Fill out the form below and we'll get back to you soon.
-          </p>
-        </div>
+    <section className="contact-page" id="contact">
+      <Helmet>
+        <title>Contact TADS | Michael Tunwashe - Data Scientist</title>
+        <meta
+          name="description"
+          content="Contact Michael Tunwashe (TADS) for data science, full-stack development, or creative project collaborations. Reach out via email, phone, or social media."
+        />
+        <meta
+          name="keywords"
+          content="TADS, Michael Tunwashe, contact, data scientist, full-stack developer, Nigeria, React, Next.js, machine learning, Supabase, #tadsography"
+        />
+        <meta name="author" content="Michael Tunwashe" />
+        <meta property="og:title" content="Contact TADS — Data Scientist & Developer" />
+        <meta
+          property="og:description"
+          content="Get in touch with TADS for data-driven projects, web development, or creative collaborations in Lagos, Nigeria."
+        />
+        <meta property="og:type" content="website" />
+      </Helmet>
 
-        <div className="contact-content">
-          <div className="contact-form-container">
-            <form onSubmit={handleSubmit(onSubmit)} className="contact-form">
+      <div className="contact-page-container">
+        <header className="contact-page-header">
+          <h1 className="contact-page-title">
+            Connect with <span className="bg-highlight">TADS</span>
+          </h1>
+          <p className="contact-page-description">
+            I’m Michael Tunwashe, ready to discuss data science, full-stack development, or creative projects like #tadsography. Let’s create something impactful together.
+          </p>
+        </header>
+
+        <div className="contact-page-content">
+          <div className="contact-page-form-container">
+            <form onSubmit={handleSubmit(onSubmit)} className="contact-page-form">
               <div className="form-group">
-                <div className="input-with-icon">
-                  <FontAwesomeIcon icon={faUser} className="input-icon" />
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    {...register('name', { required: 'Name is required' })}
-                    className={errors.name ? 'error' : ''}
-                  />
-                </div>
+                <input
+                  type="text"
+                  placeholder="Your Name *"
+                  {...register('name', { required: 'Name is required' })}
+                  className={`contact-input ${errors.name ? 'error' : ''}`}
+                  aria-label="Your Name"
+                />
                 {errors.name && <span className="error-message">{errors.name.message}</span>}
               </div>
-
               <div className="form-group">
-                <div className="input-with-icon">
-                  <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    {...register('email', { 
-                      required: 'Email is required',
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: 'Invalid email address'
-                      }
-                    })}
-                    className={errors.email ? 'error' : ''}
-                  />
-                </div>
+                <input
+                  type="email"
+                  placeholder="Your Email *"
+                  {...register('email', {
+                    required: 'Email is required',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Invalid email address',
+                    },
+                  })}
+                  className={`contact-input ${errors.email ? 'error' : ''}`}
+                  aria-label="Your Email"
+                />
                 {errors.email && <span className="error-message">{errors.email.message}</span>}
               </div>
-
               <div className="form-group">
-                <div className="input-with-icon">
-                  <FontAwesomeIcon icon={faPaperPlane} className="input-icon" />
-                  <input
-                    type="text"
-                    placeholder="Subject"
-                    {...register('subject', { required: 'Subject is required' })}
-                    className={errors.subject ? 'error' : ''}
-                  />
-                </div>
+                <input
+                  type="text"
+                  placeholder="Subject *"
+                  {...register('subject', { required: 'Subject is required' })}
+                  className={`contact-input ${errors.subject ? 'error' : ''}`}
+                  aria-label="Subject"
+                />
                 {errors.subject && <span className="error-message">{errors.subject.message}</span>}
               </div>
-
               <div className="form-group">
-                <div className="input-with-icon">
-                  <FontAwesomeIcon icon={faComment} className="input-icon textarea-icon" />
-                  <textarea
-                    placeholder="Message"
-                    rows={5}
-                    {...register('message', { required: 'Message is required' })}
-                    className={errors.message ? 'error' : ''}
-                  />
-                </div>
+                <textarea
+                  placeholder="Your Message *"
+                  rows={5}
+                  {...register('message', { required: 'Message is required' })}
+                  className={`contact-input textarea ${errors.message ? 'error' : ''}`}
+                  aria-label="Your Message"
+                />
                 {errors.message && <span className="error-message">{errors.message.message}</span>}
               </div>
-
-              {/* CAPTCHA Section */}
-              <div className="form-group">
-                <div className="captcha-container">
-                  <div className="captcha-display">
-                    <span className="captcha-text">{captchaText}</span>
-                    <button 
-                      type="button" 
-                      onClick={refreshCaptcha}
-                      className="captcha-refresh"
-                      title="Refresh CAPTCHA"
-                    >
-                      ↻
-                    </button>
-                  </div>
-                  <div className="input-with-icon">
-                    <FontAwesomeIcon icon={faCode} className="input-icon" />
-                    <input
-                      type="text"
-                      placeholder="Enter CAPTCHA text"
-                      {...register('captcha', { 
-                        required: 'CAPTCHA is required',
-                        onChange: verifyCaptcha
-                      })}
-                      ref={el => {
-                        captchaInputRef.current = el;
-                        
-                        register('captcha').ref(el);
-                      }}
-                      className={errors.captcha ? 'error' : ''}
-                    />
-                  </div>
-                  {isCaptchaVerified && (
-                    <span className="captcha-success">✓ CAPTCHA verified</span>
-                  )}
-                  {errors.captcha && <span className="error-message">{errors.captcha.message}</span>}
-                </div>
-              </div>
-
-              <button 
-                type="submit" 
-                disabled={isSubmitting || !isCaptchaVerified}
-                className="submit-button"
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="contact-submit-button"
+                aria-label="Submit Contact Form"
               >
-                {isSubmitting ? (
-                  <div className="loading-spinner"></div>
-                ) : (
+                {isSubmitting ? 'Sending...' : (
                   <>
-                    <FontAwesomeIcon icon={faPaperPlane} />
                     Send Message
+                    <svg
+                      className="telegram-icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20.34 9.32L6.34 2.32C5.78749 2.04514 5.16362 1.94724 4.55344 2.03978C3.94326 2.13232 3.37646 2.4108 2.93033 2.83724C2.48421 3.26369 2.18046 3.81735 2.0605 4.42274C1.94054 5.02813 2.0102 5.65578 2.26 6.22L4.66 11.59C4.71446 11.72 4.74251 11.8593 4.74251 12C4.74251 12.1409 4.71446 12.2803 4.66 12.41L2.26 17.78C2.0567 18.2368 1.97076 18.7371 2.00998 19.2355C2.0492 19.7339 2.21235 20.2145 2.48459 20.6338C2.75682 21.0531 3.12953 21.3977 3.56883 21.6363C4.00812 21.875 4.50009 22 5 22C5.46823 21.9955 5.92949 21.8861 6.35 21.68L20.35 14.68C20.8466 14.4303 21.264 14.0474 21.5557 13.5742C21.8474 13.101 22.0018 12.556 22.0018 12C22.0018 11.4442 21.8474 10.8993 21.5557 10.4261C21.264 9.95282 20.8466 9.56994 20.35 9.32H20.34Z"
+                        fill="currentColor"
+                      />
+                    </svg>
                   </>
                 )}
               </button>
             </form>
           </div>
-
-          <div className="contact-info">
-            <div className="contact-methods">
-              <h2>Or reach out directly</h2>
-              
-              <div className="contact-method">
-                <FontAwesomeIcon icon={faEnvelope} className="method-icon" />
-                <div>
-                  <h3>Email Us</h3>
-                  <p>motrenewed@gmail.com</p>
-                </div>
-              </div>
-
-              <div className="social-section">
-                <h2>Follow Us</h2>
-                <div className="social-links">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-link"
-                      aria-label={social.label}
-                    >
-                      <FontAwesomeIcon icon={social.icon} />
-                    </a>
-                  ))}
-                </div>
-              </div>
+          <div className="contact-page-info">
+            <h2 className="contact-page-info-title">Reach TADS Directly</h2>
+            <div className="contact-addresses">
+              {addressData.map((item, index) => (
+                <article key={index} className="contact-address-card">
+                  <div
+                    className="address-icon-container"
+                    aria-hidden="true"
+                  >
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      className="address-icon"
+                    />
+                  </div>
+                  <div className="address-content">
+                    <p className="address-title">{item.title}</p>
+                    <p className="address-description">{item.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="contact-social">
+              <h3 className="contact-social-title">Follow TADS</h3>
+              <SocialMedia />
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <br></br>
+      <Footer />
+    </section>
   );
 };
 

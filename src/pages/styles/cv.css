@@ -1,0 +1,217 @@
+.cv-section {
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    background: linear-gradient(to bottom, var(--color-primary)/5 0%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+    .cv-section {
+    padding: 6rem 3rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-section {
+    background: linear-gradient(to bottom, var(--color-dark-background)/5 0%, transparent 100%);
+    }
+}
+
+.cv-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(31, 41, 55, 0.15);
+    padding: 2rem;
+    animation: fade-in-slide-up 0.8s ease-out forwards;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-container {
+    background: #1f2937;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.cv-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.cv-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .cv-title {
+    font-size: 3.5rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-title {
+    color: #ffffff;
+    }
+}
+
+.bg-highlight {
+    background: linear-gradient(to top, #ffdbdb 40%, transparent 40%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 0 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .bg-highlight {
+    background: linear-gradient(to top, #60a5fa 40%, transparent 40%);
+    }
+}
+
+.cv-subtitle {
+    font-size: 1.2rem;
+    color: #374151;
+    margin: 0.5rem 0 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-subtitle {
+    color: #d1d5db;
+    }
+}
+
+.cv-download-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.cv-download-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+}
+
+.cv-section-content {
+    margin-bottom: 2rem;
+}
+
+.cv-section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-primary)/20;
+    padding-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-section-title {
+    color: #60a5fa;
+    border-bottom-color: #60a5fa/20;
+    }
+}
+
+.cv-section-text {
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-section-text {
+    color: #d1d5db;
+    }
+}
+
+.cv-experience-item,
+.cv-project-item {
+    margin-bottom: 1.5rem;
+}
+
+.cv-experience-title,
+.cv-project-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-experience-title,
+    .cv-project-title {
+    color: #ffffff;
+    }
+}
+
+.cv-experience-duration {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-experience-duration {
+    color: #9ca3af;
+    }
+}
+
+.cv-skills-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.cv-skills-list li {
+    font-size: 1rem;
+    color: #374151;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.cv-skills-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-skills-list li {
+    color: #d1d5db;
+    }
+    .cv-skills-list li::before {
+    color: #60a5fa;
+    }
+}
+
+.cv-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.cv-link:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv-link {
+    color: #60a5fa;
+    }
+    .cv-link:hover {
+    color: #3b82f6;
+    }
+}

@@ -23,22 +23,21 @@ const DataVizTab: React.FC = () => {
   ];
 
   const tools = [
-    { icon: faChartBar, name: 'Matplotlib', description: 'Comprehensive 2D plotting library' },
-    { icon: faChartPie, name: 'Seaborn', description: 'Statistical data visualization' },
-    { icon: faChartLine, name: 'Plotly', description: 'Interactive web-based visualizations' },
-    { icon: faMap, name: 'Geopandas', description: 'Geospatial data visualization' }
+    { icon: faChartBar, name: 'Matplotlib', description: 'Versatile 2D plotting for publication-quality figures' },
+    { icon: faChartPie, name: 'Seaborn', description: 'High-level statistical visualization interface' },
+    { icon: faChartLine, name: 'Plotly', description: 'Interactive, web-ready graphs and dashboards' },
+    { icon: faMap, name: 'Geopandas', description: 'Geographic data analysis and mapping' }
   ];
 
   return (
     <div className="service-tab">
       <h2>Data Visualization Services</h2>
       <p>
-        We transform complex data into clear, insightful visualizations that tell compelling stories. 
-        Our visualizations help you understand patterns, trends, and outliers in your data.
+        We craft compelling visual narratives from your data, making complex information accessible and actionable. Our visualizations combine aesthetic appeal with analytical depth to drive better decisions.
       </p>
       
       <div className="section">
-        <h3>Our Visualization Toolkit:</h3>
+        <h3>Visualization Expertise</h3>
         <div className="skills-container">
           {techniques.map((technique, index) => (
             <SkillChip key={index} label={technique} />
@@ -47,7 +46,7 @@ const DataVizTab: React.FC = () => {
       </div>
 
       <div className="section">
-        <h3>Featured Tools:</h3>
+        <h3>Our Toolkit</h3>
         <div className="tools-grid">
           {tools.map((tool, index) => (
             <ToolCard
@@ -61,17 +60,17 @@ const DataVizTab: React.FC = () => {
       </div>
 
       <div className="section">
-        <h3>Sample Projects:</h3>
+        <h3>Featured Projects</h3>
         <div className="case-studies-grid">
           <CaseStudyCard
-            title="Sales Dashboard"
-            description="Built an interactive sales dashboard for a retail client using Plotly Dash."
+            title="Sales Performance Dashboard"
+            description="Created real-time interactive dashboard for retail chain, improving sales tracking efficiency by 35%."
             tags={['Retail', 'Dashboards', 'Plotly']}
             icon={faDashboard}
           />
           <CaseStudyCard
-            title="COVID-19 Trends"
-            description="Developed time series animations of pandemic spread across regions."
+            title="COVID-19 Spread Visualization"
+            description="Developed animated geospatial maps tracking pandemic progression, used in public health reports."
             tags={['Time Series', 'Public Health', 'Seaborn']}
             icon={faVirus}
           />

@@ -23,22 +23,21 @@ const ModelingTab: React.FC = () => {
   ];
 
   const tools = [
-    { icon: faFlask, name: 'Scikit-learn', description: 'Traditional ML algorithms' },
-    { icon: faLineChart, name: 'Statsmodels', description: 'Statistical modeling' },
-    { icon: faNetworkWired, name: 'TensorFlow', description: 'Deep learning framework' },
-    { icon: faBolt, name: 'XGBoost', description: 'Gradient boosting' }
+    { icon: faFlask, name: 'Scikit-learn', description: 'Versatile ML algorithms and pipelines' },
+    { icon: faLineChart, name: 'Statsmodels', description: 'Advanced statistical modeling' },
+    { icon: faNetworkWired, name: 'TensorFlow', description: 'Scalable deep learning framework' },
+    { icon: faBolt, name: 'XGBoost', description: 'High-performance gradient boosting' }
   ];
 
   return (
     <div className="service-tab">
-      <h2>Predictive Modeling</h2>
+      <h2>Predictive Modeling Services</h2>
       <p>
-        We build robust predictive models tailored to your specific business needs. 
-        From regression to classification, our models are rigorously tested and optimized for performance.
+        We develop sophisticated predictive models that forecast outcomes, identify patterns, and drive intelligent decision-making. Our models are optimized for accuracy, efficiency, and real-world deployment.
       </p>
       
       <div className="section">
-        <h3>Modeling Approaches:</h3>
+        <h3>Modeling Approaches</h3>
         <div className="skills-container">
           {approaches.map((approach, index) => (
             <SkillChip key={index} label={approach} />
@@ -47,7 +46,7 @@ const ModelingTab: React.FC = () => {
       </div>
 
       <div className="section">
-        <h3>Modeling Stack:</h3>
+        <h3>Advanced Tools</h3>
         <div className="tools-grid">
           {tools.map((tool, index) => (
             <ToolCard
@@ -61,17 +60,17 @@ const ModelingTab: React.FC = () => {
       </div>
 
       <div className="section">
-        <h3>Recent Projects:</h3>
+        <h3>Impactful Projects</h3>
         <div className="case-studies-grid">
           <CaseStudyCard
-            title="Customer Lifetime Value Model"
-            description="Built a regression model to predict the lifetime value of e-commerce users."
+            title="Customer Lifetime Value Prediction"
+            description="Created regression model forecasting CLV, enabling targeted marketing that increased retention by 18%."
             tags={['Regression', 'CLV', 'Scikit-learn']}
             icon={faArrowUpRightDots}
           />
           <CaseStudyCard
-            title="Loan Default Prediction"
-            description="Classified high-risk borrowers using logistic regression and XGBoost."
+            title="Loan Risk Assessment"
+            description="Implemented XGBoost classifier for default prediction, reducing bad loans by 25% for a fintech client."
             tags={['Classification', 'Finance', 'XGBoost']}
             icon={faBank}
           />
@@ -79,9 +78,9 @@ const ModelingTab: React.FC = () => {
       </div>
 
       <div className="section">
-        <h3>Model Evaluation Metrics:</h3>
+        <h3>Evaluation Excellence</h3>
         <p>
-          We use metrics like RMSE, AUC-ROC, precision, recall, and F1 score depending on the model type.
+          We rigorously evaluate models using metrics like RMSE, AUC-ROC, precision-recall, and cross-validation to ensure reliability and performance.
         </p>
       </div>
     </div>

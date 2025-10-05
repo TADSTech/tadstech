@@ -9,22 +9,10 @@ html, body, #root {
   overflow-x: hidden;
 }
 
-@theme {
-  --color-primary: #1F2937;
-  --color-secondary: #3B82F6;
-  --color-background: #FAFAFA;
-  --color-dark-background: #111827;
-  --color-accent: #8B5CF6;
-  --scroll-track: transparent;
-  --scroll-thumb: #8B5CF6;
+#root {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
 }
-
-.dark {
-  --scroll-track: transparent;
-  --scroll-thumb: #8B5CF6; 
-}
-
-
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -44,4 +32,16 @@ html, body, #root {
 
 ::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
+}
+
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }

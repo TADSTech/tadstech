@@ -1,13 +1,9 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faUser, 
-  faCode,
-  faMobile,
-  faDatabase,
-  faRobot
-} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCode, faMobile, faDatabase, faRobot } from '@fortawesome/free-solid-svg-icons';
 import './styles/About.css';
+import Footer from '../components/Footer';
 
 interface TimelineItemProps {
   year: string;
@@ -21,20 +17,20 @@ interface TechChipProps {
 
 const TimelineItem: React.FC<TimelineItemProps> = ({ year, title, description }) => {
   return (
-    <div className="timeline-item">
+    <article className="timeline-item" aria-label={`Timeline: ${title}`}>
       <div className="timeline-marker"></div>
       <div className="timeline-content">
         <div className="timeline-year">{year}</div>
         <h3 className="timeline-title">{title}</h3>
         <p className="timeline-description">{description}</p>
       </div>
-    </div>
+    </article>
   );
 };
 
 const TechChip: React.FC<TechChipProps> = ({ label }) => {
   return (
-    <span className="tech-chip">
+    <span className="tech-chip" aria-label={`Technology: ${label}`}>
       {label}
     </span>
   );
@@ -42,102 +38,116 @@ const TechChip: React.FC<TechChipProps> = ({ label }) => {
 
 const About: React.FC = () => {
   const techStack = [
-    'React', 'TypeScript', 'JavaScript', 'Python', 
-    'Flutter', 'Dart', 'Git', 'SQL', 
+    'React', 'TypeScript', 'JavaScript', 'Python',
+    'Flutter', 'Dart', 'Git', 'SQL',
     'Pandas', 'NumPy', 'TailwindCSS'
-   ];
-
+  ];
 
   return (
     <div className="about-page">
+      <Helmet>
+        <title>About TADS | Michael Tunwashe - Data Scientist & Developer</title>
+        <meta
+          name="description"
+          content="Learn about Michael Tunwashe, the data scientist and full-stack developer behind TADS. Specializing in React, Flutter, and data-driven solutions."
+        />
+        <meta
+          name="keywords"
+          content="TADS, Michael Tunwashe, data scientist, full-stack developer, React, Flutter, Python, Nigeria, machine learning, web development"
+        />
+        <meta name="author" content="Michael Tunwashe" />
+        <meta property="og:title" content="About TADS - Michael Tunwashe" />
+        <meta
+          property="og:description"
+          content="Discover Michael Tunwashe's journey in data science and full-stack development, building innovative solutions with React, Flutter, and Python."
+        />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://tadstech.com/about" />
+      </Helmet>
+
       <div className="about-container">
         <div className="about-header">
           <div className="about-avatar">
             <div className="avatar-circle">
-              <FontAwesomeIcon icon={faUser} className="avatar-icon" />
+              <FontAwesomeIcon icon={faUser} className="avatar-icon" aria-hidden="true" />
             </div>
           </div>
           
-          <h1 className="about-title">The Average Data Scientist</h1>
+          <h1 className="about-title">Michael Tunwashe</h1>
           
           <p className="about-description">
-            TADSTech is the personal brand of Michael — a mathematics student at the University of Lagos, 
-            passionate about solving problems through data and design. With a foundation in 
-            Flutter/Dart and a current transition into React and modern web technologies, 
-            I focus on building clean, data-driven, and user-friendly solutions.
-            </p>
-
+            As the mind behind TADSTech, I'm a mathematics student at the University of Lagos, blending data science and full-stack development to craft innovative solutions. Specializing in React and Flutter, I deliver scalable, user-focused applications backed by data-driven insights. My mission? Solve complex problems with clean code and creative design.
+          </p>
+          <a href="/contact" className="about-cta" aria-label="Contact TADS">Get in Touch</a>
         </div>
 
-        <div className="about-section">
-          <h2 className="section-title">Our Story</h2>
+        <section className="about-section">
+          <h2 className="section-title">My Journey</h2>
           
           <div className="timeline">
             <TimelineItem
-            year="2023"
-            title="First Lines of Code"
-            description="Started with Python and mathematics-driven projects, building a strong base in problem-solving."
+              year="2023"
+              title="Python & Data Science Beginnings"
+              description="Kicked off with Python, building data visualization tools and statistical models for academic projects."
             />
             <TimelineItem
-            year="2024"
-            title="Exploring Mobile Development"
-            description="Built several apps with Flutter/Dart, gaining hands-on experience delivering mobile-first solutions."
+              year="2024"
+              title="Mobile App Development"
+              description="Developed cross-platform apps with Flutter, including a task management app used by 100+ local users."
             />
             <TimelineItem
-            year="2025"
-            title="Transition into React"
-            description="Shifting focus to web development with React, TypeScript, and modern frontend workflows."
+              year="2025"
+              title="Mastering React & Web"
+              description="Transitioned to React and TypeScript, launching responsive web apps with modern workflows."
             />
             <TimelineItem
-            year="2026 and Beyond"
-            title="Looking Ahead"
-            description="Preparing to contribute to open-source, grow as a data scientist, and explore Rust as a systems hobby."
+              year="2026+"
+              title="Future Vision"
+              description="Aiming to contribute to open-source AI tools and explore Rust for high-performance systems."
             />
-
           </div>
-        </div>
+        </section>
 
-        <div className="about-section">
-          <h2 className="section-title">Our Expertise</h2>
+        <section className="about-section">
+          <h2 className="section-title">Core Expertise</h2>
           
           <div className="expertise-grid">
             <div className="expertise-item">
-            <FontAwesomeIcon icon={faCode} className="expertise-icon" />
-            <h3>Clean Code</h3>
-            <p>Writing clear, maintainable, and well-structured solutions.</p>
+              <FontAwesomeIcon icon={faCode} className="expertise-icon" aria-hidden="true" />
+              <h3>Clean Code</h3>
+              <p>Delivering modular, maintainable code for scalable applications.</p>
             </div>
-
             <div className="expertise-item">
-            <FontAwesomeIcon icon={faMobile} className="expertise-icon" />
-            <h3>Cross-Platform</h3>
-            <p>Experience with Flutter for mobile and React for the web.</p>
+              <FontAwesomeIcon icon={faMobile} className="expertise-icon" aria-hidden="true" />
+              <h3>Cross-Platform Apps</h3>
+              <p>Building seamless experiences for web, iOS, and Android with React and Flutter.</p>
             </div>
-
             <div className="expertise-item">
-            <FontAwesomeIcon icon={faDatabase} className="expertise-icon" />
-            <h3>Data Science</h3>
-            <p>Turning data into insights with Python, Pandas, and NumPy.</p>
+              <FontAwesomeIcon icon={faDatabase} className="expertise-icon" aria-hidden="true" />
+              <h3>Data Science</h3>
+              <p>Transforming raw data into actionable insights using Python and SQL.</p>
             </div>
-
             <div className="expertise-item">
-            <FontAwesomeIcon icon={faRobot} className="expertise-icon" />
-            <h3>AI Curiosity</h3>
-            <p>Learning the fundamentals of ML and its practical applications.</p>
+              <FontAwesomeIcon icon={faRobot} className="expertise-icon" aria-hidden="true" />
+              <h3>Machine Learning</h3>
+              <p>Applying ML models to solve real-world problems with precision.</p>
             </div>
-
           </div>
-        </div>
+        </section>
 
-        <div className="about-section">
-          <h2 className="section-title">Our Stack</h2>
-          
+        <section className="about-section">
+          <h2 className="section-title">Tech Stack</h2>
+          <p className="tech-stack-description">
+            A curated set of tools to build robust, modern applications.
+          </p>
           <div className="tech-stack">
             {techStack.map((tech, index) => (
               <TechChip key={index} label={tech} />
             ))}
           </div>
-        </div>
+        </section>
       </div>
+      <Footer />
     </div>
   );
 };

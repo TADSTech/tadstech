@@ -3,10 +3,14 @@ import LoadingBar, { type LoadingBarRef } from 'react-top-loading-bar';
 import './App.css';
 import AppBar from './components/AppBar.tsx';
 import HeroSection from './components/HeroSection.tsx';
+import ProfileSection from './components/Profile.tsx'
 import ServicesPreview from './components/ServicesPreview.tsx';
-import CrossPlatformSection from './components/CrossPlatformSection.tsx';
-import ReactBenefitsSection from './components/ReactBenefits.tsx';
+import ServicesSection from './components/Services.tsx';
+import WorkTogether from './components/WorkTogether.tsx';
+import ContactFormSection from './components/ContactFormSection.tsx';
+import ReactPoweredSection from './components/ReactPoweredSection.tsx';
 import Footer from './components/Footer.tsx';
+import PortfolioPreviewSection from './components/PortfolioSectionPreview.tsx';
 
 export default function App() {
   const ref = useRef<LoadingBarRef>(null);
@@ -51,12 +55,18 @@ export default function App() {
         </>
       )}
       {!showFullScreen && (
-        <div className="bg-background dark:bg-dark-background min-h-screen w-full m-0 p-0">
+        <div className="app-wrapper bg-background dark:bg-dark-background transition-theme duration-500">
           <AppBar />
-          <HeroSection />
-          <ServicesPreview />
-          <CrossPlatformSection />
-          <ReactBenefitsSection />
+          <div className="app-content">
+            <HeroSection />
+            <ProfileSection />
+            <ServicesSection />
+            <ServicesPreview />
+            <PortfolioPreviewSection />
+            <ReactPoweredSection />
+            <WorkTogether />
+            <ContactFormSection />
+          </div>
           <Footer />
         </div>
       )}
