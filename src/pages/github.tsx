@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faStar,
@@ -9,6 +9,7 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 import './styles/GitHubPage.css';
+import Loading from './special/loading';
 import Footer from '../components/Footer.tsx';
 
 interface GitHubRepo {
@@ -37,9 +38,33 @@ const GitHubPage: React.FC = () => {
     fetchGitHubRepos();
   }, []);
 
-  useEffect(() => {
-    filterAndSortRepos();
+  const filterAndSortReposCallback = useCallback(() => {
+    const filtered = repos.filter(
+      (repo) =>
+        repo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (repo.description &&
+          repo.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (repo.language && repo.language.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case 'stars':
+          return b.stargazers_count - a.stargazers_count;
+        case 'name':
+          return a.name.localeCompare(b.name);
+        case 'updated':
+        default:
+          return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
+      }
+    });
+
+    setFilteredRepos(filtered);
   }, [repos, searchTerm, sortBy]);
+
+  useEffect(() => {
+    filterAndSortReposCallback();
+  }, [filterAndSortReposCallback]);
 
   const fetchGitHubRepos = async () => {
     try {
@@ -56,31 +81,6 @@ const GitHubPage: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const filterAndSortRepos = () => {
-    const filtered = repos.filter(
-      (repo) =>
-        repo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (repo.description &&
-          repo.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (repo.language &&
-          repo.language.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
-
-    filtered.sort((a, b) => {
-      switch (sortBy) {
-        case 'stars':
-          return b.stargazers_count - a.stargazers_count;
-        case 'name':
-          return a.name.localeCompare(b.name);
-        case 'updated':
-        default:
-          return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
-      }
-    });
-
-    setFilteredRepos(filtered);
   };
 
   const formatDate = (dateString: string) => {
@@ -100,10 +100,11 @@ const GitHubPage: React.FC = () => {
   if (loading)
     return (
       <div className="github-page">
-        <div className="loading-spinner">
-          <div className="spinner"></div>
-          <p>Fetching repositories from GitHub...</p>
-        </div>
+        <Loading
+          message="Fetching repositories from GitHub..."
+          size={64}
+          className="" 
+        />
       </div>
     );
 

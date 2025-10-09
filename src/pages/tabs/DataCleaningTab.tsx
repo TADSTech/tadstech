@@ -63,6 +63,7 @@ const DataCleaningTab: React.FC = () => {
             tags={['CSV', 'Text Cleaning', 'Python']}
             icon={faPiggyBank}
             ctaLabel="Open Notebook"
+            ctalink="https://github.com/TADSTech/Bank-Statements-Cleanup/blob/main/notebooks/cleanup.ipynb"
           />
           <CaseStudyCard
             title="E-Commerce Transaction Cleanup"

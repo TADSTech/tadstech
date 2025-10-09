@@ -63,10 +63,12 @@ const DataVizTab: React.FC = () => {
         <h3>Featured Projects</h3>
         <div className="case-studies-grid">
           <CaseStudyCard
-            title="Sales Performance Dashboard"
-            description="Created real-time interactive dashboard for retail chain, improving sales tracking efficiency by 35%."
+            title="Sales Scope: Sales Performance Dashboard"
+            description="Created real-time interactive dashboard for retail chain that allows you to analyze sales performance with intuitive dashboards and detailed reports. Track revenue, profit, customer trends, and more in one seamless platform."
             tags={['Retail', 'Dashboards', 'Plotly']}
             icon={faDashboard}
+            ctaLabel='View Project'
+            ctalink='https://github.com/tadstech/sales-scope'
           />
           <CaseStudyCard
             title="COVID-19 Spread Visualization"
