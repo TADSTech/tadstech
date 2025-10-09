@@ -56,7 +56,7 @@ const ContactFormSection: React.FC = () => {
           content="TADS, Michael Tunwashe, contact, data scientist, full-stack developer, Nigeria, React, Next.js, machine learning"
         />
         <meta name="author" content="Michael Tunwashe" />
-        <meta property="og:title" content="Contact TADS — Data Scientist & Developer" />
+        <meta property="og:title" content="Contact TADS - Data Scientist & Developer" />
         <meta
           property="og:description"
           content="Get in touch with TADS for data-driven projects, web development, or creative collaborations."

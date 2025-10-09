@@ -27,7 +27,7 @@ const Profile: React.FC = () => {
           {/* Profile Text */}
           <div className="profile-text-content">
             <h2 className="profile-title">
-              <span className="bg-highlight">TADS</span> — The Average Data Scientist
+              <span className="bg-highlight">TADS</span> - The Average Data Scientist
             </h2>
             <p className="profile-description">
               I'm Michael Tunwashe, a data scientist and full-stack developer with a foundation in pure mathematics. I specialize in transforming raw data into actionable insights and building practical solutions with code. From data pipelines to full-stack apps, my focus is on delivering real-world impact with consistency and curiosity.

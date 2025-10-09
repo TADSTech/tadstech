@@ -55,7 +55,7 @@ function AppBar() {
             <div className="app-bar-logo-container">
               <img
                 src={logo}
-                alt="TADSTech logo — The Average Data Scientist brand mark"
+                alt="TADSTech logo - The Average Data Scientist brand mark"
                 className="app-bar-logo"
                 loading="eager"
               />

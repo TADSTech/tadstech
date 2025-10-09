@@ -12,14 +12,14 @@ const CV: React.FC = () => {
         <title>Michael Tunwashe (TADS) | Data Scientist & Full-Stack Developer</title>
         <meta
           name="description"
-          content="Michael Tunwashe (TADS) — Data Scientist, Full-Stack Developer, and Mathematics Major at the University of Lagos. Specializing in machine learning, analytics, and scalable web systems."
+          content="Michael Tunwashe (TADS) - Data Scientist, Full-Stack Developer, and Mathematics Major at the University of Lagos. Specializing in machine learning, analytics, and scalable web systems."
         />
         <meta
           name="keywords"
           content="TADS, Michael Tunwashe, Data Scientist, Full Stack Developer, Nigeria, React, Next.js, Machine Learning, Tailwind, Supabase, Python, Kaggle"
         />
         <meta name="author" content="Michael Tunwashe" />
-        <meta property="og:title" content="TADS — The Average Data Scientist" />
+        <meta property="og:title" content="TADS - The Average Data Scientist" />
         <meta
           property="og:description"
           content="Portfolio and CV of Michael Tunwashe (TADS): blending data science, mathematics, and full-stack development."
@@ -31,7 +31,7 @@ const CV: React.FC = () => {
         {/* Header */}
         <header className="cv-header" aria-label="Header Section">
           <h1 className="cv-title">
-            <span className="bg-highlight">TADS</span> — Michael Tunwashe
+            <span className="bg-highlight">TADS</span> - Michael Tunwashe
           </h1>
           <p className="cv-subtitle">The Average Data Scientist</p>
           <a
@@ -49,7 +49,7 @@ const CV: React.FC = () => {
         <article className="cv-section-content" id="about">
           <h2 className="cv-section-title">About Me</h2>
           <p className="cv-section-text">
-            I’m <strong>Michael Tunwashe</strong> — widely known as <strong>TADS</strong> — a data scientist and
+            I’m <strong>Michael Tunwashe</strong> - widely known as <strong>TADS</strong> - a data scientist and
             full-stack developer blending analytical precision with creative execution. As a mathematics major at the
             University of Lagos, I leverage deep quantitative reasoning to design <strong>data-driven systems</strong>{' '}
             that solve real-world problems. My work philosophy: <em>Consistency and clarity outperform talent</em>.  
@@ -63,10 +63,10 @@ const CV: React.FC = () => {
 
           <div className="cv-experience-item">
             <h3 className="cv-experience-title">Freelance Data Scientist & Developer</h3>
-            <p className="cv-experience-duration">2023 – Present</p>
+            <p className="cv-experience-duration">2023 - Present</p>
             <ul className="cv-section-text">
               <li>
-                Delivered <strong>end-to-end data projects</strong> — from raw data cleaning to model deployment —
+                Delivered <strong>end-to-end data projects</strong>, from raw data cleaning to model deployment,
                 increasing client insights and operational efficiency.
               </li>
               <li>
@@ -99,7 +99,7 @@ const CV: React.FC = () => {
           <div className="cv-project-item">
             <h3 className="cv-project-title">Kaggle & Data Analytics</h3>
             <p className="cv-section-text">
-              Actively developing advanced data workflows — conducting <strong>exploratory data analysis</strong>,
+              Actively developing advanced data workflows: conducting <strong>exploratory data analysis</strong>,
               cleaning large datasets, and training ML models for finance, HR, and research applications. Ranked among
               consistent contributors on Kaggle’s public datasets.
             </p>

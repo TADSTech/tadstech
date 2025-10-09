@@ -28,7 +28,7 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
           {/* Text Content */}
           <div className="hero-text-content">
             <h1 className="hero-title">
-              <span className="bg-highlight">TADS</span> — The Average Data Scientist
+              <span className="bg-highlight">TADS</span> - The Average Data Scientist
             </h1>
             <p className="hero-description">
               I’m Michael Tunwashe, turning raw data into actionable insights and building practical solutions with code, math, and curiosity.
