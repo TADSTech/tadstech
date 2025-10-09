@@ -33,7 +33,7 @@ const WorkTogether: React.FC = () => {
       {/* Light SEO metadata */}
       <meta
         name="description"
-        content="Collaborate with Michael Tunwashe (TADS) — a data scientist and full-stack developer skilled in Python, React, and machine learning. Build data-driven solutions with impact."
+        content="Collaborate with Michael Tunwashe (TADS) - a data scientist and full-stack developer skilled in Python, React, and machine learning. Build data-driven solutions with impact."
       />
       <meta
         name="keywords"
