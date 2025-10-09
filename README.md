@@ -3,12 +3,12 @@
 🎓 Mathematics (Pure Option) student at **University of Lagos, Nigeria**  
 📊 Aspiring **Actuarial Scientist** | Future M.Sc. in Actuarial Science  
 💻 Tech enthusiast diving deep into **Python (Data Science)** and **React (Frontend)**  
-🦀 Rust hobbyist & observer — curious about low-level systems and cross-platform frameworks like **Tauri**  
+🦀 Rust hobbyist & observer - curious about low-level systems and cross-platform frameworks like **Tauri**  
 
 ---
 
 ## 🔧 Tech Stack & Experience
-- **Languages:** Python, JavaScript/TypeScript, Dart (past projects), (Rust – hobbyist)  
+- **Languages:** Python, JavaScript/TypeScript, Dart (past projects), (Rust - hobbyist)  
 - **Frameworks & Tools:** React, Vite, TailwindCSS, Flutter (past projects), Tauri  
 - **Data Science:** Pandas, NumPy, Matplotlib (expanding to ML soon 🚀)  
 
@@ -84,11 +84,11 @@ src/
 
 ## ✨ Features
 
-* 📱 **Responsive Design** — Works across devices (mobile, tablet, desktop).
-* 🌙 **Dark Mode** — Adapts to user system preferences.
-* 🎨 **Custom Animations** — Smooth transitions, fade-in, and staggered effects.
-* ⚡ **Optimized Build** — Powered by Vite + SWC for fast reloads and production builds.
-* 🖼️ **Reusable Components** — Modular structure for easy maintenance.
+* 📱 **Responsive Design**: Works across devices (mobile, tablet, desktop).
+* 🌙 **Dark Mode**: Adapts to user system preferences.
+* 🎨 **Custom Animations**: Smooth transitions, fade-in, and staggered effects.
+* ⚡ **Optimized Build**: Powered by Vite + SWC for fast reloads and production builds.
+* 🖼️ **Reusable Components**: Modular structure for easy maintenance.
 
 ---
 

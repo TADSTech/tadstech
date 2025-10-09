@@ -34,7 +34,7 @@ const GitHubPage: React.FC = () => {
 
   useEffect(() => {
     document.title =
-      'TADS — Open Source Developer | Data Science & Full-Stack Engineering';
+      'TADS - Open Source Developer | Data Science & Full-Stack Engineering';
     fetchGitHubRepos();
   }, []);
 
@@ -124,7 +124,7 @@ const GitHubPage: React.FC = () => {
   return (
     <div className="github-page">
       <header className="github-header">
-        <h1>TADS — Open Source Projects</h1>
+        <h1>TADS - Open Source Projects</h1>
         <p>
           A curated portfolio of data-driven web apps, AI pipelines, and full-stack tools
           built with modern technologies like <strong>React</strong>,{' '}
@@ -157,7 +157,7 @@ const GitHubPage: React.FC = () => {
           >
             <option value="updated">Recently Updated</option>
             <option value="stars">Most Starred</option>
-            <option value="name">Name (A–Z)</option>
+            <option value="name">Name (A-Z)</option>
           </select>
         </div>
       </section>

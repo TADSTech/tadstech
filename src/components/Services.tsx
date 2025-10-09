@@ -38,7 +38,7 @@ const Services: React.FC = () => {
           content="TADS, Michael Tunwashe, data scientist, full-stack developer, machine learning, data visualization, React, Next.js, TailwindCSS, Supabase, Nigeria"
         />
         <meta name="author" content="Michael Tunwashe" />
-        <meta property="og:title" content="TADS Services — Data Science & Development" />
+        <meta property="og:title" content="TADS Services - Data Science & Development" />
         <meta
           property="og:description"
           content="Discover TADS services: data science, full-stack development, and analytics by Michael Tunwashe, a mathematics major delivering real-world solutions."
