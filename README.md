@@ -1,7 +1,7 @@
 # Hi, I'm Michael 👋  
 
 🎓 Mathematics (Pure Option) student at **University of Lagos, Nigeria**  
-📊 Aspiring **Actuarial Scientist** | Future M.Sc. in Actuarial Science  
+📊 Aspiring **Quanntitative analyst** 
 💻 Tech enthusiast diving deep into **Python (Data Science)** and **React (Frontend)**  
 🦀 Rust hobbyist & observer - curious about low-level systems and cross-platform frameworks like **Tauri**  
 
@@ -10,7 +10,8 @@
 ## 🔧 Tech Stack & Experience
 - **Languages:** Python, JavaScript/TypeScript, Dart (past projects), (Rust - hobbyist)  
 - **Frameworks & Tools:** React, Vite, TailwindCSS, Flutter (past projects), Tauri  
-- **Data Science:** Pandas, NumPy, Matplotlib (expanding to ML soon 🚀)  
+- **Data Science:** Pandas, NumPy, Matplotlib (expanding to ML soon 🚀)
+- **Operating System:** Arch Linux 😄
 
 > 💡 I built past projects with **Dart + Flutter** but I’m currently **transitioning into React + TypeScript** for the web.  
 
@@ -19,14 +20,14 @@
 ## 🌱 Currently Learning
 - Advanced **Python for Data Science**  
 - **React + TypeScript** for robust frontends  
-- Exploring **actuarial methods** & insurance-focused analytics  
+- Exploring **actuarial methods, quantitative finance** & insurance-focused analytics  
 
 ---
 
 ## 📌 Goals
 - Build a strong portfolio in **data-driven development**  
 - Earn freelance income through coding & analytics projects  
-- Transition into an **insurance firm** role as an actuarial scientist  
+- Transition into an engineer of data and machine llearning pipelines in order to be able to make **quantitative analysis** on financial trends  
 
 ---
 
@@ -41,7 +42,7 @@
 
 ## 📫 Let's Connect
 - GitHub: [@TADSTech](https://github.com/TADSTech)  
-- LinkedIn: *coming soon*  
+- LinkedIn: [@TADSTech](https://linkedin.com/in/tadstech) 
 - Email: *motrenewed@gmail.com*  
 
 ---
