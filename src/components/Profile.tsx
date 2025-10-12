@@ -36,7 +36,7 @@ const Profile: React.FC = () => {
               I’ve built projects like <strong>FocusForge</strong> (Next.js, Supabase) and explored datasets on Kaggle, blending analytical rigor with creative problem-solving. My photography under <strong>#tadsography</strong> captures life’s perspectives, reminding me clarity matters in both data and design.
             </p>
             <div className="profile-buttons">
-              <a href="/work" className="profile-primary-button">
+              <a href="/github" className="profile-primary-button">
                 Explore My Work
               </a>
               <a href="/cv" className="profile-secondary-button">

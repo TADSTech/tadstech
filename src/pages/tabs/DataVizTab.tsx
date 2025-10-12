@@ -67,14 +67,16 @@ const DataVizTab: React.FC = () => {
             description="Created real-time interactive dashboard for retail chain that allows you to analyze sales performance with intuitive dashboards and detailed reports. Track revenue, profit, customer trends, and more in one seamless platform."
             tags={['Retail', 'Dashboards', 'Plotly']}
             icon={faDashboard}
-            ctaLabel='View Project'
-            ctalink='https://github.com/tadstech/sales-scope'
+            ctaLabel='View Live Demo'
+            ctalink='https://salesscope.web.app'
           />
           <CaseStudyCard
             title="COVID-19 Spread Visualization"
             description="Developed animated geospatial maps tracking pandemic progression, used in public health reports."
-            tags={['Time Series', 'Public Health', 'Seaborn']}
+            tags={['Pandas', 'Public Health', 'Plotly']}
             icon={faVirus}
+            ctaLabel='View on github'
+            ctalink='https://github.com/tadstech/covid19_analysis'
           />
         </div>
       </div>

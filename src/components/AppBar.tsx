@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
 import logo from "../assets/images/logo.svg";
 import "./appbar.css";
 
-
 const getSystemPreference = () => window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 const getInitialTheme = () => (localStorage.getItem("theme") as "light" | "dark") || getSystemPreference();
+
 function AppBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,7 +17,10 @@ function AppBar() {
     localStorage.setItem("theme", newTheme);
   };
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  // Toggle menu visibility
+  const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
+  // Close menu (used by NavLinks)
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -96,87 +98,66 @@ function AppBar() {
                 aria-expanded={isMobileMenuOpen}
                 aria-label="Toggle menu"
               >
-                {isMobileMenuOpen ? (
-                  <svg
-                    className="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16m-7 6h7"
-                    />
-                  </svg>
-                )}
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  />
+                </svg>
               </button>
             </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <CSSTransition
-          in={isMobileMenuOpen}
-          timeout={300}
-          classNames="menu"
-          unmountOnExit
-        >
+        {isMobileMenuOpen && (
           <div className="mobile-menu" role="menu">
             <div className="mobile-menu-container">
               <NavLink
                 to="/"
                 className="mobile-nav-link"
-                onClick={toggleMobileMenu}
+                onClick={closeMobileMenu}
               >
                 Home
               </NavLink>
               <NavLink
                 to="/services"
                 className="mobile-nav-link"
-                onClick={toggleMobileMenu}
+                onClick={closeMobileMenu}
               >
                 Services
               </NavLink>
               <NavLink
                 to="/github"
                 className="mobile-nav-link"
-                onClick={toggleMobileMenu}
+                onClick={closeMobileMenu}
               >
                 Portfolio
               </NavLink>
               <NavLink
                 to="/about"
                 className="mobile-nav-link"
-                onClick={toggleMobileMenu}
+                onClick={closeMobileMenu}
               >
                 About
               </NavLink>
               <NavLink
                 to="/contact"
                 className="mobile-nav-button"
-                onClick={toggleMobileMenu}
+                onClick={closeMobileMenu}
               >
                 Contact Us
               </NavLink>
             </div>
           </div>
-        </CSSTransition>
+        )}
       </nav>
     </header>
   );
