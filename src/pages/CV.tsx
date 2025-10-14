@@ -1,158 +1,89 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
-import { Helmet } from 'react-helmet';
-import './styles/cv.css';
+import Helmet from 'react-helmet';
 
 const CV: React.FC = () => {
   return (
-    <div className="cv-section">
-      {/* SEO Metadata */}
+    <div className="cv-page">
       <Helmet>
-        <title>Michael Tunwashe (TADS) | Data Scientist & Full-Stack Developer</title>
-        <meta
-          name="description"
-          content="Michael Tunwashe (TADS) - Data Scientist, Full-Stack Developer, and Mathematics Major at the University of Lagos. Specializing in machine learning, analytics, and scalable web systems."
-        />
-        <meta
-          name="keywords"
-          content="TADS, Michael Tunwashe, Data Scientist, Full Stack Developer, Nigeria, React, Next.js, Machine Learning, Tailwind, Supabase, Python, Kaggle"
-        />
-        <meta name="author" content="Michael Tunwashe" />
-        <meta property="og:title" content="TADS - The Average Data Scientist" />
-        <meta
-          property="og:description"
-          content="Portfolio and CV of Michael Tunwashe (TADS): blending data science, mathematics, and full-stack development."
-        />
+        <title>CV | Michael Tunwashe (TADS)</title>
+        <meta name="description" content="Curriculum Vitae for Michael Tunwashe (TADS) - SQL, Business Intelligence, Data Visualization, Python, React." />
+        <meta name="keywords" content="CV, Resume, SQL, Business Intelligence, Data Visualization, Python, pandas, plotly, React, Full-Stack" />
+        <meta property="og:title" content="CV | Michael Tunwashe (TADS)" />
+        <meta property="og:description" content="Curriculum Vitae for Michael Tunwashe (TADS) - SQL, Business Intelligence, Data Visualization, Python, React." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tadstech.web.app/cv" />
+        <meta property="og:image" content="/assets/images/profile.jpg" />
+        <meta name="author" content="Michael Tunwashe" />
       </Helmet>
-
-      <div className="cv-container">
-        {/* Header */}
-        <header className="cv-header" aria-label="Header Section">
-          <h1 className="cv-title">
-            <span className="bg-highlight">TADS</span> - Michael Tunwashe
-          </h1>
-          <p className="cv-subtitle">The Average Data Scientist</p>
-          <a
-            href="/cv/michael-tunwashe-cv.pdf"
-            download
-            className="cv-download-button"
-            aria-label="Download Michael Tunwashe CV"
-          >
-            <FontAwesomeIcon icon={faDownload} className="mr-2" />
-            Download CV
-          </a>
-        </header>
-
-        {/* About */}
-        <article className="cv-section-content" id="about">
-          <h2 className="cv-section-title">About Me</h2>
-          <p className="cv-section-text">
-            I’m <strong>Michael Tunwashe</strong> - widely known as <strong>TADS</strong> - a data scientist and
-            full-stack developer blending analytical precision with creative execution. As a mathematics major at the
-            University of Lagos, I leverage deep quantitative reasoning to design <strong>data-driven systems</strong>{' '}
-            that solve real-world problems. My work philosophy: <em>Consistency and clarity outperform talent</em>.  
-            Beyond code, I explore human perspective through <strong>#tadsography</strong>, my visual storytelling brand.
-          </p>
-        </article>
-
-        {/* Experience */}
-        <article className="cv-section-content" id="experience">
-          <h2 className="cv-section-title">Experience</h2>
-
-          <div className="cv-experience-item">
-            <h3 className="cv-experience-title">Freelance Data Scientist & Developer</h3>
-            <p className="cv-experience-duration">2023 - Present</p>
-            <ul className="cv-section-text">
-              <li>
-                Delivered <strong>end-to-end data projects</strong>, from raw data cleaning to model deployment,
-                increasing client insights and operational efficiency.
-              </li>
-              <li>
-                Built and deployed <strong>ML-powered web apps</strong> using React, Next.js, Tailwind, and Supabase.
-              </li>
-              <li>
-                Created data visualization dashboards improving client decision-making speed by up to{' '}
-                <strong>30%</strong>.
-              </li>
-              <li>
-                Designed REST APIs and full-stack workflows integrating analytics into production systems.
-              </li>
-            </ul>
-          </div>
-        </article>
-
-        {/* Projects */}
-        <article className="cv-section-content" id="projects">
-          <h2 className="cv-section-title">Key Projects</h2>
-
-          <div className="cv-project-item">
-            <h3 className="cv-project-title">FocusForge</h3>
-            <p className="cv-section-text">
-              A productivity and focus management platform built with <strong>Next.js</strong>,{' '}
-              <strong>TailwindCSS</strong>, <strong>MUI</strong>, and <strong>Supabase</strong>. Enables structured time
-              tracking, personalized goals, and data-backed productivity analytics.
-            </p>
-          </div>
-
-          <div className="cv-project-item">
-            <h3 className="cv-project-title">Kaggle & Data Analytics</h3>
-            <p className="cv-section-text">
-              Actively developing advanced data workflows: conducting <strong>exploratory data analysis</strong>,
-              cleaning large datasets, and training ML models for finance, HR, and research applications. Ranked among
-              consistent contributors on Kaggle’s public datasets.
-            </p>
-          </div>
-        </article>
-
-        {/* Skills */}
-        <article className="cv-section-content" id="skills">
-          <h2 className="cv-section-title">Skills</h2>
-          <ul className="cv-skills-list">
-            <li>
-              <strong>Data & Analytics:</strong> EDA, feature engineering, data visualization, and quantitative finance
-            </li>
-            <li>
-              <strong>Machine Learning:</strong> Python, Pandas, NumPy, scikit-learn, Matplotlib, and applied statistics
-            </li>
-            <li>
-              <strong>Development:</strong> JavaScript/TypeScript, React, Next.js, TailwindCSS, Supabase, Node.js
-            </li>
-            <li>
-              <strong>Core Strengths:</strong> Analytical problem-solving, clean design systems, and cross-platform
-              development
-            </li>
+      <section className="cv-header">
+        <h1 className="cv-title">Michael Tunwashe (TADS)</h1>
+        <h2 className="cv-subtitle">SQL & Data Visualization Enthusiast</h2>
+        <p className="cv-contact">Email: motrenewed@gmail.com</p>
+      </section>
+      <section className="cv-summary">
+        <h3>Professional Summary</h3>
+        <p>
+          Data and business intelligence enthusiast with a strong foundation in SQL and Python for data analysis and visualization. Experienced in building dashboards, cleaning and transforming data, and presenting insights using tools like pandas and plotly. Passionate about helping businesses make data-driven decisions. Currently learning more advanced analytics and machine learning techniques.
+        </p>
+      </section>
+      <section className="cv-skills">
+        <h3>Technical Skills</h3>
+        <ul>
+          <li>SQL (PostgreSQL, MySQL, SQLite)</li>
+          <li>Python (pandas, plotly, matplotlib, seaborn)</li>
+          <li>Business Intelligence (Power BI, Tableau basics)</li>
+          <li>Data Cleaning & Transformation</li>
+          <li>Data Visualization (plotly, matplotlib, seaborn)</li>
+          <li>Full-Stack Development (React, TypeScript, Node.js, Express)</li>
+          <li>Version Control (Git, GitHub)</li>
+          <li>Cloud (Firebase basics)</li>
+        </ul>
+      </section>
+      <section className="cv-experience">
+        <h3>Experience</h3>
+        <div className="cv-job">
+          <h4>Freelance Data Analyst & Developer</h4>
+          <span>2023 - Present</span>
+          <ul>
+            <li>Developed dashboards and reports using SQL, Python (pandas, plotly), and Power BI.</li>
+            <li>Performed data cleaning, transformation, and visualization for business clients.</li>
+            <li>Built web applications to automate data workflows and reporting.</li>
+            <li>Exploring more advanced analytics and predictive techniques as part of ongoing learning.</li>
           </ul>
-        </article>
-
-        {/* Contact */}
-        <article className="cv-section-content" id="contact">
-          <h2 className="cv-section-title">Contact</h2>
-          <p className="cv-section-text">
-            Open to collaborations, freelance opportunities, and data partnerships.
-          </p>
-          <p className="cv-section-text">
-            Email: <a href="mailto:motrenewed@gmail.com" className="cv-link">motrenewed@gmail.com</a>
-          </p>
-          <p className="cv-section-text">
-            Connect:{" "}
-            <a href="https://linkedin.com/in/tadstech" className="cv-link" target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>{" "}
-            |{" "}
-            <a href="https://twitter.com/tads_tech" className="cv-link" target="_blank" rel="noopener noreferrer">
-              X (Twitter)
-            </a>{" "}
-            |{" "}
-            <a href="https://instagram.com/tadstech" className="cv-link" target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-          </p>
-        </article>
-      </div>
+        </div>
+        <div className="cv-job">
+          <h4>Full-Stack Developer (Personal Projects)</h4>
+          <span>2022 - Present</span>
+          <ul>
+            <li>Created portfolio and project showcase sites using React, TypeScript, and Firebase.</li>
+            <li>Integrated REST APIs and implemented responsive UI/UX designs.</li>
+            <li>Managed deployment and CI/CD pipelines for web apps.</li>
+          </ul>
+        </div>
+      </section>
+      <section className="cv-education">
+        <h3>Education</h3>
+        <ul>
+          <li>BSc Computer Science (in progress) - University of Namibia</li>
+          <li>Online courses: SQL, Python, Data Visualization, Business Intelligence, React</li>
+        </ul>
+      </section>
+      <section className="cv-learning">
+        <h3>Currently Learning</h3>
+        <ul>
+          <li>Advanced analytics and machine learning basics</li>
+          <li>Business intelligence tools (Power BI, Tableau)</li>
+          <li>Cloud engineering fundamentals</li>
+        </ul>
+      </section>
+      <section className="cv-links">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="https://github.com/tadstech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="mailto:motrenewed@gmail.com">Email</a></li>
+        </ul>
+      </section>
     </div>
   );
-};
+}
 
 export default CV;
