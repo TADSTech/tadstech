@@ -18,6 +18,12 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.cv-contact, .cv-contact, li {
+  color: hsla(0, 0%, 100%, 0.8);
+  box-shadow: #1f2937;
+  text-decoration: none;
+}
+
 [data-theme='dark'] .app-bar {
   background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-dark-background) 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
