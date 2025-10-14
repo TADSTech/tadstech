@@ -1,4 +1,5 @@
 import Helmet from 'react-helmet';
+import './styles/cv.css';
 
 const CV: React.FC = () => {
   return (
