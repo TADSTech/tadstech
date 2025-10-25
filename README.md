@@ -1,16 +1,13 @@
 # Hi, I'm Michael 👋  
 
-🎓 Mathematics (Pure Option) student at **University of Lagos, Nigeria**  
-📊 Aspiring **Quanntitative analyst** 
-💻 Tech enthusiast diving deep into **Python (Data Science)** and **React (Frontend)**  
-🦀 Rust hobbyist & observer - curious about low-level systems and cross-platform frameworks like **Tauri**  
+Math Minded, Data Scientist with a very robust background in Front-end
 
 ---
 
 ## 🔧 Tech Stack & Experience
 - **Languages:** Python, JavaScript/TypeScript, Dart (past projects), (Rust - hobbyist)  
 - **Frameworks & Tools:** React, Vite, TailwindCSS, Flutter (past projects), Tauri  
-- **Data Science:** Pandas, NumPy, Matplotlib (expanding to ML soon 🚀)
+- **Data Science:** Pandas, NumPy, Matplotlib, SK-learn
 - **Operating System:** Arch Linux 😄
 
 > 💡 I built past projects with **Dart + Flutter** but I’m currently **transitioning into React + TypeScript** for the web.  
@@ -28,17 +25,6 @@
 - Build a strong portfolio in **data-driven development**  
 - Earn freelance income through coding & analytics projects  
 - Transition into an engineer of data and machine llearning pipelines in order to be able to make **quantitative analysis** on financial trends  
-
----
-
-## 📊 GitHub Stats
-![Michael's GitHub stats](https://github-readme-stats.vercel.app/api?username=TADSTech&show_icons=true&theme=tokyonight)  
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=TADSTech&layout=compact&theme=tokyonight)  
-
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=TADSTech&theme=tokyonight)  
-
----
 
 ## 📫 Let's Connect
 - GitHub: [@TADSTech](https://github.com/TADSTech)  
