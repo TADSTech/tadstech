@@ -4,7 +4,7 @@ Math Minded, Data Scientist with a very robust background in Front-end
 
 ---
 
-## 🔧 Tech Stack & Experience
+## Tech Stack & Experience
 - **Languages:** Python, JavaScript/TypeScript, Dart (past projects), (Rust - hobbyist)  
 - **Frameworks & Tools:** React, Vite, TailwindCSS, Flutter (past projects), Tauri  
 - **Data Science:** Pandas, NumPy, Matplotlib, SK-learn
@@ -27,4 +27,4 @@ Math Minded, Data Scientist with a very robust background in Front-end
 
 ---
 
-⭐️ _“Clarity through data, confidence through design.”_
+ _“Clarity through data, confidence through design.”_
