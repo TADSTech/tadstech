@@ -293,6 +293,18 @@ export const DesktopRender: React.FC = () => {
         }
 
         let output: React.ReactNode;
+        
+        if (commands[trimmedInput]) {
+            output = commands[trimmedInput]();
+        } else {
+            output = (
+                <div className="text-red-400">
+                    Command not found: {trimmedInput}
+                    <br />
+                    <span className="text-neutral-500">Type 'help' to see available commands</span>
+                </div>
+            );
+        }
 
         setCommandHistory(prev => [...prev, { input, output }]);
         setHistoryIndex(-1);
