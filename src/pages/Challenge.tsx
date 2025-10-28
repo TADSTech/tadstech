@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Github, ExternalLink, Database } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Database, Twitter, Linkedin } from 'lucide-react';
 
 interface ChallengeDay {
     day: number;
@@ -9,6 +9,8 @@ interface ChallengeDay {
     dataset: string;
     datasetUrl: string;
     githubUrl: string;
+    xUrl?: string;
+    linkedinUrl?: string;
     status: 'completed' | 'in-progress' | 'upcoming';
     date?: string;
 }
@@ -24,16 +26,33 @@ export const Challenge: React.FC = () => {
             dataset: 'Hospital Operations Dataset',
             datasetUrl: 'https://www.kaggle.com/datasets/jaderz/hospital-beds-management',
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day1',
+            xUrl: 'https://x.com/tads_tech/status/1982886727049183239',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_tadsography-dotd-dataanalytics-activity-7388650594791718912-v4Zk?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
             status: 'completed',
             date: 'Oct 27, 2025'
         },
         {
             day: 2,
-            name: 'Coming Soon',
-            description: 'Next dataset analysis will be posted here. Building practical data analysis skills through hands-on exploration.',
-            dataset: 'TBD',
-            datasetUrl: '#',
+            name: 'Tsunami Prediction',
+            description: 'Built a machine learning model to predict tsunami occurrence based on earthquake characteristics. The Random Forest classifier achieved 80-90% accuracy in identifying tsunami risk from seismic data.',
+            dataset: 'Earthquake & Tsunami Risk Assessment',
+            datasetUrl: 'https://www.kaggle.com/datasets/ahmeduzaki/global-earthquake-tsunami-risk-assessment-dataset/data',
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day2',
+            xUrl: 'https://x.com/tads_tech/status/1983180607203999910',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_day-2-of-datasets-alongside-isaac-joseph-activity-7388943206178156544-fd3C?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Oct 28, 2025'
+        },
+        {
+
+            day: 3,
+            name: 'TBD',
+            description: 'DESCRIPTION COMING SOON',
+            dataset: 'LOADING',
+            datasetUrl: 'https://www.kaggle.com/datasets/',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day3',
+            xUrl: 'https://x.com/tadstech',
+            linkedinUrl: 'https://linkedin.com/in/tadstech',
             status: 'upcoming',
             date: 'Oct 28, 2025'
         },
@@ -191,37 +210,69 @@ export const Challenge: React.FC = () => {
                                                 </p>
                                             </div>
 
-                                            <div className="flex flex-wrap items-center gap-3 md:gap-4">
-                                                {challenge.status !== 'upcoming' && (
-                                                    <a
-                                                        href={challenge.datasetUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="flex items-center gap-2 text-sm border border-[#28333F] group-hover:border-black/20 px-3 py-1.5 hover:bg-[#28333F] hover:text-white group-hover:hover:bg-black/10 transition-all"
-                                                    >
-                                                        <Database className="h-4 w-4" />
-                                                        <span className="text-xs uppercase tracking-wider">{challenge.dataset}</span>
-                                                        <ExternalLink className="h-3 w-3" />
-                                                    </a>
-                                                )}
-                                                {challenge.status === 'upcoming' && (
-                                                    <div className="flex items-center gap-2 text-sm border border-[#28333F] px-3 py-1.5 opacity-50">
-                                                        <Database className="h-4 w-4" />
-                                                        <span className="text-xs uppercase tracking-wider text-[#28333F]">{challenge.dataset}</span>
-                                                    </div>
-                                                )}
+                                            <div className="space-y-3">
+                                                <div className="flex flex-wrap items-center gap-3 md:gap-4">
+                                                    {challenge.status !== 'upcoming' && (
+                                                        <a
+                                                            href={challenge.datasetUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-2 text-sm border border-[#28333F] group-hover:border-black/20 px-3 py-1.5 hover:bg-[#28333F] hover:text-white group-hover:hover:bg-black/10 transition-all"
+                                                        >
+                                                            <Database className="h-4 w-4" />
+                                                            <span className="text-xs uppercase tracking-wider">{challenge.dataset}</span>
+                                                            <ExternalLink className="h-3 w-3" />
+                                                        </a>
+                                                    )}
+                                                    {challenge.status === 'upcoming' && (
+                                                        <div className="flex items-center gap-2 text-sm border border-[#28333F] px-3 py-1.5 opacity-50">
+                                                            <Database className="h-4 w-4" />
+                                                            <span className="text-xs uppercase tracking-wider text-[#28333F]">{challenge.dataset}</span>
+                                                        </div>
+                                                    )}
 
-                                                {challenge.status !== 'upcoming' && (
-                                                    <a
-                                                        href={challenge.githubUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="flex items-center gap-2 text-sm border-b border-current pb-0.5 hover:gap-3 transition-all"
-                                                    >
-                                                        <Github className="h-4 w-4" />
-                                                        <span className="uppercase tracking-wider text-xs">View on GitHub</span>
-                                                        <ExternalLink className="h-3 w-3" />
-                                                    </a>
+                                                    {challenge.status !== 'upcoming' && (
+                                                        <a
+                                                            href={challenge.githubUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-2 text-sm border-b border-current pb-0.5 hover:gap-3 transition-all"
+                                                        >
+                                                            <Github className="h-4 w-4" />
+                                                            <span className="uppercase tracking-wider text-xs">View on GitHub</span>
+                                                            <ExternalLink className="h-3 w-3" />
+                                                        </a>
+                                                    )}
+                                                </div>
+
+                                                {challenge.status !== 'upcoming' && (challenge.xUrl || challenge.linkedinUrl) && (
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="text-xs text-[#28333F] group-hover:text-black/60 uppercase tracking-wider">Posts</span>
+                                                        <div className="flex items-center gap-2">
+                                                            {challenge.xUrl && (
+                                                                <a
+                                                                    href={challenge.xUrl}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="p-1.5 border border-[#28333F] group-hover:border-black/20 hover:bg-[#28333F] hover:text-white group-hover:hover:bg-black/10 transition-all"
+                                                                    aria-label="View post on X (Twitter)"
+                                                                >
+                                                                    <Twitter className="h-4 w-4" />
+                                                                </a>
+                                                            )}
+                                                            {challenge.linkedinUrl && (
+                                                                <a
+                                                                    href={challenge.linkedinUrl}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="p-1.5 border border-[#28333F] group-hover:border-black/20 hover:bg-[#28333F] hover:text-white group-hover:hover:bg-black/10 transition-all"
+                                                                    aria-label="View post on LinkedIn"
+                                                                >
+                                                                    <Linkedin className="h-4 w-4" />
+                                                                </a>
+                                                            )}
+                                                        </div>
+                                                    </div>
                                                 )}
                                             </div>
                                         </div>
