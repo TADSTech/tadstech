@@ -1,47 +1,286 @@
 @import "tailwindcss";
-@import "tailwindcss/preflight";
+@import "tw-animate-css";
 
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
+
+@theme inline{
+  --color-primary: #000000;
+  --color-secondary: #28333F;
+  --color-accent: #0000FF;
+  --color-dark-bg: #000000;
+  
+  --color-neutral-50: #FFFFFF;
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #E5E5E5;
+  --color-neutral-300: #D4D4D4;
+  --color-neutral-400: #A3A3A3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0A0A0A;
+  
+  --color-background: var(--background);
+  --color-black: var(--black-color);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+ 
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+  --animate-aurora: aurora 60s linear infinite;
+  @keyframes aurora {
+    from {
+      background-position:
+        50% 50%,
+        50% 50%;
+    }
+    to {
+      background-position:
+        350% 50%,
+        350% 50%;
+    }
+  }
 }
 
-#root {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
+:root {
+  --radius: 0.625rem;
+  --background: #000000;
+  --foreground: #eaeaea;
+  --card: #0a0a0a;
+  --card-foreground: #eaeaea;
+  --popover: #0a0a0a;
+  --popover-foreground: #eaeaea;
+  --primary: #eaeaea;
+  --primary-foreground: #000000;
+  --secondary: #25303D;
+  --secondary-foreground: #eaeaea;
+
+  --black-color: #000000;
 }
 
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+@layer base {
+  * {
+    border-color: #232526;
+    outline-color: #134a87;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-space-mono);
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  html::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-primary, 0.5);
-  height: 5px;
-  border-radius: 5px;
-  border-color: var(--color-accent);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+@layer utilities {
+  .font-header {
+    font-family: var(--font-space-mono);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .regular-hover {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+  }
+
+  .regular-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+  }
+
+  .regular-hover:hover {
+    transform: translateY(-4px);
+    color: var(--secondary);
+  }
+
+  .regular-hover:hover::after {
+    width: 100%;
+  }
+
+  .regular-hover:active {
+    transform: translateY(-2px);
+  }
+
+  .glow-on-hover {
+    border: none;
+    outline: none;
+    color: var(--foreground);
+    background: var(--background);
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-family: var(--font-space-mono);
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, 
+      var(--secondary), 
+      #1a5fa8, 
+      #2374c9, 
+      #1a5fa8, 
+      var(--secondary)
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+  }
+
+  .glow-on-hover:active {
+    color: var(--background);
+  }
+
+  .glow-on-hover:active:after {
+    background: transparent;
+  }
+
+  .glow-on-hover:hover:before {
+    opacity: 1;
+  }
+
+  .glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+
+  @keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+  }
+
+  .tracking-in-expand {
+    -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+            animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+  }
+  
+  @-webkit-keyframes tracking-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes tracking-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Typewriter Effect */
+  .typewriter-cursor {
+    display: inline-block;
+    border-right: 2px solid var(--secondary);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .typewriter-animation {
+    animation: 
+      typewriter 4s steps(40) 0.5s 1 normal both, 
+      blinkingCursor 500ms steps(44) infinite;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes typewriter {
+    from { 
+      max-width: 0; 
+    }
+    to { 
+      max-width: fit-content; 
+    }
+  }
+
+  @keyframes blinkingCursor {
+    0%, 100% { 
+      border-right-color: var(--secondary); 
+    }
+    50% { 
+      border-right-color: transparent; 
+    }
+  }
+  
+  .typewriter-animation::after {
+    content: '';
+    animation: hideCursor 0s 4.5s forwards;
+  }
+  
+  @keyframes hideCursor {
+    to {
+      border-right-color: transparent;
+    }
+  }
+
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.app-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
