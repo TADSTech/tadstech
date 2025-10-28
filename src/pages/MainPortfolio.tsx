@@ -157,7 +157,7 @@ export const MainPortfolio: React.FC = () => {
 
                                 <div className="text-center space-y-8 md:space-y-12">
                                     <div className="h-12 sm:h-16 flex items-center justify-center px-2">
-                                        <span className="text-2xl sm:text-2xl md:text-4xl tracking-widest leading-tight text-center break-words">
+                                        <span className="text-1xl sm:text-2xl md:text-4xl tracking-widest leading-tight text-center break-words">
                                             {displayText}
                                             <span className="inline-block ml-1 animate-pulse" aria-hidden="true">_</span>
                                         </span>
