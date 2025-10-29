@@ -66,20 +66,28 @@ export const MainPortfolio: React.FC = () => {
     const projects = [
         {
             name: 'SalesScope Dashboard',
-            impact: '+42% insights efficiency',
-            tech: ['Python', 'SQL', 'React', 'PlotlyJs'],
-            metrics: { complexity: 6, Status: 'Complete', Completion: 'Q3 2025' }
+            desc: 'SalesScope is a lightweight sales analytics platform that showcases how businesses can track, explore, and visualize sales performance.',
+            tech: ['Python', 'SQL', 'React', 'PlotlyJs', 'TailwindCSS'],
+            metrics: { complexity: 6, Status: 'Complete', Completion: 'Q3 2025' },
+            url: 'https://salesscope.web.app'
+        },
+        {
+            name: 'Mini Data Manim',
+            desc: 'Free and open-source, portable, data manipulation webapp',
+            tech: ['React', 'exceljs', 'PlotlyJs', 'TailwindCSS', 'TypeScript'],
+            metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
+            url: 'https://minidatamanim.web.app'
         },
         {
             name: 'FocusForge Analytics',
-            impact: '10K+ data points/day',
-            tech: ['Flutter', 'Firebase', 'Plotly', 'NLP'],
+            desc: 'ML powered productivity tracker and analytics app',
+            tech: ['React', 'TailwindCSS', 'React-Native', 'Supabase', 'Plotly', 'NLP'],
             metrics: { complexity: 10, Status: 'In Progress', Completion: 'Q2 2026'}
         },
         {
             name: 'NaijaDash',
-            impact: 'Simplified national data visualization',
-            tech: ['React', 'TypeScript', 'SQL', 'PlotlyJs', 'D3JS'],
+            desc: 'National data dashboard for Nigeria Simplified!!',
+            tech: ['React', 'TypeScript', 'TailwindCSS', 'SQL', 'PlotlyJs', 'D3JS'],
             metrics: { complexity: 9, Status: 'In Progress', Completion: 'Q4 2025' }
         }
     ];
@@ -527,7 +535,7 @@ export const MainPortfolio: React.FC = () => {
                                             <div className="md:col-span-2 space-y-4">
                                                 <div>
                                                     <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
-                                                    <p className="text-sm text-[#28333F] group-hover:text-black/60">{project.impact}</p>
+                                                    <p className="text-sm text-[#28333F] group-hover:text-black/60">{project.desc}</p>
                                                 </div>
                                                 
                                                 <div className="flex flex-wrap gap-2">
@@ -542,7 +550,7 @@ export const MainPortfolio: React.FC = () => {
                                                 </div>
 
                                                 <a
-                                                    href="https://github.com/tadstech"
+                                                    href={project.url ?? "https://github.com/tadstech"}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="inline-flex items-center gap-2 text-sm border-b border-current pb-1 hover:gap-3 transition-all"
