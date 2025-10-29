@@ -46,15 +46,15 @@ export const Challenge: React.FC = () => {
         {
 
             day: 3,
-            name: 'TBD',
-            description: 'DESCRIPTION COMING SOON',
-            dataset: 'LOADING',
-            datasetUrl: 'https://www.kaggle.com/datasets/',
+            name: 'Health and Lifestyle Recommendation System',
+            description: 'This health recommendation system uses a rule-based engine for immediate, explainable advice and an ML-based Random Forest classifier to predict a healthy lifestyle and provide targeted, feature-importance-based suggestions.',
+            dataset: 'Health and Lifestyle Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/jockeroika/life-style-data',
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day3',
-            xUrl: 'https://x.com/tadstech',
-            linkedinUrl: 'https://linkedin.com/in/tadstech',
-            status: 'upcoming',
-            date: 'Oct 28, 2025'
+            xUrl: 'https://x.com/tads_tech/status/1983663228908687623',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_day-3-of-datasets-alongside-isaac-joseph-activity-7389428255369641984-Nnxh?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Oct 29, 2025'
         },
     ];
 
