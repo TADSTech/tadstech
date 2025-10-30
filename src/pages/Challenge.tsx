@@ -56,6 +56,19 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Oct 29, 2025'
         },
+        {
+
+            day: 4,
+            name: 'Netflix EDA - Content Strategy Analysis',
+            description: 'This analysis explores the content strategy of Netflix through exploratory data analysis (EDA) of its movies and TV shows dataset. Key insights include content type distribution, genre popularity, release trends, and regional availability, providing a comprehensive overview of Netflix\'s content offerings and strategic focus areas.',
+            dataset: 'Netflix movies and tv shows datasets',
+            datasetUrl: 'https://www.kaggle.com/datasets/hqdataprofiler/cleaned-netflix-movies-and-tv-shows',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day4',
+            xUrl: 'https://x.com/tads_tech/status/1984025368354025562',
+            linkedinUrl: "https://www.linkedin.com/posts/tadstech_day-4-of-datasets-netflix-eda-summary-activity-7389792940266725376-dBWr?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI",
+            status: 'completed',
+            date: 'Oct 30, 2025'
+        },
     ];
 
     const totalDays = 30;
