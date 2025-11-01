@@ -19,109 +19,91 @@ export const MobileRender: React.FC = () => {
 
     const cvData = {
         name: "Michael Tunwashe",
-        title: "Data Scientist & Front-End Developer",
-        tagline: "Turning data into interactive insights",
-        summary: "Hey there! I'm Michael, a data enthusiast who loves making sense of numbers and building cool stuff with code. Whether it's wrangling messy datasets, creating slick dashboards, or building full-stack apps, I'm all about solving problems and making data work for people.",
+        title: "Data Scientist",
+        tagline: "Data Scientist | Lagos, Nigeria | +234-704-102-9093 | motrenewed@gmail.com | linkedin.com/in/tadstech | github.com/tadstech",
+        summary: "Data scientist with 2 years of python experience specializing in Business analysis and machine learning modeling in the area of Finance. Experienced in data analysis, predictive modeling, and creating actionable insights. Full-stack development capabilities enable end-to-end solutions from analysis to deployment.",
         contact: {
             email: "motrenewed@gmail.com",
             phone: "+234-704-102-9093",
             github: "github.com/tadstech",
-            website: "tadstech.web.app",
             linkedin: "linkedin.com/in/tadstech",
-            location: "LA, Nigeria"
+            location: "Lagos, Nigeria"
         },
         skills: {
             dataScience: [
-                "Python (pandas, NumPy): my daily drivers",
-                "SQL wizardry (PostgreSQL, MySQL)",
-                "Statistical analysis & predictive modeling",
-                "Data viz with Plotly, Matplotlib, Seaborn",
-                "BI tools: Metabase, Tableau"
+                "Python (pandas, NumPy, scikit-learn)",
+                "SQL (PostgreSQL, MySQL)",
+                "Statistical Analysis",
+                "Predictive Modeling",
+                "Data Visualization (Plotly, Metabase)"
             ],
             development: [
-                "React & TypeScript - building responsive UIs",
-                "Flutter & Dart - cross-platform magic",
-                "Firebase & PostgreSQL - data persistence",
-                "REST APIs - connecting the dots",
-                "Git & GitHub - version control"
+                "Next.js",
+                "TypeScript",
+                "Node.js",
+                "REST APIs",
+                "Git"
             ]
         },
         education: {
             degree: "BSc Mathematics",
             institution: "University of Lagos",
-            period: "2024 - 2028",
-            focus: "Stats, Probability, Linear Algebra & Calculus",
-            funFact: "Currently exploring how math powers machine learning!"
+            period: "2024 -- 2028",
+            focus: "Statistics, Probability, Linear Algebra, Calculus"
         },
         projects: [
             {
-                name: 'Mini Data Manim',
-                period: 'Aug - Oct 2025',
-                emoji: '🗃️',
-                type: 'Data Manipulation Webapp',
-                description: 'Free and open-source, portable, data manipulation webapp',
+                name: "SalesScope Dashboard",
+                period: "Jun 2025 -- Aug 2025",
+                emoji: "📊",
+                type: "Sales Analytics",
+                description: "Sales Analytics",
                 highlights: [
-                    'Built a lightweight webapp for cleaning and visualizing datasets on the fly',
-                    'Implemented Excel-like functionalities using exceljs for seamless data handling',
-                    'Created interactive charts with PlotlyJs to help users visualize data trends',
-                    'Styled the app with TailwindCSS for a modern, responsive design'
+                    "Analyzed 6+ months of sales data to identify trends and performance bottlenecks using Python",
+                    "Created interactive dashboard with React and TypeScript for stakeholder reporting",
+                    "Delivered actionable insights that improved sales strategy"
                 ],
-                tech: ['React', 'exceljs', 'PlotlyJs', 'TailwindCSS', 'TypeScript'],
+                tech: ["Python", "React", "TypeScript"]
             },
             {
-                name: "SalesScope Dashboard",
-                period: "2024-2025",
-                emoji: "📊",
-                type: "Real-time Analytics Platform",
-                description: "A slick dashboard that turns sales data into actionable insights",
+                name: "MiniDataManim",
+                period: "Aug 2025 - Oct 2025",
+                emoji: "🗃️",
+                type: "Excel-like Data Manipulation and Visualization Application",
+                description: "Excel-like Data Manipulation and Visualization Application",
                 highlights: [
-                    "Crunched sales data with SQL & Python to spot trends nobody saw coming",
-                    "Built a real-time React dashboard that stakeholders actually love using",
-                    "Integrated Firebase & Power BI for seamless reporting",
-                    "Helped the team make smarter decisions with data-driven recommendations"
+                    "Developed web-based tool for data manipulation with Excel-like functionality, supporting import/export of CSV, Excel, and LibreOffice files",
+                    "Implemented advanced data operations including sorting, filtering, duplicate removal, statistical transformations, and data normalization",
+                    "Created interactive visualizations using Plotly.js with support for bar charts, line charts, scatter plots, histograms, and box plots",
+                    "Built responsive user interface with React and TypeScript, featuring multi-sheet workbooks, inline editing, and customizable preferences"
                 ],
-                tech: ["React", "TypeScript", "Python", "SQL", "Firebase"]
+                tech: ["React", "TypeScript", "Plotly.js"]
             },
             {
                 name: "FocusForge Analytics",
-                period: "2025 - Present",
+                period: "Oct 2025 - Present",
                 emoji: "🎯",
-                type: "Behavioral Analytics App",
-                description: "Tracking habits and behaviors with beautiful visualizations",
+                type: "Behavioral Data Analysis",
+                description: "Behavioral Data Analysis",
                 highlights: [
-                    "Designed data models that capture user patterns like a detective",
-                    "Created a cross-platform experience (web + mobile) with React & Flutter",
-                    "Built a Node.js backend to keep everything running smoothly",
-                    "Visualized engagement metrics with Plotly - data that tells a story"
+                    "Currently designing statistical models to track user habit formation patterns",
+                    "Currently building data pipeline for real-time user engagement tracking (MongoDB backend)",
+                    "Currently creating visualizations using Plotly and Tableau to present behavioral insights",
+                    "Currently developing React dashboard to display analytics (front-end support)"
                 ],
-                tech: ["React", "Flutter", "Node.js", "MongoDB", "Plotly"]
-            },
-            {
-                name: "NaijaDash",
-                period: "2025 - Present",
-                emoji: "🇳🇬",
-                type: "Nigeria Insights Dashboard",
-                description: "A comprehensive dashboard providing insights into Nigeria's socio-economic data",
-                highlights: [
-                    "Integrated various data sources for a holistic view",
-                    "Developed interactive visualizations to explore key metrics",
-                    "Implemented user feedback to enhance usability",
-                    "Collaborated with local experts to ensure relevance"
-                ],
-                tech: ["React", "TypeScript", "Python", "SQL", "D3.js", "Plotly"]
+                tech: ["React", "MongoDB", "Plotly", "Tableau"]
             }
         ],
         experience: [
             {
                 title: "Data Analyst Intern",
-                period: "2025",
+                period: "Aug 2025 - Nov 2025",
                 company: "HNG Tech",
                 emoji: "📈",
                 highlights: [
-                    "Analyzing datasets to uncover hidden business insights",
-                    "Building predictive models that actually work in production",
-                    "Creating dashboards that make data accessible to everyone",
-                    "Automating workflows so teams can focus on what matters"
+                    "Performed data cleaning, transformation, and exploratory analysis on business datasets",
+                    "Created SQL queries for reporting and automated data extraction",
+                    "Built business intelligence reports using Metabase and Plotly dash"
                 ]
             }
         ],
@@ -250,7 +232,6 @@ export const MobileRender: React.FC = () => {
                 <p className="text-cyan-400">{cvData.education.institution}</p>
                 <p className="text-neutral-500 text-sm">{cvData.education.period}</p>
                 <p className="text-neutral-300">Focus Areas: {cvData.education.focus}</p>
-                <p className="text-yellow-300 text-sm italic">{cvData.education.funFact}</p>
             </div>
         ),
         "experience.init()": () => (
@@ -410,9 +391,8 @@ export const MobileRender: React.FC = () => {
 
             <div className="border-b border-neutral-800 bg-gradient-to-br from-neutral-900 to-black px-6 py-12 shrink-0">
                 <h1 className="text-5xl font-bold text-white mb-3">MICHAEL TUNWASHE</h1>
-                <p className="text-green-400 text-xl font-semibold mb-4">Data Scientist & Front-End Developer</p>
-                <p className="text-neutral-300 text-base mb-3">Turning data into beautiful, interactive insights</p>
-                <p className="text-neutral-400 text-base mb-6">Based in LA, Nigeria | Open to opportunities worldwide</p>
+                <p className="text-green-400 text-xl font-semibold mb-4">Data Scientist</p>
+                <p className="text-neutral-300 text-base mb-3">Lagos, Nigeria | +234-704-102-9093 | motrenewed@gmail.com | linkedin.com/in/tadstech | github.com/tadstech</p>
                 <div className='flex gap-6 mb-6'>
                     <a href='mailto:motrenewed@gmail.com' target='_blank' className='text-neutral-500 hover:text-cyan-400 transition-colors'><Mail className="h-7 w-7"/></a>
                     <a href='https://github.com/tadstech' target='_blank' className='text-neutral-500 hover:text-cyan-400 transition-colors'><Github className="h-7 w-7"/></a>
@@ -420,6 +400,7 @@ export const MobileRender: React.FC = () => {
                 </div>
                 <div className="text-neutral-400 text-sm space-y-1">
                     <p>Type <span className="text-cyan-400 font-semibold">'help'</span> to see available commands</p>
+                    <p>Try <span className="text-yellow-400 font-semibold">'ask [question]'</span> to learn more about me</p>
                 </div>
             </div>
 
