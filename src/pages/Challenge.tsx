@@ -69,6 +69,30 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Oct 30, 2025'
         },
+        {
+            day: 5,
+            name: 'Fruit Classification using Machine Learning',
+            description: 'Developed a machine learning model to classify different types of fruits based on their physical characteristics. Utilized decision trees and random forests to achieve high accuracy in fruit identification.',
+            dataset: 'Fruit Classification Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/pranavkapratwar/fruit-classification',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day5',
+            xUrl: 'https://x.com/tads_tech/status/1984249100754464929',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_day-5-of-datasets-fruit-classification-activity-7390015150352789505-o-N1?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Oct 31, 2025'
+        },
+        {
+            day: 6,
+            name: 'Student Data Analysis & Multi‑Output Score Predictor',
+            description: 'Predict three student exam scores (Math, Reading, Writing) simultaneously from demographic and preparatory features.',
+            dataset: 'Student Performance Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/sadiajavedd/students-academic-performance-dataset',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day6',
+            xUrl: 'https://x.com/tads_tech/status/1984693129060950216',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_day-6-student-data-analysis-multioutput-activity-7390459176461721600-RiLV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Nov 1, 2025'
+        },
     ];
 
     const totalDays = 30;
