@@ -55,6 +55,20 @@ export const MobileRender: React.FC = () => {
         },
         projects: [
             {
+                name: 'Mini Data Manim',
+                period: 'Aug - Oct 2025',
+                emoji: '🗃️',
+                type: 'Data Manipulation Webapp',
+                description: 'Free and open-source, portable, data manipulation webapp',
+                highlights: [
+                    'Built a lightweight webapp for cleaning and visualizing datasets on the fly',
+                    'Implemented Excel-like functionalities using exceljs for seamless data handling',
+                    'Created interactive charts with PlotlyJs to help users visualize data trends',
+                    'Styled the app with TailwindCSS for a modern, responsive design'
+                ],
+                tech: ['React', 'exceljs', 'PlotlyJs', 'TailwindCSS', 'TypeScript'],
+            },
+            {
                 name: "SalesScope Dashboard",
                 period: "2024-2025",
                 emoji: "📊",
@@ -406,7 +420,6 @@ export const MobileRender: React.FC = () => {
                 </div>
                 <div className="text-neutral-400 text-sm space-y-1">
                     <p>Type <span className="text-cyan-400 font-semibold">'help'</span> to see available commands</p>
-                    <p>Try <span className="text-yellow-400 font-semibold">'ask [question]'</span> to learn more about me</p>
                 </div>
             </div>
 

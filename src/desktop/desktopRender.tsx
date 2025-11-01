@@ -52,10 +52,32 @@ export const DesktopRender: React.FC = () => {
             focus: "Stats, Probability, Linear Algebra & Calculus",
             funFact: "Currently exploring how math powers machine learning!"
         },
+
+        // {
+        //     name: 'Mini Data Manim',
+        //     desc: 'Free and open-source, portable, data manipulation webapp',
+        //     tech: ['React', 'exceljs', 'PlotlyJs', 'TailwindCSS', 'TypeScript'],
+        //     metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
+        //     url: 'https://minidatamanim.web.app'
+        // },
         projects: [
             {
+                name: 'Mini Data Manim',
+                period: 'Aug - Oct 2025',
+                emoji: '🗃️',
+                type: 'Data Manipulation Webapp',
+                description: 'Free and open-source, portable, data manipulation webapp',
+                highlights: [
+                    'Built a lightweight webapp for cleaning and visualizing datasets on the fly',
+                    'Implemented Excel-like functionalities using exceljs for seamless data handling',
+                    'Created interactive charts with PlotlyJs to help users visualize data trends',
+                    'Styled the app with TailwindCSS for a modern, responsive design'
+                ],
+                tech: ['React', 'exceljs', 'PlotlyJs', 'TailwindCSS', 'TypeScript'],
+            },
+            {
                 name: "SalesScope Dashboard",
-                period: "2024-2025",
+                period: "Aug - Sep 2025",
                 emoji: "📊",
                 type: "Real-time Analytics Platform",
                 description: "A slick dashboard that turns sales data into actionable insights",
@@ -457,7 +479,6 @@ export const DesktopRender: React.FC = () => {
 
                 <div className="mb-6 text-neutral-400 border-l-2 border-blue-500 pl-3">
                     <p className="text-sm">Type <span className="text-cyan-400 font-semibold">'help'</span> to see available commands</p>
-                    <p className="text-sm">Try <span className="text-yellow-400 font-semibold">'ask [question]'</span> to learn more about me!</p>
                 </div>
 
                 {commandHistory.map((cmd, i) => (
