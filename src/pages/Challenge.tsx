@@ -93,6 +93,20 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Nov 1, 2025'
         },
+        {
+            day: 7,
+            name: 'Decoding Medical Costs: Analyzing Insurance Data',
+            description: 'This project analyzes an insurance dataset and builds a model to predict insurance charges based on demographic and health-related features such as age, sex, BMI, number of children, smoking status, and region. Features include categorical encoding, one-hot encoding for regions, and DecisionTreeRegressor model evaluation.',
+            dataset: 'Health Costs Insights: Insurance Data',
+            datasetUrl: 'https://www.kaggle.com/datasets/saadaliyaseen/decoding-medical-costs-analyzing-insurance-data',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day7',
+            xUrl: 'https://x.com/tads_tech/status/1985052602145345761',
+            linkedinUrl: 'linkedin.com/posts/tadstech_day-7-of-datasets-decoding-medical-costs-activity-7390817634168102912-B_61?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Nov 2, 2025'
+        },
+
+        
     ];
 
     const totalDays = 30;
