@@ -105,6 +105,19 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Nov 2, 2025'
         },
+        {
+            day: 8,
+            name: 'Energy Consumption & Cost Prediction',
+            description: 'Built a predictive model to forecast energy costs based on customer characteristics. Decision Tree Regressor achieved test R2 score of 0.87 with mean absolute error of BRL 8-10. Key findings include building size and occupants as strongest predictors, cost variation of BRL 52-154, and regional consumption patterns.',
+            dataset: 'Energy Consumption Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/andreylss/residential-and-commercial-energy-cost-dataset',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day8',
+            xUrl: 'https://x.com/tads_tech/status/1985312468240085212',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_day-8-of-datasets-energy-consumption-cost-activity-7391078104980643840-RdqQ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Nov 3, 2025'
+        },
+        
 
         
     ];
