@@ -117,7 +117,28 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Nov 3, 2025'
         },
-        
+        {
+            day: 9,
+            name: 'BMW Sales Data Analysis & Price Prediction',
+            description: 'Comprehensive analysis of BMW sales trends from 2010-2024 with AdaBoost Regressor achieving strong price predictions. Key findings: Petrol vehicles lead market share with growing hybrid adoption, top models are 5 Series/3 Series/X3, automatic transmission dominates, regional variations in fuel preferences, and prices span from budget-friendly to luxury segments.',
+            dataset: 'BMW Sales Data (2010-2024)',
+            datasetUrl: 'https://www.kaggle.com/datasets/ahmadrazakashif/bmw-worldwide-sales-records-20102024',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day9',
+            xUrl: 'https://x.com/tads_tech/status/1985744020501401752',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_day-9-dataset-of-the-day-bmw-sales-data-activity-7391509703392075777-35jI?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Nov 4, 2025'
+        },
+        {
+            day: 10,
+            name: 'Goodreads Books Dataset - Analysis & Rating Prediction',
+            description: 'Comprehensive analysis of 3,045 Goodreads books with AdaBoost Regressor predicting ratings based on title characteristics, author info, and metadata. Key findings: Books concentrated in higher rating ranges, subtitles impact ratings, series books show distinct patterns, author count influences ratings, title complexity correlates with outcomes, and 12-feature model achieves strong predictive performance.',
+            dataset: 'Goodreads Books Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/kutayahin/goodreads-books-dataset',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day10',
+            status: 'completed',
+            date: 'Nov 5, 2025'
+        }
 
         
     ];
