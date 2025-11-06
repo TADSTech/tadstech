@@ -138,6 +138,16 @@ export const Challenge: React.FC = () => {
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day10',
             status: 'completed',
             date: 'Nov 5, 2025'
+        },
+        {
+            day: 11,
+            name: 'Housing Price Analysis & Prediction',
+            description: 'Comprehensive analysis of housing prices with focus on identifying key market drivers and building a predictive model. The project explores relationships between property features (area, bedrooms, amenities) and pricing, followed by an AdaBoost Regressor model for accurate price prediction. Key findings include area as the strongest predictor, air conditioning commanding ~₹2M premium (50% increase), furnishing status adding 30-40% premium, and parking availability providing significant value. Built an AdaBoost Regressor with Decision Tree base estimator achieving strong predictive performance for real estate valuation.',
+            dataset: 'Housing Price Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/wardabilal/real-estate-price-insights',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day11',
+            status: 'completed',
+            date: 'Nov 6, 2025'
         }
 
         
