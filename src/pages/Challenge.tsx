@@ -148,6 +148,18 @@ export const Challenge: React.FC = () => {
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day11',
             status: 'completed',
             date: 'Nov 6, 2025'
+        },
+        {
+            day: 12,
+            name: 'Heart Disease Prediction',
+            description: 'Analyzes heart disease dataset with comprehensive EDA and Logistic Regression classification model. Features 2x2 EDA dashboard visualizing patient age, cholesterol, and blood pressure distributions. Built robust sklearn pipeline with standardization and one-hot encoding. Model evaluates with confusion matrix and classification metrics (Accuracy, Precision, Recall, F1-Score). Includes ready-to-use prediction function for binary classification (Heart Disease present or absent) based on patient medical features.',
+            dataset: 'Heart Failure Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/tan5577/heart-failure-dataset',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day12',
+            xUrl: 'https://x.com/tads_tech/status/1986794125035700720',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_machinelearning-datascience-healthcare-activity-7392562045709160448-25VZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Nov 7, 2025'
         }
 
         
