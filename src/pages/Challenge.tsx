@@ -160,9 +160,19 @@ export const Challenge: React.FC = () => {
             linkedinUrl: 'https://www.linkedin.com/posts/tadstech_machinelearning-datascience-healthcare-activity-7392562045709160448-25VZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
             status: 'completed',
             date: 'Nov 7, 2025'
+        },
+        {
+            day: 13,
+            name: 'Car Price Prediction 2025',
+            description: 'Comprehensive analysis of car pricing with machine learning-based price prediction. Multiple models (Lasso Regression, Random Forest, Gradient Boosting, XGBoost) were trained and evaluated to predict car prices based on brand, year, mileage, fuel type, and transmission. XGBoost emerged as the best performer with superior R² scores.',
+            dataset: 'Car Price Prediction Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/aliiihussain/car-price-prediction',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day13',
+            xUrl: 'https://x.com/tads_tech/status/1987180041856278530',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_datascience-machinelearning-python-activity-7392944134950617088-u7o6?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Nov 8, 2025'
         }
-
-        
     ];
 
     const totalDays = 30;
