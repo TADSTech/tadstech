@@ -53,6 +53,21 @@ export const MobileRender: React.FC = () => {
         },
         projects: [
             {
+                name: "Financial News Classifier",
+                period: "Oct 2025 - Nov 2025",
+                emoji: "📰",
+                type: "AI-Powered Sentiment Analysis",
+                description: "AI-powered classification of financial news to Bullish, Bearish, or Neutral sentiment",
+                highlights: [
+                    "Built AI-powered sentiment analysis tool using FinBERT model trained on financial text data",
+                    "Achieved ~80% accuracy in classifying financial news as Bullish, Bearish, or Neutral",
+                    "Developed web interface with real-time analysis capabilities and RSS feed support",
+                    "Implemented batch processing for enterprise workflows with detailed confidence metrics",
+                    "Deployed on Hugging Face Spaces for easy access and integration"
+                ],
+                tech: ["Python", "FinBERT", "Hugging Face", "React", "FastAPI"]
+            },
+            {
                 name: "SalesScope Dashboard",
                 period: "Jun 2025 -- Aug 2025",
                 emoji: "📊",
@@ -81,7 +96,7 @@ export const MobileRender: React.FC = () => {
             },
             {
                 name: "FocusForge Analytics",
-                period: "Oct 2025 - Present",
+                period: "Aug 2025 - Present",
                 emoji: "🎯",
                 type: "Behavioral Data Analysis",
                 description: "Behavioral Data Analysis",

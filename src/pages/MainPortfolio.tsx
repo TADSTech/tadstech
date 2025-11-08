@@ -79,6 +79,13 @@ export const MainPortfolio: React.FC = () => {
             url: 'https://minidatamanim.web.app'
         },
         {
+            name: 'Financial News Classifier',
+            desc: 'AI-powered classification of financial news to Bullish, Bearish, or Neutral sentiment with enterprise-grade accuracy. Built with FinBERT model achieving 98% accuracy and real-time analysis capabilities.',
+            tech: ['Python', 'FinBERT', 'Hugging Face', 'React', 'FastAPI'],
+            metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
+            url: 'https://tadstech.github.io/financial-news-classifier'
+        },
+        {
             name: 'FocusForge Analytics',
             desc: 'ML powered productivity tracker and analytics app',
             tech: ['React', 'TailwindCSS', 'React-Native', 'Supabase', 'Plotly', 'NLP'],
