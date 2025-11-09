@@ -173,6 +173,17 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Nov 8, 2025'
         }
+        ,
+        {
+            day: 14,
+            name: 'Global Mobile Prices Analysis and Trend Forecasting',
+            description: 'Professional EDA of global mobile phone listings with interactive Plotly visualizations and short-term trend forecasting when multi-year or release-date data is available. Includes a conservative supervised baseline pipeline (scaler + Ridge) with reproducible artifacts written to models/. Local dataset: data/Global_Mobile_Prices_2025_Extended.csv.',
+            dataset: 'Global Mobile Prices Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/shahzadi786/world-smartphone-market-2025',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day14',
+            status: 'completed',
+            date: 'Nov 9, 2025'
+        }
     ];
 
     const totalDays = 30;
