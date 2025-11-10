@@ -184,6 +184,17 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Nov 9, 2025'
         }
+        ,
+        {
+            day: 15,
+            name: 'Loan Eligibility Prediction',
+            description: 'Supervised classification pipeline to predict loan approval. Includes data validation, preprocessing, categorical encoding, feature engineering (total income), model comparison (Logistic Regression, Decision Tree, Random Forest), and final model export. Local dataset: data/Loan_Eligibility_Prediction.csv.',
+            dataset: 'Loan Eligibility Prediction',
+            datasetUrl: 'https://www.kaggle.com/datasets/avineshprabhakaran/loan-eligibility-prediction',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day15',
+            status: 'completed',
+            date: 'Nov 10, 2025'
+        }
     ];
 
     const totalDays = 30;
