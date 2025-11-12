@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Github, ExternalLink, Database, Twitter, Linkedin } from 'lucide-react';
 
 interface ChallengeDay {
-    day: number;
+    day: string;
     name: string;
     description: string;
     dataset: string;
@@ -20,7 +20,7 @@ export const Challenge: React.FC = () => {
 
     const challengeDays: ChallengeDay[] = [
         {
-            day: 1,
+            day: "1",
             name: 'Hospital Operations Analysis',
             description: 'Data cleaning, exploratory analysis, and visualization of hospital operations data. Focus on patient flow, resource utilization, and operational efficiency metrics.',
             dataset: 'Hospital Operations Dataset',
@@ -32,7 +32,7 @@ export const Challenge: React.FC = () => {
             date: 'Oct 27, 2025'
         },
         {
-            day: 2,
+            day: "2",
             name: 'Tsunami Prediction',
             description: 'Built a machine learning model to predict tsunami occurrence based on earthquake characteristics. The Random Forest classifier achieved 80-90% accuracy in identifying tsunami risk from seismic data.',
             dataset: 'Earthquake & Tsunami Risk Assessment',
@@ -45,7 +45,7 @@ export const Challenge: React.FC = () => {
         },
         {
 
-            day: 3,
+            day: "3",
             name: 'Health and Lifestyle Recommendation System',
             description: 'This health recommendation system uses a rule-based engine for immediate, explainable advice and an ML-based Random Forest classifier to predict a healthy lifestyle and provide targeted, feature-importance-based suggestions.',
             dataset: 'Health and Lifestyle Dataset',
@@ -58,7 +58,7 @@ export const Challenge: React.FC = () => {
         },
         {
 
-            day: 4,
+            day: "4",
             name: 'Netflix EDA - Content Strategy Analysis',
             description: 'This analysis explores the content strategy of Netflix through exploratory data analysis (EDA) of its movies and TV shows dataset. Key insights include content type distribution, genre popularity, release trends, and regional availability, providing a comprehensive overview of Netflix\'s content offerings and strategic focus areas.',
             dataset: 'Netflix movies and tv shows datasets',
@@ -70,7 +70,7 @@ export const Challenge: React.FC = () => {
             date: 'Oct 30, 2025'
         },
         {
-            day: 5,
+            day: "5",
             name: 'Fruit Classification using Machine Learning',
             description: 'Developed a machine learning model to classify different types of fruits based on their physical characteristics. Utilized decision trees and random forests to achieve high accuracy in fruit identification.',
             dataset: 'Fruit Classification Dataset',
@@ -82,7 +82,7 @@ export const Challenge: React.FC = () => {
             date: 'Oct 31, 2025'
         },
         {
-            day: 6,
+            day: "6",
             name: 'Student Data Analysis & Multi‑Output Score Predictor',
             description: 'Predict three student exam scores (Math, Reading, Writing) simultaneously from demographic and preparatory features.',
             dataset: 'Student Performance Dataset',
@@ -94,7 +94,7 @@ export const Challenge: React.FC = () => {
             date: 'Nov 1, 2025'
         },
         {
-            day: 7,
+            day: "7",
             name: 'Decoding Medical Costs: Analyzing Insurance Data',
             description: 'This project analyzes an insurance dataset and builds a model to predict insurance charges based on demographic and health-related features such as age, sex, BMI, number of children, smoking status, and region. Features include categorical encoding, one-hot encoding for regions, and DecisionTreeRegressor model evaluation.',
             dataset: 'Health Costs Insights: Insurance Data',
@@ -106,7 +106,7 @@ export const Challenge: React.FC = () => {
             date: 'Nov 2, 2025'
         },
         {
-            day: 8,
+            day: "8",
             name: 'Energy Consumption & Cost Prediction',
             description: 'Built a predictive model to forecast energy costs based on customer characteristics. Decision Tree Regressor achieved test R2 score of 0.87 with mean absolute error of BRL 8-10. Key findings include building size and occupants as strongest predictors, cost variation of BRL 52-154, and regional consumption patterns.',
             dataset: 'Energy Consumption Dataset',
@@ -118,7 +118,7 @@ export const Challenge: React.FC = () => {
             date: 'Nov 3, 2025'
         },
         {
-            day: 9,
+            day: "9",
             name: 'BMW Sales Data Analysis & Price Prediction',
             description: 'Comprehensive analysis of BMW sales trends from 2010-2024 with AdaBoost Regressor achieving strong price predictions. Key findings: Petrol vehicles lead market share with growing hybrid adoption, top models are 5 Series/3 Series/X3, automatic transmission dominates, regional variations in fuel preferences, and prices span from budget-friendly to luxury segments.',
             dataset: 'BMW Sales Data (2010-2024)',
@@ -130,7 +130,7 @@ export const Challenge: React.FC = () => {
             date: 'Nov 4, 2025'
         },
         {
-            day: 10,
+            day: "10",
             name: 'Goodreads Books Dataset - Analysis & Rating Prediction',
             description: 'Comprehensive analysis of 3,045 Goodreads books with AdaBoost Regressor predicting ratings based on title characteristics, author info, and metadata. Key findings: Books concentrated in higher rating ranges, subtitles impact ratings, series books show distinct patterns, author count influences ratings, title complexity correlates with outcomes, and 12-feature model achieves strong predictive performance.',
             dataset: 'Goodreads Books Dataset',
@@ -140,7 +140,7 @@ export const Challenge: React.FC = () => {
             date: 'Nov 5, 2025'
         },
         {
-            day: 11,
+            day: "11",
             name: 'Housing Price Analysis & Prediction',
             description: 'Comprehensive analysis of housing prices with focus on identifying key market drivers and building a predictive model. The project explores relationships between property features (area, bedrooms, amenities) and pricing, followed by an AdaBoost Regressor model for accurate price prediction. Key findings include area as the strongest predictor, air conditioning commanding ~₹2M premium (50% increase), furnishing status adding 30-40% premium, and parking availability providing significant value. Built an AdaBoost Regressor with Decision Tree base estimator achieving strong predictive performance for real estate valuation.',
             dataset: 'Housing Price Dataset',
@@ -150,7 +150,7 @@ export const Challenge: React.FC = () => {
             date: 'Nov 6, 2025'
         },
         {
-            day: 12,
+            day: "12",
             name: 'Heart Disease Prediction',
             description: 'Analyzes heart disease dataset with comprehensive EDA and Logistic Regression classification model. Features 2x2 EDA dashboard visualizing patient age, cholesterol, and blood pressure distributions. Built robust sklearn pipeline with standardization and one-hot encoding. Model evaluates with confusion matrix and classification metrics (Accuracy, Precision, Recall, F1-Score). Includes ready-to-use prediction function for binary classification (Heart Disease present or absent) based on patient medical features.',
             dataset: 'Heart Failure Dataset',
@@ -162,7 +162,7 @@ export const Challenge: React.FC = () => {
             date: 'Nov 7, 2025'
         },
         {
-            day: 13,
+            day: "13",
             name: 'Car Price Prediction 2025',
             description: 'Comprehensive analysis of car pricing with machine learning-based price prediction. Multiple models (Lasso Regression, Random Forest, Gradient Boosting, XGBoost) were trained and evaluated to predict car prices based on brand, year, mileage, fuel type, and transmission. XGBoost emerged as the best performer with superior R² scores.',
             dataset: 'Car Price Prediction Dataset',
@@ -175,7 +175,7 @@ export const Challenge: React.FC = () => {
         }
         ,
         {
-            day: 14,
+            day: "14",
             name: 'Global Mobile Prices Analysis and Trend Forecasting',
             description: 'Professional EDA of global mobile phone listings with interactive Plotly visualizations and short-term trend forecasting when multi-year or release-date data is available. Includes a conservative supervised baseline pipeline (scaler + Ridge) with reproducible artifacts written to models/. Local dataset: data/Global_Mobile_Prices_2025_Extended.csv.',
             dataset: 'Global Mobile Prices Dataset',
@@ -186,7 +186,7 @@ export const Challenge: React.FC = () => {
         }
         ,
         {
-            day: 15,
+            day: "15",
             name: 'Loan Eligibility Prediction',
             description: 'Supervised classification pipeline to predict loan approval. Includes data validation, preprocessing, categorical encoding, feature engineering (total income), model comparison (Logistic Regression, Decision Tree, Random Forest), and final model export. Local dataset: data/Loan_Eligibility_Prediction.csv.',
             dataset: 'Loan Eligibility Prediction',
@@ -196,7 +196,7 @@ export const Challenge: React.FC = () => {
             date: 'Nov 10, 2025'
         },
         {
-            day: 16,
+            day: "16-17",
             name: 'Ensemble-Powered Loan Payback Prediction',
             description: 'This project implements an ensemble-powered machine learning pipeline for predicting loan payback likelihood. The workflow includes data preprocessing with ordinal and one-hot encoding, cross-validation training of multiple models (XGBoost, LightGBM, CatBoost), and an ensemble combining CatBoost and LightGBM for improved performance. Additional visualizations provide insights into model comparisons, feature importance, and prediction distributions. To get the full experience, check out the Kaggle notebook: https://www.kaggle.com/code/miclenzy/ensemble-powered-loan-payback-prediction',
             dataset: 'Kaggle Playground Series S5E11 (Loan Default Prediction)',
@@ -208,7 +208,7 @@ export const Challenge: React.FC = () => {
     ];
 
     const totalDays = 30;
-    const completedDays = challengeDays.filter(d => d.status === 'completed').length;
+    const completedDays = challengeDays.filter(d => d.status === 'completed').length + 1;
     const progressPercentage = (completedDays / totalDays) * 100;
 
     return (
