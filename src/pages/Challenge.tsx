@@ -194,6 +194,16 @@ export const Challenge: React.FC = () => {
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day15',
             status: 'completed',
             date: 'Nov 10, 2025'
+        },
+        {
+            day: 16,
+            name: 'Ensemble-Powered Loan Payback Prediction',
+            description: 'This project implements an ensemble-powered machine learning pipeline for predicting loan payback likelihood. The workflow includes data preprocessing with ordinal and one-hot encoding, cross-validation training of multiple models (XGBoost, LightGBM, CatBoost), and an ensemble combining CatBoost and LightGBM for improved performance. Additional visualizations provide insights into model comparisons, feature importance, and prediction distributions. To get the full experience, check out the Kaggle notebook: https://www.kaggle.com/code/miclenzy/ensemble-powered-loan-payback-prediction',
+            dataset: 'Kaggle Playground Series S5E11 (Loan Default Prediction)',
+            datasetUrl: 'https://www.kaggle.com/competitions/playground-series-s5e11',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day16',
+            status: 'completed',
+            date: 'Nov 12, 2025'
         }
     ];
 
