@@ -202,8 +202,20 @@ export const Challenge: React.FC = () => {
             dataset: 'Kaggle Playground Series S5E11 (Loan Default Prediction)',
             datasetUrl: 'https://www.kaggle.com/competitions/playground-series-s5e11',
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day16',
+            xUrl: 'https://x.com/tads_tech/status/1988705443137691728?t=_3wVLBUUG2ymM9oq-t59aQ&s=19',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_day-16-17-loan-payback-prediction-this-activity-7394473605797113856-RCKI?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI&utm_campaign=copy_link',
             status: 'completed',
             date: 'Nov 12, 2025'
+        },
+        {
+            day: "18",
+            name: 'SMS Spam Filter',
+            description: 'This project builds a simple SMS spam filter using Naive Bayes classifier with TF-IDF vectorization. The pipeline includes data loading, preprocessing, model training, evaluation, and model persistence for inference. Includes visualizations for label distribution, text length analysis, confusion matrix, and prediction probabilities.',
+            dataset: 'SMS Spam Collection Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day18',
+            status: 'completed',
+            date: 'Nov 13, 2025'
         }
     ];
 
