@@ -315,7 +315,7 @@ export const MobileRender: React.FC = () => {
             setCommandHistory(prev => [...prev, { input, output: commands["uwsm $portfolio"]() }]);
             setIsTransitioning(true);
             setTimeout(() => {
-                navigate('/portfolio');
+                navigate('/');
             }, 2000);
             return;
         }

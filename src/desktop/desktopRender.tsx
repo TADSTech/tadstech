@@ -297,7 +297,7 @@ export const DesktopRender: React.FC = () => {
             setCommandHistory(prev => [...prev, { input, output: commands["uwsm $portfolio"]() }]);
             setIsTransitioning(true);
             setTimeout(() => {
-                navigate('/portfolio');
+                navigate('/');
             }, 2000);
             return;
         }
@@ -368,7 +368,7 @@ export const DesktopRender: React.FC = () => {
     };
 
     const handleOpenPortfolio = () => {
-        navigate('/portfolio');
+        navigate('/');
     };
 
     useEffect(() => {

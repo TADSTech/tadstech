@@ -228,11 +228,11 @@ export const Challenge: React.FC = () => {
             <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-[#28333F]">
                 <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
                     <button
-                        onClick={() => navigate('/portfolio')}
+                        onClick={() => navigate('/')}
                         className="flex items-center gap-2 text-white hover:text-[#28333F] transition-colors border border-white hover:border-[#28333F] px-3 py-1.5"
                     >
                         <ArrowLeft className="h-4 w-4" />
-                        <span className="text-xs uppercase tracking-wider">Back to Portfolio</span>
+                        <span className="text-xs uppercase tracking-wider">Back to Home</span>
                     </button>
 
                     <div className="text-xs text-white/70">

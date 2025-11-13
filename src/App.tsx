@@ -41,8 +41,9 @@ export default function App() {
     return (
         <div className={`transition-opacity duration-500 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
             <Routes>
+                <Route path="/" element={<MainPortfolio />} />
                 <Route 
-                    path="/" 
+                    path="/terminal" 
                     element={
                         isMobile ? (
                             <div className='min-h-screen w-full bg-black'>
@@ -57,7 +58,6 @@ export default function App() {
                         )
                     } 
                 />
-                <Route path="/portfolio" element={<MainPortfolio />} />
                 <Route path="/challenge" element={<Challenge />} />
             </Routes>
         </div>
