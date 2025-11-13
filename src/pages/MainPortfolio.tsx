@@ -11,10 +11,15 @@ export const MainPortfolio: React.FC = () => {
     const [statsAnimated, setStatsAnimated] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [displayText, setDisplayText] = useState('');
-    const [colorMode, setColorMode] = useState(false);
+    const [colorMode, setColorMode] = useState(() => {
+        const saved = localStorage.getItem('tadstech-theme');
+        return saved ? saved === 'blue' : false;
+    });
     const [predictionValue, setPredictionValue] = useState(50);
     const [isProcessing, setIsProcessing] = useState(false);
     const [modelOutput, setModelOutput] = useState<{ label: string; confidence: number } | null>(null);
+    const [holdTimer, setHoldTimer] = useState<NodeJS.Timeout | null>(null);
+    const [autoSwapInterval, setAutoSwapInterval] = useState<NodeJS.Timeout | null>(null);
     const fullText = '> MICHAEL_TUNWASHE._init()';
 
     const calculateChallengeDay = () => {
@@ -26,6 +31,10 @@ export const MainPortfolio: React.FC = () => {
     };
 
     const challengeDay = calculateChallengeDay();
+
+    useEffect(() => {
+        localStorage.setItem('tadstech-theme', colorMode ? 'blue' : 'gray');
+    }, [colorMode]);
 
     useEffect(() => {
         if (currentLayer === 'hero') {
@@ -47,6 +56,40 @@ export const MainPortfolio: React.FC = () => {
             setStatsAnimated(true);
         }
     }, [currentLayer, statsAnimated]);
+
+    useEffect(() => {
+        return () => {
+            if (holdTimer) clearTimeout(holdTimer);
+            if (autoSwapInterval) clearInterval(autoSwapInterval);
+        };
+    }, [holdTimer, autoSwapInterval]);
+
+    const handleThemeMouseDown = () => {
+        const timer = setTimeout(() => {
+            const interval = setInterval(() => {
+                setColorMode(prev => !prev);
+            }, 5000);
+            setAutoSwapInterval(interval);
+        }, 5000);
+        setHoldTimer(timer);
+    };
+
+    const handleThemeMouseUp = () => {
+        if (holdTimer) {
+            clearTimeout(holdTimer);
+            setHoldTimer(null);
+        }
+        if (autoSwapInterval) {
+            clearInterval(autoSwapInterval);
+            setAutoSwapInterval(null);
+        }
+    };
+
+    const handleThemeClick = () => {
+        if (!autoSwapInterval) {
+            setColorMode(prev => !prev);
+        }
+    };
 
     const navigateToLayer = (layer: Layer) => {
         setIsAnimating(true);
@@ -139,17 +182,22 @@ export const MainPortfolio: React.FC = () => {
                         </button>
 
                         <button
-                            onClick={() => setColorMode(!colorMode)}
-                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg"
+                            onClick={handleThemeClick}
+                            onMouseDown={handleThemeMouseDown}
+                            onMouseUp={handleThemeMouseUp}
+                            onMouseLeave={handleThemeMouseUp}
+                            onTouchStart={handleThemeMouseDown}
+                            onTouchEnd={handleThemeMouseUp}
+                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative"
                             style={{ 
                                 borderColor: accentColor,
                                 backgroundColor: colorMode ? accentColor : 'transparent'
                             }}
-                            title="Toggle color mode"
+                            title={autoSwapInterval ? "Auto-swapping active! Release to stop" : "Click to toggle, hold 5s for auto-swap"}
                         >
-                            <Palette className="h-4 w-4" />
+                            <Palette className={`h-4 w-4 ${autoSwapInterval ? 'animate-spin' : ''}`} />
                             <span className="text-xs uppercase tracking-wider hidden sm:inline">
-                                {colorMode ? 'Color' : 'B&W'}
+                                {autoSwapInterval ? 'Auto' : colorMode ? 'Color' : 'B&W'}
                             </span>
                         </button>
                     </div>
@@ -200,6 +248,22 @@ export const MainPortfolio: React.FC = () => {
                                     {layer === 'mlDemo' ? 'ML' : layer}
                                 </button>
                             ))}
+                            <button
+                                onClick={handleThemeClick}
+                                onMouseDown={handleThemeMouseDown}
+                                onMouseUp={handleThemeMouseUp}
+                                onMouseLeave={handleThemeMouseUp}
+                                onTouchStart={handleThemeMouseDown}
+                                onTouchEnd={handleThemeMouseUp}
+                                className="w-full px-3 py-2 text-xs uppercase tracking-wider transition-all text-left flex items-center gap-2"
+                                style={{
+                                    backgroundColor: colorMode ? accentColor : 'transparent',
+                                    border: `1px solid ${accentColor}`
+                                }}
+                            >
+                                <Palette className={`h-4 w-4 ${autoSwapInterval ? 'animate-spin' : ''}`} />
+                                <span>{autoSwapInterval ? 'Auto Theme' : colorMode ? 'Color Mode' : 'B&W Mode'}</span>
+                            </button>
                         </div>
                     </div>
                 )}
