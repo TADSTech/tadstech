@@ -232,6 +232,26 @@ export const Challenge: React.FC = () => {
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day19',
             status: 'completed',
             date: 'Nov 14, 2025'
+        },
+        {
+            day: "20",
+            name: 'GPU Evolution Analysis',
+            description: 'Comprehensive analysis of GPU evolution from 1999 to 2024, examining performance metrics, architectural changes, and market trends. Dataset includes detailed specifications, benchmarks, and historical pricing data for over 500 GPUs across multiple generations.',
+            dataset: 'GPU Evolution Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/alanjo/gpu-evolution-dataset',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day20',
+            status: 'completed',
+            date: 'Nov 15, 2025'
+        },
+        {
+            day: "21",
+            name: 'UK Job Market Analysis 2025',
+            description: 'Exploratory data analysis of 4,000 UK job postings from 2025, focusing on salary distributions and category trends. Includes a predictive model for salary estimation using Random Forest regression with job category and location features.',
+            dataset: 'UK Jobs 2025 Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/jakupymeraj/jobs-a-2025-dataset',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day21',
+            status: 'completed',
+            date: 'Nov 16, 2025'
         }
     ];
 

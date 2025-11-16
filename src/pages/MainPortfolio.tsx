@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Terminal, ChevronDown, Database, Code, BarChart3, TrendingUp, Github, Mail, Linkedin, ExternalLink, Globe, Palette, Activity, Cpu, Zap, FileCode, Wrench, PieChart } from 'lucide-react';
+import { Terminal, ChevronDown, Database, Code, BarChart3, TrendingUp, Github, Mail, Linkedin, ExternalLink, Globe, Palette, Activity, Cpu, Zap, FileCode, Wrench, PieChart, Briefcase } from 'lucide-react';
 
 type Layer = 'hero' | 'stats' | 'skills' | 'projects' | 'mlDemo' | 'contact';
 
@@ -18,8 +18,9 @@ export const MainPortfolio: React.FC = () => {
     const [predictionValue, setPredictionValue] = useState(50);
     const [isProcessing, setIsProcessing] = useState(false);
     const [modelOutput, setModelOutput] = useState<{ label: string; confidence: number } | null>(null);
-    const [holdTimer, setHoldTimer] = useState<NodeJS.Timeout | null>(null);
     const [autoSwapInterval, setAutoSwapInterval] = useState<NodeJS.Timeout | null>(null);
+    const [clickCount, setClickCount] = useState(0);
+    const [clickTimer, setClickTimer] = useState<NodeJS.Timeout | null>(null);
     const fullText = '> MICHAEL_TUNWASHE._init()';
 
     const calculateChallengeDay = () => {
@@ -59,35 +60,36 @@ export const MainPortfolio: React.FC = () => {
 
     useEffect(() => {
         return () => {
-            if (holdTimer) clearTimeout(holdTimer);
+            if (clickTimer) clearTimeout(clickTimer);
             if (autoSwapInterval) clearInterval(autoSwapInterval);
         };
-    }, [holdTimer, autoSwapInterval]);
-
-    const handleThemeMouseDown = () => {
-        const timer = setTimeout(() => {
-            const interval = setInterval(() => {
-                setColorMode(prev => !prev);
-            }, 5000);
-            setAutoSwapInterval(interval);
-        }, 5000);
-        setHoldTimer(timer);
-    };
-
-    const handleThemeMouseUp = () => {
-        if (holdTimer) {
-            clearTimeout(holdTimer);
-            setHoldTimer(null);
-        }
-        if (autoSwapInterval) {
-            clearInterval(autoSwapInterval);
-            setAutoSwapInterval(null);
-        }
-    };
+    }, [clickTimer, autoSwapInterval]);
 
     const handleThemeClick = () => {
-        if (!autoSwapInterval) {
-            setColorMode(prev => !prev);
+        const newCount = clickCount + 1;
+        setClickCount(newCount);
+
+        if (clickTimer) clearTimeout(clickTimer);
+
+        if (newCount === 3) {
+            if (autoSwapInterval) {
+                clearInterval(autoSwapInterval);
+                setAutoSwapInterval(null);
+            } else {
+                const interval = setInterval(() => {
+                    setColorMode(prev => !prev);
+                }, 5000);
+                setAutoSwapInterval(interval);
+            }
+            setClickCount(0);
+        } else {
+            if (!autoSwapInterval) {
+                setColorMode(prev => !prev);
+            }
+            const timer = setTimeout(() => {
+                setClickCount(0);
+            }, 500);
+            setClickTimer(timer);
         }
     };
 
@@ -96,6 +98,9 @@ export const MainPortfolio: React.FC = () => {
         setTimeout(() => {
             setCurrentLayer(layer);
             setIsAnimating(false);
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 2000);
         }, 300);
     };
 
@@ -112,17 +117,6 @@ export const MainPortfolio: React.FC = () => {
     };
 
     const accentColor = colorMode ? '#0ea5e9' : '#28333F';
-
-    const skillsData = [
-        { name: 'Python', hours: 1400, category: 'data' },
-        { name: 'SQL', hours: 160, category: 'data' },
-        { name: 'React', hours: 700, category: 'dev' },
-        { name: 'TypeScript', hours: 600, category: 'dev' },
-        { name: 'Metabase', hours: 40, category: 'bi' },
-        { name: 'pandas', hours: 900, category: 'data' },
-        { name: 'Calc', hours: 200, category: 'data' },
-        { name: 'Tableau', hours: 60, category: 'bi' },
-    ];
 
     const projects = [
         {
@@ -147,16 +141,11 @@ export const MainPortfolio: React.FC = () => {
             url: 'https://tadstech.github.io/financial-news-classifier'
         },
         {
-            name: 'FocusForge Analytics',
-            desc: 'ML powered productivity tracker and analytics app',
-            tech: ['React', 'TailwindCSS', 'React-Native', 'Supabase', 'Plotly', 'NLP'],
-            metrics: { complexity: 10, Status: 'In Progress', Completion: 'Q2 2026'}
-        },
-        {
-            name: 'NaijaDash',
-            desc: 'National data dashboard for Nigeria Simplified!!',
-            tech: ['React', 'TypeScript', 'TailwindCSS', 'SQL', 'PlotlyJs', 'D3JS'],
-            metrics: { complexity: 9, Status: 'In Progress', Completion: 'Q4 2025' }
+            name: 'NaijaEconoDash',
+            desc: 'National economic dashboard powered by dash',
+            tech: ['Requests', 'Python', 'Pandas', 'PlotlyDash', 'Plotly'],
+            metrics: { complexity: 7, Status: 'Complete', Completion: 'Q4 2025' },
+            url: 'https://naija-econo-plotlydash.onrender.com',
         }
     ];
 
@@ -183,17 +172,12 @@ export const MainPortfolio: React.FC = () => {
 
                         <button
                             onClick={handleThemeClick}
-                            onMouseDown={handleThemeMouseDown}
-                            onMouseUp={handleThemeMouseUp}
-                            onMouseLeave={handleThemeMouseUp}
-                            onTouchStart={handleThemeMouseDown}
-                            onTouchEnd={handleThemeMouseUp}
                             className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative"
                             style={{ 
                                 borderColor: accentColor,
                                 backgroundColor: colorMode ? accentColor : 'transparent'
                             }}
-                            title={autoSwapInterval ? "Auto-swapping active! Release to stop" : "Click to toggle, hold 5s for auto-swap"}
+                            title={autoSwapInterval ? "Triple-click active! Click 3x to stop" : "Triple-click for auto-swap"}
                         >
                             <Palette className={`h-4 w-4 ${autoSwapInterval ? 'animate-spin' : ''}`} />
                             <span className="text-xs uppercase tracking-wider hidden sm:inline">
@@ -230,40 +214,102 @@ export const MainPortfolio: React.FC = () => {
                 </div>
 
                 {mobileMenuOpen && (
-                    <div className="md:hidden border-t bg-black" style={{ borderColor: accentColor }}>
-                        <div className="px-4 py-3 space-y-2">
-                            {(['hero', 'stats', 'skills', 'projects', 'mlDemo', 'contact'] as Layer[]).map((layer) => (
+                    <div className="md:hidden border-t bg-black/98 backdrop-blur-md relative overflow-hidden" style={{ borderColor: accentColor }}>
+                        <div className="absolute inset-0 opacity-5 pointer-events-none">
+                            <div className="absolute inset-0" style={{
+                                backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, ${accentColor} 10px, ${accentColor} 11px)`
+                            }}></div>
+                        </div>
+                        
+                        <div className="relative z-10 px-4 py-4">
+                            <div className="mb-3 flex items-center justify-between pb-2 border-b" style={{ borderColor: `${accentColor}40` }}>
+                                <span className="text-[10px] font-mono tracking-wider text-white/60">NAVIGATION_MENU</span>
+                                <div className="flex gap-1">
+                                    {[...Array(6)].map((_, i) => (
+                                        <div 
+                                            key={i} 
+                                            className="w-1 h-1 rounded-full animate-pulse" 
+                                            style={{ 
+                                                backgroundColor: accentColor,
+                                                animationDelay: `${i * 150}ms`
+                                            }}
+                                        ></div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-2 mb-3">
+                                {(['hero', 'stats', 'skills', 'projects', 'mlDemo', 'contact'] as Layer[]).map((layer, idx) => (
+                                    <button
+                                        key={layer}
+                                        onClick={() => {
+                                            navigateToLayer(layer);
+                                            setMobileMenuOpen(false);
+                                        }}
+                                        className="relative group overflow-hidden px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono"
+                                        style={{
+                                            backgroundColor: currentLayer === layer ? `${accentColor}20` : 'transparent',
+                                            border: `1px solid ${currentLayer === layer ? accentColor : `${accentColor}40`}`,
+                                        }}
+                                    >
+                                        <div className="absolute top-0 right-0 text-[8px] font-mono opacity-30" style={{ color: accentColor }}>
+                                            0{idx + 1}
+                                        </div>
+                                        <div className="absolute bottom-0 left-0 h-0.5 transition-all duration-300 group-hover:w-full" 
+                                             style={{ 
+                                                 width: currentLayer === layer ? '100%' : '0%',
+                                                 backgroundColor: accentColor 
+                                             }}
+                                        ></div>
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: currentLayer === layer ? accentColor : 'transparent', border: `1px solid ${accentColor}` }}></div>
+                                            <span className="relative z-10">{layer === 'mlDemo' ? 'ML_MODEL' : layer.toUpperCase()}</span>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+
+                            <div className="border-t pt-3 space-y-2" style={{ borderColor: `${accentColor}40` }}>
                                 <button
-                                    key={layer}
                                     onClick={() => {
-                                        navigateToLayer(layer);
-                                        setMobileMenuOpen(false);
+                                        handleThemeClick();
                                     }}
-                                    className="w-full px-3 py-2 text-xs uppercase tracking-wider transition-all text-left"
+                                    className="w-full px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono flex items-center justify-between group relative overflow-hidden"
                                     style={{
-                                        backgroundColor: currentLayer === layer ? accentColor : 'transparent',
+                                        backgroundColor: colorMode ? `${accentColor}20` : 'transparent',
                                         border: `1px solid ${accentColor}`
                                     }}
                                 >
-                                    {layer === 'mlDemo' ? 'ML' : layer}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                                    <div className="flex items-center gap-3">
+                                        <Palette className={`h-4 w-4 ${autoSwapInterval ? 'animate-spin' : ''}`} />
+                                        <div className="text-left">
+                                            <div className="text-xs">{autoSwapInterval ? 'AUTO_SWAP' : colorMode ? 'COLOR_MODE' : 'MONO_MODE'}</div>
+                                            <div className="text-[8px] text-white/50">Triple-click to {autoSwapInterval ? 'stop' : 'enable'}</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-1">
+                                        {[0, 1, 2].map((i) => (
+                                            <div 
+                                                key={i} 
+                                                className="w-1.5 h-1.5 rounded-full transition-all" 
+                                                style={{ 
+                                                    backgroundColor: autoSwapInterval ? accentColor : 'transparent',
+                                                    border: `1px solid ${accentColor}`,
+                                                    transform: autoSwapInterval ? 'scale(1.2)' : 'scale(1)',
+                                                    animationDelay: `${i * 200}ms`
+                                                }}
+                                            ></div>
+                                        ))}
+                                    </div>
                                 </button>
-                            ))}
-                            <button
-                                onClick={handleThemeClick}
-                                onMouseDown={handleThemeMouseDown}
-                                onMouseUp={handleThemeMouseUp}
-                                onMouseLeave={handleThemeMouseUp}
-                                onTouchStart={handleThemeMouseDown}
-                                onTouchEnd={handleThemeMouseUp}
-                                className="w-full px-3 py-2 text-xs uppercase tracking-wider transition-all text-left flex items-center gap-2"
-                                style={{
-                                    backgroundColor: colorMode ? accentColor : 'transparent',
-                                    border: `1px solid ${accentColor}`
-                                }}
-                            >
-                                <Palette className={`h-4 w-4 ${autoSwapInterval ? 'animate-spin' : ''}`} />
-                                <span>{autoSwapInterval ? 'Auto Theme' : colorMode ? 'Color Mode' : 'B&W Mode'}</span>
-                            </button>
+
+                                <div className="flex items-center justify-between text-[9px] font-mono text-white/40 px-2">
+                                    <span>LAYERS: {(['hero', 'stats', 'skills', 'projects', 'mlDemo', 'contact'] as Layer[]).length}</span>
+                                    <span>MODE: {colorMode ? 'CLR' : 'B&W'}</span>
+                                    <span>STATUS: ACTIVE</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -300,8 +346,8 @@ export const MainPortfolio: React.FC = () => {
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-8">
                                         {[
                                             { value: '02+', label: 'Years Experience' },
-                                            { value: '5', label: 'FullStack Projects' },
-                                            { value: '10+', label: 'Tech Stack' },
+                                            { value: '4', label: 'FullStack Projects' },
+                                            { value: '10+', label: 'Tech Tools' },
                                             { value: '25+', label: 'Repositories' }
                                         ].map((stat, i) => (
                                             <div key={i} className="border p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}20` : 'none' }}>
@@ -350,30 +396,111 @@ export const MainPortfolio: React.FC = () => {
                                         </a>
                                     </div>
 
-                                    <div className="pt-8 space-y-3">
+                                    <div className="pt-8 space-y-3 relative group/challenge">
                                         <div className="flex items-center justify-between text-xs">
                                             <span className="text-white/90 uppercase tracking-wider">30-Day Data Challenge</span>
-                                            <span className="text-white font-bold" style={{ color: colorMode ? accentColor : 'white' }}>Day {challengeDay}/30</span>
+                                            <span className="text-white font-bold animate-pulse" style={{ color: colorMode ? accentColor : 'white' }}>Day {challengeDay}/30</span>
                                         </div>
+                                        
+                                        {/* Fancy Tooltip */}
+                                        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover/challenge:opacity-100 transition-all duration-300 pointer-events-none z-10">
+                                            <div className="relative">
+                                                <div 
+                                                    className="px-4 py-2 rounded-lg text-xs font-mono whitespace-nowrap shadow-2xl border backdrop-blur-sm"
+                                                    style={{ 
+                                                        backgroundColor: 'rgba(0, 0, 0, 0.95)',
+                                                        borderColor: colorMode ? accentColor : 'white',
+                                                        boxShadow: colorMode ? `0 0 20px ${accentColor}60` : '0 0 20px rgba(255,255,255,0.6)'
+                                                    }}
+                                                >
+                                                    <div className="flex items-center gap-2">
+                                                        <span style={{ color: colorMode ? accentColor : 'white' }}>Click to explore my data journey!</span>
+                                                    </div>
+                                                    <div className="text-[10px] text-white/60 mt-1 text-center">{challengeDay} datasets analyzed • {30 - challengeDay} more to go</div>
+                                                </div>
+                                                {/* Arrow */}
+                                                <div 
+                                                    className="absolute left-1/2 transform -translate-x-1/2 bottom-[-6px] w-3 h-3 rotate-45 border-r border-b"
+                                                    style={{ 
+                                                        backgroundColor: 'rgba(0, 0, 0, 0.95)',
+                                                        borderColor: colorMode ? accentColor : 'white'
+                                                    }}
+                                                ></div>
+                                            </div>
+                                        </div>
+
                                         <button
                                             onClick={() => navigate('/challenge')}
-                                            className="w-full h-3 border relative overflow-hidden hover:border-white transition-all group"
-                                            style={{ borderColor: accentColor }}
+                                            className="w-full h-4 border relative overflow-hidden transition-all group/bar hover:h-5 hover:shadow-2xl"
+                                            style={{ 
+                                                borderColor: accentColor,
+                                                boxShadow: colorMode ? `0 0 10px ${accentColor}40` : 'none'
+                                            }}
                                         >
+                                            {/* Progress fill */}
                                             <div
-                                                className="h-full transition-all duration-500"
+                                                className="h-full transition-all duration-700 relative"
                                                 style={{ 
                                                     width: `${(challengeDay / 30) * 100}%`,
-                                                    backgroundColor: colorMode ? accentColor : 'white'
+                                                    backgroundColor: colorMode ? accentColor : 'white',
+                                                    boxShadow: colorMode ? `0 0 15px ${accentColor}` : '0 0 15px white'
                                                 }}
-                                            ></div>
+                                            >
+                                                {/* Animated shine effect */}
+                                                <div 
+                                                    className="absolute inset-0 opacity-50"
+                                                    style={{
+                                                        background: `linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)`,
+                                                        animation: 'shine 2s infinite',
+                                                        backgroundSize: '200% 100%'
+                                                    }}
+                                                ></div>
+                                            </div>
+                                            
+                                            {/* Pulsing dots at the end of progress */}
+                                            <div 
+                                                className="absolute top-1/2 transform -translate-y-1/2 flex gap-0.5"
+                                                style={{ left: `${(challengeDay / 30) * 100}%` }}
+                                            >
+                                                <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: colorMode ? accentColor : 'white' }}></div>
+                                                <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: colorMode ? accentColor : 'white', animationDelay: '0.2s' }}></div>
+                                                <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: colorMode ? accentColor : 'white', animationDelay: '0.4s' }}></div>
+                                            </div>
+
+                                            {/* Hover text */}
                                             <div className="absolute inset-0 flex items-center justify-center">
-                                                <span className="text-[10px] font-mono mix-blend-difference opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    VIEW CHALLENGE
+                                                <span className="text-[10px] font-mono font-bold mix-blend-difference opacity-0 group-hover/bar:opacity-100 transition-opacity duration-300">
+                                                    EXPLORE DATA CHALLENGE
                                                 </span>
                                             </div>
+
+                                            {/* Background grid pattern */}
+                                            <div 
+                                                className="absolute inset-0 opacity-5 pointer-events-none"
+                                                style={{
+                                                    backgroundImage: `repeating-linear-gradient(90deg, ${accentColor} 0px, transparent 1px, transparent 4px)`,
+                                                    backgroundSize: '4px 100%'
+                                                }}
+                                            ></div>
                                         </button>
+
+                                        {/* Stats below bar */}
+                                        <div className="flex justify-between text-[10px] text-white/50 font-mono">
+                                            <span>Started: Oct 27</span>
+                                            <span className="opacity-0 group-hover/challenge:opacity-100 transition-opacity" style={{ color: colorMode ? accentColor : 'white' }}>
+                                                {Math.round((challengeDay / 30) * 100)}% Complete
+                                            </span>
+                                            <span>Target: 30 days</span>
+                                        </div>
                                     </div>
+
+                                    {/* Add keyframe animation for shine effect */}
+                                    <style>{`
+                                        @keyframes shine {
+                                            0% { background-position: -200% 0; }
+                                            100% { background-position: 200% 0; }
+                                        }
+                                    `}</style>
 
                                     <button
                                         onClick={() => navigateToLayer('stats')}
@@ -656,159 +783,134 @@ export const MainPortfolio: React.FC = () => {
 
                 {currentLayer === 'skills' && (
                     <section className="min-h-screen flex items-center justify-center px-4 pt-20 pb-20">
-                        <div className="max-w-6xl w-full space-y-8">
+                        <div className="max-w-6xl w-full space-y-12">
                             <div className="text-center mb-12">
                                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-2 font-mono">
-                                    {'>'} <span style={{ color: colorMode ? accentColor : 'white' }}>SKILLS</span>.execute()
+                                    {'>'} <span style={{ color: colorMode ? accentColor : 'white' }}>EXPERIENCE</span>.load()
                                 </h2>
                                 <div className="h-px w-48 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
-                                <p className="text-sm text-white/60 mt-4 font-mono">Experience measured in hours • Proficiency scaled to 2000h</p>
+                                <p className="text-sm text-white/60 mt-4 font-mono">Tools & Languages • Crafted through real-world projects</p>
                             </div>
 
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {skillsData.map((skill, i) => {
-                                    const proficiencyPercent = Math.min((skill.hours / 2000) * 100, 100);
-                                    const level = proficiencyPercent >= 80 ? 'Expert' : proficiencyPercent >= 60 ? 'Advanced' : proficiencyPercent >= 40 ? 'Intermediate' : 'Developing';
-                                    
-                                    return (
-                                        <div 
-                                            key={i} 
-                                            className="border p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-black/50 backdrop-blur-sm relative overflow-hidden group"
-                                            style={{ 
-                                                borderColor: accentColor,
-                                                boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none'
-                                            }}
-                                        >
-                                            <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
-                                                 style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                            
-                                            <div className="relative z-10">
-                                                <div className="flex justify-between items-start mb-4">
-                                                    <div className="flex-1">
-                                                        <h3 className="text-lg font-bold mb-1">{skill.name}</h3>
-                                                        <div className="flex items-center gap-2">
-                                                            <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-mono" 
-                                                                  style={{ 
-                                                                      backgroundColor: `${accentColor}20`,
-                                                                      color: colorMode ? accentColor : 'white',
-                                                                      border: `1px solid ${accentColor}40`
-                                                                  }}>
-                                                                {skill.category === 'data' ? '📊 DATA' : skill.category === 'dev' ? '💻 DEV' : '📈 BI'}
-                                                            </span>
-                                                            <span className="text-[10px] text-white/60 font-mono">{level}</span>
-                                                        </div>
+                            <div className="grid md:grid-cols-3 gap-8">
+                                <div className="border p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-black/50 backdrop-blur-sm relative overflow-hidden group"
+                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
+                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+                                    <div className="relative z-10">
+                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DATA SCIENCE</h3>
+                                        <div className="space-y-4">
+                                            {[
+                                                { name: 'Python', hours: 1400 },
+                                                { name: 'pandas', hours: 900 },
+                                                { name: 'scikit-learn', hours: 600 },
+                                                { name: 'SQL', hours: 160 }
+                                            ].map((skill, i) => (
+                                                <div key={i} className="space-y-1">
+                                                    <div className="flex justify-between items-baseline">
+                                                        <span className="text-sm font-medium">{skill.name}</span>
+                                                        <span className="text-xs font-mono text-white/60">{skill.hours}h</span>
                                                     </div>
-                                                    <div className="text-right">
-                                                        <div className="text-2xl font-bold font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                                            {Math.floor(proficiencyPercent)}
-                                                        </div>
-                                                        <div className="text-[10px] text-white/50">SCORE</div>
+                                                    <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                                        <div className="h-full rounded-full transition-all duration-1000" 
+                                                             style={{ 
+                                                                 width: `${Math.min((skill.hours / 1400) * 100, 100)}%`,
+                                                                 backgroundColor: colorMode ? accentColor : 'white'
+                                                             }}></div>
                                                     </div>
                                                 </div>
-                                                
-                                                <div className="space-y-3">
-                                                    <div className="h-10 border rounded-lg relative overflow-hidden" style={{ borderColor: `${accentColor}40`, backgroundColor: `${accentColor}05` }}>
-                                                        <div
-                                                            className="h-full rounded-lg transition-all duration-1000 delay-300 ease-out relative"
-                                                            style={{ 
-                                                                width: `${proficiencyPercent}%`,
-                                                                background: colorMode 
-                                                                    ? `linear-gradient(90deg, ${accentColor}40 0%, ${accentColor} 100%)`
-                                                                    : 'linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,1) 100%)',
-                                                                boxShadow: colorMode ? `0 0 15px ${accentColor}60` : 'none'
-                                                            }}
-                                                        >
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse"></div>
-                                                        </div>
-                                                        <div className="absolute inset-0 flex items-center justify-between px-3">
-                                                            <span className="text-xs font-mono text-white/90 mix-blend-difference">{skill.hours}h</span>
-                                                            <span className="text-xs font-mono text-white/90 mix-blend-difference">{Math.floor(proficiencyPercent)}%</span>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div className="flex gap-1">
-                                                        {Array.from({ length: 10 }).map((_, idx) => (
-                                                            <div
-                                                                key={idx}
-                                                                className="flex-1 h-1.5 rounded-full transition-all duration-500"
-                                                                style={{ 
-                                                                    backgroundColor: idx < Math.floor(proficiencyPercent / 10)
-                                                                        ? (colorMode ? accentColor : 'white') 
-                                                                        : '#ffffff15',
-                                                                    transitionDelay: `${idx * 60}ms`,
-                                                                    boxShadow: idx < Math.floor(proficiencyPercent / 10) && colorMode
-                                                                        ? `0 0 4px ${accentColor}`
-                                                                        : 'none'
-                                                                }}
-                                                            ></div>
-                                                        ))}
-                                                    </div>
-                                                    
-                                                    <div className="flex justify-between text-[9px] text-white/40 font-mono pt-1">
-                                                        <span>Beginner</span>
-                                                        <span>Intermediate</span>
-                                                        <span>Expert</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-
-                            <div className="grid md:grid-cols-3 gap-6 mt-12">
-                                {[
-                                    {
-                                        icon: Database,
-                                        title: 'DATA SCIENCE',
-                                        gradient: 'from-blue-500/20 to-cyan-500/20',
-                                        tools: ['pandas', 'NumPy', 'matplotlib', 'plotly', 'scikit-learn', 'statsmodels']
-                                    },
-                                    {
-                                        icon: Code,
-                                        title: 'DEVELOPMENT',
-                                        gradient: 'from-purple-500/20 to-pink-500/20',
-                                        tools: ['React', 'TypeScript', 'Node.js', 'Flutter', 'Dart', 'Firebase']
-                                    },
-                                    {
-                                        icon: BarChart3,
-                                        title: 'BI & ANALYTICS',
-                                        gradient: 'from-green-500/20 to-emerald-500/20',
-                                        tools: ['Power BI', 'Tableau', 'Metabase', 'SQL', 'PostgreSQL', 'ETL']
-                                    }
-                                ].map((category, idx) => (
-                                    <div 
-                                        key={idx}
-                                        className="border p-6 text-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-black/50 backdrop-blur-sm relative overflow-hidden group" 
-                                        style={{ 
-                                            borderColor: colorMode ? `${accentColor}60` : '#ffffff30',
-                                            boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none'
-                                        }}
-                                    >
-                                        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br ${category.gradient}`}></div>
-                                        
-                                        <div className="relative z-10">
-                                            <category.icon className="h-10 w-10 mx-auto mb-4 transition-transform group-hover:scale-110 duration-300" 
-                                                          style={{ color: colorMode ? accentColor : 'white' }} />
-                                            <div className="text-sm font-bold mb-4 tracking-wider">{category.title}</div>
-                                            <div className="flex flex-wrap gap-2 justify-center">
-                                                {category.tools.map((tool, i) => (
-                                                    <span 
-                                                        key={i}
-                                                        className="text-[10px] px-2 py-1 rounded border font-mono transition-all duration-300"
-                                                        style={{ 
-                                                            borderColor: `${accentColor}40`,
-                                                            backgroundColor: `${accentColor}10`,
-                                                            color: 'white'
-                                                        }}
-                                                    >
-                                                        {tool}
-                                                    </span>
-                                                ))}
-                                            </div>
+                                            ))}
                                         </div>
                                     </div>
-                                ))}
+                                </div>
+
+                                <div className="border p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-black/50 backdrop-blur-sm relative overflow-hidden group"
+                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
+                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+                                    <div className="relative z-10">
+                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DEVELOPMENT</h3>
+                                        <div className="space-y-4">
+                                            {[
+                                                { name: 'React', hours: 700 },
+                                                { name: 'TypeScript', hours: 600 },
+                                                { name: 'Node.js', hours: 400 },
+                                                { name: 'Flutter', hours: 300 }
+                                            ].map((skill, i) => (
+                                                <div key={i} className="space-y-1">
+                                                    <div className="flex justify-between items-baseline">
+                                                        <span className="text-sm font-medium">{skill.name}</span>
+                                                        <span className="text-xs font-mono text-white/60">{skill.hours}h</span>
+                                                    </div>
+                                                    <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                                        <div className="h-full rounded-full transition-all duration-1000" 
+                                                             style={{ 
+                                                                 width: `${Math.min((skill.hours / 700) * 100, 100)}%`,
+                                                                 backgroundColor: colorMode ? accentColor : 'white'
+                                                             }}></div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="border p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-black/50 backdrop-blur-sm relative overflow-hidden group"
+                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
+                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+                                    <div className="relative z-10">
+                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>BI & ANALYTICS</h3>
+                                        <div className="space-y-4">
+                                            {[
+                                                { name: 'Metabase', hours: 200 },
+                                                { name: 'Power BI', hours: 120 },
+                                                { name: 'Tableau', hours: 60 },
+                                                { name: 'Data Warehousing', hours: 80 }
+                                            ].map((skill, i) => (
+                                                <div key={i} className="space-y-1">
+                                                    <div className="flex justify-between items-baseline">
+                                                        <span className="text-sm font-medium">{skill.name}</span>
+                                                        <span className="text-xs font-mono text-white/60">{skill.hours}h</span>
+                                                    </div>
+                                                    <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                                        <div className="h-full rounded-full transition-all duration-1000" 
+                                                             style={{ 
+                                                                 width: `${Math.min((skill.hours / 200) * 100, 100)}%`,
+                                                                 backgroundColor: colorMode ? accentColor : 'white'
+                                                             }}></div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="border p-8 transition-all duration-300 hover:shadow-2xl bg-black/50 backdrop-blur-sm relative overflow-hidden group"
+                                 style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
+                                     style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+                                <div className="relative z-10">
+                                    <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
+                                        <Briefcase className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
+                                        <span>PROFESSIONAL EXPERIENCE</span>
+                                    </h3>
+                                    <div className="space-y-6">
+                                        <div className="border-l-2 pl-6 py-2" style={{ borderColor: `${accentColor}40` }}>
+                                            <div className="flex justify-between items-start mb-2">
+                                                <div>
+                                                    <h4 className="text-lg font-bold">Data Analyst</h4>
+                                                    <p className="text-sm text-white/70">HNG Tech Internship</p>
+                                                </div>
+                                                <span className="text-xs text-white/50 font-mono">3 months</span>
+                                            </div>
+                                            <p className="text-sm text-white/80 leading-relaxed">
+                                                Performed comprehensive data analysis, created visualizations, and generated actionable insights from large datasets. Built dashboards and reports for stakeholder decision-making.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="text-center">

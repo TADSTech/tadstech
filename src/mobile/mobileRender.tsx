@@ -53,11 +53,41 @@ export const MobileRender: React.FC = () => {
         },
         projects: [
             {
+                name: "SalesScope Dashboard",
+                period: "Jun 2025 -- Aug 2025",
+                emoji: "�",
+                type: "Sales Analytics Platform",
+                description: "SalesScope is a lightweight sales analytics platform that showcases how businesses can track, explore, and visualize sales performance.",
+                highlights: [
+                    "Analyzed 6+ months of sales data to identify trends and performance bottlenecks using Python",
+                    "Created interactive dashboard with React and TypeScript for stakeholder reporting",
+                    "Delivered actionable insights that improved sales strategy",
+                    "Built with SQL for data extraction and PlotlyJs for visualizations"
+                ],
+                tech: ["Python", "SQL", "React", "PlotlyJs", "TailwindCSS"],
+                url: "https://salesscope.web.app"
+            },
+            {
+                name: "Mini Data Manim",
+                period: "Aug 2025 - Oct 2025",
+                emoji: "�️",
+                type: "Data Manipulation WebApp",
+                description: "Free and open-source, portable, data manipulation webapp",
+                highlights: [
+                    "Developed web-based tool for data manipulation with Excel-like functionality, supporting import/export of CSV, Excel, and LibreOffice files",
+                    "Implemented advanced data operations including sorting, filtering, duplicate removal, statistical transformations, and data normalization",
+                    "Created interactive visualizations using Plotly.js with support for bar charts, line charts, scatter plots, histograms, and box plots",
+                    "Built responsive user interface with React and TypeScript, featuring multi-sheet workbooks, inline editing, and customizable preferences"
+                ],
+                tech: ["React", "exceljs", "PlotlyJs", "TailwindCSS", "TypeScript"],
+                url: "https://minidatamanim.web.app"
+            },
+            {
                 name: "Financial News Classifier",
                 period: "Oct 2025 - Nov 2025",
-                emoji: "📰",
+                emoji: "�",
                 type: "AI-Powered Sentiment Analysis",
-                description: "AI-powered classification of financial news to Bullish, Bearish, or Neutral sentiment",
+                description: "AI-powered classification of financial news to Bullish, Bearish, or Neutral sentiment with enterprise-grade accuracy. Built with FinBERT model achieving 98% accuracy and real-time analysis capabilities.",
                 highlights: [
                     "Built AI-powered sentiment analysis tool using FinBERT model trained on financial text data",
                     "Achieved ~80% accuracy in classifying financial news as Bullish, Bearish, or Neutral",
@@ -65,48 +95,23 @@ export const MobileRender: React.FC = () => {
                     "Implemented batch processing for enterprise workflows with detailed confidence metrics",
                     "Deployed on Hugging Face Spaces for easy access and integration"
                 ],
-                tech: ["Python", "FinBERT", "Hugging Face", "React", "FastAPI"]
+                tech: ["Python", "FinBERT", "Hugging Face", "React", "FastAPI"],
+                url: "https://tadstech.github.io/financial-news-classifier"
             },
             {
-                name: "SalesScope Dashboard",
-                period: "Jun 2025 -- Aug 2025",
-                emoji: "📊",
-                type: "Sales Analytics",
-                description: "Sales Analytics",
+                name: "NaijaEconoDash",
+                period: "Nov 2025",
+                emoji: "🇳🇬",
+                type: "Economic Dashboard",
+                description: "National economic dashboard powered by dash",
                 highlights: [
-                    "Analyzed 6+ months of sales data to identify trends and performance bottlenecks using Python",
-                    "Created interactive dashboard with React and TypeScript for stakeholder reporting",
-                    "Delivered actionable insights that improved sales strategy"
+                    "Built comprehensive economic dashboard for Nigeria using Plotly Dash",
+                    "Integrated real-time data using Requests library for API calls",
+                    "Implemented data processing pipeline with Pandas for economic indicators",
+                    "Created interactive visualizations for GDP, inflation, and other key metrics"
                 ],
-                tech: ["Python", "React", "TypeScript"]
-            },
-            {
-                name: "MiniDataManim",
-                period: "Aug 2025 - Oct 2025",
-                emoji: "🗃️",
-                type: "Excel-like Data Manipulation and Visualization Application",
-                description: "Excel-like Data Manipulation and Visualization Application",
-                highlights: [
-                    "Developed web-based tool for data manipulation with Excel-like functionality, supporting import/export of CSV, Excel, and LibreOffice files",
-                    "Implemented advanced data operations including sorting, filtering, duplicate removal, statistical transformations, and data normalization",
-                    "Created interactive visualizations using Plotly.js with support for bar charts, line charts, scatter plots, histograms, and box plots",
-                    "Built responsive user interface with React and TypeScript, featuring multi-sheet workbooks, inline editing, and customizable preferences"
-                ],
-                tech: ["React", "TypeScript", "Plotly.js"]
-            },
-            {
-                name: "FocusForge Analytics",
-                period: "Aug 2025 - Present",
-                emoji: "🎯",
-                type: "Behavioral Data Analysis",
-                description: "Behavioral Data Analysis",
-                highlights: [
-                    "Currently designing statistical models to track user habit formation patterns",
-                    "Currently building data pipeline for real-time user engagement tracking (MongoDB backend)",
-                    "Currently creating visualizations using Plotly and Tableau to present behavioral insights",
-                    "Currently developing React dashboard to display analytics (front-end support)"
-                ],
-                tech: ["React", "MongoDB", "Plotly", "Tableau"]
+                tech: ["Requests", "Python", "Pandas", "PlotlyDash", "Plotly"],
+                url: "https://naija-econo-plotlydash.onrender.com"
             }
         ],
         experience: [
@@ -218,6 +223,18 @@ export const MobileRender: React.FC = () => {
                                 </span>
                             ))}
                         </div>
+                        {project.url && (
+                            <div className="mt-3">
+                                <a 
+                                    href={project.url} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-blue-400 hover:text-blue-300 underline"
+                                >
+                                    🔗 View Live Project
+                                </a>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
