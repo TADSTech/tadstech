@@ -252,6 +252,26 @@ export const Challenge: React.FC = () => {
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day21',
             status: 'completed',
             date: 'Nov 16, 2025'
+        },
+        {
+            day: "22",
+            name: 'Iris Flower Classification',
+            description: 'Exploratory data analysis and classification modeling of the classic Iris flower dataset using Random Forest. 150 samples with sepal and petal measurements across three species: setosa, versicolor, virginica. Petal dimensions provide better species separation while sepal measurements show more overlap. Random Forest classifier trained on measurement features achieving high accuracy with strong predictive performance.',
+            dataset: 'Iris Flower Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/nalisha/machine-learning-practice-dataset-iris-flowers',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day22',
+            status: 'completed',
+            date: 'Nov 17, 2025'
+        },
+        {
+            day: "23",
+            name: 'Spotify Track Data Analysis',
+            description: 'Extensive exploratory data analysis and classification modeling using Spotify track datasets. Analyzed track popularity, artist metrics, and music features to understand patterns in music data. Track popularity distributions and correlations with artist metrics, genre analysis and top artists by popularity. Visualizations including histograms, scatter plots, box plots, and heatmaps. Logistic Regression and Random Forest classifiers trained to predict track popularity categories with evaluation using accuracy, precision, recall, and confusion matrices.',
+            dataset: 'Spotify Global Music Dataset (2009-2025)',
+            datasetUrl: 'https://www.kaggle.com/datasets/wardabilal/spotify-global-music-dataset-20092025',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day23',
+            status: 'completed',
+            date: 'Nov 18, 2025'
         }
     ];
 
