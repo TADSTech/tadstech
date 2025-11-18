@@ -20,7 +20,7 @@ export const DesktopRender: React.FC = () => {
         name: "Michael Tunwashe",
         title: "Data Scientist",
         tagline: "Data Scientist | Lagos, Nigeria | +234-704-102-9093 | motrenewed@gmail.com | linkedin.com/in/tadstech | github.com/tadstech",
-        summary: "Data scientist with 2 years of python experience specializing in Business analysis and machine learning modeling in the area of Finance. Experienced in data analysis, predictive modeling, and creating actionable insights. Full-stack development capabilities enable end-to-end solutions from analysis to deployment.",
+        summary: "FullStack Data Scientist with 2 years of Python experience specializing in end-to-end data solutions from ETL pipeline development to ML model deployment. Expert in data engineering, automated workflows, and production-ready analytics systems. Combines deep technical expertise in data processing with full-stack development capabilities for comprehensive data-driven solutions.",
         contact: {
             email: "motrenewed@gmail.com",
             phone: "+234-704-102-9093",
@@ -30,18 +30,19 @@ export const DesktopRender: React.FC = () => {
         },
         skills: {
             dataScience: [
-                "Python (pandas, NumPy, scikit-learn)",
-                "SQL (PostgreSQL, MySQL)",
-                "Statistical Analysis",
-                "Predictive Modeling",
-                "Data Visualization (Plotly, Metabase)"
+                "Python (pandas, NumPy, scikit-learn, SQLAlchemy)",
+                "ETL Pipeline Development & Data Engineering",
+                "SQL (PostgreSQL, MySQL) & Database Management",
+                "Statistical Analysis & Predictive Modeling",
+                "Docker, Containerization & Deployment",
+                "Data Visualization (Plotly, Metabase, Dash)"
             ],
             development: [
-                "Next.js",
-                "TypeScript",
-                "Node.js",
-                "REST APIs",
-                "Git"
+                "React, TypeScript, Next.js",
+                "FastAPI, REST APIs & Microservices",
+                "Docker & Container Orchestration",
+                "Git, CI/CD & DevOps Practices",
+                "Database Administration & Optimization"
             ]
         },
         education: {
@@ -54,62 +55,65 @@ export const DesktopRender: React.FC = () => {
             {
                 name: "SalesScope Dashboard",
                 period: "Jun 2025 -- Aug 2025",
-                emoji: "�",
-                type: "Sales Analytics Platform",
-                description: "SalesScope is a lightweight sales analytics platform that showcases how businesses can track, explore, and visualize sales performance.",
+                emoji: "📊",
+                type: "End-to-End Sales Analytics Platform",
+                description: "End-to-end sales analytics platform with automated ETL pipelines, data validation, and interactive visualizations. Built complete data processing workflows from raw sales data to actionable business insights.",
                 highlights: [
-                    "Analyzed 6+ months of sales data to identify trends and performance bottlenecks using Python",
+                    "Designed and implemented automated ETL pipelines for 6+ months of sales data processing",
+                    "Built data validation and cleaning workflows using Python and pandas",
                     "Created interactive dashboard with React and TypeScript for stakeholder reporting",
-                    "Delivered actionable insights that improved sales strategy",
-                    "Built with SQL for data extraction and PlotlyJs for visualizations"
+                    "Optimized SQL queries for efficient data extraction and transformation",
+                    "Delivered actionable insights that improved sales strategy and performance tracking"
                 ],
-                tech: ["Python", "SQL", "React", "PlotlyJs", "TailwindCSS"],
+                tech: ["Python", "pandas", "SQL", "React", "PlotlyJs", "TailwindCSS"],
                 url: "https://salesscope.web.app"
             },
             {
                 name: "Mini Data Manim",
                 period: "Aug 2025 - Oct 2025",
                 emoji: "🗃️",
-                type: "Data Manipulation WebApp",
-                description: "Free and open-source, portable, data manipulation webapp",
+                type: "Advanced Data Manipulation Platform",
+                description: "Browser-based data manipulation platform with advanced statistical operations, data transformation pipelines, and dynamic visualization engine. Handles complex data workflows without external dependencies.",
                 highlights: [
-                    "Developed web-based tool for data manipulation with Excel-like functionality, supporting import/export of CSV, Excel, and LibreOffice files",
-                    "Implemented advanced data operations including sorting, filtering, duplicate removal, statistical transformations, and data normalization",
-                    "Created interactive visualizations using Plotly.js with support for bar charts, line charts, scatter plots, histograms, and box plots",
-                    "Built responsive user interface with React and TypeScript, featuring multi-sheet workbooks, inline editing, and customizable preferences"
+                    "Developed web-based platform for complex data manipulation with Excel-like functionality",
+                    "Implemented advanced statistical operations including data transformation pipelines",
+                    "Built dynamic visualization engine using Plotly.js with support for multiple chart types",
+                    "Created multi-sheet workbook functionality with inline editing and data validation",
+                    "Optimized browser performance for handling large datasets without backend dependencies"
                 ],
-                tech: ["React", "exceljs", "PlotlyJs", "TailwindCSS", "TypeScript"],
+                tech: ["React", "TypeScript", "exceljs", "PlotlyJs", "Statistical Libraries"],
                 url: "https://minidatamanim.web.app"
             },
             {
                 name: "Financial News Classifier",
                 period: "Oct 2025 - Nov 2025",
                 emoji: "📰",
-                type: "AI-Powered Sentiment Analysis",
-                description: "AI-powered classification of financial news to Bullish, Bearish, or Neutral sentiment with enterprise-grade accuracy. Built with FinBERT model achieving 98% accuracy and real-time analysis capabilities.",
+                type: "Production ML Pipeline",
+                description: "Production-ready ML pipeline for financial sentiment analysis with automated model serving, batch processing capabilities, and real-time inference API. Deployed with containerized microservices architecture.",
                 highlights: [
-                    "Built AI-powered sentiment analysis tool using FinBERT model trained on financial text data",
+                    "Built production ML pipeline using FinBERT model for financial sentiment analysis",
                     "Achieved ~80% accuracy in classifying financial news as Bullish, Bearish, or Neutral",
-                    "Developed web interface with real-time analysis capabilities and RSS feed support",
-                    "Implemented batch processing for enterprise workflows with detailed confidence metrics",
-                    "Deployed on Hugging Face Spaces for easy access and integration"
+                    "Implemented containerized microservices architecture with Docker for scalable deployment",
+                    "Developed real-time inference API with FastAPI and batch processing capabilities",
+                    "Created automated model serving pipeline with confidence metrics and monitoring"
                 ],
-                tech: ["Python", "FinBERT", "Hugging Face", "React", "FastAPI"],
+                tech: ["Python", "FinBERT", "FastAPI", "Docker", "Hugging Face", "React"],
                 url: "https://tadstech.github.io/financial-news-classifier"
             },
             {
                 name: "NaijaEconoDash",
                 period: "Nov 2025",
                 emoji: "🇳🇬",
-                type: "Economic Dashboard",
-                description: "National economic dashboard powered by dash",
+                type: "Real-time Economic Data Pipeline",
+                description: "Real-time economic data pipeline with automated data ingestion, transformation, and visualization. Processes multiple data sources with scheduled ETL jobs and interactive dashboard deployment.",
                 highlights: [
-                    "Built comprehensive economic dashboard for Nigeria using Plotly Dash",
-                    "Integrated real-time data using Requests library for API calls",
-                    "Implemented data processing pipeline with Pandas for economic indicators",
-                    "Created interactive visualizations for GDP, inflation, and other key metrics"
+                    "Built automated data ingestion pipeline for multiple economic data sources",
+                    "Implemented scheduled ETL jobs for real-time data processing and transformation",
+                    "Created interactive dashboard using Plotly Dash for economic indicator visualization",
+                    "Designed data pipeline architecture for handling time-series economic data",
+                    "Deployed scalable dashboard with automated data refresh and monitoring"
                 ],
-                tech: ["Requests", "Python", "Pandas", "PlotlyDash", "Plotly"],
+                tech: ["Python", "pandas", "Requests", "PlotlyDash", "Data Pipeline", "Scheduling"],
                 url: "https://naija-econo-plotlydash.onrender.com"
             }
         ],

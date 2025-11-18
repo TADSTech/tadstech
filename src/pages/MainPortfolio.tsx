@@ -121,30 +121,30 @@ export const MainPortfolio: React.FC = () => {
     const projects = [
         {
             name: 'SalesScope Dashboard',
-            desc: 'SalesScope is a lightweight sales analytics platform that showcases how businesses can track, explore, and visualize sales performance.',
-            tech: ['Python', 'SQL', 'React', 'PlotlyJs', 'TailwindCSS'],
-            metrics: { complexity: 6, Status: 'Complete', Completion: 'Q3 2025' },
+            desc: 'End-to-end sales analytics platform with automated ETL pipelines, data validation, and interactive visualizations. Built complete data processing workflows from raw sales data to actionable business insights.',
+            tech: ['Python', 'pandas', 'SQL', 'React', 'PlotlyJs', 'TailwindCSS'],
+            metrics: { complexity: 7, Status: 'Complete', Completion: 'Q3 2025' },
             url: 'https://salesscope.web.app'
         },
         {
             name: 'Mini Data Manim',
-            desc: 'Free and open-source, portable, data manipulation webapp',
-            tech: ['React', 'exceljs', 'PlotlyJs', 'TailwindCSS', 'TypeScript'],
+            desc: 'Browser-based data manipulation platform with advanced statistical operations, data transformation pipelines, and dynamic visualization engine. Handles complex data workflows without external dependencies.',
+            tech: ['React', 'TypeScript', 'exceljs', 'PlotlyJs', 'Statistical Libraries'],
             metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
             url: 'https://minidatamanim.web.app'
         },
         {
             name: 'Financial News Classifier',
-            desc: 'AI-powered classification of financial news to Bullish, Bearish, or Neutral sentiment with enterprise-grade accuracy. Built with FinBERT model achieving 98% accuracy and real-time analysis capabilities.',
-            tech: ['Python', 'FinBERT', 'Hugging Face', 'React', 'FastAPI'],
-            metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
+            desc: 'Production-ready ML pipeline for financial sentiment analysis with automated model serving, batch processing capabilities, and real-time inference API. Deployed with containerized microservices architecture.',
+            tech: ['Python', 'FinBERT', 'FastAPI', 'Docker', 'Hugging Face', 'React'],
+            metrics: { complexity: 9, Status: 'Complete', Completion: 'Q4 2025' },
             url: 'https://tadstech.github.io/financial-news-classifier'
         },
         {
             name: 'NaijaEconoDash',
-            desc: 'National economic dashboard powered by dash',
-            tech: ['Requests', 'Python', 'Pandas', 'PlotlyDash', 'Plotly'],
-            metrics: { complexity: 7, Status: 'Complete', Completion: 'Q4 2025' },
+            desc: 'Real-time economic data pipeline with automated data ingestion, transformation, and visualization. Processes multiple data sources with scheduled ETL jobs and interactive dashboard deployment.',
+            tech: ['Python', 'pandas', 'Requests', 'PlotlyDash', 'Data Pipeline', 'Scheduling'],
+            metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
             url: 'https://naija-econo-plotlydash.onrender.com',
         }
     ];
@@ -339,15 +339,15 @@ export const MainPortfolio: React.FC = () => {
                                         </h1>
                                         <div className="h-px w-40 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
                                         <p className="text-sm md:text-base text-white/90 uppercase tracking-widest">
-                                            From <span style={{ color: colorMode ? accentColor : 'white' }}>modeling</span> to <span style={{ color: colorMode ? accentColor : 'white' }}>deployment</span>
+                                            From <span style={{ color: colorMode ? accentColor : 'white' }}>ETL pipelines</span> to <span style={{ color: colorMode ? accentColor : 'white' }}>ML deployment</span>
                                         </p>
                                     </div>
 
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-8">
                                         {[
                                             { value: '02+', label: 'Years Experience' },
-                                            { value: '4', label: 'FullStack Projects' },
-                                            { value: '10+', label: 'Tech Tools' },
+                                            { value: '4', label: 'End-to-End Projects' },
+                                            { value: '15+', label: 'Data Engineering Tools' },
                                             { value: '25+', label: 'Repositories' }
                                         ].map((stat, i) => (
                                             <div key={i} className="border p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}20` : 'none' }}>
@@ -707,11 +707,11 @@ export const MainPortfolio: React.FC = () => {
                                     </h3>
                                     <div className="space-y-6">
                                         {[
-                                            { tech: 'Python/Data Science', percent: 35, count: '10 projects', IconComponent: Database, proficiency: 'Expert' },
-                                            { tech: 'React/TypeScript', percent: 30, count: '4 projects', IconComponent: FileCode, proficiency: 'Advanced' },
-                                            { tech: 'SQL/Databases', percent: 20, count: '2 projects', IconComponent: Database, proficiency: 'Advanced' },
-                                            { tech: 'BI Tools (Metabase)', percent: 10, count: '8 projects', IconComponent: PieChart, proficiency: 'Intermediate' },
-                                            { tech: 'Other (Flutter, etc)', percent: 5, count: '5 projects', IconComponent: Wrench, proficiency: 'Intermediate' }
+                                            { tech: 'Python/ML Engineering', percent: 40, count: '12 projects', IconComponent: Database, proficiency: 'Expert' },
+                                            { tech: 'Data Pipeline & ETL', percent: 25, count: '8 projects', IconComponent: Database, proficiency: 'Advanced' },
+                                            { tech: 'Frontend Development', percent: 20, count: '4 projects', IconComponent: FileCode, proficiency: 'Advanced' },
+                                            { tech: 'DevOps & Deployment', percent: 10, count: '6 projects', IconComponent: Wrench, proficiency: 'Intermediate' },
+                                            { tech: 'Dashboard & Viz', percent: 5, count: '3 projects', IconComponent: PieChart, proficiency: 'Intermediate' }
                                         ].map((item, i) => (
                                             <div key={i} className="group/item">
                                                 <div className="flex justify-between items-center mb-2">
@@ -798,13 +798,13 @@ export const MainPortfolio: React.FC = () => {
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
                                          style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
                                     <div className="relative z-10">
-                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DATA SCIENCE</h3>
+                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DATA & ML ENGINEERING</h3>
                                         <div className="space-y-4">
                                             {[
-                                                { name: 'Python', hours: 1400 },
-                                                { name: 'pandas', hours: 900 },
-                                                { name: 'scikit-learn', hours: 600 },
-                                                { name: 'SQL', hours: 160 }
+                                                { name: 'Python & pandas', hours: 1400 },
+                                                { name: 'SQL & SQLAlchemy', hours: 900 },
+                                                { name: 'scikit-learn & MLOps', hours: 600 },
+                                                { name: 'ETL & Pipelines', hours: 450 }
                                             ].map((skill, i) => (
                                                 <div key={i} className="space-y-1">
                                                     <div className="flex justify-between items-baseline">
@@ -860,13 +860,13 @@ export const MainPortfolio: React.FC = () => {
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
                                          style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
                                     <div className="relative z-10">
-                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>BI & ANALYTICS</h3>
+                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>SYSTEMS & DEPLOYMENT</h3>
                                         <div className="space-y-4">
                                             {[
-                                                { name: 'Metabase', hours: 200 },
-                                                { name: 'Power BI', hours: 120 },
-                                                { name: 'Tableau', hours: 60 },
-                                                { name: 'Data Warehousing', hours: 80 }
+                                                { name: 'Docker & Containers', hours: 280 },
+                                                { name: 'Database Management', hours: 240 },
+                                                { name: 'Dashboard Platforms', hours: 200 },
+                                                { name: 'API Development', hours: 180 }
                                             ].map((skill, i) => (
                                                 <div key={i} className="space-y-1">
                                                     <div className="flex justify-between items-baseline">
