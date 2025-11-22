@@ -272,6 +272,50 @@ export const Challenge: React.FC = () => {
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day23',
             status: 'completed',
             date: 'Nov 18, 2025'
+        },
+
+        {
+            day: "24",
+            name: 'Extensive EDA and ML on Patient Health Dataset',
+            description: 'Conducted comprehensive exploratory data analysis (EDA) and machine learning modeling on patient health data to identify patterns and predict metabolic syndrome risk.',
+            dataset: 'Processed patient health dataset containing demographic and clinical features for metabolic syndrome analysis.',
+            datasetUrl: 'https://www.kaggle.com/datasets/jockeroika/eye-health',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day24',
+            status: 'completed',
+            date: 'Nov 19, 2025'
+        },
+
+        {
+            day: "25",
+            name: 'Extensive EDA with Plotly and ML on Diamonds Dataset',
+            description: 'Conducted comprehensive exploratory data analysis using Matplotlib and Seaborn for visualizations and built a Random Forest regression model to predict diamond prices based on carat, cut, color, clarity, and other features.',
+            dataset: 'Diamonds dataset containing physical attributes and price information for diamond gemstones.',
+            datasetUrl: 'https://www.kaggle.com/datasets/ayeshaseherr/diamonds',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day25',
+            status: 'completed',
+            date: 'Nov 20, 2025'
+        },
+
+        {
+            day: "26",
+            name: 'Extensive EDA with Plotly and ML on Global Air Quality Dataset',
+            description: 'Conducted comprehensive exploratory data analysis using interactive Plotly visualizations and built a Random Forest regression model to predict Air Quality Index (AQI) values based on pollutant measurements and location data.',
+            dataset: 'Global air quality dataset containing AQI values, pollutant levels, and location information from various cities worldwide.',
+            datasetUrl: 'https://www.kaggle.com/datasets/smeet888/global-air-quality-data15-days-hourly-50-cities',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day26',
+            status: 'completed',
+            date: 'Nov 21, 2025'
+        },
+
+        {
+            day: "27",
+            name: 'Extensive EDA with Plotly and ML on F1 Race Results Dataset',
+            description: 'Conducted comprehensive exploratory data analysis using interactive Plotly visualizations and built a Random Forest regression model to predict final race positions based on grid position, constructor, driver, and race characteristics.',
+            dataset: 'Formula 1 race results dataset containing comprehensive race data from 1950 to 2025, including driver performance, constructor information, qualifying results, and final race positions.',
+            datasetUrl: 'https://www.kaggle.com/datasets/rockyt07/formula-1-championships-1950-2025',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day27',
+            status: 'completed',
+            date: 'Nov 22, 2025'
         }
     ];
 
