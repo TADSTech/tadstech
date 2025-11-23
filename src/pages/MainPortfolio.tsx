@@ -120,10 +120,17 @@ export const MainPortfolio: React.FC = () => {
 
     const projects = [
         {
+            name: 'Brazilian Retail Intelligence System (BRIS)',
+            desc: 'Comprehensive end-to-end Data Engineering and Business Intelligence platform combining raw data extraction, transformation, synthetic data generation, REST API development, and interactive React frontend visualization for retail analytics.',
+            tech: ['Python', 'FastAPI', 'PostgreSQL', 'Supabase', 'Docker', 'React', 'TypeScript', 'Markov Chains'],
+            metrics: { complexity: 9, Status: 'In Progress', Completion: 'Q4 2025' },
+            url: 'https://brazilian-retail-intelligence-syste.vercel.app'
+        },
+        {
             name: 'SalesScope Dashboard',
             desc: 'End-to-end sales analytics platform with automated ETL pipelines, data validation, and interactive visualizations. Built complete data processing workflows from raw sales data to actionable business insights.',
             tech: ['Python', 'pandas', 'SQL', 'React', 'PlotlyJs', 'TailwindCSS'],
-            metrics: { complexity: 7, Status: 'Complete', Completion: 'Q3 2025' },
+            metrics: { complexity: 4, Status: 'Complete', Completion: 'Q3 2025' },
             url: 'https://salesscope.web.app'
         },
         {
@@ -137,14 +144,14 @@ export const MainPortfolio: React.FC = () => {
             name: 'Financial News Classifier',
             desc: 'Production-ready ML pipeline for financial sentiment analysis with automated model serving, batch processing capabilities, and real-time inference API. Deployed with containerized microservices architecture.',
             tech: ['Python', 'FinBERT', 'FastAPI', 'Docker', 'Hugging Face', 'React'],
-            metrics: { complexity: 9, Status: 'Complete', Completion: 'Q4 2025' },
+            metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
             url: 'https://tadstech.github.io/financial-news-classifier'
         },
         {
             name: 'NaijaEconoDash',
             desc: 'Real-time economic data pipeline with automated data ingestion, transformation, and visualization. Processes multiple data sources with scheduled ETL jobs and interactive dashboard deployment.',
             tech: ['Python', 'pandas', 'Requests', 'PlotlyDash', 'Data Pipeline', 'Scheduling'],
-            metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
+            metrics: { complexity: 7, Status: 'Complete', Completion: 'Q4 2025' },
             url: 'https://naija-econo-plotlydash.onrender.com',
         }
     ];

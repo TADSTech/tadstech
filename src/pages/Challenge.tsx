@@ -273,7 +273,6 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Nov 18, 2025'
         },
-
         {
             day: "24",
             name: 'Extensive EDA and ML on Patient Health Dataset',
@@ -284,7 +283,6 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Nov 19, 2025'
         },
-
         {
             day: "25",
             name: 'Extensive EDA with Plotly and ML on Diamonds Dataset',
@@ -295,7 +293,6 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Nov 20, 2025'
         },
-
         {
             day: "26",
             name: 'Extensive EDA with Plotly and ML on Global Air Quality Dataset',
@@ -306,7 +303,6 @@ export const Challenge: React.FC = () => {
             status: 'completed',
             date: 'Nov 21, 2025'
         },
-
         {
             day: "27",
             name: 'Extensive EDA with Plotly and ML on F1 Race Results Dataset',
@@ -316,6 +312,17 @@ export const Challenge: React.FC = () => {
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day27',
             status: 'completed',
             date: 'Nov 22, 2025'
+        }
+        ,
+        {
+            day: "28",
+            name: 'Extensive EDA with Plotly and ML on Global Gender Inequality Dataset',
+            description: 'Conducted extensive exploratory data analysis using interactive dark-themed Plotly visualizations and built a Random Forest regression model to predict Gender Inequality Index values based on country characteristics and regional patterns.',
+            dataset: 'Global Gender Inequality Index (GII) dataset from UNDP containing comprehensive gender equality metrics for countries and regions worldwide for 2023.',
+            datasetUrl: 'https://www.kaggle.com/datasets/hammadfarooq470/global-gender-equality-rankings-2023',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day28',
+            status: 'completed',
+            date: 'Nov 23, 2025'
         }
     ];
 

@@ -53,6 +53,23 @@ export const DesktopRender: React.FC = () => {
         },
         projects: [
             {
+                name: "Brazilian Retail Intelligence System (BRIS)",
+                period: "Nov 2025 - Present",
+                emoji: "🇧🇷",
+                type: "Enterprise Data Engineering & BI Solution",
+                description: "Comprehensive end-to-end Data Engineering and Business Intelligence platform combining raw data extraction, transformation, synthetic data generation, REST API development, and interactive React frontend visualization for retail analytics.",
+                highlights: [
+                    "Designed modular microservices architecture with dual-environment ETL pipeline (Local SQLAlchemy + Production Supabase)",
+                    "Implemented intelligent synthetic data generation (OrderGen) using Markov Chains for NLP-powered Portuguese review generation",
+                    "Built FastAPI backend with asynchronous processing for long-running data operations and incremental data loading",
+                    "Created robust PostgreSQL schema with automated migrations, foreign keys, and row-level security (RLS)",
+                    "Developed React + TypeScript dashboard with interactive visualizations for Revenue, Customer Behavior, and Logistics metrics",
+                    "Containerized entire application stack with Docker for production deployment and development consistency"
+                ],
+                tech: ["Python", "FastAPI", "PostgreSQL", "Supabase", "Docker", "React", "TypeScript", "Pandas", "Markov Chains"],
+                url: ""
+            },
+            {
                 name: "SalesScope Dashboard",
                 period: "Jun 2025 -- Aug 2025",
                 emoji: "📊",
