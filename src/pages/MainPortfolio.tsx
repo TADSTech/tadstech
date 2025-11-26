@@ -686,11 +686,11 @@ export const MainPortfolio: React.FC = () => {
                                     </h3>
                                     <div className="space-y-6">
                                         {[
-                                            { tech: 'Python/ML Engineering', percent: 40, count: '12 projects', IconComponent: Database, proficiency: 'Expert' },
-                                            { tech: 'Data Pipeline & ETL', percent: 25, count: '8 projects', IconComponent: Database, proficiency: 'Advanced' },
-                                            { tech: 'Frontend Development', percent: 20, count: '4 projects', IconComponent: FileCode, proficiency: 'Advanced' },
-                                            { tech: 'DevOps & Deployment', percent: 10, count: '6 projects', IconComponent: Wrench, proficiency: 'Intermediate' },
-                                            { tech: 'Dashboard & Viz', percent: 5, count: '3 projects', IconComponent: PieChart, proficiency: 'Intermediate' }
+                                            { tech: 'Python/ML Engineering', percent: 40, count: '8+ projects', IconComponent: Database, proficiency: 'Advanced' },
+                                            { tech: 'Data Pipeline & ETL', percent: 25, count: '3+ projects', IconComponent: Database, proficiency: 'Advanced' },
+                                            { tech: 'Frontend Development', percent: 20, count: '4+ projects', IconComponent: FileCode, proficiency: 'Advanced' },
+                                            { tech: 'DevOps & Deployment', percent: 10, count: '2+ projects', IconComponent: Wrench, proficiency: 'Intermediate' },
+                                            { tech: 'Dashboard & Viz', percent: 5, count: '3+ projects', IconComponent: PieChart, proficiency: 'Intermediate' }
                                         ].map((item, i) => (
                                             <div key={i} className="group/item">
                                                 <div className="flex justify-between items-center mb-2">
@@ -780,10 +780,10 @@ export const MainPortfolio: React.FC = () => {
                                         <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DATA & ML ENGINEERING</h3>
                                         <div className="space-y-4">
                                             {[
-                                                { name: 'Python & pandas', level: 'Expert', percent: 95 },
-                                                { name: 'SQL & SQLAlchemy', level: 'Advanced', percent: 85 },
-                                                { name: 'scikit-learn & MLOps', level: 'Advanced', percent: 80 },
-                                                { name: 'ETL & Pipelines', level: 'Expert', percent: 90 }
+                                                { name: 'Python & pandas', level: 'Expert', percent: 90 },
+                                                { name: 'SQL & SQLAlchemy', level: 'Intermediate', percent: 60 },
+                                                { name: 'scikit-learn & MLOps', level: 'Advanced', percent: 70 },
+                                                { name: 'ETL & Pipelines', level: 'Expert', percent: 80 }
                                             ].map((skill, i) => (
                                                 <div key={i} className="space-y-1">
                                                     <div className="flex justify-between items-baseline">
@@ -811,10 +811,10 @@ export const MainPortfolio: React.FC = () => {
                                         <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DEVELOPMENT</h3>
                                         <div className="space-y-4">
                                             {[
-                                                { name: 'React', level: 'Advanced', percent: 85 },
-                                                { name: 'TypeScript', level: 'Advanced', percent: 80 },
+                                                { name: 'React', level: 'Advanced', percent: 80 },
+                                                { name: 'TypeScript', level: 'Advanced', percent: 70 },
                                                 { name: 'Node.js', level: 'Intermediate', percent: 65 },
-                                                { name: 'Flutter', level: 'Intermediate', percent: 60 }
+                                                { name: 'Flutter', level: 'Intermediate', percent: 40 }
                                             ].map((skill, i) => (
                                                 <div key={i} className="space-y-1">
                                                     <div className="flex justify-between items-baseline">
@@ -843,9 +843,9 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="space-y-4">
                                             {[
                                                 { name: 'Docker & Containers', level: 'Advanced', percent: 80 },
-                                                { name: 'Database Management', level: 'Advanced', percent: 85 },
-                                                { name: 'Dashboard Platforms', level: 'Advanced', percent: 85 },
-                                                { name: 'API Development', level: 'Advanced', percent: 80 }
+                                                { name: 'Database Management', level: 'Intermediate', percent: 60 },
+                                                { name: 'Dashboard Platforms', level: 'Intermediate', percent: 70 },
+                                                { name: 'API Development', level: 'Intermediate', percent: 70 }
                                             ].map((skill, i) => (
                                                 <div key={i} className="space-y-1">
                                                     <div className="flex justify-between items-baseline">
