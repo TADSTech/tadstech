@@ -6,6 +6,7 @@ import { DesktopRender } from './desktop/desktopRender';
 import { MobileRender } from './mobile/mobileRender';
 import { MainPortfolio } from './pages/MainPortfolio';
 import { Challenge } from './pages/Challenge';
+import { MLShowcase } from './pages/MLShowcase';
 
 export default function App() {
     useScrollbarStyles({ hideScrollbar: true });
@@ -42,6 +43,8 @@ export default function App() {
         <div className={`transition-opacity duration-500 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
             <Routes>
                 <Route path="/" element={<MainPortfolio />} />
+                <Route path="/challenge" element={<Challenge />} />
+                <Route path="/ml-showcase" element={<MLShowcase />} />
                 <Route 
                     path="/terminal" 
                     element={

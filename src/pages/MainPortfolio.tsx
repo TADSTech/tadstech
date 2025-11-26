@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Terminal, ChevronDown, Database, Code, BarChart3, TrendingUp, Github, Mail, Linkedin, ExternalLink, Globe, Palette, Activity, Cpu, Zap, FileCode, Wrench, PieChart, Briefcase } from 'lucide-react';
+import { Terminal, ChevronDown, Database, Code, BarChart3, TrendingUp, Github, Mail, Linkedin, ExternalLink, Globe, Palette, Cpu, FileCode, Wrench, PieChart, Briefcase } from 'lucide-react';
 
-type Layer = 'hero' | 'stats' | 'skills' | 'projects' | 'mlDemo' | 'contact';
+type Layer = 'hero' | 'stats' | 'skills' | 'projects' | 'contact';
 
 export const MainPortfolio: React.FC = () => {
     const navigate = useNavigate();
@@ -15,23 +15,10 @@ export const MainPortfolio: React.FC = () => {
         const saved = localStorage.getItem('tadstech-theme');
         return saved ? saved === 'blue' : false;
     });
-    const [predictionValue, setPredictionValue] = useState(50);
-    const [isProcessing, setIsProcessing] = useState(false);
-    const [modelOutput, setModelOutput] = useState<{ label: string; confidence: number } | null>(null);
     const [autoSwapInterval, setAutoSwapInterval] = useState<NodeJS.Timeout | null>(null);
     const [clickCount, setClickCount] = useState(0);
     const [clickTimer, setClickTimer] = useState<NodeJS.Timeout | null>(null);
     const fullText = '> MICHAEL_TUNWASHE._init()';
-
-    const calculateChallengeDay = () => {
-        const startDate = new Date('2025-10-27');
-        const today = new Date();
-        const diffTime = today.getTime() - startDate.getTime();
-        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
-        return Math.min(Math.max(diffDays, 1), 30);
-    };
-
-    const challengeDay = calculateChallengeDay();
 
     useEffect(() => {
         localStorage.setItem('tadstech-theme', colorMode ? 'blue' : 'gray');
@@ -104,17 +91,7 @@ export const MainPortfolio: React.FC = () => {
         }, 300);
     };
 
-    const handlePrediction = () => {
-        setIsProcessing(true);
-        setModelOutput(null);
-        
-        setTimeout(() => {
-            const confidence = 0.75 + (Math.random() * 0.24);
-            const label = predictionValue > 50 ? 'Positive' : 'Negative';
-            setModelOutput({ label, confidence });
-            setIsProcessing(false);
-        }, 1500);
-    };
+
 
     const accentColor = colorMode ? '#0ea5e9' : '#28333F';
 
@@ -191,10 +168,19 @@ export const MainPortfolio: React.FC = () => {
                                 {autoSwapInterval ? 'Auto' : colorMode ? 'Color' : 'B&W'}
                             </span>
                         </button>
+
+                        <button
+                            onClick={() => navigate('/ml-showcase')}
+                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg"
+                            style={{ borderColor: accentColor }}
+                        >
+                            <Cpu className="h-4 w-4" />
+                            <span className="text-xs uppercase tracking-wider hidden sm:inline">ML Demo</span>
+                        </button>
                     </div>
                     
                     <div className="hidden md:flex gap-2">
-                        {(['hero', 'stats', 'skills', 'projects', 'mlDemo', 'contact'] as Layer[]).map((layer) => (
+                        {(['hero', 'stats', 'skills', 'projects', 'contact'] as Layer[]).map((layer) => (
                             <button
                                 key={layer}
                                 onClick={() => navigateToLayer(layer)}
@@ -205,7 +191,7 @@ export const MainPortfolio: React.FC = () => {
                                     border: `1px solid ${accentColor}`
                                 }}
                             >
-                                {layer === 'mlDemo' ? 'ML' : layer}
+                                {layer}
                             </button>
                         ))}
                     </div>
@@ -246,7 +232,7 @@ export const MainPortfolio: React.FC = () => {
                             </div>
 
                             <div className="grid grid-cols-2 gap-2 mb-3">
-                                {(['hero', 'stats', 'skills', 'projects', 'mlDemo', 'contact'] as Layer[]).map((layer, idx) => (
+                                {(['hero', 'stats', 'skills', 'projects', 'contact'] as Layer[]).map((layer, idx) => (
                                     <button
                                         key={layer}
                                         onClick={() => {
@@ -270,13 +256,31 @@ export const MainPortfolio: React.FC = () => {
                                         ></div>
                                         <div className="flex items-center gap-2">
                                             <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: currentLayer === layer ? accentColor : 'transparent', border: `1px solid ${accentColor}` }}></div>
-                                            <span className="relative z-10">{layer === 'mlDemo' ? 'ML_MODEL' : layer.toUpperCase()}</span>
+                                            <span className="relative z-10">{layer.toUpperCase()}</span>
                                         </div>
                                     </button>
                                 ))}
                             </div>
 
                             <div className="border-t pt-3 space-y-2" style={{ borderColor: `${accentColor}40` }}>
+                                <button
+                                    onClick={() => navigate('/ml-showcase')}
+                                    className="w-full px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono flex items-center justify-between group relative overflow-hidden"
+                                    style={{
+                                        backgroundColor: 'transparent',
+                                        border: `1px solid ${accentColor}`
+                                    }}
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                                    <div className="flex items-center gap-3">
+                                        <Cpu className="h-4 w-4" />
+                                        <div className="text-left">
+                                            <div className="text-xs">ML_PIPELINE_DEMO</div>
+                                            <div className="text-[8px] text-white/50">Interactive Visualization</div>
+                                        </div>
+                                    </div>
+                                </button>
+
                                 <button
                                     onClick={() => {
                                         handleThemeClick();
@@ -312,7 +316,7 @@ export const MainPortfolio: React.FC = () => {
                                 </button>
 
                                 <div className="flex items-center justify-between text-[9px] font-mono text-white/40 px-2">
-                                    <span>LAYERS: {(['hero', 'stats', 'skills', 'projects', 'mlDemo', 'contact'] as Layer[]).length}</span>
+                                    <span>LAYERS: {(['hero', 'stats', 'skills', 'projects', 'contact'] as Layer[]).length}</span>
                                     <span>MODE: {colorMode ? 'CLR' : 'B&W'}</span>
                                     <span>STATUS: ACTIVE</span>
                                 </div>
@@ -340,22 +344,32 @@ export const MainPortfolio: React.FC = () => {
                                         </span>
                                     </div>
 
-                                    <div className="space-y-3">
+                                    <div className="space-y-6">
                                         <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                                             FullStack <span style={{ color: colorMode ? accentColor : 'white' }}>Data Scientist</span>
                                         </h1>
+                                        
+                                        <div className="flex flex-wrap justify-center gap-3 text-sm md:text-base text-white/70 font-mono">
+                                            <span>Lagos, Nigeria</span>
+                                            <span className="hidden sm:inline">|</span>
+                                            <span>+234-704-102-9093</span>
+                                            <span className="hidden sm:inline">|</span>
+                                            <span>motrenewed@gmail.com</span>
+                                        </div>
+
                                         <div className="h-px w-40 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
-                                        <p className="text-sm md:text-base text-white/90 uppercase tracking-widest">
-                                            From <span style={{ color: colorMode ? accentColor : 'white' }}>ETL pipelines</span> to <span style={{ color: colorMode ? accentColor : 'white' }}>ML deployment</span>
+                                        
+                                        <p className="text-sm md:text-base text-white/80 max-w-3xl mx-auto leading-relaxed">
+                                            FullStack Data Scientist with 2 years of Python experience specializing in end-to-end data solutions from <span style={{ color: colorMode ? accentColor : 'white' }}>Machine Learning Engineering</span> to <span style={{ color: colorMode ? accentColor : 'white' }}>ETL pipeline development and deployment</span>. Worked on projects in data engineering, automated workflows, AI and ML engineering, kaggle competitions and production-ready analytics systems.
                                         </p>
                                     </div>
 
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-8">
                                         {[
-                                            { value: '02+', label: 'Years Experience' },
+                                            { value: '02+', label: 'Coding Experience' },
+                                            {value: '3M', label: 'Working Experience' },
                                             { value: '4', label: 'End-to-End Projects' },
-                                            { value: '15+', label: 'Data Engineering Tools' },
-                                            { value: '25+', label: 'Repositories' }
+                                            { value: '15+', label: 'Data Tools' },
                                         ].map((stat, i) => (
                                             <div key={i} className="border p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}20` : 'none' }}>
                                                 <div className="text-2xl md:text-3xl font-bold transition-colors duration-300" style={{ color: colorMode ? accentColor : 'white' }}>
@@ -371,7 +385,6 @@ export const MainPortfolio: React.FC = () => {
                                             { Icon: Linkedin, url: 'https://linkedin.com/in/tadstech', label: 'LinkedIn' },
                                             { Icon: Github, url: 'https://github.com/tadstech', label: 'GitHub' },
                                             { Icon: Mail, url: 'mailto:motrenewed@gmail.com', label: 'Email' },
-                                            { Icon: Globe, url: 'https://tadstechfe.web.app', label: 'Website' }
                                         ].map(({ Icon, url, label }) => (
                                             <a
                                                 key={label}
@@ -406,84 +419,46 @@ export const MainPortfolio: React.FC = () => {
                                     <div className="pt-8 space-y-3 relative group/challenge">
                                         <div className="flex items-center justify-between text-xs">
                                             <span className="text-white/90 uppercase tracking-wider">30-Day Data Challenge</span>
-                                            <span className="text-white font-bold animate-pulse" style={{ color: colorMode ? accentColor : 'white' }}>Day {challengeDay}/30</span>
+                                            <span className="font-bold" style={{ color: colorMode ? accentColor : 'white' }}>COMPLETED</span>
                                         </div>
                                         
-                                        {/* Fancy Tooltip */}
-                                        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover/challenge:opacity-100 transition-all duration-300 pointer-events-none z-10">
-                                            <div className="relative">
-                                                <div 
-                                                    className="px-4 py-2 rounded-lg text-xs font-mono whitespace-nowrap shadow-2xl border backdrop-blur-sm"
-                                                    style={{ 
-                                                        backgroundColor: 'rgba(0, 0, 0, 0.95)',
-                                                        borderColor: colorMode ? accentColor : 'white',
-                                                        boxShadow: colorMode ? `0 0 20px ${accentColor}60` : '0 0 20px rgba(255,255,255,0.6)'
-                                                    }}
-                                                >
-                                                    <div className="flex items-center gap-2">
-                                                        <span style={{ color: colorMode ? accentColor : 'white' }}>Click to explore my data journey!</span>
-                                                    </div>
-                                                    <div className="text-[10px] text-white/60 mt-1 text-center">{challengeDay} datasets analyzed • {30 - challengeDay} more to go</div>
-                                                </div>
-                                                {/* Arrow */}
-                                                <div 
-                                                    className="absolute left-1/2 transform -translate-x-1/2 bottom-[-6px] w-3 h-3 rotate-45 border-r border-b"
-                                                    style={{ 
-                                                        backgroundColor: 'rgba(0, 0, 0, 0.95)',
-                                                        borderColor: colorMode ? accentColor : 'white'
-                                                    }}
-                                                ></div>
-                                            </div>
-                                        </div>
-
                                         <button
                                             onClick={() => navigate('/challenge')}
-                                            className="w-full h-4 border relative overflow-hidden transition-all group/bar hover:h-5 hover:shadow-2xl"
+                                            className="w-full h-10 border relative overflow-hidden transition-all hover:shadow-lg group"
                                             style={{ 
                                                 borderColor: accentColor,
-                                                boxShadow: colorMode ? `0 0 10px ${accentColor}40` : 'none'
+                                                backgroundColor: colorMode ? `${accentColor}10` : 'rgba(255,255,255,0.05)'
                                             }}
                                         >
-                                            {/* Progress fill */}
+                                            {/* Progress fill - Full width now */}
                                             <div
-                                                className="h-full transition-all duration-700 relative"
+                                                className="absolute inset-0 opacity-20"
                                                 style={{ 
-                                                    width: `${(challengeDay / 30) * 100}%`,
                                                     backgroundColor: colorMode ? accentColor : 'white',
-                                                    boxShadow: colorMode ? `0 0 15px ${accentColor}` : '0 0 15px white'
                                                 }}
-                                            >
-                                                {/* Animated shine effect */}
-                                                <div 
-                                                    className="absolute inset-0 opacity-50"
-                                                    style={{
-                                                        background: `linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)`,
-                                                        animation: 'shine 2s infinite',
-                                                        backgroundSize: '200% 100%'
-                                                    }}
-                                                ></div>
-                                            </div>
+                                            ></div>
                                             
-                                            {/* Pulsing dots at the end of progress */}
+                                            {/* Animated shine effect */}
                                             <div 
-                                                className="absolute top-1/2 transform -translate-y-1/2 flex gap-0.5"
-                                                style={{ left: `${(challengeDay / 30) * 100}%` }}
-                                            >
-                                                <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: colorMode ? accentColor : 'white' }}></div>
-                                                <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: colorMode ? accentColor : 'white', animationDelay: '0.2s' }}></div>
-                                                <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: colorMode ? accentColor : 'white', animationDelay: '0.4s' }}></div>
-                                            </div>
+                                                className="absolute inset-0 opacity-30"
+                                                style={{
+                                                    background: `linear-gradient(90deg, transparent 0%, ${colorMode ? accentColor : 'white'} 50%, transparent 100%)`,
+                                                    animation: 'shine 3s infinite',
+                                                    backgroundSize: '200% 100%'
+                                                }}
+                                            ></div>
 
-                                            {/* Hover text */}
-                                            <div className="absolute inset-0 flex items-center justify-center">
-                                                <span className="text-[10px] font-mono font-bold mix-blend-difference opacity-0 group-hover/bar:opacity-100 transition-opacity duration-300">
-                                                    EXPLORE DATA CHALLENGE
+                                            {/* Text */}
+                                            <div className="absolute inset-0 flex items-center justify-center gap-2">
+                                                <span className="text-xs font-mono font-bold tracking-widest" style={{ color: colorMode ? accentColor : 'white' }}>
+                                                    VIEW JOURNEY
                                                 </span>
+                                                <ExternalLink className="h-3 w-3" style={{ color: colorMode ? accentColor : 'white' }} />
                                             </div>
 
                                             {/* Background grid pattern */}
                                             <div 
-                                                className="absolute inset-0 opacity-5 pointer-events-none"
+                                                className="absolute inset-0 opacity-10 pointer-events-none"
                                                 style={{
                                                     backgroundImage: `repeating-linear-gradient(90deg, ${accentColor} 0px, transparent 1px, transparent 4px)`,
                                                     backgroundSize: '4px 100%'
@@ -493,11 +468,8 @@ export const MainPortfolio: React.FC = () => {
 
                                         {/* Stats below bar */}
                                         <div className="flex justify-between text-[10px] text-white/50 font-mono">
-                                            <span>Started: Oct 27</span>
-                                            <span className="opacity-0 group-hover/challenge:opacity-100 transition-opacity" style={{ color: colorMode ? accentColor : 'white' }}>
-                                                {Math.round((challengeDay / 30) * 100)}% Complete
-                                            </span>
-                                            <span>Target: 30 days</span>
+                                            <span>Oct 27 - Nov 25</span>
+                                            <span style={{ color: colorMode ? accentColor : 'white' }}>30 Datasets Analyzed</span>
                                         </div>
                                     </div>
 
@@ -550,10 +522,10 @@ export const MainPortfolio: React.FC = () => {
                                             <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>DATA_PIPELINE</span>
                                         </div>
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                            {statsAnimated ? '1.2M+' : '0'}
+                                            {statsAnimated ? '30+' : '0'}
                                         </div>
-                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Rows Analyzed</div>
-                                        <div className="text-[10px] text-white/40 font-mono">Real-time Processing</div>
+                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Datasets Analyzed</div>
+                                        <div className="text-[10px] text-white/40 font-mono">30-Day Challenge Completed</div>
                                         
                                         <div className="mt-6 space-y-2">
                                             {[
@@ -595,13 +567,13 @@ export const MainPortfolio: React.FC = () => {
                                     <div className="relative z-10">
                                         <div className="flex items-center justify-between mb-4">
                                             <Code className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>CODE_QUALITY</span>
+                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>MODEL_PERFORMANCE</span>
                                         </div>
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                            {statsAnimated ? '94.2%' : '0%'}
+                                            {statsAnimated ? '94%' : '0%'}
                                         </div>
-                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Test Coverage</div>
-                                        <div className="text-[10px] text-white/40 font-mono">CI/CD Pipeline Active</div>
+                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Avg. Accuracy</div>
+                                        <div className="text-[10px] text-white/40 font-mono">Across Deployed Models</div>
                                         
                                         <div className="mt-6 flex justify-center">
                                             <div className="relative w-36 h-36">
@@ -656,13 +628,13 @@ export const MainPortfolio: React.FC = () => {
                                     <div className="relative z-10">
                                         <div className="flex items-center justify-between mb-4">
                                             <TrendingUp className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>SYS_UPTIME</span>
+                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>PIPELINE_UPTIME</span>
                                         </div>
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
                                             {statsAnimated ? '99.9%' : '0%'}
                                         </div>
-                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Service Reliability</div>
-                                        <div className="text-[10px] text-white/40 font-mono">24/7 Monitoring Active</div>
+                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Pipeline Reliability</div>
+                                        <div className="text-[10px] text-white/40 font-mono">Automated Error Handling</div>
                                         
                                         <div className="mt-6 h-28 flex items-end justify-between gap-0.5">
                                             {[
@@ -808,20 +780,20 @@ export const MainPortfolio: React.FC = () => {
                                         <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DATA & ML ENGINEERING</h3>
                                         <div className="space-y-4">
                                             {[
-                                                { name: 'Python & pandas', hours: 1400 },
-                                                { name: 'SQL & SQLAlchemy', hours: 900 },
-                                                { name: 'scikit-learn & MLOps', hours: 600 },
-                                                { name: 'ETL & Pipelines', hours: 450 }
+                                                { name: 'Python & pandas', level: 'Expert', percent: 95 },
+                                                { name: 'SQL & SQLAlchemy', level: 'Advanced', percent: 85 },
+                                                { name: 'scikit-learn & MLOps', level: 'Advanced', percent: 80 },
+                                                { name: 'ETL & Pipelines', level: 'Expert', percent: 90 }
                                             ].map((skill, i) => (
                                                 <div key={i} className="space-y-1">
                                                     <div className="flex justify-between items-baseline">
                                                         <span className="text-sm font-medium">{skill.name}</span>
-                                                        <span className="text-xs font-mono text-white/60">{skill.hours}h</span>
+                                                        <span className="text-xs font-mono text-white/60">{skill.level}</span>
                                                     </div>
                                                     <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                                                         <div className="h-full rounded-full transition-all duration-1000" 
                                                              style={{ 
-                                                                 width: `${Math.min((skill.hours / 1400) * 100, 100)}%`,
+                                                                 width: `${skill.percent}%`,
                                                                  backgroundColor: colorMode ? accentColor : 'white'
                                                              }}></div>
                                                     </div>
@@ -839,20 +811,20 @@ export const MainPortfolio: React.FC = () => {
                                         <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DEVELOPMENT</h3>
                                         <div className="space-y-4">
                                             {[
-                                                { name: 'React', hours: 700 },
-                                                { name: 'TypeScript', hours: 600 },
-                                                { name: 'Node.js', hours: 400 },
-                                                { name: 'Flutter', hours: 300 }
+                                                { name: 'React', level: 'Advanced', percent: 85 },
+                                                { name: 'TypeScript', level: 'Advanced', percent: 80 },
+                                                { name: 'Node.js', level: 'Intermediate', percent: 65 },
+                                                { name: 'Flutter', level: 'Intermediate', percent: 60 }
                                             ].map((skill, i) => (
                                                 <div key={i} className="space-y-1">
                                                     <div className="flex justify-between items-baseline">
                                                         <span className="text-sm font-medium">{skill.name}</span>
-                                                        <span className="text-xs font-mono text-white/60">{skill.hours}h</span>
+                                                        <span className="text-xs font-mono text-white/60">{skill.level}</span>
                                                     </div>
                                                     <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                                                         <div className="h-full rounded-full transition-all duration-1000" 
                                                              style={{ 
-                                                                 width: `${Math.min((skill.hours / 700) * 100, 100)}%`,
+                                                                 width: `${skill.percent}%`,
                                                                  backgroundColor: colorMode ? accentColor : 'white'
                                                              }}></div>
                                                     </div>
@@ -870,20 +842,20 @@ export const MainPortfolio: React.FC = () => {
                                         <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>SYSTEMS & DEPLOYMENT</h3>
                                         <div className="space-y-4">
                                             {[
-                                                { name: 'Docker & Containers', hours: 280 },
-                                                { name: 'Database Management', hours: 240 },
-                                                { name: 'Dashboard Platforms', hours: 200 },
-                                                { name: 'API Development', hours: 180 }
+                                                { name: 'Docker & Containers', level: 'Advanced', percent: 80 },
+                                                { name: 'Database Management', level: 'Advanced', percent: 85 },
+                                                { name: 'Dashboard Platforms', level: 'Advanced', percent: 85 },
+                                                { name: 'API Development', level: 'Advanced', percent: 80 }
                                             ].map((skill, i) => (
                                                 <div key={i} className="space-y-1">
                                                     <div className="flex justify-between items-baseline">
                                                         <span className="text-sm font-medium">{skill.name}</span>
-                                                        <span className="text-xs font-mono text-white/60">{skill.hours}h</span>
+                                                        <span className="text-xs font-mono text-white/60">{skill.level}</span>
                                                     </div>
                                                     <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                                                         <div className="h-full rounded-full transition-all duration-1000" 
                                                              style={{ 
-                                                                 width: `${Math.min((skill.hours / 200) * 100, 100)}%`,
+                                                                 width: `${skill.percent}%`,
                                                                  backgroundColor: colorMode ? accentColor : 'white'
                                                              }}></div>
                                                     </div>
@@ -1017,179 +989,22 @@ export const MainPortfolio: React.FC = () => {
 
                             <div className="text-center">
                                 <button
-                                    onClick={() => navigateToLayer('mlDemo')}
+                                    onClick={() => navigate('/ml-showcase')}
                                     className="border px-6 py-3 hover:shadow-lg transition-all inline-flex items-center gap-2 hover:-translate-y-1"
                                     style={{ 
                                         borderColor: accentColor,
                                         backgroundColor: colorMode ? accentColor : 'transparent'
                                     }}
                                 >
-                                    <span className="text-xs uppercase tracking-wider">Try ML Demo</span>
-                                    <ChevronDown className="h-4 w-4" />
+                                    <span className="text-xs uppercase tracking-wider">View ML Pipeline Demo</span>
+                                    <Cpu className="h-4 w-4" />
                                 </button>
                             </div>
                         </div>
                     </section>
                 )}
 
-                {currentLayer === 'mlDemo' && (
-                    <section className="min-h-screen flex items-center justify-center px-4 pt-20 pb-20">
-                        <div className="max-w-4xl w-full space-y-8">
-                            <div className="text-center mb-12">
-                                <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">
-                                    {'>'} ML_MODEL<span style={{ color: colorMode ? accentColor : 'white' }}>.predict()</span>
-                                </h2>
-                                <div className="h-px w-48 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
-                                <p className="text-sm text-white/60 mt-4 max-w-2xl mx-auto leading-relaxed">
-                                    Interactive demonstration of a binary classification model. 
-                                    Adjust the input parameter and watch the model make real-time predictions with confidence scores.
-                                </p>
-                            </div>
 
-                            <div className="border p-8 md:p-12 transition-all duration-300 hover:shadow-2xl" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}30` : 'none' }}>
-                                <div className="space-y-8">
-                                    <div className="flex items-center justify-center gap-4">
-                                        <Cpu className="h-8 w-8" style={{ color: colorMode ? accentColor : 'white' }} />
-                                        <span className="text-2xl font-bold">Sentiment Classifier</span>
-                                        <Activity className="h-8 w-8 animate-pulse" style={{ color: colorMode ? accentColor : 'white' }} />
-                                    </div>
-
-                                    <div className="space-y-4">
-                                        <div className="flex justify-between text-sm">
-                                            <span className="text-white/70">Input Feature Value</span>
-                                            <span className="font-mono" style={{ color: colorMode ? accentColor : 'white' }}>{predictionValue}</span>
-                                        </div>
-                                        <input
-                                            type="range"
-                                            min="0"
-                                            max="100"
-                                            value={predictionValue}
-                                            onChange={(e) => setPredictionValue(Number(e.target.value))}
-                                            className="w-full h-2 rounded-none appearance-none cursor-pointer"
-                                            style={{
-                                                background: `linear-gradient(to right, ${colorMode ? accentColor : 'white'} 0%, ${colorMode ? accentColor : 'white'} ${predictionValue}%, ${accentColor}40 ${predictionValue}%, ${accentColor}40 100%)`
-                                            }}
-                                        />
-                                        <div className="flex justify-between text-xs text-white/50">
-                                            <span>MIN</span>
-                                            <span>MAX</span>
-                                        </div>
-                                    </div>
-
-                                    <button
-                                        onClick={handlePrediction}
-                                        disabled={isProcessing}
-                                        className="w-full border py-4 text-sm uppercase tracking-wider font-bold transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-                                        style={{ 
-                                            borderColor: accentColor,
-                                            backgroundColor: colorMode ? accentColor : 'transparent'
-                                        }}
-                                    >
-                                        {isProcessing ? (
-                                            <>
-                                                <Zap className="h-4 w-4 animate-spin" />
-                                                <span>Processing...</span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Cpu className="h-4 w-4" />
-                                                <span>Run Prediction</span>
-                                            </>
-                                        )}
-                                    </button>
-
-                                    {isProcessing && (
-                                        <div className="space-y-2 text-xs text-white/50 font-mono">
-                                            <div className="flex items-center gap-2">
-                                                <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: colorMode ? accentColor : 'white' }}></div>
-                                                <span>Loading model weights...</span>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: colorMode ? accentColor : 'white', animationDelay: '300ms' }}></div>
-                                                <span>Preprocessing input features...</span>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: colorMode ? accentColor : 'white', animationDelay: '600ms' }}></div>
-                                                <span>Running forward pass...</span>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {modelOutput && (
-                                        <div className="border p-6 space-y-4" style={{ borderColor: accentColor }}>
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-sm text-white/70">PREDICTION RESULT</span>
-                                                <Activity className="h-4 w-4" style={{ color: colorMode ? accentColor : 'white' }} />
-                                            </div>
-                                            
-                                            <div className="text-center py-4">
-                                                <div className="text-4xl font-bold mb-2" style={{ color: colorMode ? accentColor : 'white' }}>
-                                                    {modelOutput.label}
-                                                </div>
-                                                <div className="text-xs text-white/50 uppercase tracking-wider">Classification</div>
-                                            </div>
-
-                                            <div className="space-y-2">
-                                                <div className="flex justify-between text-sm">
-                                                    <span className="text-white/70">Confidence Score</span>
-                                                    <span className="font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                                        {(modelOutput.confidence * 100).toFixed(2)}%
-                                                    </span>
-                                                </div>
-                                                <div className="h-3 border" style={{ borderColor: accentColor }}>
-                                                    <div
-                                                        className="h-full transition-all duration-1000"
-                                                        style={{ 
-                                                            width: `${modelOutput.confidence * 100}%`,
-                                                            backgroundColor: colorMode ? accentColor : 'white'
-                                                        }}
-                                                    ></div>
-                                                </div>
-                                            </div>
-
-                                            <div className="grid grid-cols-2 gap-4 pt-4 text-xs">
-                                                <div className="border p-3" style={{ borderColor: accentColor }}>
-                                                    <div className="text-white/50 mb-1">Model</div>
-                                                    <div className="font-mono">RandomForest</div>
-                                                </div>
-                                                <div className="border p-3" style={{ borderColor: accentColor }}>
-                                                    <div className="text-white/50 mb-1">Accuracy</div>
-                                                    <div className="font-mono">94.2%</div>
-                                                </div>
-                                                <div className="border p-3" style={{ borderColor: accentColor }}>
-                                                    <div className="text-white/50 mb-1">Latency</div>
-                                                    <div className="font-mono">12ms</div>
-                                                </div>
-                                                <div className="border p-3" style={{ borderColor: accentColor }}>
-                                                    <div className="text-white/50 mb-1">Features</div>
-                                                    <div className="font-mono">42</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    <div className="text-xs text-white/40 text-center pt-4 font-mono">
-                                        * This is a simulated demonstration for portfolio purposes
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="text-center">
-                                <button
-                                    onClick={() => navigateToLayer('contact')}
-                                    className="border px-6 py-3 hover:shadow-lg transition-all inline-flex items-center gap-2 hover:-translate-y-1"
-                                    style={{ 
-                                        borderColor: accentColor,
-                                        backgroundColor: colorMode ? accentColor : 'transparent'
-                                    }}
-                                >
-                                    <span className="text-xs uppercase tracking-wider">Get In Touch</span>
-                                    <ChevronDown className="h-4 w-4" />
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                )}
 
                 {currentLayer === 'contact' && (
                     <section className="min-h-screen flex items-center justify-center px-4 pt-20">

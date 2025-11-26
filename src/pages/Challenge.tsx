@@ -17,12 +17,34 @@ interface ChallengeDay {
 
 export const Challenge: React.FC = () => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadingStep, setLoadingStep] = useState(0);
     const [colorMode, setColorMode] = useState(() => {
         const saved = localStorage.getItem('tadstech-theme');
         return saved ? saved === 'blue' : false;
     });
     const [holdTimer, setHoldTimer] = useState<NodeJS.Timeout | null>(null);
     const [autoSwapInterval, setAutoSwapInterval] = useState<NodeJS.Timeout | null>(null);
+
+    useEffect(() => {
+        const steps = [
+            { time: 500, action: () => setLoadingStep(1) },
+            { time: 700, action: () => setLoadingStep(2) },
+            { time: 1200, action: () => setLoadingStep(3) },
+            { time: 1400, action: () => setLoadingStep(4) },
+            { time: 700, action: () => setIsLoading(false) }
+        ];
+
+        let currentTimeout: NodeJS.Timeout;
+        let accumulatedTime = 0;
+
+        steps.forEach(step => {
+            accumulatedTime += step.time;
+            currentTimeout = setTimeout(step.action, accumulatedTime);
+        });
+
+        return () => clearTimeout(currentTimeout);
+    }, []);
 
     const challengeDays: ChallengeDay[] = [
         {
@@ -323,6 +345,30 @@ export const Challenge: React.FC = () => {
             githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day28',
             status: 'completed',
             date: 'Nov 23, 2025'
+        },
+
+        {
+            day: "29",
+            name: 'Mental Health Social Media Analysis',
+            description: 'This day focuses on analyzing the relationship between social media usage patterns and mental health states using machine learning. We explore a comprehensive dataset containing demographic information, social media usage metrics, and mental health indicators to build a predictive model.',
+            dataset: 'Mental Health Social Media Dataset',
+            datasetUrl: 'https://www.kaggle.com/datasets/sonalshinde123/social-media-mental-health-indicators-dataset',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day29',
+            status: 'completed',
+            date: 'Nov 24, 2025'
+        },
+
+        {
+            day: "30",
+            name: 'Global Health Dataset - Comprehensive EDA & Ensemble ML',
+            description: 'This is the grand finale of the 30-days-of-datasets challenge! Day 30 features an extensive analysis of the Unified Global Health Dataset - a comprehensive collection of health metrics from 195 countries spanning 30 years (1990-2021).',
+            dataset: 'Global Health, Nutrition, Mortality, Economic Data',
+            datasetUrl: 'https://www.kaggle.com/datasets/miguelroca/global-health-nutrition-mortality-economic-data',
+            githubUrl: 'https://github.com/tadstech/30-days-of-datasets/tree/main/day30',
+            xUrl: 'https://x.com/tads_tech/status/1993811349533806799?s=20',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_its-been-about-29-days-since-i-began-a-journey-activity-7399576213784289280-QAfm?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed',
+            date: 'Nov 25, 2025'
         }
     ];
 
@@ -370,8 +416,122 @@ export const Challenge: React.FC = () => {
 
     const accentColor = colorMode ? '#0ea5e9' : '#28333F';
 
+    // Phases definition
+    const phases = [
+        { name: "DATA CLEANING", range: "Days 1-7", description: "Foundations & Prep" },
+        { name: "EDA", range: "Days 8-14", description: "Exploration & Viz" },
+        { name: "BEGINNER ML", range: "Days 15-22", description: "Predictive Basics" },
+        { name: "ADVANCED ML", range: "Days 23-30", description: "Deepening Knowledge" }
+    ];
+
+    const TimelineNode = ({ phase, index, currentDay }: { phase: any, index: number, currentDay: number }) => {
+        const startDay = index === 0 ? 1 : index === 1 ? 8 : index === 2 ? 15 : 23;
+        const endDay = index === 0 ? 7 : index === 1 ? 14 : index === 2 ? 22 : 30;
+        const isCompleted = currentDay > endDay;
+        const isActive = currentDay >= startDay && currentDay <= endDay;
+        
+        return (
+            <div className="relative flex gap-4 pb-8 last:pb-0 group">
+                <div className="flex flex-col items-center">
+                    <div 
+                        className={`w-4 h-4 rounded-full border-2 z-10 transition-all duration-500 ${
+                            isCompleted || isActive ? 'bg-white border-white' : 'bg-black border-gray-700'
+                        }`}
+                        style={{ 
+                            backgroundColor: (isCompleted || isActive) ? (colorMode ? accentColor : 'white') : 'black',
+                            borderColor: (isCompleted || isActive) ? (colorMode ? accentColor : 'white') : '#374151'
+                        }}
+                    />
+                    {index < 3 && (
+                        <div 
+                            className={`w-0.5 h-full absolute top-4 transition-all duration-1000 ${
+                                isCompleted ? 'bg-white' : 'bg-gray-800'
+                            }`}
+                            style={{ backgroundColor: isCompleted ? (colorMode ? accentColor : 'white') : '#1f2937' }}
+                        />
+                    )}
+                </div>
+                <div className={`transition-all duration-500 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-50'}`}>
+                    <div className="text-xs font-bold mb-0.5" style={{ color: isActive || isCompleted ? (colorMode ? accentColor : 'white') : 'gray' }}>
+                        {phase.name}
+                    </div>
+                    <div className="text-[10px] text-gray-500">{phase.range}</div>
+                </div>
+            </div>
+        );
+    };
+
+    const GrowthChart = () => {
+        const [mounted, setMounted] = useState(false);
+        useEffect(() => setMounted(true), []);
+
+        return (
+            <div className="h-48 w-full flex items-end gap-1 px-2">
+                {[...Array(30)].map((_, i) => {
+                    // Generate a "learning curve" that isn't linear - ups and downs but generally up
+                    const baseHeight = 20 + (Math.log(i + 1) * 20); 
+                    const randomVar = Math.sin(i * 0.5) * 10;
+                    const height = Math.min(100, Math.max(10, baseHeight + randomVar));
+                    
+                    return (
+                        <div 
+                            key={i}
+                            className="flex-1 transition-all duration-1000 ease-out rounded-t-sm relative group"
+                            style={{ 
+                                height: mounted ? `${height}%` : '0%',
+                                backgroundColor: colorMode ? `${accentColor}${Math.floor(20 + (i/30)*60)}` : `rgba(255, 255, 255, ${0.2 + (i/30)*0.6})`,
+                                transitionDelay: `${i * 30}ms`
+                            }}
+                        >
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 text-[10px] whitespace-nowrap bg-black border px-2 py-1 z-20 pointer-events-none" style={{ borderColor: accentColor }}>
+                                Day {i + 1}
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    };
+
     return (
         <div className="min-h-screen bg-black text-white font-mono overflow-x-hidden relative">
+            {/* Loading Overlay */}
+            <div 
+                className={`fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            >
+                <div className="w-full max-w-md p-8 space-y-4">
+                    <div className="flex items-center gap-2 text-white mb-8">
+                        <div className="w-3 h-3 bg-white animate-pulse"></div>
+                        <span className="text-sm tracking-widest">SYSTEM INITIALIZATION</span>
+                    </div>
+                    
+                    <div className="space-y-2 font-mono text-sm">
+                        <div className={`transition-opacity duration-300 ${loadingStep >= 0 ? 'opacity-100' : 'opacity-0'}`}>
+                            <span className="text-gray-500">{'>'}</span> ESTABLISHING SECURE CONNECTION... <span className="text-white font-bold">OK</span>
+                        </div>
+                        <div className={`transition-opacity duration-300 ${loadingStep >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+                            <span className="text-gray-500">{'>'}</span> LOADING DATASETS [1-30]... <span className="text-white font-bold">COMPLETE</span>
+                        </div>
+                        <div className={`transition-opacity duration-300 ${loadingStep >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+                            <span className="text-gray-500">{'>'}</span> ANALYZING PROGRESSION METRICS... <span className="text-white font-bold">DONE</span>
+                        </div>
+                        <div className={`transition-opacity duration-300 ${loadingStep >= 3 ? 'opacity-100' : 'opacity-0'}`}>
+                            <span className="text-gray-500">{'>'}</span> CONFIGURING ENSEMBLE MODELS... <span className="text-white font-bold">READY</span>
+                        </div>
+                        <div className={`transition-opacity duration-300 ${loadingStep >= 4 ? 'opacity-100' : 'opacity-0'}`}>
+                            <span className="text-gray-500">{'>'}</span> LAUNCHING INTERFACE...
+                        </div>
+                    </div>
+
+                    <div className="h-1 w-full bg-gray-900 mt-8 overflow-hidden">
+                        <div 
+                            className="h-full bg-white transition-all duration-[3000ms] ease-out"
+                            style={{ width: isLoading ? '100%' : '100%' }}
+                        ></div>
+                    </div>
+                </div>
+            </div>
+
             <div className="fixed inset-0 opacity-5 pointer-events-none">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, ${accentColor} 2px, ${accentColor} 4px)`,
@@ -420,235 +580,276 @@ export const Challenge: React.FC = () => {
             </nav>
 
             <div className="pt-24 pb-16 px-4">
-                <div className="max-w-6xl mx-auto">
-                    <div className="text-center mb-16">
-                        <div className="inline-block border p-8 md:p-12 relative mb-8 transition-all duration-300 hover:shadow-2xl" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 30px ${accentColor}40` : 'none' }}>
-                            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
-                            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
-                            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
-                            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
-
-                            <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-3">
-                                {'>'} <span style={{ color: colorMode ? accentColor : 'white' }}>30 DAYS OF DATASETS</span>
-                            </h1>
-                            <div className="h-px w-48 mx-auto mb-4 transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
-                            <p className="text-sm md:text-base text-white/70 max-w-2xl">
-                                A personal challenge to explore and analyze a different dataset every day.
-                                Building practical data analysis skills through hands-on exploration.
-                            </p>
-                        </div>
-
-                        <div className="max-w-2xl mx-auto space-y-4">
-                            <div className="flex items-center justify-between text-xs">
-                                <span className="text-white/70 uppercase tracking-wider">Challenge Progress</span>
-                                <span className="text-white font-bold" style={{ color: colorMode ? accentColor : 'white' }}>{completedDays}/30</span>
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12">
+                    
+                    {/* Left Sidebar - Desktop Only */}
+                    <div className="hidden lg:block relative">
+                        <div className="sticky top-24 space-y-8">
+                            <div className="border p-6" style={{ borderColor: accentColor }}>
+                                <h2 className="text-xl font-bold mb-4">GROWTH METRICS</h2>
+                                <GrowthChart />
+                                <div className="mt-4 text-xs text-gray-400 text-center">Complexity vs Time</div>
                             </div>
-                            <div className="w-full h-4 border relative overflow-hidden transition-colors duration-300" style={{ borderColor: accentColor }}>
-                                <div
-                                    className="h-full transition-all duration-1000"
-                                    style={{ 
-                                        width: `${progressPercentage}%`,
-                                        backgroundColor: colorMode ? accentColor : 'white'
-                                    }}
-                                ></div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="mb-12">
-                        <div className="border p-6 transition-all duration-300 hover:shadow-2xl" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}20` : 'none' }}>
-                            <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
-                                <Database className="h-5 w-5 transition-transform hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                <span style={{ color: colorMode ? accentColor : 'white' }}>GOALS</span>
-                            </h2>
-                            <div className="grid md:grid-cols-2 gap-4 text-sm text-white/70">
-                                <div className="space-y-2">
-                                    <div className="flex items-start gap-2">
-                                        <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
-                                        <span>Practice data cleaning and preparation techniques</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
-                                        <span>Develop proficiency in exploratory data analysis</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
-                                        <span>Create meaningful visualizations</span>
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <div className="flex items-start gap-2">
-                                        <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
-                                        <span>Extract actionable insights from data</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
-                                        <span>Build a portfolio of data analysis work</span>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                        <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
-                                        <span>Tools: Python, pandas, plotly, numpy, Jupyter</span>
-                                    </div>
+                            <div className="border p-6" style={{ borderColor: accentColor }}>
+                                <h2 className="text-xl font-bold mb-6">LEARNING PATH</h2>
+                                <div className="flex flex-col">
+                                    {phases.map((phase, i) => (
+                                        <TimelineNode 
+                                            key={i} 
+                                            phase={phase}
+                                            index={i}
+                                            currentDay={completedDays}
+                                        />
+                                    ))}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="space-y-0">
-                        {challengeDays.map((challenge, index) => (
-                            <div key={challenge.day} className="relative">
-                                {index > 0 && (
-                                    <div className="w-px h-6 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
-                                )}
-                                <div
-                                    className={`border p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
-                                        challenge.status === 'completed'
-                                            ? 'hover:bg-white hover:text-black group'
-                                            : challenge.status === 'in-progress'
-                                            ? ''
-                                            : ''
-                                    }`}
-                                    style={{ 
-                                        borderColor: challenge.status === 'completed' ? 'white' : challenge.status === 'in-progress' ? accentColor : accentColor,
-                                        boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none'
-                                    }}
-                                >
-                                    <div className="flex flex-col md:flex-row gap-6">
-                                        <div className="flex-shrink-0">
-                                            <div className={`w-20 h-20 border flex items-center justify-center transition-all duration-300 ${
-                                                challenge.status === 'completed'
-                                                    ? 'group-hover:border-black/20'
-                                                    : ''
-                                            }`} style={{ borderColor: accentColor }}>
-                                                <div className="text-center">
-                                                    <div className="text-xs transition-colors duration-300 group-hover:text-black/60" style={{ color: colorMode ? accentColor : '#28333F' }}>DAY</div>
-                                                    <div className="text-2xl font-bold">{challenge.day.toString().padStart(2, '0')}</div>
-                                                </div>
-                                            </div>
+                    {/* Main Content */}
+                    <div className="space-y-12">
+                        <div className="text-center lg:text-left mb-16">
+                            <div className="inline-block border p-8 md:p-12 relative mb-8 transition-all duration-300 hover:shadow-2xl w-full" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 30px ${accentColor}40` : 'none' }}>
+                                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
+                                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
+                                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
+                                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
+
+                                <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-3">
+                                    {'>'} <span style={{ color: colorMode ? accentColor : 'white' }}>30 DAYS OF DATASETS</span>
+                                </h1>
+                                <div className="h-px w-48 mx-auto lg:mx-0 mb-4 transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
+                                <p className="text-sm md:text-base text-white/70 max-w-2xl">
+                                    A personal challenge to explore and analyze a different dataset every day.
+                                    Building practical data analysis skills through hands-on exploration.
+                                </p>
+                            </div>
+
+                            <div className="max-w-2xl space-y-4 lg:hidden">
+                                <div className="flex items-center justify-between text-xs">
+                                    <span className="text-white/70 uppercase tracking-wider">Challenge Progress</span>
+                                    <span className="text-white font-bold" style={{ color: colorMode ? accentColor : 'white' }}>{completedDays}/30</span>
+                                </div>
+                                <div className="w-full h-4 border relative overflow-hidden transition-colors duration-300" style={{ borderColor: accentColor }}>
+                                    <div
+                                        className="h-full transition-all duration-1000"
+                                        style={{ 
+                                            width: `${progressPercentage}%`,
+                                            backgroundColor: colorMode ? accentColor : 'white'
+                                        }}
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mb-12">
+                            <div className="border p-6 transition-all duration-300 hover:shadow-2xl" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}20` : 'none' }}>
+                                <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                                    <Database className="h-5 w-5 transition-transform hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
+                                    <span style={{ color: colorMode ? accentColor : 'white' }}>GOALS</span>
+                                </h2>
+                                <div className="grid md:grid-cols-2 gap-4 text-sm text-white/70">
+                                    <div className="space-y-2">
+                                        <div className="flex items-start gap-2">
+                                            <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
+                                            <span>Practice data cleaning and preparation techniques</span>
                                         </div>
+                                        <div className="flex items-start gap-2">
+                                            <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
+                                            <span>Develop proficiency in exploratory data analysis</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
+                                            <span>Create meaningful visualizations</span>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <div className="flex items-start gap-2">
+                                            <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
+                                            <span>Extract actionable insights from data</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
+                                            <span>Build a portfolio of data analysis work</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <span style={{ color: colorMode ? accentColor : 'white' }}>{'>'}</span>
+                                            <span>Tools: Python, pandas, plotly, numpy, Jupyter</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                        <div className="flex-1 space-y-4">
-                                            <div>
-                                                <div className="flex items-start justify-between gap-4 mb-2">
-                                                    <h3 className="text-xl md:text-2xl font-bold">{challenge.name}</h3>
-                                                    {challenge.status === 'completed' && (
-                                                        <span className="text-xs px-2 py-1 border group-hover:border-black/20 whitespace-nowrap transition-colors duration-300" style={{ borderColor: accentColor, color: colorMode ? accentColor : '#28333F' }}>
-                                                            COMPLETED
-                                                        </span>
-                                                    )}
-                                                    {challenge.status === 'in-progress' && (
-                                                        <span className="text-xs px-2 py-1 border whitespace-nowrap" style={{ borderColor: accentColor, color: colorMode ? accentColor : 'white' }}>
-                                                            IN PROGRESS
-                                                        </span>
-                                                    )}
-                                                    {challenge.status === 'upcoming' && (
-                                                        <span className="text-xs px-2 py-1 border whitespace-nowrap transition-colors duration-300" style={{ borderColor: accentColor, color: colorMode ? accentColor : '#28333F' }}>
-                                                            UPCOMING
-                                                        </span>
-                                                    )}
-                                                </div>
-                                                {challenge.date && (
-                                                    <div className="text-xs transition-colors duration-300 group-hover:text-black/60" style={{ color: colorMode ? accentColor : '#28333F' }}>{challenge.date}</div>
-                                                )}
-                                                <p className="text-sm text-white/70 group-hover:text-black/70 leading-relaxed">
-                                                    {challenge.description}
-                                                </p>
-                                            </div>
+                        {/* Journey Timeline - Mobile Only */}
+                        <div className="mb-16 relative lg:hidden">
+                            <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 hidden md:block transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                                {[
+                                    { phase: "PHASE 1", title: "FOUNDATIONS", days: "Days 1-7", desc: "Data Cleaning & EDA" },
+                                    { phase: "PHASE 2", title: "PREDICTIVE", days: "Days 8-14", desc: "Regression & Classification" },
+                                    { phase: "PHASE 3", title: "ADVANCED", days: "Days 15-22", desc: "NLP & Time Series" },
+                                    { phase: "PHASE 4", title: "ADVANCED ML", days: "Days 23-30", desc: "Ensemble & Deep Learning" }
+                                ].map((item, i) => (
+                                    <div key={i} className="bg-black border p-4 relative transition-all duration-300 hover:-translate-y-2 hover:shadow-xl z-10 group" style={{ borderColor: accentColor }}>
+                                        <div className="text-xs font-bold mb-1 transition-colors" style={{ color: colorMode ? accentColor : 'white' }}>{item.phase}</div>
+                                        <div className="text-xl font-bold text-white mb-1 group-hover:text-green-400 transition-colors">{item.title}</div>
+                                        <div className="text-xs text-white/50 mb-2">{item.days}</div>
+                                        <div className="text-sm text-white/80">{item.desc}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
 
-                                            <div className="space-y-3">
-                                                <div className="flex flex-wrap items-center gap-3 md:gap-4">
-                                                    {challenge.status !== 'upcoming' && (
-                                                        <a
-                                                            href={challenge.datasetUrl}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="flex items-center gap-2 text-sm border px-3 py-1.5 hover:shadow-lg transition-all group/link"
-                                                            style={{ 
-                                                                borderColor: accentColor,
-                                                                backgroundColor: 'transparent'
-                                                            }}
-                                                        >
-                                                            <Database className="h-4 w-4 transition-transform group-hover/link:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                                            <span className="text-xs uppercase tracking-wider">{challenge.dataset}</span>
-                                                            <ExternalLink className="h-3 w-3" />
-                                                        </a>
-                                                    )}
-                                                    {challenge.status === 'upcoming' && (
-                                                        <div className="flex items-center gap-2 text-sm border px-3 py-1.5 opacity-50" style={{ borderColor: accentColor }}>
-                                                            <Database className="h-4 w-4" style={{ color: colorMode ? accentColor : '#28333F' }} />
-                                                            <span className="text-xs uppercase tracking-wider" style={{ color: colorMode ? accentColor : '#28333F' }}>{challenge.dataset}</span>
-                                                        </div>
-                                                    )}
+                        <div className="space-y-0 relative">
+                            {/* Connecting Line for Desktop */}
+                            <div className="absolute left-[-48px] top-0 bottom-0 w-px bg-gray-800 hidden lg:block"></div>
 
-                                                    {challenge.status !== 'upcoming' && (
-                                                        <a
-                                                            href={challenge.githubUrl}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="flex items-center gap-2 text-sm border-b pb-0.5 hover:gap-3 transition-all"
-                                                            style={{ borderColor: accentColor }}
-                                                        >
-                                                            <Github className="h-4 w-4 transition-transform hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                                            <span className="uppercase tracking-wider text-xs">View on GitHub</span>
-                                                            <ExternalLink className="h-3 w-3" />
-                                                        </a>
-                                                    )}
-                                                </div>
+                            {challengeDays.map((challenge, index) => (
+                                <div key={challenge.day} className="relative group/card">
+                                    {/* Desktop Connector */}
+                                    <div className="absolute left-[-54px] top-10 w-12 h-px bg-gray-800 hidden lg:block group-hover/card:bg-white transition-colors duration-300"></div>
+                                    <div className="absolute left-[-56px] top-[38px] w-2 h-2 rounded-full bg-black border border-gray-800 hidden lg:block group-hover/card:border-white transition-colors duration-300"></div>
 
-                                                {challenge.status !== 'upcoming' && (challenge.xUrl || challenge.linkedinUrl) && (
-                                                    <div className="flex items-center gap-3">
-                                                        <span className="text-xs uppercase tracking-wider transition-colors duration-300 group-hover:text-black/60" style={{ color: colorMode ? accentColor : '#28333F' }}>Posts</span>
-                                                        <div className="flex items-center gap-2">
-                                                            {challenge.xUrl && (
-                                                                <a
-                                                                    href={challenge.xUrl}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                    className="p-1.5 border hover:shadow-lg transition-all group/social"
-                                                                    style={{ borderColor: accentColor }}
-                                                                    aria-label="View post on X (Twitter)"
-                                                                >
-                                                                    <Twitter className="h-4 w-4 transition-transform group-hover/social:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                                                </a>
-                                                            )}
-                                                            {challenge.linkedinUrl && (
-                                                                <a
-                                                                    href={challenge.linkedinUrl}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                    className="p-1.5 border hover:shadow-lg transition-all group/social"
-                                                                    style={{ borderColor: accentColor }}
-                                                                    aria-label="View post on LinkedIn"
-                                                                >
-                                                                    <Linkedin className="h-4 w-4 transition-transform group-hover/social:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                                                </a>
-                                                            )}
-                                                        </div>
+                                    {index > 0 && (
+                                        <div className="w-px h-6 mx-auto transition-colors duration-300 lg:hidden" style={{ backgroundColor: accentColor }}></div>
+                                    )}
+                                    <div
+                                        className={`border p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
+                                            challenge.status === 'completed'
+                                                ? 'hover:bg-white hover:text-black group'
+                                                : challenge.status === 'in-progress'
+                                                ? ''
+                                                : ''
+                                        }`}
+                                        style={{ 
+                                            borderColor: challenge.status === 'completed' ? 'white' : challenge.status === 'in-progress' ? accentColor : accentColor,
+                                            boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none'
+                                        }}
+                                    >
+                                        <div className="flex flex-col md:flex-row gap-6">
+                                            <div className="flex-shrink-0">
+                                                <div className={`w-20 h-20 border flex items-center justify-center transition-all duration-300 ${
+                                                    challenge.status === 'completed'
+                                                        ? 'group-hover:border-black/20'
+                                                        : ''
+                                                }`} style={{ borderColor: accentColor }}>
+                                                    <div className="text-center">
+                                                        <div className="text-xs transition-colors duration-300 group-hover:text-black/60" style={{ color: colorMode ? accentColor : '#28333F' }}>DAY</div>
+                                                        <div className="text-2xl font-bold">{challenge.day.toString().padStart(2, '0')}</div>
                                                     </div>
-                                                )}
+                                                </div>
+                                            </div>
+
+                                            <div className="flex-1 space-y-4">
+                                                <div>
+                                                    <div className="flex items-start justify-between gap-4 mb-2">
+                                                        <h3 className="text-xl md:text-2xl font-bold">{challenge.name}</h3>
+                                                        {challenge.status === 'completed' && (
+                                                            <span className="text-xs px-2 py-1 border group-hover:border-black/20 whitespace-nowrap transition-colors duration-300" style={{ borderColor: accentColor, color: colorMode ? accentColor : '#28333F' }}>
+                                                                COMPLETED
+                                                            </span>
+                                                        )}
+                                                        {challenge.status === 'in-progress' && (
+                                                            <span className="text-xs px-2 py-1 border whitespace-nowrap" style={{ borderColor: accentColor, color: colorMode ? accentColor : 'white' }}>
+                                                                IN PROGRESS
+                                                            </span>
+                                                        )}
+                                                        {challenge.status === 'upcoming' && (
+                                                            <span className="text-xs px-2 py-1 border whitespace-nowrap transition-colors duration-300" style={{ borderColor: accentColor, color: colorMode ? accentColor : '#28333F' }}>
+                                                                UPCOMING
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    {challenge.date && (
+                                                        <div className="text-xs transition-colors duration-300 group-hover:text-black/60" style={{ color: colorMode ? accentColor : '#28333F' }}>{challenge.date}</div>
+                                                    )}
+                                                    <p className="text-sm text-white/70 group-hover:text-black/70 leading-relaxed">
+                                                        {challenge.description}
+                                                    </p>
+                                                </div>
+
+                                                <div className="space-y-3">
+                                                    <div className="flex flex-wrap items-center gap-3 md:gap-4">
+                                                        {challenge.status !== 'upcoming' && (
+                                                            <a
+                                                                href={challenge.datasetUrl}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex items-center gap-2 text-sm border px-3 py-1.5 hover:shadow-lg transition-all group/link"
+                                                                style={{ 
+                                                                    borderColor: accentColor,
+                                                                    backgroundColor: 'transparent'
+                                                                }}
+                                                            >
+                                                                <Database className="h-4 w-4 transition-transform group-hover/link:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
+                                                                <span className="text-xs uppercase tracking-wider">{challenge.dataset}</span>
+                                                                <ExternalLink className="h-3 w-3" />
+                                                            </a>
+                                                        )}
+                                                        {challenge.status === 'upcoming' && (
+                                                            <div className="flex items-center gap-2 text-sm border px-3 py-1.5 opacity-50" style={{ borderColor: accentColor }}>
+                                                                <Database className="h-4 w-4" style={{ color: colorMode ? accentColor : '#28333F' }} />
+                                                                <span className="text-xs uppercase tracking-wider" style={{ color: colorMode ? accentColor : '#28333F' }}>{challenge.dataset}</span>
+                                                            </div>
+                                                        )}
+                                                        {challenge.githubUrl && (
+                                                            <a
+                                                                href={challenge.githubUrl}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex items-center gap-2 text-sm border px-3 py-1.5 hover:shadow-lg transition-all group/link"
+                                                                style={{ 
+                                                                    borderColor: accentColor,
+                                                                    backgroundColor: 'transparent'
+                                                                }}
+                                                            >
+                                                                <Github className="h-4 w-4 transition-transform group-hover/link:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
+                                                                <span className="text-xs uppercase tracking-wider">Code</span>
+                                                                <ExternalLink className="h-3 w-3" />
+                                                            </a>
+                                                        )}
+                                                        {challenge.xUrl && (
+                                                            <a
+                                                                href={challenge.xUrl}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex items-center gap-2 text-sm border px-3 py-1.5 hover:shadow-lg transition-all group/link"
+                                                                style={{ 
+                                                                    borderColor: accentColor,
+                                                                    backgroundColor: 'transparent'
+                                                                }}
+                                                            >
+                                                                <Twitter className="h-4 w-4 transition-transform group-hover/link:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
+                                                                <span className="text-xs uppercase tracking-wider">Post</span>
+                                                                <ExternalLink className="h-3 w-3" />
+                                                            </a>
+                                                        )}
+                                                        {challenge.linkedinUrl && (
+                                                            <a
+                                                                href={challenge.linkedinUrl}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex items-center gap-2 text-sm border px-3 py-1.5 hover:shadow-lg transition-all group/link"
+                                                                style={{ 
+                                                                    borderColor: accentColor,
+                                                                    backgroundColor: 'transparent'
+                                                                }}
+                                                            >
+                                                                <Linkedin className="h-4 w-4 transition-transform group-hover/link:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
+                                                                <span className="text-xs uppercase tracking-wider">Post</span>
+                                                                <ExternalLink className="h-3 w-3" />
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="mt-12 text-center border p-8" style={{ borderColor: accentColor }}>
-                        <p className="text-sm mb-4" style={{ color: accentColor }}>
-                            Follow the journey on GitHub
-                        </p>
-                        <a
-                            href="https://github.com/tadstech/30-days-of-datasets"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 border px-6 py-2.5 hover:bg-white hover:text-black transition-all text-xs uppercase tracking-wider"
-                            style={{ borderColor: accentColor }}
-                        >
-                            <Github className="h-4 w-4" />
-                            <span>View Repository</span>
-                            <ExternalLink className="h-3 w-3" />
-                        </a>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
