@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Terminal, ChevronDown, Database, Code, BarChart3, TrendingUp, Github, Mail, Linkedin, ExternalLink, Globe, Palette, Cpu, FileCode, Wrench, PieChart, Briefcase } from 'lucide-react';
+import { Terminal, ChevronDown, Database, Code, BarChart3, TrendingUp, Github, Mail, Linkedin, ExternalLink, Palette, Cpu, FileCode, Wrench, PieChart, Briefcase } from 'lucide-react';
 
 type Layer = 'hero' | 'stats' | 'skills' | 'projects' | 'contact';
 
