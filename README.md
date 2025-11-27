@@ -1,6 +1,6 @@
 # Hi, I'm Michael 👋  
 
-Math Minded, Data Scientist with a very robust background in Front-end
+A Math Minded, Data Scientist with a somewhat robust background in Front-end
 
 ---
 
@@ -8,7 +8,6 @@ Math Minded, Data Scientist with a very robust background in Front-end
 - **Languages:** Python, JavaScript/TypeScript, Dart (past projects), (Rust - hobbyist)  
 - **Frameworks & Tools:** React, Vite, TailwindCSS, Flutter (past projects), Tauri  
 - **Data Science:** Pandas, NumPy, Matplotlib, SK-learn
-- **Operating System:** Arch Linux
 
 > I built past projects with **Dart + Flutter** but I’m currently **transitioning into React + TypeScript** for the web.  
 

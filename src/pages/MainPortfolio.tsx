@@ -522,7 +522,7 @@ export const MainPortfolio: React.FC = () => {
                                             <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>DATA_PIPELINE</span>
                                         </div>
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                            {statsAnimated ? '30+' : '0'}
+                                            {statsAnimated ? '40+' : '0'}
                                         </div>
                                         <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Datasets Analyzed</div>
                                         <div className="text-[10px] text-white/40 font-mono">30-Day Challenge Completed</div>
@@ -768,123 +768,135 @@ export const MainPortfolio: React.FC = () => {
                                     {'>'} <span style={{ color: colorMode ? accentColor : 'white' }}>EXPERIENCE</span>.load()
                                 </h2>
                                 <div className="h-px w-48 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
-                                <p className="text-sm text-white/60 mt-4 font-mono">Tools & Languages • Crafted through real-world projects</p>
+                                <p className="text-sm text-white/60 mt-4 font-mono">Technical Arsenal & Professional Trajectory</p>
                             </div>
 
-                            <div className="grid md:grid-cols-3 gap-8">
-                                <div className="border p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-black/50 backdrop-blur-sm relative overflow-hidden group"
-                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
+                            <div className="grid md:grid-cols-3 gap-6">
+                                {/* Data & ML */}
+                                <div className="border p-6 bg-black/50 backdrop-blur-sm relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
+                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
                                          style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    <div className="relative z-10">
-                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DATA & ML ENGINEERING</h3>
-                                        <div className="space-y-4">
-                                            {[
-                                                { name: 'Python & pandas', level: 'Expert', percent: 90 },
-                                                { name: 'SQL & SQLAlchemy', level: 'Intermediate', percent: 60 },
-                                                { name: 'scikit-learn & MLOps', level: 'Advanced', percent: 70 },
-                                                { name: 'ETL & Pipelines', level: 'Expert', percent: 80 }
-                                            ].map((skill, i) => (
-                                                <div key={i} className="space-y-1">
-                                                    <div className="flex justify-between items-baseline">
-                                                        <span className="text-sm font-medium">{skill.name}</span>
-                                                        <span className="text-xs font-mono text-white/60">{skill.level}</span>
-                                                    </div>
-                                                    <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                                        <div className="h-full rounded-full transition-all duration-1000" 
-                                                             style={{ 
-                                                                 width: `${skill.percent}%`,
-                                                                 backgroundColor: colorMode ? accentColor : 'white'
-                                                             }}></div>
-                                                    </div>
-                                                </div>
-                                            ))}
+                                    
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        <div className="flex justify-between items-start mb-6">
+                                            <div className="p-3 border bg-black/50" style={{ borderColor: `${accentColor}40` }}>
+                                                <Database className="h-6 w-6" style={{ color: colorMode ? accentColor : 'white' }} />
+                                            </div>
+                                            <span className="text-[10px] font-mono opacity-50 tracking-widest">MOD_DATA</span>
+                                        </div>
+                                        
+                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Data & ML Engineering</h3>
+                                        <p className="text-sm text-white/70 mb-6 leading-relaxed font-mono">
+                                            Specializing in <span className="text-white font-bold">ETL pipelines</span> and <span className="text-white font-bold">predictive modeling</span>. Transforming raw datasets into actionable intelligence through rigorous analysis.
+                                        </p>
+                                        
+                                        <div className="mt-auto space-y-4">
+                                            <div className="h-px w-full bg-white/10"></div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {['Python', 'Pandas', 'Scikit-Learn', 'SQL', 'TensorFlow', 'Jupyter'].map((tech) => (
+                                                    <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5" 
+                                                          style={{ borderColor: `${accentColor}40` }}>
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="border p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-black/50 backdrop-blur-sm relative overflow-hidden group"
-                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
+                                {/* Development */}
+                                <div className="border p-6 bg-black/50 backdrop-blur-sm relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
+                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
                                          style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    <div className="relative z-10">
-                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>DEVELOPMENT</h3>
-                                        <div className="space-y-4">
-                                            {[
-                                                { name: 'React', level: 'Advanced', percent: 80 },
-                                                { name: 'TypeScript', level: 'Advanced', percent: 70 },
-                                                { name: 'Node.js', level: 'Intermediate', percent: 65 },
-                                                { name: 'Flutter', level: 'Intermediate', percent: 40 }
-                                            ].map((skill, i) => (
-                                                <div key={i} className="space-y-1">
-                                                    <div className="flex justify-between items-baseline">
-                                                        <span className="text-sm font-medium">{skill.name}</span>
-                                                        <span className="text-xs font-mono text-white/60">{skill.level}</span>
-                                                    </div>
-                                                    <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                                        <div className="h-full rounded-full transition-all duration-1000" 
-                                                             style={{ 
-                                                                 width: `${skill.percent}%`,
-                                                                 backgroundColor: colorMode ? accentColor : 'white'
-                                                             }}></div>
-                                                    </div>
-                                                </div>
-                                            ))}
+                                    
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        <div className="flex justify-between items-start mb-6">
+                                            <div className="p-3 border bg-black/50" style={{ borderColor: `${accentColor}40` }}>
+                                                <Code className="h-6 w-6" style={{ color: colorMode ? accentColor : 'white' }} />
+                                            </div>
+                                            <span className="text-[10px] font-mono opacity-50 tracking-widest">MOD_DEV</span>
+                                        </div>
+                                        
+                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Full Stack Dev</h3>
+                                        <p className="text-sm text-white/70 mb-6 leading-relaxed font-mono">
+                                            Building <span className="text-white font-bold">type-safe</span> web applications with modern frameworks. Bridging complex backend logic with intuitive, responsive user interfaces.
+                                        </p>
+                                        
+                                        <div className="mt-auto space-y-4">
+                                            <div className="h-px w-full bg-white/10"></div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {['React', 'TypeScript', 'Node.js', 'Tailwind', 'Vite', 'Firebase'].map((tech) => (
+                                                    <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5" 
+                                                          style={{ borderColor: `${accentColor}40` }}>
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="border p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-black/50 backdrop-blur-sm relative overflow-hidden group"
-                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
+                                {/* Systems */}
+                                <div className="border p-6 bg-black/50 backdrop-blur-sm relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
+                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
                                          style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    <div className="relative z-10">
-                                        <h3 className="text-lg font-bold mb-6" style={{ color: colorMode ? accentColor : 'white' }}>SYSTEMS & DEPLOYMENT</h3>
-                                        <div className="space-y-4">
-                                            {[
-                                                { name: 'Docker & Containers', level: 'Advanced', percent: 80 },
-                                                { name: 'Database Management', level: 'Intermediate', percent: 60 },
-                                                { name: 'Dashboard Platforms', level: 'Intermediate', percent: 70 },
-                                                { name: 'API Development', level: 'Intermediate', percent: 70 }
-                                            ].map((skill, i) => (
-                                                <div key={i} className="space-y-1">
-                                                    <div className="flex justify-between items-baseline">
-                                                        <span className="text-sm font-medium">{skill.name}</span>
-                                                        <span className="text-xs font-mono text-white/60">{skill.level}</span>
-                                                    </div>
-                                                    <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                                        <div className="h-full rounded-full transition-all duration-1000" 
-                                                             style={{ 
-                                                                 width: `${skill.percent}%`,
-                                                                 backgroundColor: colorMode ? accentColor : 'white'
-                                                             }}></div>
-                                                    </div>
-                                                </div>
-                                            ))}
+                                    
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        <div className="flex justify-between items-start mb-6">
+                                            <div className="p-3 border bg-black/50" style={{ borderColor: `${accentColor}40` }}>
+                                                <Cpu className="h-6 w-6" style={{ color: colorMode ? accentColor : 'white' }} />
+                                            </div>
+                                            <span className="text-[10px] font-mono opacity-50 tracking-widest">MOD_OPS</span>
+                                        </div>
+                                        
+                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Systems & Ops</h3>
+                                        <p className="text-sm text-white/70 mb-6 leading-relaxed font-mono">
+                                            Ensuring reliability through <span className="text-white font-bold">containerization</span> and automated workflows. Managing the infrastructure that powers data solutions.
+                                        </p>
+                                        
+                                        <div className="mt-auto space-y-4">
+                                            <div className="h-px w-full bg-white/10"></div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {['Docker', 'Git', 'Linux', 'CI/CD', 'Bash', 'APIs'].map((tech) => (
+                                                    <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5" 
+                                                          style={{ borderColor: `${accentColor}40` }}>
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+                            {/* Professional Experience */}
                             <div className="border p-8 transition-all duration-300 hover:shadow-2xl bg-black/50 backdrop-blur-sm relative overflow-hidden group"
                                  style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
                                 <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
                                      style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
                                 <div className="relative z-10">
-                                    <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
-                                        <Briefcase className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                        <span>PROFESSIONAL EXPERIENCE</span>
-                                    </h3>
+                                    <div className="flex items-center justify-between mb-8">
+                                        <h3 className="text-xl font-bold flex items-center gap-3">
+                                            <Briefcase className="h-6 w-6" style={{ color: colorMode ? accentColor : 'white' }} />
+                                            <span>PROFESSIONAL EXPERIENCE</span>
+                                        </h3>
+                                        <span className="text-[10px] font-mono opacity-50 tracking-widest hidden md:block">CAREER_LOG</span>
+                                    </div>
+                                    
                                     <div className="space-y-6">
-                                        <div className="border-l-2 pl-6 py-2" style={{ borderColor: `${accentColor}40` }}>
+                                        <div className="border-l-2 pl-6 py-2 relative" style={{ borderColor: `${accentColor}40` }}>
+                                            <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></div>
                                             <div className="flex justify-between items-start mb-2">
                                                 <div>
                                                     <h4 className="text-lg font-bold">Data Analyst</h4>
                                                     <p className="text-sm text-white/70">HNG Tech Internship</p>
                                                 </div>
-                                                <span className="text-xs text-white/50 font-mono">3 months</span>
+                                                <span className="text-xs text-white/50 font-mono border px-2 py-1 rounded" style={{ borderColor: `${accentColor}30` }}>2024</span>
                                             </div>
-                                            <p className="text-sm text-white/80 leading-relaxed">
+                                            <p className="text-sm text-white/80 leading-relaxed max-w-3xl">
                                                 Performed comprehensive data analysis, created visualizations, and generated actionable insights from large datasets. Built dashboards and reports for stakeholder decision-making.
                                             </p>
                                         </div>
@@ -895,14 +907,14 @@ export const MainPortfolio: React.FC = () => {
                             <div className="text-center">
                                 <button
                                     onClick={() => navigateToLayer('projects')}
-                                    className="border px-6 py-3 transition-all inline-flex items-center gap-2 hover:shadow-lg hover:-translate-y-1"
+                                    className="border px-6 py-3 transition-all inline-flex items-center gap-2 hover:shadow-lg hover:-translate-y-1 group"
                                     style={{ 
                                         borderColor: accentColor,
                                         backgroundColor: colorMode ? accentColor : 'transparent'
                                     }}
                                 >
                                     <span className="text-xs uppercase tracking-wider">View Projects</span>
-                                    <ChevronDown className="h-4 w-4" />
+                                    <ChevronDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
                                 </button>
                             </div>
                         </div>

@@ -21,7 +21,7 @@ export const MobileRender: React.FC = () => {
         name: "Michael Tunwashe",
         title: "Data Scientist",
         tagline: "Data Scientist | Lagos, Nigeria | +234-704-102-9093 | motrenewed@gmail.com | linkedin.com/in/tadstech | github.com/tadstech",
-        summary: "FullStack Data Scientist with 2 years of Python experience specializing in end-to-end data solutions from ETL pipeline development to ML model deployment. Expert in data engineering, automated workflows, and production-ready analytics systems. Combines deep technical expertise in data processing with full-stack development capabilities for comprehensive data-driven solutions.",
+        summary: "FullStack Data Scientist with 2 years of Python experience specializing in end-to-end data solutions from Machine Learning Engineering to ETL pipeline development and deployment. Worked on projects in data engineering, automated workflows, AI and ML engineering, kaggle competitions and production-ready analytics systems.",
         contact: {
             email: "motrenewed@gmail.com",
             phone: "+234-704-102-9093",
@@ -30,21 +30,9 @@ export const MobileRender: React.FC = () => {
             location: "Lagos, Nigeria"
         },
         skills: {
-            dataScience: [
-                "Python (pandas, NumPy, scikit-learn, SQLAlchemy)",
-                "ETL Pipeline Development & Data Engineering",
-                "SQL (PostgreSQL, MySQL) & Database Management",
-                "Statistical Analysis & Predictive Modeling",
-                "Docker, Containerization & Deployment",
-                "Data Visualization (Plotly, Metabase, Dash)"
-            ],
-            development: [
-                "React, TypeScript, Next.js",
-                "FastAPI, REST APIs & Microservices",
-                "Docker & Container Orchestration",
-                "Git, CI/CD & DevOps Practices",
-                "Database Administration & Optimization"
-            ]
+            dataML: ['Python', 'Pandas', 'Scikit-Learn', 'SQL', 'TensorFlow', 'Jupyter'],
+            fullStack: ['React', 'TypeScript', 'Node.js', 'Tailwind', 'Vite', 'Firebase'],
+            systemsOps: ['Docker', 'Git', 'Linux', 'CI/CD', 'Bash', 'APIs']
         },
         education: {
             degree: "BSc Mathematics",
@@ -55,40 +43,38 @@ export const MobileRender: React.FC = () => {
         projects: [
             {
                 name: "Brazilian Retail Intelligence System (BRIS)",
-                period: "Nov 2025 - Present",
+                period: "Q4 2025",
                 emoji: "🇧🇷",
                 type: "Enterprise Data Engineering & BI Solution",
                 description: "Comprehensive end-to-end Data Engineering and Business Intelligence platform combining raw data extraction, transformation, synthetic data generation, REST API development, and interactive React frontend visualization for retail analytics.",
                 highlights: [
-                    "Designed modular microservices architecture with dual-environment ETL pipeline (Local SQLAlchemy + Production Supabase)",
-                    "Implemented intelligent synthetic data generation (OrderGen) using Markov Chains for NLP-powered Portuguese review generation",
-                    "Built FastAPI backend with asynchronous processing for long-running data operations and incremental data loading",
-                    "Created robust PostgreSQL schema with automated migrations, foreign keys, and row-level security (RLS)",
-                    "Developed React + TypeScript dashboard with interactive visualizations for Revenue, Customer Behavior, and Logistics metrics",
-                    "Containerized entire application stack with Docker for production deployment and development consistency"
+                    "Designed modular microservices architecture with dual-environment ETL pipeline",
+                    "Implemented intelligent synthetic data generation (OrderGen) using Markov Chains",
+                    "Built FastAPI backend with asynchronous processing for long-running data operations",
+                    "Created robust PostgreSQL schema with automated migrations and RLS",
+                    "Developed React + TypeScript dashboard with interactive visualizations"
                 ],
-                tech: ["Python", "FastAPI", "PostgreSQL", "Supabase", "Docker", "React", "TypeScript", "Pandas", "Markov Chains"],
-                url: ""
+                tech: ['Python', 'FastAPI', 'PostgreSQL', 'Supabase', 'Docker', 'React', 'TypeScript', 'Markov Chains'],
+                url: "https://brazilian-retail-intelligence-syste.vercel.app"
             },
             {
                 name: "SalesScope Dashboard",
-                period: "Jun 2025 -- Aug 2025",
+                period: "Q3 2025",
                 emoji: "📊",
                 type: "End-to-End Sales Analytics Platform",
                 description: "End-to-end sales analytics platform with automated ETL pipelines, data validation, and interactive visualizations. Built complete data processing workflows from raw sales data to actionable business insights.",
                 highlights: [
-                    "Designed and implemented automated ETL pipelines for 6+ months of sales data processing",
+                    "Designed and implemented automated ETL pipelines for sales data processing",
                     "Built data validation and cleaning workflows using Python and pandas",
                     "Created interactive dashboard with React and TypeScript for stakeholder reporting",
-                    "Optimized SQL queries for efficient data extraction and transformation",
-                    "Delivered actionable insights that improved sales strategy and performance tracking"
+                    "Optimized SQL queries for efficient data extraction and transformation"
                 ],
-                tech: ["Python", "pandas", "SQL", "React", "PlotlyJs", "TailwindCSS"],
+                tech: ['Python', 'pandas', 'SQL', 'React', 'PlotlyJs', 'TailwindCSS'],
                 url: "https://salesscope.web.app"
             },
             {
                 name: "Mini Data Manim",
-                period: "Aug 2025 - Oct 2025",
+                period: "Q4 2025",
                 emoji: "🗃️",
                 type: "Advanced Data Manipulation Platform",
                 description: "Browser-based data manipulation platform with advanced statistical operations, data transformation pipelines, and dynamic visualization engine. Handles complex data workflows without external dependencies.",
@@ -96,15 +82,14 @@ export const MobileRender: React.FC = () => {
                     "Developed web-based platform for complex data manipulation with Excel-like functionality",
                     "Implemented advanced statistical operations including data transformation pipelines",
                     "Built dynamic visualization engine using Plotly.js with support for multiple chart types",
-                    "Created multi-sheet workbook functionality with inline editing and data validation",
                     "Optimized browser performance for handling large datasets without backend dependencies"
                 ],
-                tech: ["React", "TypeScript", "exceljs", "PlotlyJs", "Statistical Libraries"],
+                tech: ['React', 'TypeScript', 'exceljs', 'PlotlyJs', 'Statistical Libraries'],
                 url: "https://minidatamanim.web.app"
             },
             {
                 name: "Financial News Classifier",
-                period: "Oct 2025 - Nov 2025",
+                period: "Q4 2025",
                 emoji: "📰",
                 type: "Production ML Pipeline",
                 description: "Production-ready ML pipeline for financial sentiment analysis with automated model serving, batch processing capabilities, and real-time inference API. Deployed with containerized microservices architecture.",
@@ -112,15 +97,14 @@ export const MobileRender: React.FC = () => {
                     "Built production ML pipeline using FinBERT model for financial sentiment analysis",
                     "Achieved ~80% accuracy in classifying financial news as Bullish, Bearish, or Neutral",
                     "Implemented containerized microservices architecture with Docker for scalable deployment",
-                    "Developed real-time inference API with FastAPI and batch processing capabilities",
-                    "Created automated model serving pipeline with confidence metrics and monitoring"
+                    "Developed real-time inference API with FastAPI and batch processing capabilities"
                 ],
-                tech: ["Python", "FinBERT", "FastAPI", "Docker", "Hugging Face", "React"],
+                tech: ['Python', 'FinBERT', 'FastAPI', 'Docker', 'Hugging Face', 'React'],
                 url: "https://tadstech.github.io/financial-news-classifier"
             },
             {
                 name: "NaijaEconoDash",
-                period: "Nov 2025",
+                period: "Q4 2025",
                 emoji: "🇳🇬",
                 type: "Real-time Economic Data Pipeline",
                 description: "Real-time economic data pipeline with automated data ingestion, transformation, and visualization. Processes multiple data sources with scheduled ETL jobs and interactive dashboard deployment.",
@@ -128,23 +112,21 @@ export const MobileRender: React.FC = () => {
                     "Built automated data ingestion pipeline for multiple economic data sources",
                     "Implemented scheduled ETL jobs for real-time data processing and transformation",
                     "Created interactive dashboard using Plotly Dash for economic indicator visualization",
-                    "Designed data pipeline architecture for handling time-series economic data",
-                    "Deployed scalable dashboard with automated data refresh and monitoring"
+                    "Designed data pipeline architecture for handling time-series economic data"
                 ],
-                tech: ["Python", "pandas", "Requests", "PlotlyDash", "Data Pipeline", "Scheduling"],
+                tech: ['Python', 'pandas', 'Requests', 'PlotlyDash', 'Data Pipeline', 'Scheduling'],
                 url: "https://naija-econo-plotlydash.onrender.com"
             }
         ],
         experience: [
             {
-                title: "Data Analyst Intern",
-                period: "Aug 2025 - Nov 2025",
-                company: "HNG Tech",
+                title: "Data Analyst",
+                period: "2024 (3 months)",
+                company: "HNG Tech Internship",
                 emoji: "📈",
                 highlights: [
-                    "Performed data cleaning, transformation, and exploratory analysis on business datasets",
-                    "Created SQL queries for reporting and automated data extraction",
-                    "Built business intelligence reports using Metabase and Plotly dash"
+                    "Performed comprehensive data analysis, created visualizations, and generated actionable insights from large datasets",
+                    "Built dashboards and reports for stakeholder decision-making"
                 ]
             }
         ],
@@ -204,20 +186,34 @@ export const MobileRender: React.FC = () => {
         "skills.init()": () => (
             <div className="space-y-5">
                 <div className="border-l-4 border-blue-500 pl-4">
-                    <p className="mb-3 text-blue-400 font-bold">Data Science & Analytics:</p>
-                    <ul className="ml-4 space-y-1">
-                        {cvData.skills.dataScience.map((skill, i) => (
-                            <li key={i} className="text-neutral-300">→ {skill}</li>
+                    <p className="mb-3 text-blue-400 font-bold">Data & ML Engineering:</p>
+                    <div className="flex flex-wrap gap-2">
+                        {cvData.skills.dataML.map((skill, i) => (
+                            <span key={i} className="text-xs border border-blue-500/30 px-2 py-1 rounded text-neutral-300">
+                                {skill}
+                            </span>
                         ))}
-                    </ul>
+                    </div>
                 </div>
                 <div className="border-l-4 border-purple-500 pl-4">
-                    <p className="mb-3 text-purple-400 font-bold">Web Development:</p>
-                    <ul className="ml-4 space-y-1">
-                        {cvData.skills.development.map((skill, i) => (
-                            <li key={i} className="text-neutral-300">→ {skill}</li>
+                    <p className="mb-3 text-purple-400 font-bold">Full Stack Development:</p>
+                    <div className="flex flex-wrap gap-2">
+                        {cvData.skills.fullStack.map((skill, i) => (
+                            <span key={i} className="text-xs border border-purple-500/30 px-2 py-1 rounded text-neutral-300">
+                                {skill}
+                            </span>
                         ))}
-                    </ul>
+                    </div>
+                </div>
+                <div className="border-l-4 border-green-500 pl-4">
+                    <p className="mb-3 text-green-400 font-bold">Systems & Ops:</p>
+                    <div className="flex flex-wrap gap-2">
+                        {cvData.skills.systemsOps.map((skill, i) => (
+                            <span key={i} className="text-xs border border-green-500/30 px-2 py-1 rounded text-neutral-300">
+                                {skill}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
         ),
