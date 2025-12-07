@@ -7,6 +7,7 @@ import { MobileRender } from './mobile/mobileRender';
 import { MainPortfolio } from './pages/MainPortfolio';
 import { Challenge } from './pages/Challenge';
 import { MLShowcase } from './pages/MLShowcase';
+import { Writing } from './pages/Writing';
 
 export default function App() {
     useScrollbarStyles({ hideScrollbar: true });
@@ -45,6 +46,7 @@ export default function App() {
                 <Route path="/" element={<MainPortfolio />} />
                 <Route path="/challenge" element={<Challenge />} />
                 <Route path="/ml-showcase" element={<MLShowcase />} />
+                <Route path="/writing" element={<Writing />} />
                 <Route 
                     path="/terminal" 
                     element={
@@ -61,7 +63,6 @@ export default function App() {
                         )
                     } 
                 />
-                <Route path="/challenge" element={<Challenge />} />
             </Routes>
         </div>
     );

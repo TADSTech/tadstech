@@ -1,0 +1,52 @@
+[
+  {
+    "id": "30days-001",
+    "title": "30 Days of Datasets: Challenge Complete",
+    "excerpt": "From data cleaning to production-ready ML pipelines—29 days of pushing boundaries",
+    "content": "It's been about 29 days since I began a journey I knew would stretch me in all the right ways. From data cleaning to ensemble voting classifiers—and even squeezing in a Kaggle competition (which I picked up a bronze medal in, by the way)—these last few weeks have been packed.\n\nThe 30 Days of Datasets challenge has been a wild ride. My posting wasn't always consistent (side projects, life, and general busyness), but the streak stayed alive… and today, the challenge is officially complete.\n\nThis final stretch has been the most intense: large datasets, deeper EDA, ensemble models, and pushing myself to build something closer to \"production-ready\" than anything I've done in a challenge before.\n\nBelow are the highlights—including the full breakdown of Day 30, which features global health data, extensive visualizations, and a fully serialized ML pipeline.\n\nCheck out the GitHub repo:\nhttps://github.com/tadstech/30-days-of-datasets",
+    "timestamp": "2025-11-25T18:19:56",
+    "category": "blog",
+    "readTime": 3,
+    "tags": ["30-days-challenge", "machine-learning", "data-science", "kaggle", "ensemble-models"]
+  },
+  {
+    "id": "growth-001",
+    "title": "On Building Systems and Building Self",
+    "excerpt": "Why I think about personal growth like I think about code",
+    "content": "There's something profound about building systems that work at scale. You break problems down, debug each piece, and eventually have something that works well.\n\nI wonder if we should approach ourselves the same way.\n\nThe systems we build in code reflect the systems we build in our minds. Clean architecture doesn't happen by accident. And resilience comes from testing edge cases until nothing breaks.\n\nSo when I struggle with consistency, I ask: what's the bug in my system? What edge case am I not handling?\n\nI've learned that growth isn't about willpower. It's about building better systems. Better habits are just well-architected routines. Better relationships need clear communication.\n\nTonight, I'm grateful for code that taught me to think systematically about my life.",
+    "timestamp": "2025-12-01T22:30:00",
+    "category": "reflection",
+    "readTime": 2,
+    "tags": ["growth", "systems-thinking", "philosophy"]
+  },
+  {
+    "id": "data-001",
+    "title": "The Poetry of Data Pipelines",
+    "excerpt": "Finding beauty in clean data architecture",
+    "content": "Most people see data pipelines as just infrastructure. But I see poetry in them.\n\nThere's a rhythm to well-designed ETL. Ingestion flows into transformation, which feeds into analysis. Each stage has purpose. Each data point has a journey.\n\nWhen everything clicks and data flows from raw input to insight, that's not just engineering. That's beautiful.\n\nThe best pipelines are like haikus: stripped of everything unnecessary, precisely structured, yet profound in simplicity.\n\nI think about the data flowing through systems I build. Sensor readings. Transactions. User behaviors. Each represents something real. Processing it well is an act of respect.\n\nBad design wastes compute and signal. So I obsess over error handling, logging, and optimization. Because working with data isn't just technical skill. It's a responsibility to the stories your data can tell.",
+    "timestamp": "2025-11-28T19:15:00",
+    "category": "blog",
+    "readTime": 2,
+    "tags": ["data-engineering", "philosophy"]
+  },
+  {
+    "id": "poem-001",
+    "title": "Code and Chaos",
+    "excerpt": "Where logic meets the formless void",
+    "content": "Lines of logic in the darkness,\nA structure against the formless void.\nEach function a small prayer,\nEach variable a name given to chaos.\n\nThe compiler speaks in warnings,\nGentle insistence on precision.\nThe way a mentor corrects,\nNot with anger but with evidence of what breaks.\n\nI write and rewrite, search and replace.\nDebugging the gap between thought and execution.\nIt's not so different from living,\nThis constant refinement of intention.\n\nAnd when the code runs clean,\nWhen output matches expectation,\nThere's a moment, brief as breath,\nWhere order and possibility align.\n\nTomorrow there will be bugs.\nNew requirements will demand change.\nBut tonight, the system works.\nAnd in that working, I find peace.",
+    "timestamp": "2025-11-25T21:45:00",
+    "category": "poem",
+    "readTime": 2,
+    "tags": ["poetry", "code"]
+  },
+  {
+    "id": "note-001",
+    "title": "On Consistency and Progress",
+    "excerpt": "Building momentum through daily work",
+    "content": "Progress isn't explosive. It's incremental. It's the 1% better every day that compounds into mastery over months.\n\nThe best engineers I know don't code 12 hours in a sprint. They code consistently. Same time, every day. They build the way they're built—through repetition and refinement.\n\nI'm learning this with my craft. Writing code. Writing these thoughts. Building systems.\n\nConsistency beats intensity. Process beats heroics. Daily work beats the dramatic breakthrough.\n\nThis is a note to myself: trust the system. Show up daily. Let the work accumulate.\n\nThat's how empires are built. Not in days, but in decades of showing up.",
+    "timestamp": "2025-11-22T18:00:00",
+    "category": "note",
+    "readTime": 1,
+    "tags": ["consistency", "progress"]
+  }
+]

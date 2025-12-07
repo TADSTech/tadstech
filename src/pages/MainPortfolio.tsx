@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Terminal, ChevronDown, Database, Code, BarChart3, TrendingUp, Github, Mail, Linkedin, ExternalLink, Palette, Cpu, FileCode, Wrench, PieChart, Briefcase } from 'lucide-react';
+import { Terminal, ChevronDown, Database, Code, BarChart3, TrendingUp, Github, Mail, Linkedin, ExternalLink, Palette, Cpu, FileCode, Wrench, PieChart, Briefcase, Feather } from 'lucide-react';
 
 type Layer = 'hero' | 'stats' | 'skills' | 'projects' | 'contact';
 
@@ -176,6 +176,15 @@ export const MainPortfolio: React.FC = () => {
                         >
                             <Cpu className="h-4 w-4" />
                             <span className="text-xs uppercase tracking-wider hidden sm:inline">ML Demo</span>
+                        </button>
+
+                        <button
+                            onClick={() => navigate('/writing')}
+                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg"
+                            style={{ borderColor: accentColor }}
+                        >
+                            <Feather className="h-4 w-4" />
+                            <span className="text-xs uppercase tracking-wider hidden sm:inline">Writing</span>
                         </button>
                     </div>
                     
