@@ -18,7 +18,7 @@ interface ChallengeDay {
 export const Challenge: React.FC = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
-    const [loadingStep, setLoadingStep] = useState(0);
+    const [loadingProgress, setLoadingProgress] = useState(0);
     const [colorMode, setColorMode] = useState(() => {
         const saved = localStorage.getItem('tadstech-theme');
         return saved ? saved === 'blue' : false;
@@ -27,23 +27,24 @@ export const Challenge: React.FC = () => {
     const [autoSwapInterval, setAutoSwapInterval] = useState<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
-        const steps = [
-            { time: 500, action: () => setLoadingStep(1) },
-            { time: 700, action: () => setLoadingStep(2) },
-            { time: 1200, action: () => setLoadingStep(3) },
-            { time: 1400, action: () => setLoadingStep(4) },
-            { time: 700, action: () => setIsLoading(false) }
-        ];
+        const progressInterval = setInterval(() => {
+            setLoadingProgress(prev => {
+                if (prev < 90) {
+                    return prev + Math.random() * 30;
+                }
+                return prev;
+            });
+        }, 1000);
 
-        let currentTimeout: NodeJS.Timeout;
-        let accumulatedTime = 0;
+        const completeTimer = setTimeout(() => {
+            setLoadingProgress(100);
+            setTimeout(() => setIsLoading(false), 300);
+        }, 1500);
 
-        steps.forEach(step => {
-            accumulatedTime += step.time;
-            currentTimeout = setTimeout(step.action, accumulatedTime);
-        });
-
-        return () => clearTimeout(currentTimeout);
+        return () => {
+            clearInterval(progressInterval);
+            clearTimeout(completeTimer);
+        };
     }, []);
 
     const challengeDays: ChallengeDay[] = [
@@ -495,42 +496,18 @@ export const Challenge: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-black text-white font-mono overflow-x-hidden relative">
-            {/* Loading Overlay */}
-            <div 
-                className={`fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center transition-opacity duration-1000 ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-            >
-                <div className="w-full max-w-md p-8 space-y-4">
-                    <div className="flex items-center gap-2 text-white mb-8">
-                        <div className="w-3 h-3 bg-white animate-pulse"></div>
-                        <span className="text-sm tracking-widest">SYSTEM INITIALIZATION</span>
-                    </div>
-                    
-                    <div className="space-y-2 font-mono text-sm">
-                        <div className={`transition-opacity duration-300 ${loadingStep >= 0 ? 'opacity-100' : 'opacity-0'}`}>
-                            <span className="text-gray-500">{'>'}</span> ESTABLISHING SECURE CONNECTION... <span className="text-white font-bold">OK</span>
-                        </div>
-                        <div className={`transition-opacity duration-300 ${loadingStep >= 1 ? 'opacity-100' : 'opacity-0'}`}>
-                            <span className="text-gray-500">{'>'}</span> LOADING DATASETS [1-30]... <span className="text-white font-bold">COMPLETE</span>
-                        </div>
-                        <div className={`transition-opacity duration-300 ${loadingStep >= 2 ? 'opacity-100' : 'opacity-0'}`}>
-                            <span className="text-gray-500">{'>'}</span> ANALYZING PROGRESSION METRICS... <span className="text-white font-bold">DONE</span>
-                        </div>
-                        <div className={`transition-opacity duration-300 ${loadingStep >= 3 ? 'opacity-100' : 'opacity-0'}`}>
-                            <span className="text-gray-500">{'>'}</span> CONFIGURING ENSEMBLE MODELS... <span className="text-white font-bold">READY</span>
-                        </div>
-                        <div className={`transition-opacity duration-300 ${loadingStep >= 4 ? 'opacity-100' : 'opacity-0'}`}>
-                            <span className="text-gray-500">{'>'}</span> LAUNCHING INTERFACE...
-                        </div>
-                    </div>
-
-                    <div className="h-1 w-full bg-gray-900 mt-8 overflow-hidden">
-                        <div 
-                            className="h-full bg-white transition-all duration-[3000ms] ease-out"
-                            style={{ width: isLoading ? '100%' : '100%' }}
-                        ></div>
-                    </div>
+            {/* Loading Bar */}
+            {isLoading && (
+                <div className="fixed bottom-0 left-0 right-0 h-1 bg-gray-900 z-[100]">
+                    <div 
+                        className="h-full transition-all duration-300 ease-out"
+                        style={{ 
+                            width: `${loadingProgress}%`,
+                            backgroundColor: colorMode ? '#0ea5e9' : '#28333F'
+                        }}
+                    ></div>
                 </div>
-            </div>
+            )}
 
             <div className="fixed inset-0 opacity-5 pointer-events-none">
                 <div className="absolute inset-0" style={{
@@ -580,6 +557,55 @@ export const Challenge: React.FC = () => {
             </nav>
 
             <div className="pt-24 pb-16 px-4">
+                {isLoading ? (
+                    // Skeleton Loading State
+                    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12">
+                        {/* Sidebar Skeleton */}
+                        <div className="hidden lg:block relative">
+                            <div className="sticky top-24 space-y-8">
+                                <div className="border p-6 animate-pulse" style={{ borderColor: `${accentColor}20` }}>
+                                    <div className="h-6 bg-gray-800 rounded w-32 mb-4"></div>
+                                    <div className="space-y-2">
+                                        <div className="h-32 bg-gray-800 rounded"></div>
+                                    </div>
+                                </div>
+                                <div className="border p-6 animate-pulse" style={{ borderColor: `${accentColor}20` }}>
+                                    <div className="h-6 bg-gray-800 rounded w-32 mb-4"></div>
+                                    <div className="space-y-3">
+                                        {[1, 2, 3].map(i => (
+                                            <div key={i} className="h-4 bg-gray-800 rounded"></div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Main Content Skeleton */}
+                        <div className="space-y-12">
+                            <div className="border p-8 md:p-12 animate-pulse" style={{ borderColor: `${accentColor}20` }}>
+                                <div className="h-12 bg-gray-800 rounded w-64 mb-4"></div>
+                                <div className="h-1 w-48 bg-gray-800 rounded mb-4"></div>
+                                <div className="space-y-3">
+                                    <div className="h-4 bg-gray-800 rounded w-full"></div>
+                                    <div className="h-4 bg-gray-800 rounded w-3/4"></div>
+                                </div>
+                            </div>
+                            <div className="space-y-4">
+                                {[1, 2, 3].map(i => (
+                                    <div key={i} className="border p-6 animate-pulse" style={{ borderColor: `${accentColor}20` }}>
+                                        <div className="h-6 bg-gray-800 rounded w-48 mb-3"></div>
+                                        <div className="space-y-2">
+                                            <div className="h-3 bg-gray-800 rounded w-full"></div>
+                                            <div className="h-3 bg-gray-800 rounded w-5/6"></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    // Main Content
+                    <>
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12">
                     
                     {/* Left Sidebar - Desktop Only */}
@@ -852,6 +878,8 @@ export const Challenge: React.FC = () => {
                         </div>
                     </div>
                 </div>
+                    </>
+                )}
             </div>
         </div>
     );
