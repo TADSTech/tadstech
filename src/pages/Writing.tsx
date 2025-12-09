@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Heart, Share2, Calendar, Clock, Eye, Palette, Download, Copy, X } from 'lucide-react';
 import html2pdf from 'html2pdf.js';
 import writeupData from '../data/writeups.json';
@@ -212,6 +213,40 @@ export const Writing: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-black text-white font-mono overflow-x-hidden relative" style={{ color: 'white' }}>
+            <Helmet>
+                {selectedWriteup ? (
+                    <>
+                        <title>{selectedWriteup.title} | TADS Writing</title>
+                        <meta name="description" content={selectedWriteup.excerpt} />
+                        <meta name="keywords" content={selectedWriteup.tags.join(', ')} />
+                        <meta name="author" content="Michael Tunwashe" />
+                        <meta property="og:title" content={selectedWriteup.title} />
+                        <meta property="og:description" content={selectedWriteup.excerpt} />
+                        <meta property="og:url" content={`${window.location.origin}/writing?writeup=${selectedWriteup.id}`} />
+                        <meta property="og:type" content="article" />
+                        <meta name="twitter:title" content={selectedWriteup.title} />
+                        <meta name="twitter:description" content={selectedWriteup.excerpt} />
+                        <meta name="article:author" content="Michael Tunwashe" />
+                        <meta name="article:published_time" content={new Date(selectedWriteup.timestamp).toISOString()} />
+                        <meta name="article:tag" content={selectedWriteup.tags.join(', ')} />
+                        <link rel="canonical" href={`${window.location.origin}/writing?writeup=${selectedWriteup.id}`} />
+                    </>
+                ) : (
+                    <>
+                        <title>Writing | TADS Portfolio</title>
+                        <meta name="description" content="A collection of thoughts, poems, and reflections on data science, engineering, and personal growth." />
+                        <meta name="keywords" content="writing, blog, poetry, data science, engineering, reflections" />
+                        <meta name="author" content="Michael Tunwashe" />
+                        <meta property="og:title" content="Writing | TADS Portfolio" />
+                        <meta property="og:description" content="A collection of thoughts, poems, and reflections on data science, engineering, and personal growth." />
+                        <meta property="og:url" content={`${window.location.origin}/writing`} />
+                        <meta property="og:type" content="website" />
+                        <meta name="twitter:title" content="Writing | TADS Portfolio" />
+                        <meta name="twitter:description" content="A collection of thoughts, poems, and reflections on data science, engineering, and personal growth." />
+                        <link rel="canonical" href={`${window.location.origin}/writing`} />
+                    </>
+                )}
+            </Helmet>
             {/* Background grid */}
             <div className="fixed inset-0 opacity-5 pointer-events-none">
                 <div className="absolute inset-0" style={{
