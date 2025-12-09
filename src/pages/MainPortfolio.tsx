@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Terminal, ChevronDown, Database, Code, BarChart3, TrendingUp, Github, Mail, Linkedin, ExternalLink, Palette, Cpu, FileCode, Wrench, PieChart, Briefcase, Feather } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { ChevronDown, Database, Code, Github, Mail, Linkedin, ExternalLink, Palette, Briefcase, Cpu, Feather } from 'lucide-react';
 
-type Layer = 'hero' | 'stats' | 'skills' | 'projects' | 'contact';
+type Layer = 'hero' | 'experience' | 'projects' | 'contact';
 
 export const MainPortfolio: React.FC = () => {
     const navigate = useNavigate();
     const [currentLayer, setCurrentLayer] = useState<Layer>('hero');
     const [isAnimating, setIsAnimating] = useState(false);
-    const [statsAnimated, setStatsAnimated] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [displayText, setDisplayText] = useState('');
     const [colorMode, setColorMode] = useState(() => {
@@ -38,12 +38,6 @@ export const MainPortfolio: React.FC = () => {
             return () => clearInterval(timer);
         }
     }, [currentLayer]);
-
-    useEffect(() => {
-        if (currentLayer === 'stats' && !statsAnimated) {
-            setStatsAnimated(true);
-        }
-    }, [currentLayer, statsAnimated]);
 
     useEffect(() => {
         return () => {
@@ -128,6 +122,24 @@ export const MainPortfolio: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-black text-white font-mono overflow-x-hidden relative">
+            <Helmet>
+                <title>Michael Tunwashe | Junior ML Engineer & Python Data Engineer</title>
+                <meta name="description" content="Junior Machine Learning & Data Engineering practitioner with strong Python skills. Building ETL workflows, ML models, and data pipelines. BSc Mathematics student at University of Lagos." />
+                <meta name="keywords" content="Michael Tunwashe, TADS, Junior ML Engineer, Data Engineer, Python Developer, Machine Learning, ETL Workflows, PyTorch, FastAPI, Docker, Data Analysis, Lagos, Nigeria, University of Lagos, Data Science" />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://tadstech.web.app/" />
+                <meta property="og:title" content="Michael Tunwashe | Junior ML Engineer & Python Data Engineer" />
+                <meta property="og:description" content="Junior Machine Learning & Data Engineering practitioner with strong Python skills. Building ETL workflows, ML models, and data pipelines." />
+                <meta property="og:image" content="https://tadstech.web.app/logo.png" />
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content="https://tadstech.web.app/" />
+                <meta property="twitter:title" content="Michael Tunwashe | Junior ML Engineer & Python Data Engineer" />
+                <meta property="twitter:description" content="Junior Machine Learning & Data Engineering practitioner with strong Python skills. Building ETL workflows, ML models, and data pipelines." />
+                <meta property="twitter:image" content="https://tadstech.web.app/logo.png" />
+                <meta name="author" content="Michael Tunwashe" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="canonical" href="https://tadstech.web.app/" />
+            </Helmet>
             <div className="fixed inset-0 opacity-5 pointer-events-none">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, ${accentColor} 2px, ${accentColor} 4px)`,
@@ -139,17 +151,8 @@ export const MainPortfolio: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <button
-                            onClick={() => navigate('/terminal')}
-                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg"
-                            style={{ borderColor: accentColor }}
-                        >
-                            <Terminal className="h-4 w-4" />
-                            <span className="text-xs uppercase tracking-wider hidden sm:inline">Terminal</span>
-                        </button>
-
-                        <button
                             onClick={handleThemeClick}
-                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative"
+                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative cursor-pointer"
                             style={{ 
                                 borderColor: accentColor,
                                 backgroundColor: colorMode ? accentColor : 'transparent'
@@ -163,17 +166,8 @@ export const MainPortfolio: React.FC = () => {
                         </button>
 
                         <button
-                            onClick={() => navigate('/ml-showcase')}
-                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg"
-                            style={{ borderColor: accentColor }}
-                        >
-                            <Cpu className="h-4 w-4" />
-                            <span className="text-xs uppercase tracking-wider hidden sm:inline">ML Demo</span>
-                        </button>
-
-                        <button
                             onClick={() => navigate('/writing')}
-                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg"
+                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg cursor-pointer"
                             style={{ borderColor: accentColor }}
                         >
                             <Feather className="h-4 w-4" />
@@ -182,11 +176,11 @@ export const MainPortfolio: React.FC = () => {
                     </div>
                     
                     <div className="hidden md:flex gap-2">
-                        {(['hero', 'stats', 'skills', 'projects', 'contact'] as Layer[]).map((layer) => (
+                        {(['hero', 'experience', 'projects', 'contact'] as Layer[]).map((layer) => (
                             <button
                                 key={layer}
                                 onClick={() => navigateToLayer(layer)}
-                                className="px-3 py-1.5 text-xs uppercase tracking-wider transition-all hover:shadow-lg"
+                                className="px-3 py-1.5 text-xs uppercase tracking-wider transition-all hover:shadow-lg cursor-pointer"
                                 style={{
                                     backgroundColor: currentLayer === layer ? accentColor : 'transparent',
                                     color: 'white',
@@ -200,10 +194,9 @@ export const MainPortfolio: React.FC = () => {
 
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="md:hidden flex items-center gap-2 text-white border px-3 py-1.5"
+                        className="md:hidden flex items-center gap-2 text-white border px-3 py-1.5 cursor-pointer"
                         style={{ borderColor: accentColor }}
                     >
-                        <Terminal className="h-4 w-4" />
                         <span className="text-xs uppercase tracking-wider">Menu</span>
                     </button>
                 </div>
@@ -234,14 +227,14 @@ export const MainPortfolio: React.FC = () => {
                             </div>
 
                             <div className="grid grid-cols-2 gap-2 mb-3">
-                                {(['hero', 'stats', 'skills', 'projects', 'contact'] as Layer[]).map((layer, idx) => (
+                                {(['hero', 'experience', 'projects', 'contact'] as Layer[]).map((layer, idx) => (
                                     <button
                                         key={layer}
                                         onClick={() => {
                                             navigateToLayer(layer);
                                             setMobileMenuOpen(false);
                                         }}
-                                        className="relative group overflow-hidden px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono"
+                                        className="relative group overflow-hidden px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono cursor-pointer"
                                         style={{
                                             backgroundColor: currentLayer === layer ? `${accentColor}20` : 'transparent',
                                             border: `1px solid ${currentLayer === layer ? accentColor : `${accentColor}40`}`,
@@ -266,28 +259,8 @@ export const MainPortfolio: React.FC = () => {
 
                             <div className="border-t pt-3 space-y-2" style={{ borderColor: `${accentColor}40` }}>
                                 <button
-                                    onClick={() => navigate('/ml-showcase')}
-                                    className="w-full px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono flex items-center justify-between group relative overflow-hidden"
-                                    style={{
-                                        backgroundColor: 'transparent',
-                                        border: `1px solid ${accentColor}`
-                                    }}
-                                >
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                                    <div className="flex items-center gap-3">
-                                        <Cpu className="h-4 w-4" />
-                                        <div className="text-left">
-                                            <div className="text-xs">ML_PIPELINE_DEMO</div>
-                                            <div className="text-[8px] text-white/50">Interactive Visualization</div>
-                                        </div>
-                                    </div>
-                                </button>
-
-                                <button
-                                    onClick={() => {
-                                        handleThemeClick();
-                                    }}
-                                    className="w-full px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono flex items-center justify-between group relative overflow-hidden"
+                                    onClick={() => handleThemeClick()}
+                                    className="w-full px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono flex items-center justify-between group relative overflow-hidden cursor-pointer"
                                     style={{
                                         backgroundColor: colorMode ? `${accentColor}20` : 'transparent',
                                         border: `1px solid ${accentColor}`
@@ -362,7 +335,7 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="h-px w-40 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
                                         
                                         <p className="text-sm md:text-base text-white/80 max-w-3xl mx-auto leading-relaxed">
-                                            Junior Machine Learning & Data Engineering practitioner with strong <span style={{ color: colorMode ? accentColor : 'white' }}>Python skills</span> and hands-on experience building end-to-end data and analytics projects. Skilled in Pandas, PyTorch, SQL, and API development, with growing experience in <span style={{ color: colorMode ? accentColor : 'white' }}>ETL workflows, deployment, and financial data analysis</span>. Currently pursuing a B.Sc. in Mathematics.
+                                            Junior ML Engineer & Data Engineering practitioner. Building end-to-end data solutions with Python, PyTorch, SQL, and FastAPI. Interested in ML Engineering, Data Engineering, and Finance.
                                         </p>
                                     </div>
 
@@ -394,7 +367,7 @@ export const MainPortfolio: React.FC = () => {
                                                 target={label !== 'Email' ? '_blank' : undefined}
                                                 rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
                                                 aria-label={label}
-                                                className="p-2 hover:opacity-80 transition-all border hover:shadow-lg hover:-translate-y-1"
+                                                className="p-2 hover:opacity-80 transition-all border hover:shadow-lg hover:-translate-y-1 cursor-pointer"
                                                 style={{ borderColor: accentColor }}
                                             >
                                                 <Icon className="h-5 w-5" />
@@ -403,10 +376,9 @@ export const MainPortfolio: React.FC = () => {
                                     </div>
 
                                     <div className="pt-4">
-                                        <a
-                                            href="/cv/tadscvIMP.pdf"
-                                            download
-                                            className="inline-flex items-center gap-2 border px-6 py-2.5 hover:shadow-lg transition-all text-xs uppercase tracking-wider hover:-translate-y-1"
+                                        <button
+                                            onClick={() => navigate('/cv')}
+                                            className="inline-flex items-center gap-2 border px-6 py-2.5 hover:shadow-lg transition-all text-xs uppercase tracking-wider hover:-translate-y-1 cursor-pointer"
                                             style={{ 
                                                 borderColor: accentColor,
                                                 backgroundColor: colorMode ? accentColor : 'transparent',
@@ -414,8 +386,8 @@ export const MainPortfolio: React.FC = () => {
                                             }}
                                         >
                                             <ExternalLink className="h-4 w-4" />
-                                            <span>Download Resume</span>
-                                        </a>
+                                            <span>View Resume</span>
+                                        </button>
                                     </div>
 
                                     <div className="pt-8 space-y-3 relative group/challenge">
@@ -426,7 +398,7 @@ export const MainPortfolio: React.FC = () => {
                                         
                                         <button
                                             onClick={() => navigate('/challenge')}
-                                            className="w-full h-10 border relative overflow-hidden transition-all hover:shadow-lg group"
+                                            className="w-full h-10 border relative overflow-hidden transition-all hover:shadow-lg group cursor-pointer"
                                             style={{ 
                                                 borderColor: accentColor,
                                                 backgroundColor: colorMode ? `${accentColor}10` : 'rgba(255,255,255,0.05)'
@@ -434,15 +406,15 @@ export const MainPortfolio: React.FC = () => {
                                         >
                                             {/* Progress fill - Full width now */}
                                             <div
-                                                className="absolute inset-0 opacity-20"
+                                                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
                                                 style={{ 
                                                     backgroundColor: colorMode ? accentColor : 'white',
                                                 }}
                                             ></div>
                                             
-                                            {/* Animated shine effect */}
+                                            {/* Animated shine effect - only on hover */}
                                             <div 
-                                                className="absolute inset-0 opacity-30"
+                                                className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300"
                                                 style={{
                                                     background: `linear-gradient(90deg, transparent 0%, ${colorMode ? accentColor : 'white'} 50%, transparent 100%)`,
                                                     animation: 'shine 3s infinite',
@@ -450,7 +422,7 @@ export const MainPortfolio: React.FC = () => {
                                                 }}
                                             ></div>
 
-                                            {/* Text */}
+                                            
                                             <div className="absolute inset-0 flex items-center justify-center gap-2">
                                                 <span className="text-xs font-mono font-bold tracking-widest" style={{ color: colorMode ? accentColor : 'white' }}>
                                                     VIEW JOURNEY
@@ -460,7 +432,7 @@ export const MainPortfolio: React.FC = () => {
 
                                             {/* Background grid pattern */}
                                             <div 
-                                                className="absolute inset-0 opacity-10 pointer-events-none"
+                                                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"
                                                 style={{
                                                     backgroundImage: `repeating-linear-gradient(90deg, ${accentColor} 0px, transparent 1px, transparent 4px)`,
                                                     backgroundSize: '4px 100%'
@@ -475,7 +447,6 @@ export const MainPortfolio: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    {/* Add keyframe animation for shine effect */}
                                     <style>{`
                                         @keyframes shine {
                                             0% { background-position: -200% 0; }
@@ -484,8 +455,8 @@ export const MainPortfolio: React.FC = () => {
                                     `}</style>
 
                                     <button
-                                        onClick={() => navigateToLayer('stats')}
-                                        className="mt-8 flex items-center gap-3 mx-auto border px-8 py-3 hover:shadow-lg transition-all group hover:-translate-y-1"
+                                        onClick={() => navigateToLayer('experience')}
+                                        className="mt-8 flex items-center gap-3 mx-auto border px-8 py-3 hover:shadow-lg transition-all group hover:-translate-y-1 cursor-pointer"
                                         style={{ 
                                             borderColor: accentColor,
                                             backgroundColor: colorMode ? accentColor : 'transparent'
@@ -500,269 +471,7 @@ export const MainPortfolio: React.FC = () => {
                     </section>
                 )}
 
-                {currentLayer === 'stats' && (
-                    <section className="min-h-screen flex items-center justify-center px-4 pt-20 pb-20">
-                        <div className="max-w-6xl w-full space-y-8">
-                            <div className="text-center mb-12">
-                                <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">
-                                    {'>'} METRICS<span style={{ color: colorMode ? accentColor : 'white' }}>.summary()</span>
-                                </h2>
-                                <div className="h-px w-48 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
-                                <p className="text-sm text-white/70 mt-4 max-w-2xl mx-auto leading-relaxed">
-                                    Key metrics from personal projects and learning journey.
-                                </p>
-                            </div>
-
-                            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-                                <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
-                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    
-                                    <div className="relative z-10">
-                                        <div className="flex items-center justify-between mb-4">
-                                            <Database className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>DATA_PIPELINE</span>
-                                        </div>
-                                        <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                            {statsAnimated ? '30+' : '0'}
-                                        </div>
-                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Datasets Explored</div>
-                                        <div className="text-[10px] text-white/40 font-mono">30-Day Challenge Completed</div>
-                                        
-                                        <div className="mt-6 space-y-2">
-                                            {[
-                                                { label: 'ETL', val: 92, time: '2.3s' },
-                                                { label: 'Clean', val: 88, time: '1.8s' },
-                                                { label: 'Transform', val: 95, time: '3.1s' },
-                                                { label: 'Load', val: 85, time: '1.5s' },
-                                                { label: 'Validate', val: 90, time: '2.0s' }
-                                            ].map((item, i) => (
-                                                <div key={i}>
-                                                    <div className="flex items-center justify-between text-[10px] mb-1">
-                                                        <span className="text-white/70 font-mono">{item.label}</span>
-                                                        <span className="text-white/50 font-mono">{item.time}</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: `${accentColor}20` }}>
-                                                            <div
-                                                                className="h-full rounded-full transition-all duration-1000 ease-out"
-                                                                style={{ 
-                                                                    width: statsAnimated ? `${item.val}%` : '0%',
-                                                                    backgroundColor: colorMode ? accentColor : 'white',
-                                                                    transitionDelay: `${i * 100}ms`,
-                                                                    boxShadow: colorMode ? `0 0 8px ${accentColor}` : 'none'
-                                                                }}
-                                                            ></div>
-                                                        </div>
-                                                        <div className="text-[10px] w-8 text-right font-mono text-white/90">{item.val}%</div>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
-                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    
-                                    <div className="relative z-10">
-                                        <div className="flex items-center justify-between mb-4">
-                                            <Code className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>MODEL_PERFORMANCE</span>
-                                        </div>
-                                        <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                            {statsAnimated ? '93%' : '0%'}
-                                        </div>
-                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Best Model Accuracy</div>
-                                        <div className="text-[10px] text-white/40 font-mono">Financial News Classifier</div>
-                                        
-                                        <div className="mt-6 flex justify-center">
-                                            <div className="relative w-36 h-36">
-                                                <svg className="transform -rotate-90 w-full h-full" viewBox="0 0 120 120">
-                                                    <circle cx="60" cy="60" r="52" fill="none" stroke={`${accentColor}08`} strokeWidth="1" />
-                                                    <circle cx="60" cy="60" r="44" fill="none" stroke={`${accentColor}08`} strokeWidth="1" />
-                                                    
-                                                    <circle
-                                                        cx="60" cy="60" r="48"
-                                                        fill="none"
-                                                        stroke={`${accentColor}20`}
-                                                        strokeWidth="12"
-                                                    />
-                                                    
-                                                    <circle
-                                                        cx="60" cy="60" r="48"
-                                                        fill="none"
-                                                        stroke={colorMode ? accentColor : 'white'}
-                                                        strokeWidth="12"
-                                                        strokeDasharray={`${2 * Math.PI * 48}`}
-                                                        strokeDashoffset={statsAnimated ? `${2 * Math.PI * 48 * (1 - 0.942)}` : `${2 * Math.PI * 48}`}
-                                                        strokeLinecap="round"
-                                                        className="transition-all duration-1500 ease-out"
-                                                    />
-                                                </svg>
-                                                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                                    <div className="text-3xl font-bold font-mono" style={{ color: colorMode ? accentColor : 'white' }}>94</div>
-                                                    <div className="text-[10px] text-white/50 font-mono">SCORE</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-                                            {[
-                                                { label: 'Linted', val: '98%' },
-                                                { label: 'Typed', val: '100%' },
-                                                { label: 'Docs', val: '87%' }
-                                            ].map((item, i) => (
-                                                <div key={i} className="text-[10px]">
-                                                    <div className="font-mono text-white/90">{item.val}</div>
-                                                    <div className="text-white/50">{item.label}</div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
-                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    
-                                    <div className="relative z-10">
-                                        <div className="flex items-center justify-between mb-4">
-                                            <TrendingUp className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>PIPELINE_UPTIME</span>
-                                        </div>
-                                        <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                            {statsAnimated ? '99.9%' : '0%'}
-                                        </div>
-                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Pipeline Reliability</div>
-                                        <div className="text-[10px] text-white/40 font-mono">Automated Error Handling</div>
-                                        
-                                        <div className="mt-6 h-28 flex items-end justify-between gap-0.5">
-                                            {[
-                                                { val: 45, label: 'J' },
-                                                { val: 60, label: 'F' },
-                                                { val: 55, label: 'M' },
-                                                { val: 75, label: 'A' },
-                                                { val: 70, label: 'M' },
-                                                { val: 85, label: 'J' },
-                                                { val: 90, label: 'J' },
-                                                { val: 95, label: 'A' },
-                                                { val: 88, label: 'S' },
-                                                { val: 92, label: 'O' },
-                                                { val: 98, label: 'N' },
-                                                { val: 99, label: 'D' }
-                                            ].map((item, i) => (
-                                                <div key={i} className="flex-1 flex flex-col items-center group/bar">
-                                                    <div
-                                                        className="w-full rounded-t transition-all duration-1000 ease-out hover:opacity-80"
-                                                        style={{
-                                                            height: statsAnimated ? `${item.val}%` : '0%',
-                                                            backgroundColor: colorMode ? accentColor : 'white',
-                                                            transitionDelay: `${i * 80}ms`
-                                                        }}
-                                                    ></div>
-                                                    <div className="text-[9px] mt-1 text-white/60 font-mono">
-                                                        {item.label}
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        
-                                        <div className="mt-4 flex items-center justify-between text-[10px] font-mono">
-                                            <span className="text-white/50">Latency: <span className="text-white/90">12ms</span></span>
-                                            <span className="text-white/50">Req/s: <span className="text-white/90">1.2K</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="border p-8 md:p-10 transition-all duration-300 hover:shadow-2xl bg-black/50 backdrop-blur-sm relative overflow-hidden group" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
-                                     style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                
-                                <div className="relative z-10">
-                                    <h3 className="text-xl font-bold mb-8 flex items-center gap-3">
-                                        <BarChart3 className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
-                                        <span className="font-mono">TECH_STACK<span style={{ color: colorMode ? accentColor : 'white' }}>.distribution()</span></span>
-                                    </h3>
-                                    <div className="space-y-6">
-                                        {[
-                                            { tech: 'Python/ML Engineering', percent: 40, count: '8+ projects', IconComponent: Database, proficiency: 'Advanced' },
-                                            { tech: 'Data Pipeline & ETL', percent: 25, count: '3+ projects', IconComponent: Database, proficiency: 'Advanced' },
-                                            { tech: 'Frontend Development', percent: 20, count: '4+ projects', IconComponent: FileCode, proficiency: 'Advanced' },
-                                            { tech: 'DevOps & Deployment', percent: 10, count: '2+ projects', IconComponent: Wrench, proficiency: 'Intermediate' },
-                                            { tech: 'Dashboard & Viz', percent: 5, count: '3+ projects', IconComponent: PieChart, proficiency: 'Intermediate' }
-                                        ].map((item, i) => (
-                                            <div key={i} className="group/item">
-                                                <div className="flex justify-between items-center mb-2">
-                                                    <div className="flex items-center gap-3">
-                                                        <item.IconComponent className="h-5 w-5" style={{ color: colorMode ? accentColor : 'white' }} />
-                                                        <div>
-                                                            <div className="text-sm font-medium text-white/95">{item.tech}</div>
-                                                            <div className="text-[10px] text-white/50 font-mono">{item.proficiency}</div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="text-right">
-                                                        <div className="text-xs font-mono" style={{ color: colorMode ? accentColor : 'white' }}>{item.count}</div>
-                                                        <div className="text-[10px] text-white/50 font-mono">{item.percent}%</div>
-                                                    </div>
-                                                </div>
-                                                <div className="flex items-center gap-3">
-                                                    <div className="flex-1 h-4 border rounded-full overflow-hidden relative" style={{ borderColor: `${accentColor}40`, backgroundColor: `${accentColor}10` }}>
-                                                        <div
-                                                            className="h-full rounded-full transition-all duration-1000 ease-out relative"
-                                                            style={{
-                                                                width: statsAnimated ? `${item.percent}%` : '0%',
-                                                                backgroundColor: colorMode ? accentColor : 'white',
-                                                                transitionDelay: `${i * 150}ms`,
-                                                                boxShadow: colorMode ? `0 0 12px ${accentColor}80` : 'none'
-                                                            }}
-                                                        >
-                                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-                                                        </div>
-                                                    </div>
-                                                    <span className="text-sm w-12 text-right font-mono font-bold" style={{ color: colorMode ? accentColor : 'white' }}>{item.percent}%</span>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    
-                                    <div className="mt-8 pt-6 border-t grid grid-cols-3 gap-4 text-center" style={{ borderColor: `${accentColor}30` }}>
-                                        <div>
-                                            <div className="text-2xl font-bold font-mono" style={{ color: colorMode ? accentColor : 'white' }}>29</div>
-                                            <div className="text-[10px] text-white/60 uppercase tracking-wider">Total Github Projects</div>
-                                        </div>
-                                        <div>
-                                            <div className="text-2xl font-bold font-mono" style={{ color: colorMode ? accentColor : 'white' }}>8</div>
-                                            <div className="text-[10px] text-white/60 uppercase tracking-wider">Technologies</div>
-                                        </div>
-                                        <div>
-                                            <div className="text-2xl font-bold font-mono" style={{ color: colorMode ? accentColor : 'white' }}>5K+</div>
-                                            <div className="text-[10px] text-white/60 uppercase tracking-wider">Hours Coded</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="text-center">
-                                <button
-                                    onClick={() => navigateToLayer('skills')}
-                                    className="border px-6 py-3 transition-all inline-flex items-center gap-2 hover:shadow-lg hover:-translate-y-1"
-                                    style={{ 
-                                        borderColor: accentColor,
-                                        backgroundColor: colorMode ? accentColor : 'transparent'
-                                    }}
-                                >
-                                    <span className="text-xs uppercase tracking-wider">View Skills</span>
-                                    <ChevronDown className="h-4 w-4" />
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                )}
-
-                {currentLayer === 'skills' && (
+                {currentLayer === 'experience' && (
                     <section className="min-h-screen flex items-center justify-center px-4 pt-20 pb-20">
                         <div className="max-w-6xl w-full space-y-12">
                             <div className="text-center mb-12">
@@ -774,7 +483,6 @@ export const MainPortfolio: React.FC = () => {
                             </div>
 
                             <div className="grid md:grid-cols-3 gap-6">
-                                {/* Data & ML */}
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
                                      style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
@@ -807,7 +515,6 @@ export const MainPortfolio: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Development */}
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
                                      style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
@@ -829,7 +536,7 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="mt-auto space-y-4">
                                             <div className="h-px w-full bg-white/10"></div>
                                             <div className="flex flex-wrap gap-2">
-                                                {['React', 'TypeScript', 'Node.js', 'Tailwind', 'Vite', 'Firebase'].map((tech) => (
+                                                {['React', 'TypeScript', 'Node.js', 'Tailwind'].map((tech) => (
                                                     <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5" 
                                                           style={{ borderColor: `${accentColor}40` }}>
                                                         {tech}
@@ -840,7 +547,6 @@ export const MainPortfolio: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Systems */}
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
                                      style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
@@ -874,7 +580,164 @@ export const MainPortfolio: React.FC = () => {
                                 </div>
                             </div>
 
-                            {/* Professional Experience */}
+                            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+                                <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
+                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+                                    
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <Database className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
+                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>DATA_PIPELINE</span>
+                                        </div>
+                                        <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>30+</div>
+                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Datasets Explored</div>
+                                        <div className="text-[10px] text-white/40 font-mono">30-Day Challenge Completed</div>
+                                        
+                                        <div className="mt-6 space-y-2">
+                                            {[
+                                                { label: 'ETL', val: 92, time: '2.3s' },
+                                                { label: 'Clean', val: 88, time: '1.8s' },
+                                                { label: 'Transform', val: 95, time: '3.1s' },
+                                                { label: 'Load', val: 85, time: '1.5s' },
+                                                { label: 'Validate', val: 90, time: '2.0s' }
+                                            ].map((item, i) => (
+                                                <div key={i}>
+                                                    <div className="flex items-center justify-between text-[10px] mb-1">
+                                                        <span className="text-white/70 font-mono">{item.label}</span>
+                                                        <span className="text-white/50 font-mono">{item.time}</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: `${accentColor}20` }}>
+                                                            <div
+                                                                className="h-full rounded-full transition-all duration-1000 ease-out"
+                                                                style={{ 
+                                                                    width: `${item.val}%`,
+                                                                    backgroundColor: colorMode ? accentColor : 'white',
+                                                                    transitionDelay: `${i * 100}ms`,
+                                                                    boxShadow: colorMode ? `0 0 8px ${accentColor}` : 'none'
+                                                                }}
+                                                            ></div>
+                                                        </div>
+                                                        <div className="text-[10px] w-8 text-right font-mono text-white/90">{item.val}%</div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
+                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+                                    
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <Code className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
+                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>MODEL_PERFORMANCE</span>
+                                        </div>
+                                        <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>93%</div>
+                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Best Model Accuracy</div>
+                                        <div className="text-[10px] text-white/40 font-mono">Financial News Classifier</div>
+                                        
+                                        <div className="mt-6 flex justify-center">
+                                            <div className="relative w-36 h-36">
+                                                <svg className="transform -rotate-90 w-full h-full" viewBox="0 0 120 120">
+                                                    <circle cx="60" cy="60" r="52" fill="none" stroke={`${accentColor}08`} strokeWidth="1" />
+                                                    <circle cx="60" cy="60" r="44" fill="none" stroke={`${accentColor}08`} strokeWidth="1" />
+                                                    
+                                                    <circle
+                                                        cx="60" cy="60" r="48"
+                                                        fill="none"
+                                                        stroke={`${accentColor}20`}
+                                                        strokeWidth="12"
+                                                    />
+                                                    
+                                                    <circle
+                                                        cx="60" cy="60" r="48"
+                                                        fill="none"
+                                                        stroke={colorMode ? accentColor : 'white'}
+                                                        strokeWidth="12"
+                                                        strokeDasharray={`${2 * Math.PI * 48}`}
+                                                        strokeDashoffset={`${2 * Math.PI * 48 * (1 - 0.942)}`}
+                                                        strokeLinecap="round"
+                                                        className="transition-all duration-1500 ease-out"
+                                                    />
+                                                </svg>
+                                                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                                    <div className="text-3xl font-bold font-mono" style={{ color: colorMode ? accentColor : 'white' }}>94</div>
+                                                    <div className="text-[10px] text-white/50 font-mono">SCORE</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+                                            {[
+                                                { label: 'Linted', val: '98%' },
+                                                { label: 'Typed', val: '100%' },
+                                                { label: 'Docs', val: '87%' }
+                                            ].map((item, i) => (
+                                                <div key={i} className="text-[10px]">
+                                                    <div className="font-mono text-white/90">{item.val}</div>
+                                                    <div className="text-white/50">{item.label}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
+                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+                                    
+                                    <div className="relative z-10">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <Briefcase className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
+                                            <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>PIPELINE_UPTIME</span>
+                                        </div>
+                                        <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>99.9%</div>
+                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Pipeline Reliability</div>
+                                        <div className="text-[10px] text-white/40 font-mono">Automated Error Handling</div>
+                                        
+                                        <div className="mt-6 h-28 flex items-end justify-between gap-0.5">
+                                            {[
+                                                { val: 45, label: 'J' },
+                                                { val: 60, label: 'F' },
+                                                { val: 55, label: 'M' },
+                                                { val: 75, label: 'A' },
+                                                { val: 70, label: 'M' },
+                                                { val: 85, label: 'J' },
+                                                { val: 90, label: 'J' },
+                                                { val: 95, label: 'A' },
+                                                { val: 88, label: 'S' },
+                                                { val: 92, label: 'O' },
+                                                { val: 98, label: 'N' },
+                                                { val: 99, label: 'D' }
+                                            ].map((item, i) => (
+                                                <div key={i} className="flex-1 flex flex-col items-center group/bar">
+                                                    <div
+                                                        className="w-full rounded-t transition-all duration-1000 ease-out hover:opacity-80"
+                                                        style={{
+                                                            height: `${item.val}%`,
+                                                            backgroundColor: colorMode ? accentColor : 'white',
+                                                            transitionDelay: `${i * 80}ms`
+                                                        }}
+                                                    ></div>
+                                                    <div className="text-[9px] mt-1 text-white/60 font-mono">
+                                                        {item.label}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        
+                                        <div className="mt-4 flex items-center justify-between text-[10px] font-mono">
+                                            <span className="text-white/50">Latency: <span className="text-white/90">12ms</span></span>
+                                            <span className="text-white/50">Req/s: <span className="text-white/90">1.2K</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="border p-8 transition-all duration-300 hover:shadow-2xl bg-black/50 backdrop-blur-sm relative overflow-hidden group"
                                  style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
                                 <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
@@ -997,20 +860,6 @@ export const MainPortfolio: React.FC = () => {
                                     </div>
                                 ))}
                             </div>
-
-                            <div className="text-center">
-                                <button
-                                    onClick={() => navigate('/ml-showcase')}
-                                    className="border px-6 py-3 hover:shadow-lg transition-all inline-flex items-center gap-2 hover:-translate-y-1"
-                                    style={{ 
-                                        borderColor: accentColor,
-                                        backgroundColor: colorMode ? accentColor : 'transparent'
-                                    }}
-                                >
-                                    <span className="text-xs uppercase tracking-wider">View ML Pipeline Demo</span>
-                                    <Cpu className="h-4 w-4" />
-                                </button>
-                            </div>
                         </div>
                     </section>
                 )}
@@ -1067,24 +916,8 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="text-xs text-white/90 space-y-2">
                                             <div>Lagos, Nigeria</div>
                                             <div>BSc Mathematics • University of Lagos • 2024-2028</div>
-                                            <div className="pt-4">
-                                                <Terminal className="h-4 w-4 inline-block mr-2" style={{ color: colorMode ? accentColor : 'white' }} />
-                                                <span className="font-mono">status = LEARNING_AND_BUILDING</span>
-                                            </div>
                                         </div>
                                     </div>
-
-                                    <button
-                                        onClick={() => navigate('/terminal')}
-                                        className="border px-8 py-3 transition-all inline-flex items-center gap-2 hover:shadow-lg hover:-translate-y-1"
-                                        style={{ 
-                                            borderColor: accentColor,
-                                            backgroundColor: colorMode ? accentColor : 'transparent'
-                                        }}
-                                    >
-                                        <Terminal className="h-4 w-4" />
-                                        <span className="text-xs uppercase tracking-wider hidden sm:inline">Back to Terminal</span>
-                                    </button>
                                 </div>
                             </div>
                         </div>
