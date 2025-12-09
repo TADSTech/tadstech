@@ -97,38 +97,31 @@ export const MainPortfolio: React.FC = () => {
 
     const projects = [
         {
-            name: 'Brazilian Retail Intelligence System (BRIS)',
-            desc: 'Comprehensive end-to-end Data Engineering and Business Intelligence platform combining raw data extraction, transformation, synthetic data generation, REST API development, and interactive React frontend visualization for retail analytics.',
-            tech: ['Python', 'FastAPI', 'PostgreSQL', 'Supabase', 'Docker', 'React', 'TypeScript', 'Markov Chains'],
-            metrics: { complexity: 9, Status: 'In Progress', Completion: 'Q4 2025' },
-            url: 'https://brazilian-retail-intelligence-syste.vercel.app'
-        },
-        {
-            name: 'SalesScope Dashboard',
-            desc: 'End-to-end sales analytics platform with automated ETL pipelines, data validation, and interactive visualizations. Built complete data processing workflows from raw sales data to actionable business insights.',
-            tech: ['Python', 'pandas', 'SQL', 'React', 'PlotlyJs', 'TailwindCSS'],
-            metrics: { complexity: 4, Status: 'Complete', Completion: 'Q3 2025' },
-            url: 'https://salesscope.web.app'
-        },
-        {
-            name: 'Mini Data Manim',
-            desc: 'Browser-based data manipulation platform with advanced statistical operations, data transformation pipelines, and dynamic visualization engine. Handles complex data workflows without external dependencies.',
-            tech: ['React', 'TypeScript', 'exceljs', 'PlotlyJs', 'Statistical Libraries'],
-            metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
-            url: 'https://minidatamanim.web.app'
-        },
-        {
             name: 'Financial News Classifier',
-            desc: 'Production-ready ML pipeline for financial sentiment analysis with automated model serving, batch processing capabilities, and real-time inference API. Deployed with containerized microservices architecture.',
-            tech: ['Python', 'FinBERT', 'FastAPI', 'Docker', 'Hugging Face', 'React'],
-            metrics: { complexity: 8, Status: 'Complete', Completion: 'Q4 2025' },
+            desc: 'Financial news sentiment classifier using PyTorch and scikit-learn for analyzing market sentiment from news articles.',
+            tech: ['Python', 'PyTorch', 'scikit-learn', 'FastAPI', 'Docker'],
+            metrics: { accuracy: '93%', Status: 'Complete', Completion: 'Nov 2025' },
             url: 'https://tadstech.github.io/financial-news-classifier'
         },
         {
-            name: 'NaijaEconoDash',
-            desc: 'Real-time economic data pipeline with automated data ingestion, transformation, and visualization. Processes multiple data sources with scheduled ETL jobs and interactive dashboard deployment.',
-            tech: ['Python', 'pandas', 'Requests', 'PlotlyDash', 'Data Pipeline', 'Scheduling'],
-            metrics: { complexity: 7, Status: 'Complete', Completion: 'Q4 2025' },
+            name: 'Brazilian Retail Intelligence System (BRIS)',
+            desc: 'ETL workflows and dashboard for processing retail transaction data and visualizing business metrics.',
+            tech: ['Python', 'SQLAlchemy', 'FastAPI', 'PostgreSQL', 'Docker', 'React', 'TypeScript'],
+            metrics: { components: '5', Status: 'Complete', Completion: 'Nov 2025' },
+            url: 'https://brazilian-retail-intelligence-syste.vercel.app'
+        },
+        {
+            name: 'Mini Data Manim',
+            desc: 'Frontend tool for animating charts and statistics with Python preprocessing for data cleaning.',
+            tech: ['React', 'TypeScript', 'Python', 'Plotly'],
+            metrics: { type: 'Animation Tool', Status: 'Complete', Completion: 'Sep 2025' },
+            url: 'https://minidatamanim.web.app'
+        },
+        {
+            name: 'Naija Economic Dashboard',
+            desc: 'Interactive dashboard tracking Nigerian financial indicators with API integration.',
+            tech: ['Python', 'Dash', 'Plotly', 'API Integration'],
+            metrics: { type: 'Dashboard', Status: 'Complete', Completion: 'Feb 2025' },
             url: 'https://naija-econo-plotlydash.onrender.com',
         }
     ];
@@ -355,7 +348,7 @@ export const MainPortfolio: React.FC = () => {
 
                                     <div className="space-y-6">
                                         <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                                            FullStack <span style={{ color: colorMode ? accentColor : 'white' }}>Data Scientist</span>
+                                            Junior <span style={{ color: colorMode ? accentColor : 'white' }}>ML Engineer</span>
                                         </h1>
                                         
                                         <div className="flex flex-wrap justify-center gap-3 text-sm md:text-base text-white/70 font-mono">
@@ -369,16 +362,16 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="h-px w-40 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
                                         
                                         <p className="text-sm md:text-base text-white/80 max-w-3xl mx-auto leading-relaxed">
-                                            FullStack Data Scientist with 2 years of Python experience specializing in end-to-end data solutions from <span style={{ color: colorMode ? accentColor : 'white' }}>Machine Learning Engineering</span> to <span style={{ color: colorMode ? accentColor : 'white' }}>ETL pipeline development and deployment</span>. Worked on projects in data engineering, automated workflows, AI and ML engineering, kaggle competitions and production-ready analytics systems.
+                                            Junior Machine Learning & Data Engineering practitioner with strong <span style={{ color: colorMode ? accentColor : 'white' }}>Python skills</span> and hands-on experience building end-to-end data and analytics projects. Skilled in Pandas, PyTorch, SQL, and API development, with growing experience in <span style={{ color: colorMode ? accentColor : 'white' }}>ETL workflows, deployment, and financial data analysis</span>. Currently pursuing a B.Sc. in Mathematics.
                                         </p>
                                     </div>
 
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-8">
                                         {[
-                                            { value: '02+', label: 'Coding Experience' },
-                                            {value: '3M', label: 'Working Experience' },
-                                            { value: '4', label: 'End-to-End Projects' },
-                                            { value: '15+', label: 'Data Tools' },
+                                            { value: '4', label: 'Personal Projects' },
+                                            { value: '3M', label: 'Intern Experience' },
+                                            { value: '93%', label: 'ML Model Accuracy' },
+                                            { value: '2028', label: 'BSc Mathematics' },
                                         ].map((stat, i) => (
                                             <div key={i} className="border p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}20` : 'none' }}>
                                                 <div className="text-2xl md:text-3xl font-bold transition-colors duration-300" style={{ color: colorMode ? accentColor : 'white' }}>
@@ -411,7 +404,7 @@ export const MainPortfolio: React.FC = () => {
 
                                     <div className="pt-4">
                                         <a
-                                            href="/cv/TADS-CV-FULL.pdf"
+                                            href="/cv/tadscvIMP.pdf"
                                             download
                                             className="inline-flex items-center gap-2 border px-6 py-2.5 hover:shadow-lg transition-all text-xs uppercase tracking-wider hover:-translate-y-1"
                                             style={{ 
@@ -512,11 +505,11 @@ export const MainPortfolio: React.FC = () => {
                         <div className="max-w-6xl w-full space-y-8">
                             <div className="text-center mb-12">
                                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">
-                                    {'>'} DATA_INSIGHTS<span style={{ color: colorMode ? accentColor : 'white' }}>.analyze()</span>
+                                    {'>'} METRICS<span style={{ color: colorMode ? accentColor : 'white' }}>.summary()</span>
                                 </h2>
                                 <div className="h-px w-48 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
                                 <p className="text-sm text-white/70 mt-4 max-w-2xl mx-auto leading-relaxed">
-                                    Real-time analytics and performance metrics across data processing, code quality, and system uptime.
+                                    Key metrics from personal projects and learning journey.
                                 </p>
                             </div>
 
@@ -531,9 +524,9 @@ export const MainPortfolio: React.FC = () => {
                                             <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>DATA_PIPELINE</span>
                                         </div>
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                            {statsAnimated ? '40+' : '0'}
+                                            {statsAnimated ? '30+' : '0'}
                                         </div>
-                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Datasets Analyzed</div>
+                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Datasets Explored</div>
                                         <div className="text-[10px] text-white/40 font-mono">30-Day Challenge Completed</div>
                                         
                                         <div className="mt-6 space-y-2">
@@ -579,10 +572,10 @@ export const MainPortfolio: React.FC = () => {
                                             <span className="text-[10px] font-mono tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>MODEL_PERFORMANCE</span>
                                         </div>
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>
-                                            {statsAnimated ? '94%' : '0%'}
+                                            {statsAnimated ? '93%' : '0%'}
                                         </div>
-                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Avg. Accuracy</div>
-                                        <div className="text-[10px] text-white/40 font-mono">Across Deployed Models</div>
+                                        <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Best Model Accuracy</div>
+                                        <div className="text-[10px] text-white/40 font-mono">Financial News Classifier</div>
                                         
                                         <div className="mt-6 flex justify-center">
                                             <div className="relative w-36 h-36">
@@ -738,7 +731,7 @@ export const MainPortfolio: React.FC = () => {
                                     <div className="mt-8 pt-6 border-t grid grid-cols-3 gap-4 text-center" style={{ borderColor: `${accentColor}30` }}>
                                         <div>
                                             <div className="text-2xl font-bold font-mono" style={{ color: colorMode ? accentColor : 'white' }}>29</div>
-                                            <div className="text-[10px] text-white/60 uppercase tracking-wider">Total Projects</div>
+                                            <div className="text-[10px] text-white/60 uppercase tracking-wider">Total Github Projects</div>
                                         </div>
                                         <div>
                                             <div className="text-2xl font-bold font-mono" style={{ color: colorMode ? accentColor : 'white' }}>8</div>
@@ -797,13 +790,13 @@ export const MainPortfolio: React.FC = () => {
                                         
                                         <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Data & ML Engineering</h3>
                                         <p className="text-sm text-white/70 mb-6 leading-relaxed font-mono">
-                                            Specializing in <span className="text-white font-bold">ETL pipelines</span> and <span className="text-white font-bold">predictive modeling</span>. Transforming raw datasets into actionable intelligence through rigorous analysis.
+                                            Building <span className="text-white font-bold">ETL workflows</span> and <span className="text-white font-bold">ML models</span>. Learning to transform raw data into insights through hands-on projects.
                                         </p>
                                         
                                         <div className="mt-auto space-y-4">
                                             <div className="h-px w-full bg-white/10"></div>
                                             <div className="flex flex-wrap gap-2">
-                                                {['Python', 'Pandas', 'Scikit-Learn', 'SQL', 'TensorFlow', 'Jupyter'].map((tech) => (
+                                                {['Python', 'Pandas', 'PyTorch', 'Scikit-Learn', 'SQL', 'FastAPI'].map((tech) => (
                                                     <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5" 
                                                           style={{ borderColor: `${accentColor}40` }}>
                                                         {tech}
@@ -828,9 +821,9 @@ export const MainPortfolio: React.FC = () => {
                                             <span className="text-[10px] font-mono opacity-50 tracking-widest">MOD_DEV</span>
                                         </div>
                                         
-                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Full Stack Dev</h3>
+                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Web Development</h3>
                                         <p className="text-sm text-white/70 mb-6 leading-relaxed font-mono">
-                                            Building <span className="text-white font-bold">type-safe</span> web applications with modern frameworks. Bridging complex backend logic with intuitive, responsive user interfaces.
+                                            Building with <span className="text-white font-bold">React</span> and <span className="text-white font-bold">TypeScript</span> for building dashboards and data visualization interfaces.
                                         </p>
                                         
                                         <div className="mt-auto space-y-4">
@@ -900,14 +893,17 @@ export const MainPortfolio: React.FC = () => {
                                             <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></div>
                                             <div className="flex justify-between items-start mb-2">
                                                 <div>
-                                                    <h4 className="text-lg font-bold">Data Analyst</h4>
-                                                    <p className="text-sm text-white/70">HNG Tech Internship</p>
+                                                    <h4 className="text-lg font-bold">Data Analyst Intern</h4>
+                                                    <p className="text-sm text-white/70">HNG Tech</p>
                                                 </div>
-                                                <span className="text-xs text-white/50 font-mono border px-2 py-1 rounded" style={{ borderColor: `${accentColor}30` }}>2024</span>
+                                                <span className="text-xs text-white/50 font-mono border px-2 py-1 rounded" style={{ borderColor: `${accentColor}30` }}>Aug 2025 – Nov 2025</span>
                                             </div>
-                                            <p className="text-sm text-white/80 leading-relaxed max-w-3xl">
-                                                Performed comprehensive data analysis, created visualizations, and generated actionable insights from large datasets. Built dashboards and reports for stakeholder decision-making.
-                                            </p>
+                                            <ul className="text-sm text-white/80 leading-relaxed max-w-3xl space-y-1 list-disc list-inside">
+                                                <li>Cleaned and transformed large business datasets using Python and SQL</li>
+                                                <li>Wrote SQL queries for recurring reporting tasks</li>
+                                                <li>Built dashboards in Metabase to support business insights</li>
+                                                <li>Assisted team with lightweight automation pipelines</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -986,20 +982,14 @@ export const MainPortfolio: React.FC = () => {
 
                                             <div className="space-y-4">
                                                 <div className="border p-4 transition-colors duration-300" style={{ borderColor: colorMode ? `${accentColor}60` : '#ffffff30' }}>
-                                                    <div className="text-xs text-white/90 mb-2 uppercase tracking-wider">Metrics</div>
+                                                    <div className="text-xs text-white/90 mb-2 uppercase tracking-wider">Project Info</div>
                                                     <div className="space-y-2 text-sm">
-                                                        <div className="flex justify-between">
-                                                            <span>Complexity</span>
-                                                            <span className="font-mono" style={{ color: colorMode ? accentColor : 'white' }}>{project.metrics.complexity}/10</span>
-                                                        </div>
-                                                        <div className="flex justify-between">
-                                                            <span>Status</span>
-                                                            <span className="font-mono" style={{ color: colorMode ? accentColor : 'white' }}>{project.metrics.Status}</span>
-                                                        </div>
-                                                        <div className="flex justify-between">
-                                                            <span>Completion</span>
-                                                            <span className="font-mono" style={{ color: colorMode ? accentColor : 'white' }}>{project.metrics.Completion}</span>
-                                                        </div>
+                                                        {Object.entries(project.metrics).map(([key, value]) => (
+                                                            <div key={key} className="flex justify-between">
+                                                                <span>{key}</span>
+                                                                <span className="font-mono" style={{ color: colorMode ? accentColor : 'white' }}>{value}</span>
+                                                            </div>
+                                                        ))}
                                                     </div>
                                                 </div>
                                             </div>
@@ -1040,8 +1030,8 @@ export const MainPortfolio: React.FC = () => {
                                     </div>
 
                                     <p className="text-sm md:text-base text-white/90 max-w-md mx-auto">
-                                        Available for freelance data analysis, BI dashboard development, 
-                                        and full-stack application projects.
+                                        Open to internships, junior positions, and freelance projects in data analysis, 
+                                        ML engineering, and data visualization.
                                     </p>
 
                                     <div className="grid md:grid-cols-2 gap-4 pt-4">
@@ -1076,10 +1066,10 @@ export const MainPortfolio: React.FC = () => {
                                     <div className="border-t pt-8 mt-8 transition-colors duration-300" style={{ borderColor: accentColor }}>
                                         <div className="text-xs text-white/90 space-y-2">
                                             <div>Lagos, Nigeria</div>
-                                            <div>BSc Mathematics • University of Lagos</div>
+                                            <div>BSc Mathematics • University of Lagos • 2024-2028</div>
                                             <div className="pt-4">
                                                 <Terminal className="h-4 w-4 inline-block mr-2" style={{ color: colorMode ? accentColor : 'white' }} />
-                                                <span className="font-mono">system.status = READY_TO_BUILD</span>
+                                                <span className="font-mono">status = LEARNING_AND_BUILDING</span>
                                             </div>
                                         </div>
                                     </div>
