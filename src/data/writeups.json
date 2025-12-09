@@ -48,5 +48,15 @@
     "category": "note",
     "readTime": 1,
     "tags": ["consistency", "progress"]
+  },
+  {
+    "id": "ai-epidemic-001",
+    "title": "The AI Epidemic",
+    "excerpt": "A critical examination of AI hype, intellectual dishonesty, and its devastating impact on the job market",
+    "content": "I hate to be a hater, but the bar is on the floor.\n\nWe are supposed to believe everyone is an AI visionary now because they integrated an API? Please. The people loudest about 'AGI' usually discovered the concept of a neural net last week. It is intellectually dishonest.\n\nThis isn't magic; it's math we solved thirty years ago, wrapped in better marketing. We are selling statistical prediction as sentient thought, and the crowds are cheering because they lack the discernment to know better.\n\nIt's a gold rush for the incompetent. Investors are lighting bonfires of cash under companies with valuations based on pure hallucination. We've seen this movie. Gravity always wins. The reckoning isn't a possibility; it's a mathematical certainty. I don't mind progress. I mind this cargo-cult, pseudo-intellectual grift pretending to be the future.\n\nIn addition to this bollocks reality we have found ourselves in, the job market, especially junior level jobs, are cooked. 7 years experience for an internship in 2025 is diabolical.\n\nLowkey, I myself am also lost. But I have a little hope. \nTill then, I keep grinding till I land a position.\nThe stakes are higher than ever.",
+    "timestamp": "2025-12-09T12:00:00",
+    "category": "blog",
+    "readTime": 3,
+    "tags": ["ai", "critique", "job-market"]
   }
 ]
