@@ -151,7 +151,7 @@ export const MainPortfolio: React.FC = () => {
                             style={{ borderColor: accentColor }}
                         >
                             <Terminal className="h-4 w-4" />
-                            <span className="text-xs uppercase tracking-wider">Terminal</span>
+                            <span className="text-xs uppercase tracking-wider hidden sm:inline">Terminal</span>
                         </button>
 
                         <button
@@ -1093,7 +1093,7 @@ export const MainPortfolio: React.FC = () => {
                                         }}
                                     >
                                         <Terminal className="h-4 w-4" />
-                                        <span className="text-xs uppercase tracking-wider">Back to Terminal</span>
+                                        <span className="text-xs uppercase tracking-wider hidden sm:inline">Back to Terminal</span>
                                     </button>
                                 </div>
                             </div>
