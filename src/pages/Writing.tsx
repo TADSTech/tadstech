@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Heart, Share2, Calendar, Clock, Eye, Palette, Download, Copy, X } from 'lucide-react';
+import { ArrowLeft, Heart, Share2, Calendar, Clock, Eye, Palette, Download, Copy, X, TreePine } from 'lucide-react';
 import html2pdf from 'html2pdf.js';
 import writeupData from '../data/writeups.json';
 
@@ -30,13 +30,28 @@ export const Writing: React.FC = () => {
         const saved = localStorage.getItem('tadstech-theme');
         return saved ? saved === 'blue' : false;
     });
+    const [holidayMode, setHolidayMode] = useState(() => {
+        const now = new Date();
+        const isHolidaySeason = now.getMonth() === 11 && now.getDate() <= 29;
+        const saved = localStorage.getItem('tadstech-holiday');
+        return saved !== null ? saved === 'true' : isHolidaySeason;
+    });
     const [selectedWriteup, setSelectedWriteup] = useState<Writeup | null>(null);
     const [filter, setFilter] = useState<'all' | 'poem' | 'blog' | 'reflection' | 'note'>('all');
     const [stats, setStats] = useState<WriteupStats>({});
     const [liked, setLiked] = useState<Set<string>>(new Set());
     const [shareModal, setShareModal] = useState<{ open: boolean; writeupId: string | null; copied: boolean }>({ open: false, writeupId: null, copied: false });
 
-    const accentColor = colorMode ? '#0ea5e9' : '#28333F';
+    const handleHolidayToggle = () => {
+        setHolidayMode(prev => {
+            localStorage.setItem('tadstech-holiday', String(!prev));
+            return !prev;
+        });
+    };
+
+    const holidayColors = ['#dc2626', '#16a34a'];
+    const getHolidayColor = () => holidayColors[Math.floor(Date.now() / 1000) % 2];
+    const accentColor = holidayMode ? getHolidayColor() : (colorMode ? '#0ea5e9' : '#28333F');
 
     const writeups: Writeup[] = writeupData.map(w => ({
         ...w,
@@ -270,14 +285,27 @@ export const Writing: React.FC = () => {
                         <h1 className="text-lg md:text-xl font-bold tracking-tight" style={{ color: accentColor }}>WRITEUPS</h1>
                         <p className="text-[10px] text-white/50">Thoughts, poems & reflections</p>
                     </div>
-                    <button
-                        onClick={toggleTheme}
-                        className="flex items-center justify-center text-white transition-all border p-2 hover:shadow-lg"
-                        style={{ borderColor: accentColor }}
-                        title="Toggle theme"
-                    >
-                        <Palette className="h-4 w-4" />
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={handleHolidayToggle}
+                            className="flex items-center justify-center text-white transition-all border p-2 hover:shadow-lg cursor-pointer"
+                            style={{ 
+                                borderColor: accentColor,
+                                backgroundColor: holidayMode ? '#16a34a' : 'transparent'
+                            }}
+                            title="Toggle holiday theme"
+                        >
+                            <TreePine className="h-4 w-4" />
+                        </button>
+                        <button
+                            onClick={toggleTheme}
+                            className="flex items-center justify-center text-white transition-all border p-2 hover:shadow-lg cursor-pointer"
+                            style={{ borderColor: accentColor }}
+                            title="Toggle theme"
+                        >
+                            <Palette className="h-4 w-4" />
+                        </button>
+                    </div>
                 </div>
             </nav>
 

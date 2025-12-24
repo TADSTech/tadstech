@@ -58,5 +58,15 @@
     "category": "blog",
     "readTime": 3,
     "tags": ["ai", "critique", "job-market"]
+  },
+  {
+    "id": "holiday-2025",
+    "title": "Happy Holidays & A Bright New Year",
+    "excerpt": "Wishing you warmth, joy, and exciting possibilities ahead",
+    "content": "As 2025 draws to a close, I want to take a moment to wish everyone who visits this little corner of the internet a truly wonderful holiday season.\n\nThis year has been a journey—filled with challenges, growth, and countless lines of code. From completing the 30 Days of Datasets challenge to building out this portfolio, every step has been meaningful.\n\nTo those still grinding on their projects, pushing through job applications, or learning something new: keep going. The seeds you plant now will bloom in ways you can't yet imagine.\n\nMay your holidays be filled with rest, good food, and time with those who matter most. And may 2026 bring you:\n\n• Clear commits and clean merges\n• APIs that work on the first try\n• Models that converge beautifully\n• Opportunities that match your worth\n\nThank you for being here. Here's to building, growing, and thriving together in the new year.\n\nHappy Holidays! 🎄✨",
+    "timestamp": "2025-12-19T12:00:00",
+    "category": "note",
+    "readTime": 1,
+    "tags": ["holidays", "new-year", "gratitude"]
   }
 ]

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ChevronDown, Database, Code, Github, Mail, Linkedin, ExternalLink, Palette, Briefcase, Cpu, Feather } from 'lucide-react';
+import { ChevronDown, Database, Code, Github, Mail, Linkedin, ExternalLink, Palette, Briefcase, Cpu, Feather, TreePine } from 'lucide-react';
 
 type Layer = 'hero' | 'experience' | 'projects' | 'contact';
 
@@ -11,9 +11,16 @@ export const MainPortfolio: React.FC = () => {
     const [isAnimating, setIsAnimating] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [displayText, setDisplayText] = useState('');
+    const [isMobile, setIsMobile] = useState(false);
     const [colorMode, setColorMode] = useState(() => {
         const saved = localStorage.getItem('tadstech-theme');
         return saved ? saved === 'blue' : false;
+    });
+    const [holidayMode, setHolidayMode] = useState(() => {
+        const now = new Date();
+        const isHolidaySeason = now.getMonth() === 11 && now.getDate() <= 29;
+        const saved = localStorage.getItem('tadstech-holiday');
+        return saved !== null ? saved === 'true' : isHolidaySeason;
     });
     const [autoSwapInterval, setAutoSwapInterval] = useState<NodeJS.Timeout | null>(null);
     const [clickCount, setClickCount] = useState(0);
@@ -21,12 +28,20 @@ export const MainPortfolio: React.FC = () => {
     const fullText = '> MICHAEL_TUNWASHE._init()';
 
     useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
         localStorage.setItem('tadstech-theme', colorMode ? 'blue' : 'gray');
     }, [colorMode]);
 
     useEffect(() => {
-        if (currentLayer === 'hero') {
+        if (currentLayer === 'hero' || isMobile) {
             let i = 0;
+            setDisplayText('');
             const timer = setInterval(() => {
                 if (i < fullText.length) {
                     setDisplayText(fullText.substring(0, i + 1));
@@ -37,7 +52,7 @@ export const MainPortfolio: React.FC = () => {
             }, 100);
             return () => clearInterval(timer);
         }
-    }, [currentLayer]);
+    }, [currentLayer, isMobile]);
 
     useEffect(() => {
         return () => {
@@ -85,9 +100,16 @@ export const MainPortfolio: React.FC = () => {
         }, 300);
     };
 
+    const handleHolidayToggle = () => {
+        setHolidayMode(prev => {
+            localStorage.setItem('tadstech-holiday', String(!prev));
+            return !prev;
+        });
+    };
 
-
-    const accentColor = colorMode ? '#0ea5e9' : '#28333F';
+    const holidayColors = ['#dc2626', '#16a34a'];
+    const getHolidayColor = () => holidayColors[Math.floor(Date.now() / 1000) % 2];
+    const accentColor = holidayMode ? getHolidayColor() : (colorMode ? '#0ea5e9' : '#28333F');
 
     const projects = [
         {
@@ -117,6 +139,13 @@ export const MainPortfolio: React.FC = () => {
             tech: ['Python', 'Dash', 'Plotly', 'API Integration'],
             metrics: { type: 'Dashboard', Status: 'Complete', Completion: 'Feb 2025' },
             url: 'https://naija-econo-plotlydash.onrender.com',
+        },
+        {
+            name: 'Mousiki Mini',
+            desc: 'Simplified Music Recommendation System - Hybrid recommendation system combining Content-Based Filtering and Neural Collaborative Filtering. Built local-first application with CLI interface using Typer.',
+            tech: ['Python', 'Typer', 'Machine Learning', 'CLI'],
+            metrics: { type: 'Recommendation System', Status: 'Complete', Completion: 'Dec 2025' },
+            url: 'https://github.com/tadstech/mousiki-mini'
         }
     ];
 
@@ -150,6 +179,20 @@ export const MainPortfolio: React.FC = () => {
             <nav className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b transition-colors duration-300" style={{ borderColor: accentColor }}>
                 <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-3">
+                        <button
+                            onClick={handleHolidayToggle}
+                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg cursor-pointer"
+                            style={{ 
+                                borderColor: accentColor,
+                                backgroundColor: holidayMode ? '#16a34a' : 'transparent'
+                            }}
+                        >
+                            <TreePine className="h-4 w-4" />
+                            <span className="text-xs uppercase tracking-wider hidden sm:inline">
+                                {holidayMode ? 'Festive' : 'Normal'}
+                            </span>
+                        </button>
+
                         <button
                             onClick={handleThemeClick}
                             className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative cursor-pointer"
@@ -231,26 +274,26 @@ export const MainPortfolio: React.FC = () => {
                                     <button
                                         key={layer}
                                         onClick={() => {
-                                            navigateToLayer(layer);
+                                            const element = document.getElementById(layer);
+                                            if (element) {
+                                                element.scrollIntoView({ behavior: 'smooth' });
+                                            }
                                             setMobileMenuOpen(false);
                                         }}
                                         className="relative group overflow-hidden px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono cursor-pointer"
                                         style={{
-                                            backgroundColor: currentLayer === layer ? `${accentColor}20` : 'transparent',
-                                            border: `1px solid ${currentLayer === layer ? accentColor : `${accentColor}40`}`,
+                                            backgroundColor: 'transparent',
+                                            border: `1px solid ${accentColor}40`,
                                         }}
                                     >
                                         <div className="absolute top-0 right-0 text-[8px] font-mono opacity-30" style={{ color: accentColor }}>
                                             0{idx + 1}
                                         </div>
-                                        <div className="absolute bottom-0 left-0 h-0.5 transition-all duration-300 group-hover:w-full" 
-                                             style={{ 
-                                                 width: currentLayer === layer ? '100%' : '0%',
-                                                 backgroundColor: accentColor 
-                                             }}
+                                        <div className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full" 
+                                             style={{ backgroundColor: accentColor }}
                                         ></div>
                                         <div className="flex items-center gap-2">
-                                            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: currentLayer === layer ? accentColor : 'transparent', border: `1px solid ${accentColor}` }}></div>
+                                            <div className="w-1.5 h-1.5 rounded-full" style={{ border: `1px solid ${accentColor}` }}></div>
                                             <span className="relative z-10">{layer.toUpperCase()}</span>
                                         </div>
                                     </button>
@@ -258,6 +301,25 @@ export const MainPortfolio: React.FC = () => {
                             </div>
 
                             <div className="border-t pt-3 space-y-2" style={{ borderColor: `${accentColor}40` }}>
+                                <button
+                                    onClick={() => handleHolidayToggle()}
+                                    className="w-full px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono flex items-center justify-between group relative overflow-hidden cursor-pointer"
+                                    style={{
+                                        backgroundColor: holidayMode ? '#16a34a20' : 'transparent',
+                                        border: `1px solid ${accentColor}`
+                                    }}
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                                    <div className="flex items-center gap-3">
+                                        <TreePine className="h-4 w-4" />
+                                        <div className="text-left">
+                                            <div className="text-xs">{holidayMode ? 'FESTIVE_MODE' : 'NORMAL_MODE'}</div>
+                                            <div className="text-[8px] text-white/50">Toggle holiday theme</div>
+                                        </div>
+                                    </div>
+                                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: holidayMode ? '#16a34a' : 'transparent', border: `1px solid ${accentColor}` }}></div>
+                                </button>
+
                                 <button
                                     onClick={() => handleThemeClick()}
                                     className="w-full px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono flex items-center justify-between group relative overflow-hidden cursor-pointer"
@@ -291,7 +353,7 @@ export const MainPortfolio: React.FC = () => {
                                 </button>
 
                                 <div className="flex items-center justify-between text-[9px] font-mono text-white/40 px-2">
-                                    <span>LAYERS: {(['hero', 'stats', 'skills', 'projects', 'contact'] as Layer[]).length}</span>
+                                    <span>SECTIONS: 4</span>
                                     <span>MODE: {colorMode ? 'CLR' : 'B&W'}</span>
                                     <span>STATUS: ACTIVE</span>
                                 </div>
@@ -302,8 +364,8 @@ export const MainPortfolio: React.FC = () => {
             </nav>
 
             <div className={`transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
-                {currentLayer === 'hero' && (
-                    <section className="min-h-screen flex items-center justify-center px-6 pt-28 pb-28">
+                {(isMobile || currentLayer === 'hero') && (
+                    <section id="hero" className="min-h-screen flex items-center justify-center px-6 pt-28 pb-28">
                         <div className="max-w-5xl w-full animate-fadeIn">
                             <div className="border p-12 md:p-20 relative transition-all duration-300 hover:shadow-2xl" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 30px ${accentColor}40` : 'none' }}>
                                 <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
@@ -312,7 +374,19 @@ export const MainPortfolio: React.FC = () => {
                                 <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
 
                                 <div className="text-center space-y-8 md:space-y-12">
-                                    <div className="h-12 sm:h-16 flex items-center justify-center px-2">
+                                    <div className="h-12 sm:h-16 flex items-center justify-center px-2 relative">
+                                        {holidayMode && (
+                                            <svg 
+                                                className="absolute -top-6 left-1/2 -translate-x-1/2 md:-top-8 w-12 h-12 md:w-16 md:h-16 -rotate-12"
+                                                viewBox="0 0 64 64" 
+                                                fill="none"
+                                            >
+                                                <path d="M32 8L48 40H16L32 8Z" fill="#dc2626"/>
+                                                <path d="M32 2L38 14H26L32 2Z" fill="#dc2626"/>
+                                                <ellipse cx="32" cy="42" rx="18" ry="6" fill="white"/>
+                                                <circle cx="32" cy="4" r="4" fill="white"/>
+                                            </svg>
+                                        )}
                                         <span className="text-xl sm:text-2xl md:text-4xl tracking-widest leading-tight text-center break-words" style={{ color: colorMode ? accentColor : 'white' }}>
                                             {displayText}
                                             <span className="inline-block ml-1 animate-pulse" aria-hidden="true">_</span>
@@ -471,8 +545,8 @@ export const MainPortfolio: React.FC = () => {
                     </section>
                 )}
 
-                {currentLayer === 'experience' && (
-                    <section className="min-h-screen flex items-center justify-center px-4 pt-20 pb-20">
+                {(isMobile || currentLayer === 'experience') && (
+                    <section id="experience" className="min-h-screen flex items-center justify-center px-4 pt-20 pb-20">
                         <div className="max-w-6xl w-full space-y-12">
                             <div className="text-center mb-12">
                                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-2 font-mono">
@@ -789,8 +863,8 @@ export const MainPortfolio: React.FC = () => {
                     </section>
                 )}
 
-                {currentLayer === 'projects' && (
-                    <section className="min-h-screen flex items-center justify-center px-4 pt-20 pb-20">
+                {(isMobile || currentLayer === 'projects') && (
+                    <section id="projects" className="min-h-screen flex items-center justify-center px-4 pt-20 pb-20">
                         <div className="max-w-6xl w-full space-y-8">
                             <div className="text-center mb-12">
                                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">
@@ -866,8 +940,8 @@ export const MainPortfolio: React.FC = () => {
 
 
 
-                {currentLayer === 'contact' && (
-                    <section className="min-h-screen flex items-center justify-center px-4 pt-20">
+                {(isMobile || currentLayer === 'contact') && (
+                    <section id="contact" className="min-h-screen flex items-center justify-center px-4 pt-20">
                         <div className="max-w-3xl w-full">
                             <div className="border p-8 md:p-16 transition-all duration-300" style={{ borderColor: accentColor }}>
                                 <div className="text-center space-y-8">
@@ -925,21 +999,23 @@ export const MainPortfolio: React.FC = () => {
                 )}
             </div>
 
-            <div className="fixed bottom-4 right-4 flex gap-1 z-50">
-                {(['hero', 'stats', 'skills', 'projects', 'contact'] as Layer[]).map((layer) => (
-                    <button
-                        key={layer}
-                        onClick={() => navigateToLayer(layer)}
-                        className={`h-2 transition-all ${
-                            currentLayer === layer ? 'w-8' : 'w-2'
-                        }`}
-                        style={{ 
-                            backgroundColor: currentLayer === layer ? (colorMode ? accentColor : 'white') : '#ffffff40'
-                        }}
-                        aria-label={`Navigate to ${layer}`}
-                    ></button>
-                ))}
-            </div>
+            {!isMobile && (
+                <div className="fixed bottom-4 right-4 flex gap-1 z-50">
+                    {(['hero', 'experience', 'projects', 'contact'] as Layer[]).map((layer) => (
+                        <button
+                            key={layer}
+                            onClick={() => navigateToLayer(layer)}
+                            className={`h-2 transition-all cursor-pointer ${
+                                currentLayer === layer ? 'w-8' : 'w-2'
+                            }`}
+                            style={{ 
+                                backgroundColor: currentLayer === layer ? (colorMode ? accentColor : 'white') : '#ffffff40'
+                            }}
+                            aria-label={`Navigate to ${layer}`}
+                        ></button>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

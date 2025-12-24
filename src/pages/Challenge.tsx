@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Github, ExternalLink, Database, Twitter, Linkedin, Palette } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Database, Twitter, Linkedin, Palette, TreePine } from 'lucide-react';
 
 interface ChallengeDay {
     day: string;
@@ -22,6 +22,12 @@ export const Challenge: React.FC = () => {
     const [colorMode, setColorMode] = useState(() => {
         const saved = localStorage.getItem('tadstech-theme');
         return saved ? saved === 'blue' : false;
+    });
+    const [holidayMode, setHolidayMode] = useState(() => {
+        const now = new Date();
+        const isHolidaySeason = now.getMonth() === 11 && now.getDate() <= 29;
+        const saved = localStorage.getItem('tadstech-holiday');
+        return saved !== null ? saved === 'true' : isHolidaySeason;
     });
     const [holdTimer, setHoldTimer] = useState<NodeJS.Timeout | null>(null);
     const [autoSwapInterval, setAutoSwapInterval] = useState<NodeJS.Timeout | null>(null);
@@ -415,7 +421,16 @@ export const Challenge: React.FC = () => {
         }
     };
 
-    const accentColor = colorMode ? '#0ea5e9' : '#28333F';
+    const handleHolidayToggle = () => {
+        setHolidayMode(prev => {
+            localStorage.setItem('tadstech-holiday', String(!prev));
+            return !prev;
+        });
+    };
+
+    const holidayColors = ['#dc2626', '#16a34a'];
+    const getHolidayColor = () => holidayColors[Math.floor(Date.now() / 1000) % 2];
+    const accentColor = holidayMode ? getHolidayColor() : (colorMode ? '#0ea5e9' : '#28333F');
 
     // Phases definition
     const phases = [
@@ -529,13 +544,27 @@ export const Challenge: React.FC = () => {
 
                     <div className="flex items-center gap-3">
                         <button
+                            onClick={handleHolidayToggle}
+                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg cursor-pointer"
+                            style={{ 
+                                borderColor: accentColor,
+                                backgroundColor: holidayMode ? '#16a34a' : 'transparent'
+                            }}
+                        >
+                            <TreePine className="h-4 w-4" />
+                            <span className="text-xs uppercase tracking-wider hidden sm:inline">
+                                {holidayMode ? 'Festive' : 'Normal'}
+                            </span>
+                        </button>
+
+                        <button
                             onClick={handleThemeClick}
                             onMouseDown={handleThemeMouseDown}
                             onMouseUp={handleThemeMouseUp}
                             onMouseLeave={handleThemeMouseUp}
                             onTouchStart={handleThemeMouseDown}
                             onTouchEnd={handleThemeMouseUp}
-                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative"
+                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative cursor-pointer"
                             style={{ 
                                 borderColor: accentColor,
                                 backgroundColor: colorMode ? accentColor : 'transparent'
