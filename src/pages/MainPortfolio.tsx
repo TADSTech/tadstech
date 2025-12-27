@@ -113,25 +113,25 @@ export const MainPortfolio: React.FC = () => {
 
     const investigations = [
         {
-            name: 'Financial News Sentiment Analysis',
+            name: '1. Financial News Sentiment Analysis',
             question: 'Does financial news sentiment contain stable predictive signal for short-term market returns?',
-            status: 'Rebuilding',
+            status: 'Complete',
             approach: 'Data sources: News data and historical price data. Baseline: Naive return models. Comparison: Linear models vs shallow neural networks.',
             evaluation: 'Out-of-sample performance and stability across time windows',
             failure: 'Observed accuracy is regime-dependent, unstable across time periods, or driven by data leakage',
             tech: ['Python', 'PyTorch', 'scikit-learn', 'HF Transformers', 'Gradio'],
-            metrics: { Status: 'Rebuilding', Started: 'Oct 2025' },
+            metrics: { Status: 'Complete', Started: 'Oct 2025' },
             url: 'https://tadstech.github.io/financial-news-classifier'
         },
         {
-            name: 'Hybrid Music Recommendation',
-            question: 'Can hybrid filtering improve recommendation quality over single-method baselines?',
+            name: '2. Hybrid Music Recommendation Methods',
+            question: 'Under what conditions does each recommendation method fail, and does a hybrid approach offer interpretable improvement over single-method baselines?',
             status: 'Complete',
-            approach: 'Combined content-based filtering and neural collaborative filtering. Baseline: Single-method approaches. Implementation: Local-first CLI.',
-            evaluation: 'Precision@K, user coverage, direct baseline comparisons',
-            failure: 'Hybrid approach adds complexity without meaningful improvement over simpler baselines',
-            tech: ['Python', 'SK-learn', 'Pytorch', 'Pandas'],
-            metrics: { Status: 'Complete', Completion: 'Dec 2025' },
+            approach: 'Methods: Content-based filtering (semantic embeddings), Collaborative filtering (neural matrix factorization), Hybrid (weighted combination). Data: Music listening dataset with user-track interactions and metadata. Baseline: Implicit popularity models. Evaluation: Precision@k, Recall@k, NDCG@k, Hit Rate with temporal train/test splitting.',
+            evaluation: 'Precision@k, Recall@k, NDCG@k, Hit Rate. Temporal train/test splitting to simulate realistic prediction scenarios.',
+            failure: 'CBF and CF show baseline performance of 0.0, indicating dataset sparsity or embedding misalignment. Hybrid marginal improvement but still poor in absolute terms. Results reveal insufficient interaction density for matrix factorization.',
+            tech: ['Python', 'PyTorch', 'scikit-learn', 'Pandas', 'BGE embeddings'],
+            metrics: { Status: 'Complete', Completion: 'Dec 2024' },
             url: 'https://github.com/tadstech/mousiki-mini'
         }
     ];
