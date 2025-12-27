@@ -111,59 +111,64 @@ export const MainPortfolio: React.FC = () => {
     const getHolidayColor = () => holidayColors[Math.floor(Date.now() / 1000) % 2];
     const accentColor = holidayMode ? getHolidayColor() : (colorMode ? '#0ea5e9' : '#28333F');
 
-    const projects = [
+    const investigations = [
         {
-            name: 'Financial News Classifier',
-            desc: 'Financial news sentiment classifier using PyTorch and scikit-learn for analyzing market sentiment from news articles.',
-            tech: ['Python', 'PyTorch', 'scikit-learn', 'FastAPI', 'Docker'],
-            metrics: { accuracy: '93%', Status: 'Complete', Completion: 'Nov 2025' },
+            name: 'Financial News Sentiment Analysis',
+            question: 'Does financial news sentiment contain stable predictive signal for short-term market returns?',
+            status: 'Rebuilding',
+            approach: 'Data sources: News data and historical price data. Baseline: Naive return models. Comparison: Linear models vs shallow neural networks.',
+            evaluation: 'Out-of-sample performance and stability across time windows',
+            failure: 'Observed accuracy is regime-dependent, unstable across time periods, or driven by data leakage',
+            tech: ['Python', 'PyTorch', 'scikit-learn', 'HF Transformers', 'Gradio'],
+            metrics: { Status: 'Rebuilding', Started: 'Oct 2025' },
             url: 'https://tadstech.github.io/financial-news-classifier'
         },
         {
-            name: 'Brazilian Retail Intelligence System (BRIS)',
-            desc: 'ETL workflows and dashboard for processing retail transaction data and visualizing business metrics.',
-            tech: ['Python', 'SQLAlchemy', 'FastAPI', 'PostgreSQL', 'Docker', 'React', 'TypeScript'],
-            metrics: { components: '5', Status: 'Complete', Completion: 'Nov 2025' },
+            name: 'Hybrid Music Recommendation',
+            question: 'Can hybrid filtering improve recommendation quality over single-method baselines?',
+            status: 'Complete',
+            approach: 'Combined content-based filtering and neural collaborative filtering. Baseline: Single-method approaches. Implementation: Local-first CLI.',
+            evaluation: 'Precision@K, user coverage, direct baseline comparisons',
+            failure: 'Hybrid approach adds complexity without meaningful improvement over simpler baselines',
+            tech: ['Python', 'SK-learn', 'Pytorch', 'Pandas'],
+            metrics: { Status: 'Complete', Completion: 'Dec 2025' },
+            url: 'https://github.com/tadstech/mousiki-mini'
+        }
+    ];
+
+    const appliedSystems = [
+        {
+            name: 'Brazilian Retail Intelligence System',
+            desc: 'ETL workflows and dashboard for processing retail transaction data',
             url: 'https://brazilian-retail-intelligence-syste.vercel.app'
         },
         {
-            name: 'Mini Data Manim',
-            desc: 'Frontend tool for animating charts and statistics with Python preprocessing for data cleaning.',
-            tech: ['React', 'TypeScript', 'Python', 'Plotly'],
-            metrics: { type: 'Animation Tool', Status: 'Complete', Completion: 'Sep 2025' },
-            url: 'https://minidatamanim.web.app'
-        },
-        {
             name: 'Naija Economic Dashboard',
-            desc: 'Interactive dashboard tracking Nigerian financial indicators with API integration.',
-            tech: ['Python', 'Dash', 'Plotly', 'API Integration'],
-            metrics: { type: 'Dashboard', Status: 'Complete', Completion: 'Feb 2025' },
-            url: 'https://naija-econo-plotlydash.onrender.com',
+            desc: 'Interactive dashboard tracking Nigerian financial indicators',
+            url: 'https://naija-econo-plotlydash.onrender.com'
         },
         {
-            name: 'Mousiki Mini',
-            desc: 'Simplified Music Recommendation System - Hybrid recommendation system combining Content-Based Filtering and Neural Collaborative Filtering. Built local-first application with CLI interface using Typer.',
-            tech: ['Python', 'Typer', 'Machine Learning', 'CLI'],
-            metrics: { type: 'Recommendation System', Status: 'Complete', Completion: 'Dec 2025' },
-            url: 'https://github.com/tadstech/mousiki-mini'
+            name: 'Mini Data Manim',
+            desc: 'Animation tool for charts with Python preprocessing',
+            url: 'https://minidatamanim.web.app'
         }
     ];
 
     return (
         <div className="min-h-screen bg-black text-white font-mono overflow-x-hidden relative">
             <Helmet>
-                <title>Michael Tunwashe | Junior ML Engineer & Python Data Engineer</title>
-                <meta name="description" content="Junior Machine Learning & Data Engineering practitioner with strong Python skills. Building ETL workflows, ML models, and data pipelines. BSc Mathematics student at University of Lagos." />
-                <meta name="keywords" content="Michael Tunwashe, TADS, Junior ML Engineer, Data Engineer, Python Developer, Machine Learning, ETL Workflows, PyTorch, FastAPI, Docker, Data Analysis, Lagos, Nigeria, University of Lagos, Data Science" />
+                <title>Michael Tunwashe | Statistical & ML Investigation | Financial Data Research</title>
+                <meta name="description" content="Investigating statistical and machine learning questions using real-world financial and economic data. Research-oriented approach focused on evaluation, assumptions, and limitations. Building toward quant-adjacent and ML research roles." />
+                <meta name="keywords" content="Michael Tunwashe, TADS, Statistical Analysis, Machine Learning Research, Financial Data, Economic Data, Quantitative Analysis, Time Series, Research Methodology, Data Investigation, Model Evaluation" />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://tadstech.web.app/" />
-                <meta property="og:title" content="Michael Tunwashe | Junior ML Engineer & Python Data Engineer" />
-                <meta property="og:description" content="Junior Machine Learning & Data Engineering practitioner with strong Python skills. Building ETL workflows, ML models, and data pipelines." />
+                <meta property="og:title" content="Michael Tunwashe | Statistical & ML Investigation | Financial Data Research" />
+                <meta property="og:description" content="Investigating statistical and machine learning questions using real-world financial and economic data. Research-oriented methodology focused on questions, evaluation, and limitations." />
                 <meta property="og:image" content="https://tadstech.web.app/logo.png" />
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:url" content="https://tadstech.web.app/" />
-                <meta property="twitter:title" content="Michael Tunwashe | Junior ML Engineer & Python Data Engineer" />
-                <meta property="twitter:description" content="Junior Machine Learning & Data Engineering practitioner with strong Python skills. Building ETL workflows, ML models, and data pipelines." />
+                <meta property="twitter:title" content="Michael Tunwashe | Mathematics Student | Statistical & ML Research" />
+                <meta property="twitter:description" content="Mathematics student investigating statistical and machine learning questions using real-world data, particularly financial and economic data." />
                 <meta property="twitter:image" content="https://tadstech.web.app/logo.png" />
                 <meta name="author" content="Michael Tunwashe" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -182,7 +187,7 @@ export const MainPortfolio: React.FC = () => {
                         <button
                             onClick={handleHolidayToggle}
                             className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg cursor-pointer"
-                            style={{ 
+                            style={{
                                 borderColor: accentColor,
                                 backgroundColor: holidayMode ? '#16a34a' : 'transparent'
                             }}
@@ -196,7 +201,7 @@ export const MainPortfolio: React.FC = () => {
                         <button
                             onClick={handleThemeClick}
                             className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative cursor-pointer"
-                            style={{ 
+                            style={{
                                 borderColor: accentColor,
                                 backgroundColor: colorMode ? accentColor : 'transparent'
                             }}
@@ -217,7 +222,7 @@ export const MainPortfolio: React.FC = () => {
                             <span className="text-xs uppercase tracking-wider hidden sm:inline">Writing</span>
                         </button>
                     </div>
-                    
+
                     <div className="hidden md:flex gap-2">
                         {(['hero', 'experience', 'projects', 'contact'] as Layer[]).map((layer) => (
                             <button
@@ -251,16 +256,16 @@ export const MainPortfolio: React.FC = () => {
                                 backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, ${accentColor} 10px, ${accentColor} 11px)`
                             }}></div>
                         </div>
-                        
+
                         <div className="relative z-10 px-4 py-4">
                             <div className="mb-3 flex items-center justify-between pb-2 border-b" style={{ borderColor: `${accentColor}40` }}>
                                 <span className="text-[10px] font-mono tracking-wider text-white/60">NAVIGATION_MENU</span>
                                 <div className="flex gap-1">
                                     {[...Array(6)].map((_, i) => (
-                                        <div 
-                                            key={i} 
-                                            className="w-1 h-1 rounded-full animate-pulse" 
-                                            style={{ 
+                                        <div
+                                            key={i}
+                                            className="w-1 h-1 rounded-full animate-pulse"
+                                            style={{
                                                 backgroundColor: accentColor,
                                                 animationDelay: `${i * 150}ms`
                                             }}
@@ -289,8 +294,8 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="absolute top-0 right-0 text-[8px] font-mono opacity-30" style={{ color: accentColor }}>
                                             0{idx + 1}
                                         </div>
-                                        <div className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full" 
-                                             style={{ backgroundColor: accentColor }}
+                                        <div className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
+                                            style={{ backgroundColor: accentColor }}
                                         ></div>
                                         <div className="flex items-center gap-2">
                                             <div className="w-1.5 h-1.5 rounded-full" style={{ border: `1px solid ${accentColor}` }}></div>
@@ -338,10 +343,10 @@ export const MainPortfolio: React.FC = () => {
                                     </div>
                                     <div className="flex gap-1">
                                         {[0, 1, 2].map((i) => (
-                                            <div 
-                                                key={i} 
-                                                className="w-1.5 h-1.5 rounded-full transition-all" 
-                                                style={{ 
+                                            <div
+                                                key={i}
+                                                className="w-1.5 h-1.5 rounded-full transition-all"
+                                                style={{
                                                     backgroundColor: autoSwapInterval ? accentColor : 'transparent',
                                                     border: `1px solid ${accentColor}`,
                                                     transform: autoSwapInterval ? 'scale(1.2)' : 'scale(1)',
@@ -366,179 +371,130 @@ export const MainPortfolio: React.FC = () => {
             <div className={`transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
                 {(isMobile || currentLayer === 'hero') && (
                     <section id="hero" className="min-h-screen flex items-center justify-center px-6 pt-28 pb-28">
-                        <div className="max-w-5xl w-full animate-fadeIn">
-                            <div className="border p-12 md:p-20 relative transition-all duration-300 hover:shadow-2xl" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 30px ${accentColor}40` : 'none' }}>
-                                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
-                                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
-                                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
-                                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 transition-colors duration-300" style={{ borderColor: accentColor }}></div>
+                        <div className="max-w-7xl w-full animate-fadeIn">
+                            <div className="relative">
+                                {/* Geometric grid background */}
+                                <div className="absolute inset-0 grid grid-cols-12 gap-4 opacity-10 pointer-events-none">
+                                    {[...Array(12)].map((_, i) => (
+                                        <div key={i} className="border-r transition-colors duration-300" style={{ borderColor: accentColor }}></div>
+                                    ))}
+                                </div>
 
-                                <div className="text-center space-y-8 md:space-y-12">
-                                    <div className="h-12 sm:h-16 flex items-center justify-center px-2 relative">
-                                        {holidayMode && (
-                                            <svg 
-                                                className="absolute -top-6 left-1/2 -translate-x-1/2 md:-top-8 w-12 h-12 md:w-16 md:h-16 -rotate-12"
-                                                viewBox="0 0 64 64" 
-                                                fill="none"
-                                            >
-                                                <path d="M32 8L48 40H16L32 8Z" fill="#dc2626"/>
-                                                <path d="M32 2L38 14H26L32 2Z" fill="#dc2626"/>
-                                                <ellipse cx="32" cy="42" rx="18" ry="6" fill="white"/>
-                                                <circle cx="32" cy="4" r="4" fill="white"/>
-                                            </svg>
-                                        )}
-                                        <span className="text-xl sm:text-2xl md:text-4xl tracking-widest leading-tight text-center break-words" style={{ color: colorMode ? accentColor : 'white' }}>
-                                            {displayText}
+                                <div className="relative z-10">
+                                    {/* Terminal prompt */}
+                                    <div className="mb-8 md:mb-12">
+                                        <div className="inline-block border px-4 py-2 font-mono text-sm md:text-base" style={{ borderColor: accentColor }}>
+                                            <span style={{ color: colorMode ? accentColor : 'white' }}>{displayText}</span>
                                             <span className="inline-block ml-1 animate-pulse" aria-hidden="true">_</span>
-                                        </span>
-                                    </div>
-
-                                    <div className="space-y-6">
-                                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                                            Junior <span style={{ color: colorMode ? accentColor : 'white' }}>ML Engineer</span>
-                                        </h1>
-                                        
-                                        <div className="flex flex-wrap justify-center gap-3 text-sm md:text-base text-white/70 font-mono">
-                                            <span>Lagos, Nigeria</span>
-                                            <span className="hidden sm:inline">|</span>
-                                            <span>+234-704-102-9093</span>
-                                            <span className="hidden sm:inline">|</span>
-                                            <span>motrenewed@gmail.com</span>
                                         </div>
-
-                                        <div className="h-px w-40 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
-                                        
-                                        <p className="text-sm md:text-base text-white/80 max-w-3xl mx-auto leading-relaxed">
-                                            Junior ML Engineer & Data Engineering practitioner. Building end-to-end data solutions with Python, PyTorch, SQL, and FastAPI. Interested in ML Engineering, Data Engineering, and Finance.
-                                        </p>
                                     </div>
 
-                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-8">
-                                        {[
-                                            { value: '4', label: 'Personal Projects' },
-                                            { value: '3M', label: 'Intern Experience' },
-                                            { value: '93%', label: 'ML Model Accuracy' },
-                                            { value: '2028', label: 'BSc Mathematics' },
-                                        ].map((stat, i) => (
-                                            <div key={i} className="border p-5 md:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}20` : 'none' }}>
-                                                <div className="text-2xl md:text-3xl font-bold transition-colors duration-300" style={{ color: colorMode ? accentColor : 'white' }}>
-                                                    {stat.value}
-                                                </div>
-                                                <div className="text-xs text-white/90 uppercase mt-1">{stat.label}</div>
+                                    {/* Main content grid */}
+                                    <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+                                        {/* Left column - vertical accent */}
+                                        <div className="hidden md:flex flex-col justify-center">
+                                            <div className="space-y-4">
+                                                {['Quantitative', 'Research', 'Statistical', 'Analysis'].map((word, i) => (
+                                                    <div key={i} className="border-l-2 pl-4 py-2 transition-all duration-300 hover:pl-6" style={{ borderColor: accentColor }}>
+                                                        <span className="text-xs uppercase tracking-widest opacity-60">{word}</span>
+                                                    </div>
+                                                ))}
                                             </div>
-                                        ))}
-                                    </div>
-
-                                    <div className="flex items-center justify-center gap-3 pt-8">
-                                        {[
-                                            { Icon: Linkedin, url: 'https://linkedin.com/in/tadstech', label: 'LinkedIn' },
-                                            { Icon: Github, url: 'https://github.com/tadstech', label: 'GitHub' },
-                                            { Icon: Mail, url: 'mailto:motrenewed@gmail.com', label: 'Email' },
-                                        ].map(({ Icon, url, label }) => (
-                                            <a
-                                                key={label}
-                                                href={url}
-                                                target={label !== 'Email' ? '_blank' : undefined}
-                                                rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
-                                                aria-label={label}
-                                                className="p-2 hover:opacity-80 transition-all border hover:shadow-lg hover:-translate-y-1 cursor-pointer"
-                                                style={{ borderColor: accentColor }}
-                                            >
-                                                <Icon className="h-5 w-5" />
-                                            </a>
-                                        ))}
-                                    </div>
-
-                                    <div className="pt-4">
-                                        <button
-                                            onClick={() => navigate('/cv')}
-                                            className="inline-flex items-center gap-2 border px-6 py-2.5 hover:shadow-lg transition-all text-xs uppercase tracking-wider hover:-translate-y-1 cursor-pointer"
-                                            style={{ 
-                                                borderColor: accentColor,
-                                                backgroundColor: colorMode ? accentColor : 'transparent',
-                                                color: 'white'
-                                            }}
-                                        >
-                                            <ExternalLink className="h-4 w-4" />
-                                            <span>View Resume</span>
-                                        </button>
-                                    </div>
-
-                                    <div className="pt-8 space-y-3 relative group/challenge">
-                                        <div className="flex items-center justify-between text-xs">
-                                            <span className="text-white/90 uppercase tracking-wider">30-Day Data Challenge</span>
-                                            <span className="font-bold" style={{ color: colorMode ? accentColor : 'white' }}>COMPLETED</span>
                                         </div>
-                                        
-                                        <button
-                                            onClick={() => navigate('/challenge')}
-                                            className="w-full h-10 border relative overflow-hidden transition-all hover:shadow-lg group cursor-pointer"
-                                            style={{ 
-                                                borderColor: accentColor,
-                                                backgroundColor: colorMode ? `${accentColor}10` : 'rgba(255,255,255,0.05)'
-                                            }}
-                                        >
-                                            {/* Progress fill - Full width now */}
-                                            <div
-                                                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                                                style={{ 
-                                                    backgroundColor: colorMode ? accentColor : 'white',
-                                                }}
-                                            ></div>
-                                            
-                                            {/* Animated shine effect - only on hover */}
-                                            <div 
-                                                className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300"
-                                                style={{
-                                                    background: `linear-gradient(90deg, transparent 0%, ${colorMode ? accentColor : 'white'} 50%, transparent 100%)`,
-                                                    animation: 'shine 3s infinite',
-                                                    backgroundSize: '200% 100%'
-                                                }}
-                                            ></div>
 
-                                            
-                                            <div className="absolute inset-0 flex items-center justify-center gap-2">
-                                                <span className="text-xs font-mono font-bold tracking-widest" style={{ color: colorMode ? accentColor : 'white' }}>
-                                                    VIEW JOURNEY
+                                        {/* Center column - main content */}
+                                        <div className="md:col-span-2 space-y-6">
+                                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                                                <span className="block mb-2">Quantitative Research</span>
+                                                <span className="block text-2xl md:text-3xl lg:text-4xl" style={{ color: colorMode ? accentColor : 'white' }}>
+                                                    & Applied ML Analysis
                                                 </span>
-                                                <ExternalLink className="h-3 w-3" style={{ color: colorMode ? accentColor : 'white' }} />
+                                            </h1>
+
+                                            <div className="border-l-2 pl-4 py-3 space-y-2" style={{ borderColor: `${accentColor}40` }}>
+                                                <p className="text-sm md:text-base text-white/80 leading-relaxed">
+                                                    Working with uncertainty, models, and financial data. Focused on statistical analysis, time-series modeling, and quantitative research methods. Building toward quant-adjacent and research-oriented ML roles.
+                                                </p>
+                                                <div className="flex flex-wrap gap-2 text-xs text-white/60 font-mono">
+                                                    <span>Lagos, Nigeria</span>
+                                                    <span>•</span>
+                                                    <span>motrenewed@gmail.com</span>
+                                                </div>
                                             </div>
 
-                                            {/* Background grid pattern */}
-                                            <div 
-                                                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"
-                                                style={{
-                                                    backgroundImage: `repeating-linear-gradient(90deg, ${accentColor} 0px, transparent 1px, transparent 4px)`,
-                                                    backgroundSize: '4px 100%'
-                                                }}
-                                            ></div>
-                                        </button>
-
-                                        {/* Stats below bar */}
-                                        <div className="flex justify-between text-[10px] text-white/50 font-mono">
-                                            <span>Oct 27 - Nov 25</span>
-                                            <span style={{ color: colorMode ? accentColor : 'white' }}>30 Datasets Analyzed</span>
+                                            {/* Employment tiers */}
+                                            <div className="grid grid-cols-1 gap-3 py-4">
+                                                <div className="border p-3 transition-all hover:border-opacity-100" style={{ borderColor: `${accentColor}60` }}>
+                                                    <div className="text-xs uppercase tracking-wider mb-1" style={{ color: colorMode ? accentColor : 'white' }}>Seeking Roles In</div>
+                                                    <div className="text-sm text-white/80">Quantitative Research • Risk Analytics • Statistical Analysis</div>
+                                                </div>
+                                                <div className="border p-3 transition-all hover:border-opacity-100" style={{ borderColor: `${accentColor}40` }}>
+                                                    <div className="text-xs uppercase tracking-wider mb-1" style={{ color: colorMode ? accentColor : 'white' }}>Core Capabilities</div>
+                                                    <div className="text-sm text-white/80">Applied ML • Forecasting • Time-Series Analysis</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <style>{`
-                                        @keyframes shine {
-                                            0% { background-position: -200% 0; }
-                                            100% { background-position: 200% 0; }
-                                        }
-                                    `}</style>
+                                    {/* Bottom section - links and actions */}
+                                    <div className="mt-8 md:mt-12 grid md:grid-cols-3 gap-6 border-t pt-8" style={{ borderColor: `${accentColor}20` }}>
+                                        <div className="md:col-span-2 flex flex-wrap gap-3">
+                                            {[
+                                                { Icon: Linkedin, url: 'https://linkedin.com/in/tadstech', label: 'LinkedIn' },
+                                                { Icon: Github, url: 'https://github.com/tadstech', label: 'GitHub' },
+                                                { Icon: Mail, url: 'mailto:motrenewed@gmail.com', label: 'Email' },
+                                            ].map(({ Icon, url, label }) => (
+                                                <a
+                                                    key={label}
+                                                    href={url}
+                                                    target={label !== 'Email' ? '_blank' : undefined}
+                                                    rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
+                                                    className="border px-4 py-2 hover:opacity-80 transition-all inline-flex items-center gap-2 text-sm"
+                                                    style={{ borderColor: `${accentColor}40` }}
+                                                >
+                                                    <Icon className="h-4 w-4" />
+                                                    <span className="text-xs uppercase tracking-wider">{label}</span>
+                                                </a>
+                                            ))}
+                                        </div>
 
-                                    <button
-                                        onClick={() => navigateToLayer('experience')}
-                                        className="mt-8 flex items-center gap-3 mx-auto border px-8 py-3 hover:shadow-lg transition-all group hover:-translate-y-1 cursor-pointer"
-                                        style={{ 
-                                            borderColor: accentColor,
-                                            backgroundColor: colorMode ? accentColor : 'transparent'
-                                        }}
-                                    >
-                                        <span className="text-xs uppercase tracking-wider">Dive Deeper</span>
-                                        <ChevronDown className="h-4 w-4 animate-bounce group-hover:animate-none" />
-                                    </button>
+                                        <div className="flex flex-col gap-3">
+                                            <a
+                                                href="/challenge"
+                                                className="border px-4 py-2 text-center transition-all hover:shadow-lg text-sm"
+                                                style={{
+                                                    borderColor: accentColor,
+                                                    backgroundColor: colorMode ? `${accentColor}20` : 'transparent'
+                                                }}
+                                            >
+                                                <div className="text-xs uppercase tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>30-Day Challenge</div>
+                                            </a>
+                                            <button
+                                                onClick={() => navigate('/cv')}
+                                                className="border px-4 py-2 text-center transition-all hover:shadow-lg text-sm"
+                                                style={{
+                                                    borderColor: accentColor,
+                                                    backgroundColor: colorMode ? accentColor : 'transparent'
+                                                }}
+                                            >
+                                                <div className="text-xs uppercase tracking-wider text-white">Full Resume</div>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div className="text-center mt-8">
+                                        <button
+                                            onClick={() => navigateToLayer('experience')}
+                                            className="inline-flex items-center gap-3 border px-8 py-3 hover:shadow-lg transition-all group hover:-translate-y-1"
+                                            style={{
+                                                borderColor: accentColor,
+                                                backgroundColor: 'transparent'
+                                            }}
+                                        >
+                                            <span className="text-xs uppercase tracking-wider">View Experience</span>
+                                            <ChevronDown className="h-4 w-4 animate-bounce group-hover:animate-none" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -558,10 +514,10 @@ export const MainPortfolio: React.FC = () => {
 
                             <div className="grid md:grid-cols-3 gap-6">
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
-                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
-                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    
+                                    style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+                                        style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+
                                     <div className="relative z-10 flex flex-col h-full">
                                         <div className="flex justify-between items-start mb-6">
                                             <div className="p-3 border bg-black/50" style={{ borderColor: `${accentColor}40` }}>
@@ -569,18 +525,18 @@ export const MainPortfolio: React.FC = () => {
                                             </div>
                                             <span className="text-[10px] font-mono opacity-50 tracking-widest">MOD_DATA</span>
                                         </div>
-                                        
-                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Data & ML Engineering</h3>
+
+                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Mathematical Foundations</h3>
                                         <p className="text-sm text-white/70 mb-6 leading-relaxed font-mono">
-                                            Building <span className="text-white font-bold">ETL workflows</span> and <span className="text-white font-bold">ML models</span>. Learning to transform raw data into insights through hands-on projects.
+                                            Probability, statistics, and linear algebra applied to <span className="text-white font-bold">model evaluation</span> and <span className="text-white font-bold">uncertainty quantification</span>.
                                         </p>
-                                        
+
                                         <div className="mt-auto space-y-4">
                                             <div className="h-px w-full bg-white/10"></div>
                                             <div className="flex flex-wrap gap-2">
-                                                {['Python', 'Pandas', 'PyTorch', 'Scikit-Learn', 'SQL', 'FastAPI'].map((tech) => (
-                                                    <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5" 
-                                                          style={{ borderColor: `${accentColor}40` }}>
+                                                {['Probability', 'Statistics', 'Linear Algebra', 'Calculus'].map((tech) => (
+                                                    <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5"
+                                                        style={{ borderColor: `${accentColor}40` }}>
                                                         {tech}
                                                     </span>
                                                 ))}
@@ -590,10 +546,10 @@ export const MainPortfolio: React.FC = () => {
                                 </div>
 
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
-                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
-                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    
+                                    style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+                                        style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+
                                     <div className="relative z-10 flex flex-col h-full">
                                         <div className="flex justify-between items-start mb-6">
                                             <div className="p-3 border bg-black/50" style={{ borderColor: `${accentColor}40` }}>
@@ -601,18 +557,18 @@ export const MainPortfolio: React.FC = () => {
                                             </div>
                                             <span className="text-[10px] font-mono opacity-50 tracking-widest">MOD_DEV</span>
                                         </div>
-                                        
-                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Web Development</h3>
+
+                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Data & Modeling</h3>
                                         <p className="text-sm text-white/70 mb-6 leading-relaxed font-mono">
-                                            Building with <span className="text-white font-bold">React</span> and <span className="text-white font-bold">TypeScript</span> for building dashboards and data visualization interfaces.
+                                            Working with <span className="text-white font-bold">Pandas</span>, <span className="text-white font-bold">PyTorch</span>, and <span className="text-white font-bold">scikit-learn</span> for applied ML and statistical analysis.
                                         </p>
-                                        
+
                                         <div className="mt-auto space-y-4">
                                             <div className="h-px w-full bg-white/10"></div>
                                             <div className="flex flex-wrap gap-2">
-                                                {['React', 'TypeScript', 'Node.js', 'Tailwind'].map((tech) => (
-                                                    <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5" 
-                                                          style={{ borderColor: `${accentColor}40` }}>
+                                                {['Pandas', 'NumPy', 'PyTorch', 'scikit-learn', 'SQL'].map((tech) => (
+                                                    <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5"
+                                                        style={{ borderColor: `${accentColor}40` }}>
                                                         {tech}
                                                     </span>
                                                 ))}
@@ -622,10 +578,10 @@ export const MainPortfolio: React.FC = () => {
                                 </div>
 
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm relative overflow-hidden group hover:-translate-y-1 transition-all duration-300"
-                                     style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
-                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    
+                                    style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}10` : 'none' }}>
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+                                        style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+
                                     <div className="relative z-10 flex flex-col h-full">
                                         <div className="flex justify-between items-start mb-6">
                                             <div className="p-3 border bg-black/50" style={{ borderColor: `${accentColor}40` }}>
@@ -633,18 +589,18 @@ export const MainPortfolio: React.FC = () => {
                                             </div>
                                             <span className="text-[10px] font-mono opacity-50 tracking-widest">MOD_OPS</span>
                                         </div>
-                                        
-                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Systems & Ops</h3>
+
+                                        <h3 className="text-xl font-bold mb-3" style={{ color: colorMode ? accentColor : 'white' }}>Supporting Tools</h3>
                                         <p className="text-sm text-white/70 mb-6 leading-relaxed font-mono">
-                                            Ensuring reliability through <span className="text-white font-bold">containerization</span> and automated workflows. Managing the infrastructure that powers data solutions.
+                                            Using <span className="text-white font-bold">Docker</span>, <span className="text-white font-bold">Git</span>, and <span className="text-white font-bold">Linux</span> to support reproducible research workflows.
                                         </p>
-                                        
+
                                         <div className="mt-auto space-y-4">
                                             <div className="h-px w-full bg-white/10"></div>
                                             <div className="flex flex-wrap gap-2">
-                                                {['Docker', 'Git', 'Linux', 'CI/CD', 'Bash', 'APIs'].map((tech) => (
-                                                    <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5" 
-                                                          style={{ borderColor: `${accentColor}40` }}>
+                                                {['Docker', 'Git', 'Linux', 'React', 'TypeScript', 'APIs'].map((tech) => (
+                                                    <span key={tech} className="text-[10px] border px-2 py-1 rounded-sm font-mono transition-colors hover:bg-white/5"
+                                                        style={{ borderColor: `${accentColor}40` }}>
                                                         {tech}
                                                     </span>
                                                 ))}
@@ -656,9 +612,9 @@ export const MainPortfolio: React.FC = () => {
 
                             <div className="grid md:grid-cols-3 gap-4 md:gap-6">
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
-                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                                        style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+
                                     <div className="relative z-10">
                                         <div className="flex items-center justify-between mb-4">
                                             <Database className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
@@ -667,7 +623,7 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>30+</div>
                                         <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Datasets Explored</div>
                                         <div className="text-[10px] text-white/40 font-mono">30-Day Challenge Completed</div>
-                                        
+
                                         <div className="mt-6 space-y-2">
                                             {[
                                                 { label: 'ETL', val: 92, time: '2.3s' },
@@ -685,7 +641,7 @@ export const MainPortfolio: React.FC = () => {
                                                         <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: `${accentColor}20` }}>
                                                             <div
                                                                 className="h-full rounded-full transition-all duration-1000 ease-out"
-                                                                style={{ 
+                                                                style={{
                                                                     width: `${item.val}%`,
                                                                     backgroundColor: colorMode ? accentColor : 'white',
                                                                     transitionDelay: `${i * 100}ms`,
@@ -702,9 +658,9 @@ export const MainPortfolio: React.FC = () => {
                                 </div>
 
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
-                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                                        style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+
                                     <div className="relative z-10">
                                         <div className="flex items-center justify-between mb-4">
                                             <Code className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
@@ -713,20 +669,20 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>93%</div>
                                         <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Best Model Accuracy</div>
                                         <div className="text-[10px] text-white/40 font-mono">Financial News Classifier</div>
-                                        
+
                                         <div className="mt-6 flex justify-center">
                                             <div className="relative w-36 h-36">
                                                 <svg className="transform -rotate-90 w-full h-full" viewBox="0 0 120 120">
                                                     <circle cx="60" cy="60" r="52" fill="none" stroke={`${accentColor}08`} strokeWidth="1" />
                                                     <circle cx="60" cy="60" r="44" fill="none" stroke={`${accentColor}08`} strokeWidth="1" />
-                                                    
+
                                                     <circle
                                                         cx="60" cy="60" r="48"
                                                         fill="none"
                                                         stroke={`${accentColor}20`}
                                                         strokeWidth="12"
                                                     />
-                                                    
+
                                                     <circle
                                                         cx="60" cy="60" r="48"
                                                         fill="none"
@@ -744,7 +700,7 @@ export const MainPortfolio: React.FC = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div className="mt-4 grid grid-cols-3 gap-2 text-center">
                                             {[
                                                 { label: 'Linted', val: '98%' },
@@ -761,9 +717,9 @@ export const MainPortfolio: React.FC = () => {
                                 </div>
 
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" 
-                                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                    
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                                        style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+
                                     <div className="relative z-10">
                                         <div className="flex items-center justify-between mb-4">
                                             <Briefcase className="h-6 w-6 transition-transform group-hover:scale-110 duration-300" style={{ color: colorMode ? accentColor : 'white' }} />
@@ -772,7 +728,7 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>99.9%</div>
                                         <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Pipeline Reliability</div>
                                         <div className="text-[10px] text-white/40 font-mono">Automated Error Handling</div>
-                                        
+
                                         <div className="mt-6 h-28 flex items-end justify-between gap-0.5">
                                             {[
                                                 { val: 45, label: 'J' },
@@ -803,7 +759,7 @@ export const MainPortfolio: React.FC = () => {
                                                 </div>
                                             ))}
                                         </div>
-                                        
+
                                         <div className="mt-4 flex items-center justify-between text-[10px] font-mono">
                                             <span className="text-white/50">Latency: <span className="text-white/90">12ms</span></span>
                                             <span className="text-white/50">Req/s: <span className="text-white/90">1.2K</span></span>
@@ -813,9 +769,9 @@ export const MainPortfolio: React.FC = () => {
                             </div>
 
                             <div className="border p-8 transition-all duration-300 hover:shadow-2xl bg-black/50 backdrop-blur-sm relative overflow-hidden group"
-                                 style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" 
-                                     style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+                                style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+                                    style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
                                 <div className="relative z-10">
                                     <div className="flex items-center justify-between mb-8">
                                         <h3 className="text-xl font-bold flex items-center gap-3">
@@ -824,7 +780,7 @@ export const MainPortfolio: React.FC = () => {
                                         </h3>
                                         <span className="text-[10px] font-mono opacity-50 tracking-widest hidden md:block">CAREER_LOG</span>
                                     </div>
-                                    
+
                                     <div className="space-y-6">
                                         <div className="border-l-2 pl-6 py-2 relative" style={{ borderColor: `${accentColor}40` }}>
                                             <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></div>
@@ -850,7 +806,7 @@ export const MainPortfolio: React.FC = () => {
                                 <button
                                     onClick={() => navigateToLayer('projects')}
                                     className="border px-6 py-3 transition-all inline-flex items-center gap-2 hover:shadow-lg hover:-translate-y-1 group"
-                                    style={{ 
+                                    style={{
                                         borderColor: accentColor,
                                         backgroundColor: colorMode ? accentColor : 'transparent'
                                     }}
@@ -868,17 +824,18 @@ export const MainPortfolio: React.FC = () => {
                         <div className="max-w-6xl w-full space-y-8">
                             <div className="text-center mb-12">
                                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">
-                                    {'>'} <span style={{ color: colorMode ? accentColor : 'white' }}>PROJECTS</span>.showcase()
+                                    {'>'} <span style={{ color: colorMode ? accentColor : 'white' }}>INVESTIGATIONS</span>.list()
                                 </h2>
                                 <div className="h-px w-48 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
+                                <p className="text-sm text-white/60 mt-4 font-mono">Research Projects & Statistical Questions</p>
                             </div>
 
                             <div className="space-y-6">
-                                {projects.map((project, i) => (
-                                    <div 
-                                        key={i} 
+                                {investigations.map((inv, i) => (
+                                    <div
+                                        key={i}
                                         className="border p-6 md:p-8 transition-all group hover:shadow-lg hover:-translate-y-1"
-                                        style={{ 
+                                        style={{
                                             borderColor: accentColor,
                                             backgroundColor: 'transparent'
                                         }}
@@ -886,16 +843,37 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="grid md:grid-cols-3 gap-6">
                                             <div className="md:col-span-2 space-y-4">
                                                 <div>
-                                                    <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
-                                                    <p className="text-sm text-white/90">{project.desc}</p>
+                                                    <div className="flex items-center gap-3 mb-3">
+                                                        <h3 className="text-2xl font-bold">{inv.name}</h3>
+                                                        <span className="border px-2 py-1 text-xs uppercase tracking-wider"
+                                                            style={{ borderColor: colorMode ? accentColor : '#ffffff60' }}>
+                                                            {inv.status}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-base text-white/90 font-semibold mb-4">{inv.question}</p>
                                                 </div>
-                                                
-                                                <div className="flex flex-wrap gap-2">
-                                                    {project.tech.map((tech, j) => (
+
+                                                <div className="space-y-3 text-sm text-white/80">
+                                                    <div>
+                                                        <span className="text-white/60 font-mono uppercase text-xs">Approach: </span>
+                                                        <span>{inv.approach}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-white/60 font-mono uppercase text-xs">Evaluation: </span>
+                                                        <span>{inv.evaluation}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-white/60 font-mono uppercase text-xs">Failure Mode: </span>
+                                                        <span>{inv.failure}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="flex flex-wrap gap-2 pt-2">
+                                                    {inv.tech.map((tech, j) => (
                                                         <span
                                                             key={j}
                                                             className="border px-3 py-1 text-xs uppercase tracking-wider transition-colors duration-300"
-                                                            style={{ 
+                                                            style={{
                                                                 borderColor: colorMode ? `${accentColor}80` : '#ffffff40',
                                                                 color: colorMode ? accentColor : 'white'
                                                             }}
@@ -906,22 +884,22 @@ export const MainPortfolio: React.FC = () => {
                                                 </div>
 
                                                 <a
-                                                    href={project.url ?? "https://github.com/tadstech"}
+                                                    href={inv.url ?? "https://github.com/tadstech"}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="inline-flex items-center gap-2 text-sm border-b pb-1 hover:gap-3 transition-all"
                                                     style={{ borderColor: colorMode ? accentColor : 'white' }}
                                                 >
-                                                    <span className="uppercase tracking-wider">View Project</span>
+                                                    <span className="uppercase tracking-wider">View Investigation</span>
                                                     <ExternalLink className="h-3 w-3" />
                                                 </a>
                                             </div>
 
                                             <div className="space-y-4">
                                                 <div className="border p-4 transition-colors duration-300" style={{ borderColor: colorMode ? `${accentColor}60` : '#ffffff30' }}>
-                                                    <div className="text-xs text-white/90 mb-2 uppercase tracking-wider">Project Info</div>
+                                                    <div className="text-xs text-white/90 mb-2 uppercase tracking-wider">Investigation Info</div>
                                                     <div className="space-y-2 text-sm">
-                                                        {Object.entries(project.metrics).map(([key, value]) => (
+                                                        {Object.entries(inv.metrics).map(([key, value]) => (
                                                             <div key={key} className="flex justify-between">
                                                                 <span>{key}</span>
                                                                 <span className="font-mono" style={{ color: colorMode ? accentColor : 'white' }}>{value}</span>
@@ -933,6 +911,34 @@ export const MainPortfolio: React.FC = () => {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+
+                            <div className="mt-12 border-t pt-8" style={{ borderColor: `${accentColor}40` }}>
+                                <div className="mb-6">
+                                    <h3 className="text-xl md:text-2xl font-bold mb-2" style={{ color: colorMode ? accentColor : 'white' }}>
+                                        Applied Systems (Supporting Work)
+                                    </h3>
+                                    <p className="text-xs text-white/60 font-mono">ETL workflows, dashboards, and data tools</p>
+                                </div>
+
+                                <div className="grid md:grid-cols-3 gap-4">
+                                    {appliedSystems.map((system, i) => (
+                                        <a
+                                            key={i}
+                                            href={system.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="border p-4 transition-all hover:shadow-lg hover:-translate-y-1 group"
+                                            style={{ borderColor: `${accentColor}40`, backgroundColor: 'transparent' }}
+                                        >
+                                            <h4 className="text-sm font-bold mb-2 group-hover:gap-2 inline-flex items-center">
+                                                {system.name}
+                                                <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            </h4>
+                                            <p className="text-xs text-white/70">{system.desc}</p>
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -953,15 +959,14 @@ export const MainPortfolio: React.FC = () => {
                                     </div>
 
                                     <p className="text-sm md:text-base text-white/90 max-w-md mx-auto">
-                                        Open to internships, junior positions, and freelance projects in data analysis, 
-                                        ML engineering, and data visualization.
+                                        Open to research-oriented ML roles, quant-adjacent positions, and applied data analysis contracts aligned with statistical investigation methodology.
                                     </p>
 
                                     <div className="grid md:grid-cols-2 gap-4 pt-4">
                                         <a
                                             href="mailto:motrenewed@gmail.com"
                                             className="border p-6 transition-all hover:shadow-lg hover:-translate-y-1 group"
-                                            style={{ 
+                                            style={{
                                                 borderColor: accentColor,
                                                 backgroundColor: 'transparent'
                                             }}
@@ -975,7 +980,7 @@ export const MainPortfolio: React.FC = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="border p-6 transition-all hover:shadow-lg hover:-translate-y-1 group"
-                                            style={{ 
+                                            style={{
                                                 borderColor: accentColor,
                                                 backgroundColor: 'transparent'
                                             }}
@@ -1005,10 +1010,9 @@ export const MainPortfolio: React.FC = () => {
                         <button
                             key={layer}
                             onClick={() => navigateToLayer(layer)}
-                            className={`h-2 transition-all cursor-pointer ${
-                                currentLayer === layer ? 'w-8' : 'w-2'
-                            }`}
-                            style={{ 
+                            className={`h-2 transition-all cursor-pointer ${currentLayer === layer ? 'w-8' : 'w-2'
+                                }`}
+                            style={{
                                 backgroundColor: currentLayer === layer ? (colorMode ? accentColor : 'white') : '#ffffff40'
                             }}
                             aria-label={`Navigate to ${layer}`}

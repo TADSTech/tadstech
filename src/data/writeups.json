@@ -7,7 +7,13 @@
     "timestamp": "2025-11-25T18:19:56",
     "category": "blog",
     "readTime": 3,
-    "tags": ["30-days-challenge", "machine-learning", "data-science", "kaggle", "ensemble-models"]
+    "tags": [
+      "30-days-challenge",
+      "machine-learning",
+      "data-science",
+      "kaggle",
+      "ensemble-models"
+    ]
   },
   {
     "id": "growth-001",
@@ -17,7 +23,11 @@
     "timestamp": "2025-12-01T22:30:00",
     "category": "reflection",
     "readTime": 2,
-    "tags": ["growth", "systems-thinking", "philosophy"]
+    "tags": [
+      "growth",
+      "systems-thinking",
+      "philosophy"
+    ]
   },
   {
     "id": "data-001",
@@ -27,7 +37,10 @@
     "timestamp": "2025-11-28T19:15:00",
     "category": "blog",
     "readTime": 2,
-    "tags": ["data-engineering", "philosophy"]
+    "tags": [
+      "data-engineering",
+      "philosophy"
+    ]
   },
   {
     "id": "poem-001",
@@ -37,7 +50,10 @@
     "timestamp": "2025-11-25T21:45:00",
     "category": "poem",
     "readTime": 2,
-    "tags": ["poetry", "code"]
+    "tags": [
+      "poetry",
+      "code"
+    ]
   },
   {
     "id": "note-001",
@@ -47,7 +63,10 @@
     "timestamp": "2025-11-22T18:00:00",
     "category": "note",
     "readTime": 1,
-    "tags": ["consistency", "progress"]
+    "tags": [
+      "consistency",
+      "progress"
+    ]
   },
   {
     "id": "ai-epidemic-001",
@@ -57,7 +76,11 @@
     "timestamp": "2025-12-09T12:00:00",
     "category": "blog",
     "readTime": 3,
-    "tags": ["ai", "critique", "job-market"]
+    "tags": [
+      "ai",
+      "critique",
+      "job-market"
+    ]
   },
   {
     "id": "holiday-2025",
@@ -67,6 +90,24 @@
     "timestamp": "2025-12-19T12:00:00",
     "category": "note",
     "readTime": 1,
-    "tags": ["holidays", "new-year", "gratitude"]
+    "tags": [
+      "holidays",
+      "new-year",
+      "gratitude"
+    ]
+  },
+  {
+    "id": "transition-001",
+    "title": "Transitioning from Learning to Researching",
+    "excerpt": "Why I am shifting my focus from acquiring knowledge to creating new insights",
+    "content": "For months and to a degree... years, I have been in learning mode, just absoorbing information, mastering skills, and building a foundation. But lately, I have hit a hard place and feel like I am starting to lose my ground, trying to learn networking, DSA and conten't creating with my studies of course.\n\n It's a few days to the new year and I think It is time to change things up. I want to move from just learning and bombing hackathons blindly to actually researching and creating new knowledge in the field I am passionate about.\n\n Researching excites me because it allows me to contribute to the body of knowledge, solve real problems, and push the boundaries of what is known. It is a shift from being a consumer of information to being a producer of insights.\n\n This transition won't be easy. It will require a different mindset, new skills, and a willingness to embrace uncertainty. But I am ready for the challenge. I believe that by focusing on research, I can make a more meaningful impact and find greater fulfillment in my work.\n\n As I embark on this new journey, I am excited about the possibilities that lie ahead. Here's to a year of growth, discovery, and contribution!",
+    "timestamp": "2025-12-15T10:00:00",
+    "category": "blog",
+    "readTime": 2,
+    "tags": [
+      "research",
+      "learning",
+      "growth"
+    ]
   }
 ]

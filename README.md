@@ -1,29 +1,15 @@
-# Hi, I'm Michael 👋  
+# Michael's GIthub  
 
-A Math Minded, Data Scientist with a somewhat robust background in Front-end
+I am a Math Minded, analytical thinkinker with work centering on statistical analysis, machine learning and time-series modelling
 
----
+## Misc
 
-## Tech Stack & Experience
-- **Languages:** Python, JavaScript/TypeScript, Dart (past projects), (Rust - hobbyist)  
-- **Frameworks & Tools:** React, Vite, TailwindCSS, Flutter (past projects), Tauri  
-- **Data Science:** Pandas, NumPy, Matplotlib, SK-learn
+I build stuff to automate tedious tasks and optimize workflows. I can also do some low level development in Rust and Some decent web development with React and Fast API.
 
-> I built past projects with **Dart + Flutter** but I’m currently **transitioning into React + TypeScript** for the web.  
+### Connections
 
----
-
-## Currently Learning
-- Advanced **Python for Data Science**  
-- Exploring **actuarial methods, quantitative finance** & insurance-focused analytics  
+- X: [@TADS_Tech](https://X.com/TADSTech)  
+- LinkedIn: [@TADSTech](https://linkedin.com/in/tadstech)
+- Email: *<motrenewed@gmail.com>*  
 
 ---
-
-## Let's Connect
-- GitHub: [@TADSTech](https://github.com/TADSTech)  
-- LinkedIn: [@TADSTech](https://linkedin.com/in/tadstech) 
-- Email: *motrenewed@gmail.com*  
-
----
-
- _“Clarity through data, confidence through design.”_
