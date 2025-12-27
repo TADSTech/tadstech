@@ -131,7 +131,7 @@ export const MainPortfolio: React.FC = () => {
             evaluation: 'Precision@k, Recall@k, NDCG@k, Hit Rate. Temporal train/test splitting to simulate realistic prediction scenarios.',
             failure: 'CBF and CF show baseline performance of 0.0, indicating dataset sparsity or embedding misalignment. Hybrid marginal improvement but still poor in absolute terms. Results reveal insufficient interaction density for matrix factorization.',
             tech: ['Python', 'PyTorch', 'scikit-learn', 'Pandas', 'BGE embeddings'],
-            metrics: { Status: 'Complete', Completion: 'Dec 2024' },
+            metrics: { Status: 'Complete', Completion: 'Dec 2025' },
             url: 'https://github.com/tadstech/mousiki-mini'
         }
     ];
