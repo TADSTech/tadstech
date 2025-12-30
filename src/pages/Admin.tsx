@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../contexts/AuthContext';
-import { getAllPosts, deletePost, updatePost, BlogPost } from '../services/blogService';
+import { getAllPosts, deletePost, updatePost, type BlogPost } from '../services/blogService';
 import { PlusCircle, Edit2, Trash2, Eye, Heart, Share2, LogOut, FileText } from 'lucide-react';
 
 export const Admin: React.FC = () => {
@@ -111,8 +111,8 @@ export const Admin: React.FC = () => {
                             key={f}
                             onClick={() => setFilter(f)}
                             className={`px-4 py-2 text-xs uppercase tracking-wider transition-all border ${filter === f
-                                    ? 'border-white bg-white text-black'
-                                    : 'border-white/40 hover:border-white'
+                                ? 'border-white bg-white text-black'
+                                : 'border-white/40 hover:border-white'
                                 }`}
                         >
                             {f}
@@ -139,8 +139,8 @@ export const Admin: React.FC = () => {
                                         <div className="flex items-center gap-2 mb-2">
                                             <span
                                                 className={`text-xs px-2 py-1 border ${post.isPublished
-                                                        ? 'border-green-500 text-green-500 bg-green-500/10'
-                                                        : 'border-yellow-500 text-yellow-500 bg-yellow-500/10'
+                                                    ? 'border-green-500 text-green-500 bg-green-500/10'
+                                                    : 'border-yellow-500 text-yellow-500 bg-yellow-500/10'
                                                     } uppercase tracking-wider`}
                                             >
                                                 {post.isPublished ? 'Published' : 'Draft'}

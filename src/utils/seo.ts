@@ -1,4 +1,4 @@
-import { BlogPost } from '../services/blogService';
+import type { BlogPost } from '../services/blogService';
 
 export const generateMetaTags = (post: BlogPost) => {
     const siteUrl = window.location.origin;

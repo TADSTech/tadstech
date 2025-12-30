@@ -1,5 +1,5 @@
 import { auth, googleProvider, ADMIN_EMAIL } from '../lib/firebase';
-import { signInWithPopup, signOut as firebaseSignOut, onAuthStateChanged, User } from 'firebase/auth';
+import { signInWithPopup, signOut as firebaseSignOut, onAuthStateChanged, type User } from 'firebase/auth';
 
 export const signInWithGoogle = async (): Promise<User> => {
     try {

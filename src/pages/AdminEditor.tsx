@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import slugify from 'slugify';
 import { ArrowLeft, Save, Eye, Upload } from 'lucide-react';
-import { createPost, updatePost, getAllPosts, type BlogPost } from '../services/blogService';
+import { createPost, updatePost, getAllPosts } from '../services/blogService';
 import { MarkdownEditor } from '../components/admin/MarkdownEditor';
 import { ImageUploader } from '../components/admin/ImageUploader';
 
