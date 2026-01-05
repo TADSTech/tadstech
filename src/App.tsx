@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'motion/react';
 import { useScrollbarStyles } from 'stylisticscroll/react';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -32,32 +33,34 @@ export default function App() {
     return (
         <AuthProvider>
             <div className={`transition-opacity duration-500 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
-                <Routes>
-                    <Route path="/" element={<MainPortfolio />} />
-                    <Route path="/challenge" element={<Challenge />} />
-                    <Route path="/writing" element={<Writing />} />
-                    <Route path="/writing/:slug" element={<Writing />} />
-                    <Route path="/cv" element={<CV />} />
+                <AnimatePresence mode="wait">
+                    <Routes location={location} key={location.pathname}>
+                        <Route path="/" element={<MainPortfolio />} />
+                        <Route path="/challenge" element={<Challenge />} />
+                        <Route path="/writing" element={<Writing />} />
+                        <Route path="/writing/:slug" element={<Writing />} />
+                        <Route path="/cv" element={<CV />} />
 
-                    {/* Admin routes */}
-                    <Route path="/admin/login" element={<AdminLogin />} />
-                    <Route
-                        path="/admin"
-                        element={
-                            <ProtectedRoute>
-                                <Admin />
-                            </ProtectedRoute>
-                        }
-                    />
-                    <Route
-                        path="/admin/editor/:id?"
-                        element={
-                            <ProtectedRoute>
-                                <AdminEditor />
-                            </ProtectedRoute>
-                        }
-                    />
-                </Routes>
+                        {/* Admin routes */}
+                        <Route path="/admin/login" element={<AdminLogin />} />
+                        <Route
+                            path="/admin"
+                            element={
+                                <ProtectedRoute>
+                                    <Admin />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/admin/editor/:id?"
+                            element={
+                                <ProtectedRoute>
+                                    <AdminEditor />
+                                </ProtectedRoute>
+                            }
+                        />
+                    </Routes>
+                </AnimatePresence>
             </div>
         </AuthProvider>
     );

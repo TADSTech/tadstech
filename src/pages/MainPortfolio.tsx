@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ChevronDown, Database, Code, Github, Mail, Linkedin, ExternalLink, Palette, Briefcase, Cpu, Feather, TreePine } from 'lucide-react';
+import { motion } from 'motion/react';
 
 type Layer = 'hero' | 'experience' | 'projects' | 'contact';
 
@@ -155,7 +156,16 @@ export const MainPortfolio: React.FC = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-black text-white font-mono overflow-x-hidden relative">
+        <motion.div
+            className="min-h-screen bg-black text-white font-mono overflow-x-hidden relative"
+            exit={{
+                opacity: 0,
+                scale: 0.95,
+                borderRadius: "20px",
+                overflow: "hidden",
+                transition: { duration: 0.5, ease: "easeInOut" }
+            }}
+        >
             <Helmet>
                 <title>Michael Tunwashe | Statistical & ML Investigation | Financial Data Research</title>
                 <meta name="description" content="Investigating statistical and machine learning questions using real-world financial and economic data. Research-oriented approach focused on evaluation, assumptions, and limitations. Building toward quant-adjacent and ML research roles." />
@@ -186,7 +196,7 @@ export const MainPortfolio: React.FC = () => {
                     <div className="flex items-center gap-3">
                         <button
                             onClick={handleHolidayToggle}
-                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg cursor-pointer"
+                            className="btn-interactive flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg cursor-pointer"
                             style={{
                                 borderColor: accentColor,
                                 backgroundColor: holidayMode ? '#16a34a' : 'transparent'
@@ -200,7 +210,7 @@ export const MainPortfolio: React.FC = () => {
 
                         <button
                             onClick={handleThemeClick}
-                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative cursor-pointer"
+                            className="btn-interactive flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative cursor-pointer"
                             style={{
                                 borderColor: accentColor,
                                 backgroundColor: colorMode ? accentColor : 'transparent'
@@ -215,7 +225,7 @@ export const MainPortfolio: React.FC = () => {
 
                         <button
                             onClick={() => navigate('/writing')}
-                            className="flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg cursor-pointer"
+                            className="btn-interactive flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg cursor-pointer"
                             style={{ borderColor: accentColor }}
                         >
                             <Feather className="h-4 w-4" />
@@ -228,7 +238,7 @@ export const MainPortfolio: React.FC = () => {
                             <button
                                 key={layer}
                                 onClick={() => navigateToLayer(layer)}
-                                className="px-3 py-1.5 text-xs uppercase tracking-wider transition-all hover:shadow-lg cursor-pointer"
+                                className="btn-interactive px-3 py-1.5 text-xs uppercase tracking-wider transition-all hover:shadow-lg cursor-pointer"
                                 style={{
                                     backgroundColor: currentLayer === layer ? accentColor : 'transparent',
                                     color: 'white',
@@ -477,7 +487,7 @@ export const MainPortfolio: React.FC = () => {
                                                     backgroundColor: colorMode ? accentColor : 'transparent'
                                                 }}
                                             >
-                                                <div className="text-xs uppercase tracking-wider text-white">Full Resume</div>
+                                                <div className="text-xs uppercase tracking-wider text-white cursor-pointer">Full Resume</div>
                                             </button>
                                         </div>
                                     </div>
@@ -824,7 +834,7 @@ export const MainPortfolio: React.FC = () => {
                         <div className="max-w-6xl w-full space-y-8">
                             <div className="text-center mb-12">
                                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">
-                                    {'>'} <span style={{ color: colorMode ? accentColor : 'white' }}>INVESTIGATIONS</span>.list()
+                                    {'>'} <span style={{ color: colorMode ? accentColor : 'white' }}>PROJECTS</span>.list()
                                 </h2>
                                 <div className="h-px w-48 mx-auto transition-colors duration-300" style={{ backgroundColor: accentColor }}></div>
                                 <p className="text-sm text-white/60 mt-4 font-mono">Research Projects & Statistical Questions</p>
@@ -1020,6 +1030,6 @@ export const MainPortfolio: React.FC = () => {
                     ))}
                 </div>
             )}
-        </div>
+        </motion.div>
     );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Search, X, Heart, Share2, Calendar, Clock, Eye, Download, Palette, TreePine, Copy, Check } from 'lucide-react';
+import { motion } from 'motion/react';
 import { getAllPosts, incrementViews, toggleLike, incrementShares, type BlogPost } from '../services/blogService';
 import { BlogReader } from '../components/blog/BlogReader';
 import html2pdf from 'html2pdf.js';
@@ -301,7 +302,28 @@ export const Writing: React.FC = () => {
 
     if (selectedPost) {
         return (
-            <div className="min-h-screen bg-black text-white font-mono" style={{ fontSize: FONT_SIZES[fontSize] }}>
+            <motion.div
+                className="min-h-screen bg-black text-white font-mono"
+                style={{ fontSize: FONT_SIZES[fontSize] }}
+                initial={{
+                    opacity: 0,
+                    scale: 0.95,
+                    borderRadius: "20px",
+                    overflow: "hidden"
+                }}
+                animate={{
+                    opacity: 1,
+                    scale: 1,
+                    borderRadius: "0px",
+                    transition: { duration: 0.5, ease: "easeOut" }
+                }}
+                exit={{
+                    opacity: 0,
+                    scale: 0.95,
+                    borderRadius: "20px",
+                    transition: { duration: 0.3 }
+                }}
+            >
                 <Helmet>
                     <title>{selectedPost.title} | TADS</title>
                     <meta name="description" content={selectedPost.excerpt} />
@@ -311,7 +333,7 @@ export const Writing: React.FC = () => {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
                         <button
                             onClick={handleBackClick}
-                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all duration-300"
+                            className="btn-interactive flex items-center gap-2 px-4 py-2 rounded-xl border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all duration-300"
                             style={{
                                 boxShadow: `0 0 20px ${accentColor}20, 0 0 40px ${accentColor}10`
                             }}
@@ -465,12 +487,33 @@ export const Writing: React.FC = () => {
                         </div>
                     </div>
                 )}
-            </div>
+            </motion.div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-black text-white font-mono" style={{ fontSize: FONT_SIZES[fontSize] }}>
+        <motion.div
+            className="min-h-screen bg-black text-white font-mono"
+            style={{ fontSize: FONT_SIZES[fontSize] }}
+            initial={{
+                opacity: 0,
+                scale: 0.95,
+                borderRadius: "20px",
+                overflow: "hidden"
+            }}
+            animate={{
+                opacity: 1,
+                scale: 1,
+                borderRadius: "0px",
+                transition: { duration: 0.5, ease: "easeOut" }
+            }}
+            exit={{
+                opacity: 0,
+                scale: 0.95,
+                borderRadius: "20px",
+                transition: { duration: 0.3 }
+            }}
+        >
             <Helmet>
                 <title>Writing | TADS</title>
                 <meta name="description" content="Thoughts, reflections, and creative writing by Michael Tunwashe" />
@@ -488,7 +531,7 @@ export const Writing: React.FC = () => {
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={handleThemeToggle}
-                                className="p-3 rounded-xl border transition-all duration-300 hover:scale-105"
+                                className="btn-interactive p-3 rounded-xl border transition-all duration-300 hover:scale-105"
                                 style={{
                                     borderColor: accentColor,
                                     backgroundColor: colorMode ? accentColor : 'transparent',
@@ -500,7 +543,7 @@ export const Writing: React.FC = () => {
                             </button>
                             <button
                                 onClick={handleHolidayToggle}
-                                className="p-3 rounded-xl border transition-all duration-300 hover:scale-105"
+                                className="btn-interactive p-3 rounded-xl border transition-all duration-300 hover:scale-105"
                                 style={{
                                     borderColor: holidayMode ? getHolidayColor() : '#ffffff40',
                                     backgroundColor: holidayMode ? '#16a34a' : 'transparent',
@@ -577,7 +620,7 @@ export const Writing: React.FC = () => {
                             <button
                                 key={size}
                                 onClick={() => setFontSize(size)}
-                                className="px-3 py-1 rounded-lg text-xs uppercase tracking-wider transition-all duration-300 border hover:scale-105"
+                                className="btn-interactive px-3 py-1 rounded-lg text-xs uppercase tracking-wider transition-all duration-300 border hover:scale-105"
                                 style={fontSize === size ? {
                                     backgroundColor: accentColor,
                                     borderColor: accentColor,
@@ -595,8 +638,20 @@ export const Writing: React.FC = () => {
                 </div>
 
                 {loading ? (
-                    <div className="flex items-center justify-center py-20">
-                        <div className="text-white/60">Loading posts...</div>
+                    <div className="flex items-center justify-center py-20 min-h-[40vh]">
+                        <motion.div
+                            className="w-12 h-12 border-2"
+                            style={{ borderColor: accentColor }}
+                            animate={{
+                                borderRadius: ["0%", "50%", "0%"],
+                                rotate: [0, 180, 360],
+                            }}
+                            transition={{
+                                duration: 2,
+                                ease: "easeInOut",
+                                repeat: Infinity,
+                            }}
+                        />
                     </div>
                 ) : filteredPosts.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-20 text-center">
@@ -765,6 +820,6 @@ export const Writing: React.FC = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </motion.div>
     );
 };
