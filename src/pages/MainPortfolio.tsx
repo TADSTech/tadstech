@@ -26,6 +26,7 @@ export const MainPortfolio: React.FC = () => {
     const [autoSwapInterval, setAutoSwapInterval] = useState<NodeJS.Timeout | null>(null);
     const [clickCount, setClickCount] = useState(0);
     const [clickTimer, setClickTimer] = useState<NodeJS.Timeout | null>(null);
+    const [showToast, setShowToast] = useState(false);
     const fullText = '> MICHAEL_TUNWASHE._init()';
 
     useEffect(() => {
@@ -61,6 +62,14 @@ export const MainPortfolio: React.FC = () => {
             if (autoSwapInterval) clearInterval(autoSwapInterval);
         };
     }, [clickTimer, autoSwapInterval]);
+
+    useEffect(() => {
+        const toastTimer = setTimeout(() => {
+            setShowToast(true);
+        }, 3000);
+
+        return () => clearTimeout(toastTimer);
+    }, []);
 
     const handleThemeClick = () => {
         const newCount = clickCount + 1;
@@ -469,18 +478,22 @@ export const MainPortfolio: React.FC = () => {
                                         </div>
 
                                         <div className="flex flex-col gap-3">
-                                            <a
+                                            <motion.a
                                                 href="/challenge"
-                                                className="border px-4 py-2 text-center transition-all hover:shadow-lg text-sm"
+                                                whileHover={{ scale: 1.05, y: -2 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                className="border px-4 py-2 text-center transition-all hover:shadow-lg text-sm cursor-pointer"
                                                 style={{
                                                     borderColor: accentColor,
                                                     backgroundColor: colorMode ? `${accentColor}20` : 'transparent'
                                                 }}
                                             >
                                                 <div className="text-xs uppercase tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>30-Day Challenges</div>
-                                            </a>
-                                            <button
+                                            </motion.a>
+                                            <motion.button
                                                 onClick={() => navigate('/cv')}
+                                                whileHover={{ scale: 1.05, y: -2 }}
+                                                whileTap={{ scale: 0.95 }}
                                                 className="border px-4 py-2 text-center transition-all hover:shadow-lg text-sm"
                                                 style={{
                                                     borderColor: accentColor,
@@ -488,13 +501,15 @@ export const MainPortfolio: React.FC = () => {
                                                 }}
                                             >
                                                 <div className="text-xs uppercase tracking-wider text-white cursor-pointer">Full Resume</div>
-                                            </button>
+                                            </motion.button>
                                         </div>
                                     </div>
 
                                     <div className="text-center mt-8">
-                                        <button
+                                        <motion.button
                                             onClick={() => navigateToLayer('experience')}
+                                            whileHover={{ scale: 1.05, y: -4 }}
+                                            whileTap={{ scale: 0.95 }}
                                             className="inline-flex items-center gap-3 border px-8 py-3 hover:shadow-lg transition-all group hover:-translate-y-1"
                                             style={{
                                                 borderColor: accentColor,
@@ -503,7 +518,7 @@ export const MainPortfolio: React.FC = () => {
                                         >
                                             <span className="text-xs uppercase tracking-wider">View Experience</span>
                                             <ChevronDown className="h-4 w-4 animate-bounce group-hover:animate-none" />
-                                        </button>
+                                        </motion.button>
                                     </div>
                                 </div>
                             </div>
@@ -813,8 +828,10 @@ export const MainPortfolio: React.FC = () => {
                             </div>
 
                             <div className="text-center">
-                                <button
+                                <motion.button
                                     onClick={() => navigateToLayer('projects')}
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
                                     className="border px-6 py-3 transition-all inline-flex items-center gap-2 hover:shadow-lg hover:-translate-y-1 group"
                                     style={{
                                         borderColor: accentColor,
@@ -823,7 +840,7 @@ export const MainPortfolio: React.FC = () => {
                                 >
                                     <span className="text-xs uppercase tracking-wider">View Projects</span>
                                     <ChevronDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
-                                </button>
+                                </motion.button>
                             </div>
                         </div>
                     </section>
@@ -1030,6 +1047,67 @@ export const MainPortfolio: React.FC = () => {
                     ))}
                 </div>
             )}
+
+            {/* Toast notification */}
+            <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={showToast ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="fixed bottom-4 left-4 z-50 max-w-sm"
+                style={{ pointerEvents: showToast ? 'auto' : 'none' }}
+            >
+                <div 
+                    className="border p-4 bg-black/95 backdrop-blur-md shadow-2xl relative overflow-hidden"
+                    style={{ 
+                        borderColor: accentColor,
+                        boxShadow: colorMode ? `0 0 30px ${accentColor}40` : '0 10px 40px rgba(0,0,0,0.5)'
+                    }}
+                >
+                    <div className="absolute inset-0 opacity-10 pointer-events-none"
+                        style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}>
+                    </div>
+                    
+                    <div className="relative z-10 flex items-start gap-3">
+                        <div className="flex-shrink-0 p-2 border rounded" style={{ borderColor: `${accentColor}60` }}>
+                            <Database className="h-5 w-5" style={{ color: colorMode ? accentColor : 'white' }} />
+                        </div>
+                        
+                        <div className="flex-1 min-w-0">
+                            <div className="flex items-start justify-between gap-2 mb-2">
+                                <h4 className="text-sm font-bold" style={{ color: colorMode ? accentColor : 'white' }}>
+                                    Explore 30+ Datasets
+                                </h4>
+                                <button
+                                    onClick={() => setShowToast(false)}
+                                    className="text-white/60 hover:text-white transition-colors"
+                                    aria-label="Close notification"
+                                >
+                                    <span className="text-lg leading-none">×</span>
+                                </button>
+                            </div>
+                            
+                            <p className="text-xs text-white/80 mb-3 leading-relaxed">
+                                Check out the 30-Day Challenges page for hands-on data analysis projects and explorations.
+                            </p>
+                            
+                            <motion.a
+                                href="/challenge"
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="inline-flex items-center gap-2 text-xs uppercase tracking-wider border px-3 py-1.5 transition-all cursor-pointer"
+                                style={{
+                                    borderColor: accentColor,
+                                    backgroundColor: colorMode ? `${accentColor}20` : 'transparent',
+                                    color: colorMode ? accentColor : 'white'
+                                }}
+                            >
+                                <span>View Challenges</span>
+                                <ExternalLink className="h-3 w-3" />
+                            </motion.a>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
         </motion.div>
     );
 };
