@@ -7,6 +7,8 @@ import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { MainPortfolio } from './pages/MainPortfolio';
 import { Challenge } from './pages/Challenge';
+import { DatasetsChallenge } from './pages/challenge/datasets';
+import { TSAnalysis } from './pages/challenge/ts-analysis';
 import { Writing } from './pages/Writing';
 import { CV } from './pages/CV';
 import { AdminLogin } from './pages/AdminLogin';
@@ -37,6 +39,8 @@ export default function App() {
                     <Routes location={location} key={location.pathname}>
                         <Route path="/" element={<MainPortfolio />} />
                         <Route path="/challenge" element={<Challenge />} />
+                        <Route path="/challenge/datasets" element={<DatasetsChallenge />} />
+                        <Route path="/challenge/ts-analysis" element={<TSAnalysis />} />
                         <Route path="/writing" element={<Writing />} />
                         <Route path="/writing/:slug" element={<Writing />} />
                         <Route path="/cv" element={<CV />} />

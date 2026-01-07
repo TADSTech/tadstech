@@ -477,7 +477,7 @@ export const MainPortfolio: React.FC = () => {
                                                     backgroundColor: colorMode ? `${accentColor}20` : 'transparent'
                                                 }}
                                             >
-                                                <div className="text-xs uppercase tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>30-Day Challenge</div>
+                                                <div className="text-xs uppercase tracking-wider" style={{ color: colorMode ? accentColor : 'white' }}>30-Day Challenges</div>
                                             </a>
                                             <button
                                                 onClick={() => navigate('/cv')}
@@ -632,7 +632,7 @@ export const MainPortfolio: React.FC = () => {
                                         </div>
                                         <div className="text-4xl md:text-5xl font-bold mb-1 font-mono" style={{ color: colorMode ? accentColor : 'white' }}>30+</div>
                                         <div className="text-xs uppercase text-white/60 tracking-wider mb-1">Datasets Explored</div>
-                                        <div className="text-[10px] text-white/40 font-mono">30-Day Challenge Completed</div>
+                                        <div className="text-[10px] text-white/40 font-mono">30-Day Challenges Completed</div>
 
                                         <div className="mt-6 space-y-2">
                                             {[
