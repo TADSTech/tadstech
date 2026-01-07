@@ -34,18 +34,10 @@ export const Writing: React.FC = () => {
         const saved = localStorage.getItem('tadstech-theme');
         return saved ? saved === 'blue' : false;
     });
-    const [holidayMode, setHolidayMode] = useState(() => {
-        const now = new Date();
-        const isHolidaySeason = now.getMonth() === 11 && now.getDate() <= 29;
-        const saved = localStorage.getItem('tadstech-holiday');
-        return saved !== null ? saved === 'true' : isHolidaySeason;
-    });
     const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
     const [likedPosts, setLikedPosts] = useState<Set<string>>(new Set());
 
-    const holidayColors = ['#dc2626', '#16a34a'];
-    const getHolidayColor = () => holidayColors[Math.floor(Date.now() / 1000) % 2];
-    const accentColor = holidayMode ? getHolidayColor() : (colorMode ? '#0ea5e9' : '#28333F');
+    const accentColor = colorMode ? '#0ea5e9' : '#28333F';
 
     useEffect(() => {
         loadPosts();
@@ -284,14 +276,6 @@ export const Writing: React.FC = () => {
         setColorMode(prev => {
             const newValue = !prev;
             localStorage.setItem('tadstech-theme', newValue ? 'blue' : 'gray');
-            return newValue;
-        });
-    };
-
-    const handleHolidayToggle = () => {
-        setHolidayMode(prev => {
-            const newValue = !prev;
-            localStorage.setItem('tadstech-holiday', String(newValue));
             return newValue;
         });
     };

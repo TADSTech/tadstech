@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ChevronDown, Database, Code, Github, Mail, Linkedin, ExternalLink, Palette, Briefcase, Cpu, Feather, TreePine } from 'lucide-react';
+import { ChevronDown, Database, Code, Github, Mail, Linkedin, ExternalLink, Palette, Briefcase, Cpu, Feather } from 'lucide-react';
 import { motion } from 'motion/react';
 
 type Layer = 'hero' | 'experience' | 'projects' | 'contact';
@@ -16,12 +16,6 @@ export const MainPortfolio: React.FC = () => {
     const [colorMode, setColorMode] = useState(() => {
         const saved = localStorage.getItem('tadstech-theme');
         return saved ? saved === 'blue' : false;
-    });
-    const [holidayMode, setHolidayMode] = useState(() => {
-        const now = new Date();
-        const isHolidaySeason = now.getMonth() === 11 && now.getDate() <= 29;
-        const saved = localStorage.getItem('tadstech-holiday');
-        return saved !== null ? saved === 'true' : isHolidaySeason;
     });
     const [autoSwapInterval, setAutoSwapInterval] = useState<NodeJS.Timeout | null>(null);
     const [clickCount, setClickCount] = useState(0);
@@ -109,17 +103,7 @@ export const MainPortfolio: React.FC = () => {
             }, 2000);
         }, 300);
     };
-
-    const handleHolidayToggle = () => {
-        setHolidayMode(prev => {
-            localStorage.setItem('tadstech-holiday', String(!prev));
-            return !prev;
-        });
-    };
-
-    const holidayColors = ['#dc2626', '#16a34a'];
-    const getHolidayColor = () => holidayColors[Math.floor(Date.now() / 1000) % 2];
-    const accentColor = holidayMode ? getHolidayColor() : (colorMode ? '#0ea5e9' : '#28333F');
+    const accentColor = colorMode ? '#0ea5e9' : '#28333F';
 
     const investigations = [
         {
@@ -203,20 +187,6 @@ export const MainPortfolio: React.FC = () => {
             <nav className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b transition-colors duration-300" style={{ borderColor: accentColor }}>
                 <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <button
-                            onClick={handleHolidayToggle}
-                            className="btn-interactive flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg cursor-pointer"
-                            style={{
-                                borderColor: accentColor,
-                                backgroundColor: holidayMode ? '#16a34a' : 'transparent'
-                            }}
-                        >
-                            <TreePine className="h-4 w-4" />
-                            <span className="text-xs uppercase tracking-wider hidden sm:inline">
-                                {holidayMode ? 'Festive' : 'Normal'}
-                            </span>
-                        </button>
-
                         <button
                             onClick={handleThemeClick}
                             className="btn-interactive flex items-center gap-2 text-white transition-all border px-3 py-1.5 hover:shadow-lg relative cursor-pointer"
@@ -325,24 +295,6 @@ export const MainPortfolio: React.FC = () => {
                             </div>
 
                             <div className="border-t pt-3 space-y-2" style={{ borderColor: `${accentColor}40` }}>
-                                <button
-                                    onClick={() => handleHolidayToggle()}
-                                    className="w-full px-4 py-3 text-xs uppercase tracking-wider transition-all font-mono flex items-center justify-between group relative overflow-hidden cursor-pointer"
-                                    style={{
-                                        backgroundColor: holidayMode ? '#16a34a20' : 'transparent',
-                                        border: `1px solid ${accentColor}`
-                                    }}
-                                >
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                                    <div className="flex items-center gap-3">
-                                        <TreePine className="h-4 w-4" />
-                                        <div className="text-left">
-                                            <div className="text-xs">{holidayMode ? 'FESTIVE_MODE' : 'NORMAL_MODE'}</div>
-                                            <div className="text-[8px] text-white/50">Toggle holiday theme</div>
-                                        </div>
-                                    </div>
-                                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: holidayMode ? '#16a34a' : 'transparent', border: `1px solid ${accentColor}` }}></div>
-                                </button>
 
                                 <button
                                     onClick={() => handleThemeClick()}
@@ -635,6 +587,40 @@ export const MainPortfolio: React.FC = () => {
                                 </div>
                             </div>
 
+                            <div className="border p-8 transition-all duration-300 hover:shadow-2xl bg-black/50 backdrop-blur-sm relative overflow-hidden group"
+                                style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+                                    style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
+                                <div className="relative z-10">
+                                    <div className="flex items-center justify-between mb-8">
+                                        <h3 className="text-xl font-bold flex items-center gap-3">
+                                            <Briefcase className="h-6 w-6" style={{ color: colorMode ? accentColor : 'white' }} />
+                                            <span>1. PROFESSIONAL EXPERIENCE</span>
+                                        </h3>
+                                        <span className="text-[10px] font-mono opacity-50 tracking-widest hidden md:block">CAREER_LOG</span>
+                                    </div>
+
+                                    <div className="space-y-6">
+                                        <div className="border-l-2 pl-6 py-2 relative" style={{ borderColor: `${accentColor}40` }}>
+                                            <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></div>
+                                            <div className="flex justify-between items-start mb-2">
+                                                <div>
+                                                    <h4 className="text-lg font-bold">Data Analyst Intern</h4>
+                                                    <p className="text-sm text-white/70">HNG Tech</p>
+                                                </div>
+                                                <span className="text-xs text-white/50 font-mono border px-2 py-1 rounded" style={{ borderColor: `${accentColor}30` }}>Aug 2025 – Nov 2025</span>
+                                            </div>
+                                            <ul className="text-sm text-white/80 leading-relaxed max-w-3xl space-y-1 list-disc list-inside">
+                                                <li>Cleaned and transformed large business datasets using Python and SQL</li>
+                                                <li>Wrote SQL queries for recurring reporting tasks</li>
+                                                <li>Built dashboards in Metabase to support business insights</li>
+                                                <li>Assisted team with lightweight automation pipelines</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="grid md:grid-cols-3 gap-4 md:gap-6">
                                 <div className="border p-6 bg-black/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group relative overflow-hidden" style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 40px ${accentColor}25` : 'none' }}>
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
@@ -788,40 +774,6 @@ export const MainPortfolio: React.FC = () => {
                                         <div className="mt-4 flex items-center justify-between text-[10px] font-mono">
                                             <span className="text-white/50">Latency: <span className="text-white/90">12ms</span></span>
                                             <span className="text-white/50">Req/s: <span className="text-white/90">1.2K</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="border p-8 transition-all duration-300 hover:shadow-2xl bg-black/50 backdrop-blur-sm relative overflow-hidden group"
-                                style={{ borderColor: accentColor, boxShadow: colorMode ? `0 0 20px ${accentColor}15` : 'none' }}>
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
-                                    style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}></div>
-                                <div className="relative z-10">
-                                    <div className="flex items-center justify-between mb-8">
-                                        <h3 className="text-xl font-bold flex items-center gap-3">
-                                            <Briefcase className="h-6 w-6" style={{ color: colorMode ? accentColor : 'white' }} />
-                                            <span>PROFESSIONAL EXPERIENCE</span>
-                                        </h3>
-                                        <span className="text-[10px] font-mono opacity-50 tracking-widest hidden md:block">CAREER_LOG</span>
-                                    </div>
-
-                                    <div className="space-y-6">
-                                        <div className="border-l-2 pl-6 py-2 relative" style={{ borderColor: `${accentColor}40` }}>
-                                            <div className="absolute -left-[5px] top-2 w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></div>
-                                            <div className="flex justify-between items-start mb-2">
-                                                <div>
-                                                    <h4 className="text-lg font-bold">Data Analyst Intern</h4>
-                                                    <p className="text-sm text-white/70">HNG Tech</p>
-                                                </div>
-                                                <span className="text-xs text-white/50 font-mono border px-2 py-1 rounded" style={{ borderColor: `${accentColor}30` }}>Aug 2025 – Nov 2025</span>
-                                            </div>
-                                            <ul className="text-sm text-white/80 leading-relaxed max-w-3xl space-y-1 list-disc list-inside">
-                                                <li>Cleaned and transformed large business datasets using Python and SQL</li>
-                                                <li>Wrote SQL queries for recurring reporting tasks</li>
-                                                <li>Built dashboards in Metabase to support business insights</li>
-                                                <li>Assisted team with lightweight automation pipelines</li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>

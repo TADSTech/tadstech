@@ -7,11 +7,3 @@ body,
   width: 100%;
   overflow-x: hidden;
 }
-
-.btn-interactive {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn-interactive:hover {
-  transform: scale(1.05);
-}
