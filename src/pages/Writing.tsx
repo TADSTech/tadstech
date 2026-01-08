@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, Search, X, Heart, Share2, Calendar, Clock, Eye, Download, Palette, TreePine, Copy, Check } from 'lucide-react';
+import { ArrowLeft, Search, X, Heart, Share2, Calendar, Clock, Eye, Download, Palette, Copy, Check } from 'lucide-react';
 import { motion } from 'motion/react';
 import { getAllPosts, incrementViews, toggleLike, incrementShares, type BlogPost } from '../services/blogService';
 import { BlogReader } from '../components/blog/BlogReader';
@@ -524,18 +524,6 @@ export const Writing: React.FC = () => {
                                 title={`Toggle color theme (Current: ${colorMode ? 'Blue' : 'B&W'})`}
                             >
                                 <Palette className="h-5 w-5" style={{ color: colorMode ? 'black' : 'white' }} />
-                            </button>
-                            <button
-                                onClick={handleHolidayToggle}
-                                className="btn-interactive p-3 rounded-xl border transition-all duration-300 hover:scale-105"
-                                style={{
-                                    borderColor: holidayMode ? getHolidayColor() : '#ffffff40',
-                                    backgroundColor: holidayMode ? '#16a34a' : 'transparent',
-                                    boxShadow: holidayMode ? `0 0 20px ${getHolidayColor()}40, 0 0 40px ${getHolidayColor()}20` : ''
-                                }}
-                                title={`Toggle holiday mode (${holidayMode ? 'ON' : 'OFF'})`}
-                            >
-                                <TreePine className="h-5 w-5" />
                             </button>
                         </div>
                     </div>
