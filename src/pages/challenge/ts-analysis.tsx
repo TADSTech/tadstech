@@ -49,11 +49,13 @@ export const TSAnalysis: React.FC = () => {
         {
             day: "1",
             name: 'Time Series Fundamentals',
-            description: 'Core concepts: trends, seasonality, cyclical patterns, noise. Setting up Python environment with pandas, matplotlib, and statsmodels.',
-            dataset: 'Gold Price Historical Data',
-            datasetUrl: 'https://finance.yahoo.com/quote/GC=F/',
+            description: 'Core concepts: trends, seasonality, cyclical patterns, noise. Setting up Python environment with pandas, matplotlib, and statsmodels. PLaying with some example data',
+            dataset: 'Daily Climate time series data',
+            datasetUrl: 'https://www.kaggle.com/datasets/sumanthvrao/daily-climate-time-series-data',
             githubUrl: 'https://github.com/tadstech/30-days-of-tsa/tree/main/day1',
-            status: 'upcoming'
+            xUrl: 'https://x.com/tads_tech/status/2009296701887029721?s=20',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_day-1-understanding-the-rhythm-of-climate-activity-7415062511281979392-uz8M?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed'
         },
         {
             day: "2",
@@ -594,10 +596,10 @@ export const TSAnalysis: React.FC = () => {
                                         )}
                                         <div
                                             className={`border p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${challenge.status === 'completed'
-                                                    ? 'hover:bg-white hover:text-black group'
-                                                    : challenge.status === 'in-progress'
-                                                        ? ''
-                                                        : ''
+                                                ? 'hover:bg-white hover:text-black group'
+                                                : challenge.status === 'in-progress'
+                                                    ? ''
+                                                    : ''
                                                 }`}
                                             style={{
                                                 borderColor: challenge.status === 'completed' ? 'white' : challenge.status === 'in-progress' ? accentColor : accentColor,
@@ -607,8 +609,8 @@ export const TSAnalysis: React.FC = () => {
                                             <div className="flex flex-col md:flex-row gap-6">
                                                 <div className="flex-shrink-0">
                                                     <div className={`w-20 h-20 border flex items-center justify-center transition-all duration-300 ${challenge.status === 'completed'
-                                                            ? 'group-hover:border-black/20'
-                                                            : ''
+                                                        ? 'group-hover:border-black/20'
+                                                        : ''
                                                         }`} style={{ borderColor: accentColor }}>
                                                         <div className="text-center">
                                                             <div className="text-xs transition-colors duration-300 group-hover:text-black/60" style={{ color: colorMode ? accentColor : '#28333F' }}>DAY</div>
@@ -658,10 +660,10 @@ export const TSAnalysis: React.FC = () => {
 
                                                 <div className="flex-shrink-0 flex items-start">
                                                     <div className={`px-3 py-1 text-xs uppercase tracking-wider border ${challenge.status === 'completed'
-                                                            ? 'text-green-400 border-green-400/50 group-hover:text-green-600 group-hover:border-green-600/50'
-                                                            : challenge.status === 'in-progress'
-                                                                ? 'text-amber-400 border-amber-400/50'
-                                                                : 'text-gray-500 border-gray-500/50'
+                                                        ? 'text-green-400 border-green-400/50 group-hover:text-green-600 group-hover:border-green-600/50'
+                                                        : challenge.status === 'in-progress'
+                                                            ? 'text-amber-400 border-amber-400/50'
+                                                            : 'text-gray-500 border-gray-500/50'
                                                         }`}>
                                                         {challenge.status === 'completed' ? 'Done' : challenge.status === 'in-progress' ? 'Active' : 'Soon'}
                                                     </div>
