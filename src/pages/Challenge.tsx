@@ -70,7 +70,7 @@ export const Challenge: React.FC = () => {
             description: 'A structured journey through time-series analysis and forecasting. Building towards production-ready gold price prediction systems using ARIMA, Prophet, and LSTM models.',
             icon: <TrendingUp className="h-8 w-8" />,
             route: '/challenge/ts-analysis',
-            daysCompleted: 0,
+            daysCompleted: 1,
             totalDays: 30,
             status: 'upcoming',
             accentColor: '#f59e0b'
@@ -189,10 +189,10 @@ export const Challenge: React.FC = () => {
                                                         {challenge.name}
                                                     </h2>
                                                     <div className={`px-3 py-1 text-xs uppercase tracking-wider border ${challenge.status === 'completed'
-                                                            ? 'text-green-400 border-green-400/50'
-                                                            : challenge.status === 'in-progress'
-                                                                ? 'text-amber-400 border-amber-400/50'
-                                                                : 'text-gray-500 border-gray-500/50'
+                                                        ? 'text-green-400 border-green-400/50'
+                                                        : challenge.status === 'in-progress'
+                                                            ? 'text-amber-400 border-amber-400/50'
+                                                            : 'text-gray-500 border-gray-500/50'
                                                         }`}>
                                                         {challenge.status === 'completed' ? 'Completed' : challenge.status === 'in-progress' ? 'In Progress' : 'Upcoming'}
                                                     </div>
