@@ -65,7 +65,7 @@ export const TSAnalysis: React.FC = () => {
             datasetUrl: 'https://finance.yahoo.com/quote/GLD/',
             githubUrl: 'https://github.com/tadstech/30-days-of-tsa/tree/main/day2',
             xUrl: 'https://x.com/tads_tech/status/2009678300902236279?s=20',
-            linkedinUrl: '',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_datascience-timeseries-python-activity-7415455894727270400-nzQq?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
             status: 'completed'
         },
         {
