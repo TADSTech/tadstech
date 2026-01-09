@@ -60,11 +60,13 @@ export const TSAnalysis: React.FC = () => {
         {
             day: "2",
             name: 'Data Acquisition & Preprocessing',
-            description: 'Loading financial data using yfinance, handling missing values, forward/backward filling, resampling to different frequencies.',
+            description: 'Loading financial data using yfinance, inspecting and testing.',
             dataset: 'Yahoo Finance Gold (GC=F)',
-            datasetUrl: 'https://finance.yahoo.com/quote/GC=F/',
+            datasetUrl: 'https://finance.yahoo.com/quote/GLD/',
             githubUrl: 'https://github.com/tadstech/30-days-of-tsa/tree/main/day2',
-            status: 'upcoming'
+            xUrl: 'https://x.com/tads_tech/status/2009678300902236279?s=20',
+            linkedinUrl: '',
+            status: 'completed'
         },
         {
             day: "3",
