@@ -61,7 +61,7 @@ export const TSAnalysis: React.FC = () => {
             day: "2",
             name: 'Data Acquisition & Preprocessing',
             description: 'Loading financial data using yfinance, inspecting and testing.',
-            dataset: 'Yahoo Finance Gold (GC=F)',
+            dataset: 'Yahoo Finance Gold (GLD)',
             datasetUrl: 'https://finance.yahoo.com/quote/GLD/',
             githubUrl: 'https://github.com/tadstech/30-days-of-tsa/tree/main/day2',
             xUrl: 'https://x.com/tads_tech/status/2009678300902236279?s=20',
@@ -71,11 +71,11 @@ export const TSAnalysis: React.FC = () => {
         {
             day: "3",
             name: 'Visualization Techniques',
-            description: 'Line plots, seasonal decomposition plots, rolling statistics visualization with matplotlib. Understanding visual patterns in gold prices.',
-            dataset: 'Yahoo Finance Gold (GC=F)',
-            datasetUrl: 'https://finance.yahoo.com/quote/GC=F/',
+            description: 'Line plots, seasonal decomposition plots, rolling statistics visualization with plotly. Understanding visual patterns in gold prices.',
+            dataset: 'Yahoo Finance Gold (GLD)',
+            datasetUrl: 'https://finance.yahoo.com/quote/GLD/',
             githubUrl: 'https://github.com/tadstech/30-days-of-tsa/tree/main/day3',
-            status: 'upcoming'
+            status: 'completed'
         },
         {
             day: "4",
