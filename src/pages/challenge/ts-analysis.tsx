@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Github, ExternalLink, Database, Palette, TrendingUp, LineChart } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Database, Palette, TrendingUp, LineChart, Twitter, Linkedin } from 'lucide-react';
 
 interface ChallengeDay {
     day: string;
@@ -104,7 +104,9 @@ export const TSAnalysis: React.FC = () => {
             dataset: 'Yahoo Finance Gold (GLD)',
             datasetUrl: 'https://finance.yahoo.com/quote/GLD/',
             githubUrl: 'https://github.com/tadstech/30-days-of-tsa/tree/main/day6',
-            status: 'upcoming'
+            xUrl: 'https://x.com/tads_tech/status/2011087978504871992?s=20',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_30daysoftimeseries-timeseriesanalysis-datascience-share-7416854276267896832-9QVF?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF9rCfkBYTm_AC-w-u6nYqVkJGgsEdziUEI',
+            status: 'completed'
         },
         {
             day: "7",
@@ -629,30 +631,102 @@ export const TSAnalysis: React.FC = () => {
                                                         <p className="text-sm text-white/70 group-hover:text-black/70 transition-colors">{challenge.description}</p>
                                                     </div>
 
-                                                    <div className="flex flex-wrap gap-3 text-xs">
+                                                    <div className="flex flex-wrap gap-2 text-xs">
                                                         <a
                                                             href={challenge.datasetUrl}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex items-center gap-1.5 px-3 py-1.5 border transition-all hover:scale-105"
-                                                            style={{ borderColor: accentColor }}
+                                                            className="flex items-center gap-2 px-4 py-2 border backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 group/chip"
+                                                            style={{
+                                                                borderColor: `${accentColor}60`,
+                                                                background: `linear-gradient(135deg, ${accentColor}15 0%, transparent 100%)`,
+                                                                boxShadow: `0 2px 8px ${accentColor}20`
+                                                            }}
+                                                            onMouseEnter={(e) => {
+                                                                e.currentTarget.style.boxShadow = `0 4px 20px ${accentColor}40`;
+                                                                e.currentTarget.style.borderColor = accentColor;
+                                                            }}
+                                                            onMouseLeave={(e) => {
+                                                                e.currentTarget.style.boxShadow = `0 2px 8px ${accentColor}20`;
+                                                                e.currentTarget.style.borderColor = `${accentColor}60`;
+                                                            }}
                                                         >
-                                                            <Database className="h-3 w-3" />
-                                                            <span className="hidden sm:inline">{challenge.dataset}</span>
-                                                            <span className="sm:hidden">Dataset</span>
-                                                            <ExternalLink className="h-3 w-3" />
+                                                            <Database className="h-3.5 w-3.5 transition-transform duration-300 group-hover/chip:rotate-12" style={{ color: accentColor }} />
+                                                            <span className="hidden sm:inline font-medium">{challenge.dataset}</span>
+                                                            <span className="sm:hidden font-medium">Dataset</span>
+                                                            <ExternalLink className="h-3 w-3 opacity-50 group-hover/chip:opacity-100 transition-opacity" />
                                                         </a>
                                                         <a
                                                             href={challenge.githubUrl}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="flex items-center gap-1.5 px-3 py-1.5 border transition-all hover:scale-105"
-                                                            style={{ borderColor: accentColor }}
+                                                            className="flex items-center gap-2 px-4 py-2 border backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 group/chip"
+                                                            style={{
+                                                                borderColor: `${accentColor}60`,
+                                                                background: `linear-gradient(135deg, ${accentColor}15 0%, transparent 100%)`,
+                                                                boxShadow: `0 2px 8px ${accentColor}20`
+                                                            }}
+                                                            onMouseEnter={(e) => {
+                                                                e.currentTarget.style.boxShadow = `0 4px 20px ${accentColor}40`;
+                                                                e.currentTarget.style.borderColor = accentColor;
+                                                            }}
+                                                            onMouseLeave={(e) => {
+                                                                e.currentTarget.style.boxShadow = `0 2px 8px ${accentColor}20`;
+                                                                e.currentTarget.style.borderColor = `${accentColor}60`;
+                                                            }}
                                                         >
-                                                            <Github className="h-3 w-3" />
-                                                            <span>Code</span>
-                                                            <ExternalLink className="h-3 w-3" />
+                                                            <Github className="h-3.5 w-3.5 transition-transform duration-300 group-hover/chip:scale-110" style={{ color: accentColor }} />
+                                                            <span className="font-medium">Code</span>
+                                                            <ExternalLink className="h-3 w-3 opacity-50 group-hover/chip:opacity-100 transition-opacity" />
                                                         </a>
+                                                        {challenge.xUrl && (
+                                                            <a
+                                                                href={challenge.xUrl}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex items-center gap-2 px-4 py-2 border backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 group/chip"
+                                                                style={{
+                                                                    borderColor: 'rgba(29, 161, 242, 0.4)',
+                                                                    background: 'linear-gradient(135deg, rgba(29, 161, 242, 0.15) 0%, transparent 100%)',
+                                                                    boxShadow: '0 2px 8px rgba(29, 161, 242, 0.2)'
+                                                                }}
+                                                                onMouseEnter={(e) => {
+                                                                    e.currentTarget.style.boxShadow = '0 4px 20px rgba(29, 161, 242, 0.4)';
+                                                                    e.currentTarget.style.borderColor = '#1DA1F2';
+                                                                }}
+                                                                onMouseLeave={(e) => {
+                                                                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(29, 161, 242, 0.2)';
+                                                                    e.currentTarget.style.borderColor = 'rgba(29, 161, 242, 0.4)';
+                                                                }}
+                                                            >
+                                                                <Twitter className="h-3.5 w-3.5 transition-transform duration-300 group-hover/chip:scale-110" style={{ color: '#1DA1F2' }} />
+                                                                <span className="font-medium hidden sm:inline">Post</span>
+                                                            </a>
+                                                        )}
+                                                        {challenge.linkedinUrl && (
+                                                            <a
+                                                                href={challenge.linkedinUrl}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex items-center gap-2 px-4 py-2 border backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 group/chip"
+                                                                style={{
+                                                                    borderColor: 'rgba(0, 119, 181, 0.4)',
+                                                                    background: 'linear-gradient(135deg, rgba(0, 119, 181, 0.15) 0%, transparent 100%)',
+                                                                    boxShadow: '0 2px 8px rgba(0, 119, 181, 0.2)'
+                                                                }}
+                                                                onMouseEnter={(e) => {
+                                                                    e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 119, 181, 0.4)';
+                                                                    e.currentTarget.style.borderColor = '#0077B5';
+                                                                }}
+                                                                onMouseLeave={(e) => {
+                                                                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 119, 181, 0.2)';
+                                                                    e.currentTarget.style.borderColor = 'rgba(0, 119, 181, 0.4)';
+                                                                }}
+                                                            >
+                                                                <Linkedin className="h-3.5 w-3.5 transition-transform duration-300 group-hover/chip:scale-110" style={{ color: '#0077B5' }} />
+                                                                <span className="font-medium hidden sm:inline">LinkedIn</span>
+                                                            </a>
+                                                        )}
                                                     </div>
 
                                                     {challenge.date && (

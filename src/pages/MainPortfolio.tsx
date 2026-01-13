@@ -376,7 +376,7 @@ export const MainPortfolio: React.FC = () => {
                                         {/* Center column - main content */}
                                         <div className="md:col-span-2 space-y-6">
                                             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                                                <span className="block mb-2">Quantitative Research</span>
+                                                <span className="block mb-2">Independent Quantitative Researcher</span>
                                                 <span className="block text-2xl md:text-3xl lg:text-4xl" style={{ color: colorMode ? accentColor : 'white' }}>
                                                     & Applied ML Analysis
                                                 </span>
@@ -1008,9 +1008,9 @@ export const MainPortfolio: React.FC = () => {
                 className="fixed bottom-4 left-4 z-50 max-w-sm"
                 style={{ pointerEvents: showToast ? 'auto' : 'none' }}
             >
-                <div 
+                <div
                     className="border p-4 bg-black/95 backdrop-blur-md shadow-2xl relative overflow-hidden"
-                    style={{ 
+                    style={{
                         borderColor: accentColor,
                         boxShadow: colorMode ? `0 0 30px ${accentColor}40` : '0 10px 40px rgba(0,0,0,0.5)'
                     }}
@@ -1018,12 +1018,12 @@ export const MainPortfolio: React.FC = () => {
                     <div className="absolute inset-0 opacity-10 pointer-events-none"
                         style={{ background: `linear-gradient(135deg, ${accentColor} 0%, transparent 100%)` }}>
                     </div>
-                    
+
                     <div className="relative z-10 flex items-start gap-3">
                         <div className="flex-shrink-0 p-2 border rounded" style={{ borderColor: `${accentColor}60` }}>
                             <Database className="h-5 w-5" style={{ color: colorMode ? accentColor : 'white' }} />
                         </div>
-                        
+
                         <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between gap-2 mb-2">
                                 <h4 className="text-sm font-bold" style={{ color: colorMode ? accentColor : 'white' }}>
@@ -1037,11 +1037,11 @@ export const MainPortfolio: React.FC = () => {
                                     <span className="text-lg leading-none">×</span>
                                 </button>
                             </div>
-                            
+
                             <p className="text-xs text-white/80 mb-3 leading-relaxed">
                                 Check out the 30-Day Challenges page for hands-on data analysis projects and explorations.
                             </p>
-                            
+
                             <motion.a
                                 href="/challenge"
                                 whileHover={{ scale: 1.02 }}
