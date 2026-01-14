@@ -110,12 +110,14 @@ export const TSAnalysis: React.FC = () => {
         },
         {
             day: "7",
-            name: 'Week 1 Project: Gold Price EDA',
+            name: 'Week 1 Project: Gold Price General EDA',
             description: 'Complete exploratory data analysis on gold price data with stationarity testing, decomposition, and comprehensive visualization dashboard.',
             dataset: 'Yahoo Finance Gold (GLD)',
             datasetUrl: 'https://finance.yahoo.com/quote/GLD/',
             githubUrl: 'https://github.com/tadstech/30-days-of-tsa/tree/main/day7',
-            status: 'upcoming'
+            xUrl: 'https://x.com/tads_tech/status/2011409795732156697?s=20',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_30daysoftimeseries-timeseriesanalysis-datascience-share-7417176002822307841-FHXJ',
+            status: 'completed'
         },
         {
             day: "8",

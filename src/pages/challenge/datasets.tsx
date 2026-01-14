@@ -17,6 +17,7 @@ interface ChallengeDay {
 
 export const DatasetsChallenge: React.FC = () => {
     const navigate = useNavigate();
+
     const [isLoading, setIsLoading] = useState(true);
     const [loadingProgress, setLoadingProgress] = useState(0);
     const [colorMode, setColorMode] = useState(() => {
@@ -770,10 +771,10 @@ export const DatasetsChallenge: React.FC = () => {
                                             )}
                                             <div
                                                 className={`border p-6 md:p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${challenge.status === 'completed'
-                                                        ? 'hover:bg-white hover:text-black group'
-                                                        : challenge.status === 'in-progress'
-                                                            ? ''
-                                                            : ''
+                                                    ? 'hover:bg-white hover:text-black group'
+                                                    : challenge.status === 'in-progress'
+                                                        ? ''
+                                                        : ''
                                                     }`}
                                                 style={{
                                                     borderColor: challenge.status === 'completed' ? 'white' : challenge.status === 'in-progress' ? accentColor : accentColor,
@@ -783,8 +784,8 @@ export const DatasetsChallenge: React.FC = () => {
                                                 <div className="flex flex-col md:flex-row gap-6">
                                                     <div className="flex-shrink-0">
                                                         <div className={`w-20 h-20 border flex items-center justify-center transition-all duration-300 ${challenge.status === 'completed'
-                                                                ? 'group-hover:border-black/20'
-                                                                : ''
+                                                            ? 'group-hover:border-black/20'
+                                                            : ''
                                                             }`} style={{ borderColor: accentColor }}>
                                                             <div className="text-center">
                                                                 <div className="text-xs transition-colors duration-300 group-hover:text-black/60" style={{ color: colorMode ? accentColor : '#28333F' }}>DAY</div>
