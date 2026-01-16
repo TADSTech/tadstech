@@ -137,7 +137,9 @@ export const TSAnalysis: React.FC = () => {
             dataset: 'Yahoo Finance Gold (GLD)',
             datasetUrl: 'https://finance.yahoo.com/quote/GLD/',
             githubUrl: 'https://github.com/tadstech/30-days-of-tsa/tree/main/day9',
-            status: 'upcoming'
+            xUrl: 'https://x.com/tads_tech/status/2012146742213632162?s=20',
+            linkedinUrl: 'https://www.linkedin.com/posts/tadstech_30daysoftimeseries-timeseriesanalysis-datascience-share-7417912605337538560-aHLo',
+            status: 'completed'
         },
         {
             day: "10",
