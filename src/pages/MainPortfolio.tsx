@@ -376,15 +376,15 @@ export const MainPortfolio: React.FC = () => {
                                         {/* Center column - main content */}
                                         <div className="md:col-span-2 space-y-6">
                                             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                                                <span className="block mb-2">Independent Quantitative Researcher</span>
+                                                <span className="block mb-2">Applied Statistics & ML</span>
                                                 <span className="block text-2xl md:text-3xl lg:text-4xl" style={{ color: colorMode ? accentColor : 'white' }}>
-                                                    & Applied ML Analysis
+                                                    Research-Oriented Data Analysis
                                                 </span>
                                             </h1>
 
                                             <div className="border-l-2 pl-4 py-3 space-y-2" style={{ borderColor: `${accentColor}40` }}>
                                                 <p className="text-sm md:text-base text-white/80 leading-relaxed">
-                                                    Working with uncertainty, models, and financial data. Focused on statistical analysis, time-series modeling, and quantitative research methods. Building toward quant-adjacent and research-oriented ML roles.
+                                                    Investigating real-world financial and economic data through statistical analysis, time-series modeling, and applied machine learning. Projects are approached as research-style investigations: clear questions, strong baselines, careful evaluation, and honest limitations.
                                                 </p>
                                                 <div className="flex flex-wrap gap-2 text-xs text-white/60 font-mono">
                                                     <span>Lagos, Nigeria</span>
@@ -396,8 +396,8 @@ export const MainPortfolio: React.FC = () => {
                                             {/* Employment tiers */}
                                             <div className="grid grid-cols-1 gap-3 py-4">
                                                 <div className="border p-3 transition-all hover:border-opacity-100" style={{ borderColor: `${accentColor}60` }}>
-                                                    <div className="text-xs uppercase tracking-wider mb-1" style={{ color: colorMode ? accentColor : 'white' }}>Seeking Roles In</div>
-                                                    <div className="text-sm text-white/80">Quantitative Research • Risk Analytics • Statistical Analysis</div>
+                                                    <div className="text-xs uppercase tracking-wider mb-1" style={{ color: colorMode ? accentColor : 'white' }}>Current direction</div>
+                                                    <div className="text-sm text-white/80">Quant-Adjacent Research • Risk Analytics • Applied Statistical Analysis</div>
                                                 </div>
                                                 <div className="border p-3 transition-all hover:border-opacity-100" style={{ borderColor: `${accentColor}40` }}>
                                                     <div className="text-xs uppercase tracking-wider mb-1" style={{ color: colorMode ? accentColor : 'white' }}>Core Capabilities</div>
