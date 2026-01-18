@@ -365,7 +365,7 @@ export const MainPortfolio: React.FC = () => {
                                         {/* Left column - vertical accent */}
                                         <div className="hidden md:flex flex-col justify-center">
                                             <div className="space-y-4">
-                                                {['Quantitative', 'Research', 'Statistical', 'Analysis'].map((word, i) => (
+                                                {['Quantitative', 'Research', 'Evaluation', 'Analysis'].map((word, i) => (
                                                     <div key={i} className="border-l-2 pl-4 py-2 transition-all duration-300 hover:pl-6" style={{ borderColor: accentColor }}>
                                                         <span className="text-xs uppercase tracking-widest opacity-60">{word}</span>
                                                     </div>
@@ -375,10 +375,10 @@ export const MainPortfolio: React.FC = () => {
 
                                         {/* Center column - main content */}
                                         <div className="md:col-span-2 space-y-6">
-                                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                                                <span className="block mb-2">Applied Statistics & ML</span>
+                                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+                                                <span className="block mb-1">Research Oriented Data Scientist</span>
                                                 <span className="block text-2xl md:text-3xl lg:text-4xl" style={{ color: colorMode ? accentColor : 'white' }}>
-                                                    Research-Oriented Data Analysis
+                                                    Applied statistics, ML and LLM evaluation across systems, financial and text data
                                                 </span>
                                             </h1>
 
@@ -396,12 +396,12 @@ export const MainPortfolio: React.FC = () => {
                                             {/* Employment tiers */}
                                             <div className="grid grid-cols-1 gap-3 py-4">
                                                 <div className="border p-3 transition-all hover:border-opacity-100" style={{ borderColor: `${accentColor}60` }}>
-                                                    <div className="text-xs uppercase tracking-wider mb-1" style={{ color: colorMode ? accentColor : 'white' }}>Current direction</div>
-                                                    <div className="text-sm text-white/80">Quant-Adjacent Research • Risk Analytics • Applied Statistical Analysis</div>
+                                                    <div className="text-xs uppercase tracking-wider mb-1" style={{ color: colorMode ? accentColor : 'white' }}>Open to roles in</div>
+                                                    <div className="text-sm text-white/80">Model Evaluations • Research Analytics • Applied Statistical Analysis • Quant-Adjacent Research</div>
                                                 </div>
                                                 <div className="border p-3 transition-all hover:border-opacity-100" style={{ borderColor: `${accentColor}40` }}>
                                                     <div className="text-xs uppercase tracking-wider mb-1" style={{ color: colorMode ? accentColor : 'white' }}>Core Capabilities</div>
-                                                    <div className="text-sm text-white/80">Applied ML • Forecasting • Time-Series Analysis</div>
+                                                    <div className="text-sm text-white/80">Applied ML • Forecasting • NLP • LLM Validation</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -414,6 +414,7 @@ export const MainPortfolio: React.FC = () => {
                                                 { Icon: Linkedin, url: 'https://linkedin.com/in/tadstech', label: 'LinkedIn' },
                                                 { Icon: Github, url: 'https://github.com/tadstech', label: 'GitHub' },
                                                 { Icon: Mail, url: 'mailto:motrenewed@gmail.com', label: 'Email' },
+                                                {Icon: Database, url: 'https://kaggle.com/miclenzy', label: 'Kaggle'}
                                             ].map(({ Icon, url, label }) => (
                                                 <a
                                                     key={label}
