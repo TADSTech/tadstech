@@ -70,9 +70,9 @@ export const Challenge: React.FC = () => {
             description: 'A structured journey through time-series analysis and forecasting. Building towards production-ready gold price prediction systems using ARIMA, Prophet, and LSTM models.',
             icon: <TrendingUp className="h-8 w-8" />,
             route: '/challenge/ts-analysis',
-            daysCompleted: 11,
+            daysCompleted: 12,
             totalDays: 30,
-            status: 'upcoming',
+            status: 'in-progress',
             startDate: 'Jan 7 2026',
             accentColor: '#f59e0b'
         }
