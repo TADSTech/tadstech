@@ -414,7 +414,7 @@ export const MainPortfolio: React.FC = () => {
                                                 { Icon: Linkedin, url: 'https://linkedin.com/in/tadstech', label: 'LinkedIn' },
                                                 { Icon: Github, url: 'https://github.com/tadstech', label: 'GitHub' },
                                                 { Icon: Mail, url: 'mailto:motrenewed@gmail.com', label: 'Email' },
-                                                {Icon: Database, url: 'https://kaggle.com/miclenzy', label: 'Kaggle'}
+                                                { Icon: Database, url: 'https://kaggle.com/miclenzy', label: 'Kaggle' }
                                             ].map(({ Icon, url, label }) => (
                                                 <a
                                                     key={label}
@@ -616,6 +616,19 @@ export const MainPortfolio: React.FC = () => {
                                                 <li>Wrote SQL queries for recurring reporting tasks</li>
                                                 <li>Built dashboards in Metabase to support business insights</li>
                                                 <li>Assisted team with lightweight automation pipelines</li>
+                                            </ul>
+                                            <div className="absolute -left-[5px] mt-5 w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></div>
+                                            <div className="flex justify-between items-start mb-2 mt-4">
+                                                <div>
+                                                    <h4 className="text-lg font-bold">LLM Evaluator</h4>
+                                                    <p className="text-sm text-white/70">Turing</p>
+                                                </div>
+                                                <span className="text-xs text-white/50 font-mono border px-2 py-1 rounded" style={{ borderColor: `${accentColor}30` }}>Aug 2025 – Nov 2025</span>
+                                            </div>
+                                            <ul className="text-sm text-white/80 leading-relaxed max-w-3xl space-y-1 list-disc list-inside">
+                                                <li>Evaluated LLM-generated outputs for accuracy, coherence, and adherence to guidelines</li>
+                                                <li>Applied structured rubrics to assess model responses across multiple dimensions</li>
+                                                <li>Contributed to AI training data quality through detailed feedback and annotations</li>
                                             </ul>
                                         </div>
                                     </div>
