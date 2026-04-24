@@ -1,0 +1,49 @@
+{
+  "projects": [
+    {
+      "name": "WXATA",
+      "desc": "A high-performance WhatsApp automation platform built with Baileys and Bun. It includes interactive scripts, permissions management, and a live web dashboard.",
+      "startDate": "April 2026",
+      "endDate": "Present",
+      "location": null,
+      "placeOfWork": null,
+      "skills": ["Bun", "TypeScript", "Baileys", "React", "Firebase", "SQLite", "WebSockets", "Automation"]
+    },
+    {
+      "name": "Centaur Trading API",
+      "desc": "An API-key protected market intelligence and trading platform with data download, model lifecycle, strategy backtesting, and owner-only admin controls.",
+      "startDate": "February 2026",
+      "endDate": "Present",
+      "location": null,
+      "placeOfWork": null,
+      "skills": ["Python", "API Design", "Backtesting", "Model Training", "Security", "Automation", "Documentation"]
+    },
+    {
+      "name": "ServerMonitor",
+      "desc": "A lightweight ICTRD API monitor with a Typer CLI, colored terminal output, retries, and pytest-based tests.",
+      "startDate": "March 2026",
+      "endDate": "April 2026",
+      "location": null,
+      "placeOfWork": null,
+      "skills": ["Python", "Typer", "Pytest", "CLI Tools", "HTTP Monitoring", "Retry Logic", "Configuration"]
+    },
+    {
+      "name": "Brazilian Retail Intelligence System (BRIS)",
+      "desc": "A comprehensive end-to-end data engineering and BI platform with dual-environment ETL, synthetic data generation, FastAPI backend, PostgreSQL/Supabase, and React dashboard.",
+      "startDate": "October 2025",
+      "endDate": "January 2026",
+      "location": null,
+      "placeOfWork": null,
+      "skills": ["Python", "Pandas", "SQLAlchemy", "FastAPI", "PostgreSQL", "Supabase", "Docker", "React", "TypeScript", "Vite", "Tailwind", "ETL", "Data Engineering", "Markov Chains"]
+    },
+    {
+      "name": "Signal and Noise in Financial News Sentiment: An Empirical Investigation",
+      "desc": "An investigation into sentiment modeling for financial text using transformer models, examining signal stability, confidence calibration, failure modes, and evaluation methodology under realistic constraints.",
+      "startDate": "October 2026",
+      "endDate": "December 2026",
+      "location": null,
+      "placeOfWork": null,
+      "skills": ["Python", "DistilBERT", "Transformers", "PyTorch", "Hugging Face", "NLP", "Financial NLP", "Sentiment Analysis", "Classification", "Evaluation", "Jupyter", "Statistical Analysis"]
+    }
+  ]
+}
