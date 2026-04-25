@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, createContext, useContext, ReactNode } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut, updateProfile, User } from 'firebase/auth';
 import { auth, googleProvider } from '@/lib/firebase';
 import { getUserProfile, createUserProfile, getBalance, spendCoins, earnCoins, STANDARD_COST, ADVANCED_COST, AD_REWARD, PURCHASE_AMOUNT } from '@/lib/coins';
 
@@ -64,7 +64,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       await signInWithPopup(auth, googleProvider);
     } catch (error) {
+      const authError = error as { code?: string };
+
+      if (
+        authError.code === 'auth/popup-closed-by-user' ||
+        authError.code === 'auth/popup-blocked' ||
+        authError.code === 'auth/cancelled-popup-request'
+      ) {
+        await signInWithRedirect(auth, googleProvider);
+        return;
+      }
+
       console.error('Sign in error:', error);
+      throw error;
     }
   };
 
