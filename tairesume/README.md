@@ -88,3 +88,17 @@ GROQ_API_KEY=
 - Add server-side payment verification webhook for Paystack in production
 - Keep Firestore coin writes merge-safe so payment and reward callbacks do not fail on a missing profile document
 - Replace ad placeholder container with live Adsterra script in production
+
+## Firestore Rules Setup
+
+The app needs authenticated users to read/write only their own profile at `users/{uid}`.
+
+1. Install Firebase CLI if needed:
+	`npm i -g firebase-tools`
+2. Login and select project:
+	`firebase login`
+	`firebase use tadstech`
+3. Deploy Firestore rules and indexes from this folder:
+	`firebase deploy --only firestore:rules,firestore:indexes`
+
+If rules are not deployed, sign-in can succeed but coin/profile operations will fail with `Missing or insufficient permissions`, and new users may appear with `0` coins instead of the signup bonus.
