@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, createContext, useContext, ReactNode } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, signOut, updateProfile, User } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithRedirect, signOut, updateProfile, User } from 'firebase/auth';
 import { auth, googleProvider } from '@/lib/firebase';
 import { getUserProfile, createUserProfile, getBalance, spendCoins, earnCoins, STANDARD_COST, ADVANCED_COST, AD_REWARD, PURCHASE_AMOUNT } from '@/lib/coins';
 
@@ -39,18 +39,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       setUser(firebaseUser);
       if (firebaseUser) {
-        // Check if user profile exists, create if new
-        const profile = await getUserProfile(firebaseUser.uid);
-        if (!profile) {
-          await createUserProfile(
-            firebaseUser.uid,
-            firebaseUser.email,
-            firebaseUser.displayName,
-            firebaseUser.photoURL
-          );
+        try {
+          const profile = await getUserProfile(firebaseUser.uid);
+          if (!profile) {
+            await createUserProfile(
+              firebaseUser.uid,
+              firebaseUser.email,
+              firebaseUser.displayName,
+              firebaseUser.photoURL
+            );
+          }
+
+          const balance = await getBalance(firebaseUser.uid);
+          setCoins(balance);
+        } catch (error) {
+          console.error('Profile sync error:', error);
+          setCoins(0);
         }
-        const balance = await getBalance(firebaseUser.uid);
-        setCoins(balance);
       } else {
         setCoins(0);
       }
@@ -61,23 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (error) {
-      const authError = error as { code?: string };
-
-      if (
-        authError.code === 'auth/popup-closed-by-user' ||
-        authError.code === 'auth/popup-blocked' ||
-        authError.code === 'auth/cancelled-popup-request'
-      ) {
-        await signInWithRedirect(auth, googleProvider);
-        return;
-      }
-
-      console.error('Sign in error:', error);
-      throw error;
-    }
+    await signInWithRedirect(auth, googleProvider);
   };
 
   const signInWithEmail = async (email: string, password: string) => {
