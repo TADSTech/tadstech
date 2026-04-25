@@ -1,6 +1,22 @@
 import type { Metadata } from 'next';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import { AuthProvider } from '@/hooks/useAuth';
+import { ThemeProvider } from '@/context/ThemeContext';
 import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'TaiResume — AI Resume Tailor',
@@ -8,19 +24,28 @@ export const metadata: Metadata = {
   keywords: ['resume', 'tailor', 'typst', 'AI', 'job application'],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// Inline script runs synchronously before React hydrates to prevent FOUC.
+const themeScript = `
+  try {
+    var saved = localStorage.getItem('tairesume-theme');
+    var preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', saved || preferred);
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+`;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
-        {/* Paystack inline script */}
-        <script src="https://js.paystack.co/v1/inline.js" async />
+        {/* Theme script must run before any paint */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>
-        <AuthProvider>{children}</AuthProvider>
+      <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
+        <ThemeProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

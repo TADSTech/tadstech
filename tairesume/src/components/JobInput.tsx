@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Globe, Loader, AlertCircle } from 'lucide-react';
 
 interface JobInputProps {
   value: string;
@@ -56,12 +57,23 @@ export default function JobInput({ value, onChange }: JobInputProps) {
           onClick={handleScrape}
           disabled={isScraping || !url.trim()}
         >
-          {isScraping ? <span className="spinner" /> : 'Scrape'}
+          {isScraping ? (
+            <>
+              <Loader size={16} className="spin" aria-hidden="true" />
+              Scraping…
+            </>
+          ) : (
+            <>
+              <Globe size={16} aria-hidden="true" />
+              Scrape
+            </>
+          )}
         </button>
       </div>
 
       {scrapeError && (
-        <p style={{ fontSize: '0.75rem', color: 'var(--error)', marginBottom: 8 }}>
+        <p style={{ fontSize: '0.75rem', color: 'var(--error)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 4 }}>
+          <AlertCircle size={14} aria-hidden="true" />
           {scrapeError}
         </p>
       )}

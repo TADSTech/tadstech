@@ -2,28 +2,24 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { Coins } from 'lucide-react';
 import BuyCoinsModal from '@/components/BuyCoinsModal';
 import AuthModal from '@/components/AuthModal';
 import { useAuth } from '@/hooks/useAuth';
+import { COIN_PACKS } from '@/lib/coins';
 
-const plans = [
+const freePlans = [
   {
-    name: 'Starter boost',
-    coins: '5 coins',
-    price: 'Free on signup',
-    note: 'Enough for a handful of tailored applications right away.',
+    name: 'Signup bonus',
+    coins: '+5 coins',
+    price: 'Free',
+    note: 'Credited automatically when you create an account.',
   },
   {
     name: 'Rewarded ad',
     coins: '+1 coin',
     price: 'Free',
-    note: 'Watch a rewarded ad to top up without spending cash.',
-  },
-  {
-    name: 'Paystack pack',
-    coins: '10 coins',
-    price: 'N1,440',
-    note: 'A simple top-up for heavier application sessions.',
+    note: 'Watch a short ad to top up without spending cash.',
   },
 ];
 
@@ -32,7 +28,7 @@ export default function PricingPage() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
-  const handleCheckout = async () => {
+  const handleCheckout = () => {
     if (!user) {
       setIsAuthOpen(true);
       return;
@@ -54,30 +50,74 @@ export default function PricingPage() {
       <main className="content-page">
         <section className="content-hero">
           <p className="hero__eyebrow">Pricing</p>
-          <h1 className="hero__title">A simple coin system that keeps tailoring transparent.</h1>
+          <h1 className="hero__title">Simple coins. No subscriptions.</h1>
           <p className="hero__subtitle">
-            Sign up once, earn a starter bonus, and decide whether to top up with an ad or a Paystack pack.
+            Sign up for free coins, earn more by watching ads, or buy a pack when you need to power through applications.
           </p>
         </section>
 
-        <section className="pricing-cards">
-          {plans.map((plan) => {
-            const isPaystackPlan = plan.name === 'Paystack pack';
+        {/* Free plans */}
+        <section style={{ marginTop: 24 }}>
+          <p className="card__label" style={{ marginBottom: 12 }}>Free ways to earn</p>
+          <div className="pricing-cards" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
+            {freePlans.map((plan) => (
+              <article key={plan.name} className="pricing-card">
+                <p className="pricing-card__name">{plan.name}</p>
+                <p className="pricing-card__coins">{plan.coins}</p>
+                <p className="pricing-card__price">{plan.price}</p>
+                <p className="pricing-card__note">{plan.note}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
-            return (
-            <article key={plan.name} className="pricing-card">
-              <p className="pricing-card__name">{plan.name}</p>
-              <p className="pricing-card__coins">{plan.coins}</p>
-              <p className="pricing-card__price">{plan.price}</p>
-              <p className="pricing-card__note">{plan.note}</p>
-              {isPaystackPlan && (
-                <button type="button" className="btn btn--primary btn--full" onClick={handleCheckout}>
-                  Checkout
+        {/* Paid packs */}
+        <section style={{ marginTop: 32 }}>
+          <p className="card__label" style={{ marginBottom: 12 }}>Coin packs</p>
+          <div className="pricing-cards" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
+            {COIN_PACKS.map((pack) => (
+              <article key={pack.id} className={`pricing-card pricing-card--pack${pack.badge ? ' pricing-card--featured' : ''}`}>
+                {pack.badge && (
+                  <span className="pricing-card__badge">{pack.badge}</span>
+                )}
+                <p className="pricing-card__name">{pack.label}</p>
+                <p className="pricing-card__coins">
+                  <Coins size={18} aria-hidden="true" style={{ verticalAlign: 'middle', marginRight: 4 }} />
+                  {pack.coins} coins
+                </p>
+                <p className="pricing-card__price">₦{pack.priceNGN.toLocaleString()}</p>
+                <p className="pricing-card__note">
+                  ₦{Math.round(pack.priceNGN / pack.coins)} per coin
+                </p>
+                <button
+                  type="button"
+                  className="btn btn--primary btn--full"
+                  style={{ marginTop: 16, minHeight: 44 }}
+                  onClick={handleCheckout}
+                >
+                  Buy {pack.coins} coins
                 </button>
-              )}
-            </article>
-            );
-          })}
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Usage reference */}
+        <section style={{ marginTop: 32 }}>
+          <p className="card__label" style={{ marginBottom: 12 }}>What coins cost</p>
+          <div className="pricing__grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))' }}>
+            {[
+              { label: 'Standard tailor', cost: '1 coin' },
+              { label: 'Pro tailor', cost: '5 coins' },
+              { label: 'Resume from Scratch', cost: 'Free' },
+              { label: 'Watch ad', cost: '+1 coin' },
+            ].map((item) => (
+              <div key={item.label} className="pricing__item">
+                <span>{item.label}</span>
+                <strong>{item.cost}</strong>
+              </div>
+            ))}
+          </div>
         </section>
       </main>
 

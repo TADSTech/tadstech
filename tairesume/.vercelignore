@@ -1,0 +1,5 @@
+# Ignore spec files and dev artifacts from Vercel deployment
+.kiro/
+admin-grant-coins.sql
+supabase-setup.sql
+email-templates/

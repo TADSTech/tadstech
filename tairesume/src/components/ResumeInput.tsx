@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, type ChangeEvent } from 'react';
+import { Upload, Loader } from 'lucide-react';
 
 interface ResumeInputProps {
   value: string;
@@ -29,8 +30,23 @@ export default function ResumeInput({ value, onChange, onUploadPdf, isImporting,
       <div className="card__header">
         <label className="card__label">Your Resume</label>
         <div className="card__actions">
-          <button className="btn btn--ghost btn--sm" onClick={() => fileInputRef.current?.click()} disabled={isImporting} type="button">
-            {isImporting ? <span className="spinner" /> : 'Upload PDF'}
+          <button
+            className="btn btn--ghost btn--sm"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={isImporting}
+            type="button"
+          >
+            {isImporting ? (
+              <>
+                <Loader size={16} className="spin" aria-hidden="true" />
+                Importing…
+              </>
+            ) : (
+              <>
+                <Upload size={16} aria-hidden="true" />
+                Upload PDF
+              </>
+            )}
           </button>
           <input ref={fileInputRef} type="file" accept="application/pdf" hidden onChange={handleFileChange} />
         </div>

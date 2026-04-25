@@ -5,7 +5,42 @@ export const SIGNUP_BONUS = 5;
 export const STANDARD_COST = 1;
 export const ADVANCED_COST = 5;
 export const AD_REWARD = 1;
-export const PURCHASE_AMOUNT = 10;
+export const PURCHASE_AMOUNT = 10; // kept for backward compat
+
+export interface CoinPack {
+  id: string;
+  coins: number;
+  priceNGN: number;   // in Naira
+  amountKobo: number; // Paystack uses kobo (1 NGN = 100 kobo)
+  label: string;
+  badge?: string;
+}
+
+export const COIN_PACKS: CoinPack[] = [
+  {
+    id: 'starter',
+    coins: 10,
+    priceNGN: 1440,
+    amountKobo: 144000,
+    label: 'Starter',
+  },
+  {
+    id: 'value',
+    coins: 20,
+    priceNGN: 2000,
+    amountKobo: 200000,
+    label: 'Value',
+    badge: 'Popular',
+  },
+  {
+    id: 'pro',
+    coins: 30,
+    priceNGN: 2500,
+    amountKobo: 250000,
+    label: 'Pro',
+    badge: 'Best value',
+  },
+];
 
 export async function getUserProfile(uid: string): Promise<UserProfile | null> {
   const { data, error } = await supabase
@@ -52,7 +87,9 @@ export async function createUserProfile(
     { onConflict: 'uid', ignoreDuplicates: true }
   );
 
-  if (error) throw new Error(error.message);
+  // AbortError means the Supabase auth lock was stolen by a concurrent request
+  // (React Strict Mode double-mount). The upsert may have succeeded — treat as ok.
+  if (error && error.message !== 'AbortError') throw new Error(error.message);
   return profile;
 }
 

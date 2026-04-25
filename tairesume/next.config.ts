@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Production domain
+  // Deployed at: https://tairesume.tadstech.dev
 };
 
 export default nextConfig;

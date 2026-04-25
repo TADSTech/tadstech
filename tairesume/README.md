@@ -91,5 +91,21 @@ GROQ_API_KEY=
 1. Create a project at [supabase.com](https://supabase.com)
 2. Go to **Settings → API** and copy your Project URL and anon key into `.env.local`
 3. Open **SQL Editor** and run the contents of `supabase-setup.sql` — this creates the `users` table, RLS policies, and the `spend_coins` / `earn_coins` RPC functions
-4. In **Authentication → Email**, make sure "Enable email confirmations" is on (it is by default). Supabase sends confirmation emails for free via its built-in mailer.
-5. Optionally configure a custom SMTP provider (e.g. Resend free tier) under **Authentication → SMTP Settings** for branded emails.
+4. In **Authentication → URL Configuration**, set:
+   - **Site URL**: `https://tairesume.tadstech.dev`
+   - **Redirect URLs**: `https://tairesume.tadstech.dev/app`, `https://tairesume.tadstech.dev/reset-password`
+5. Configure a custom SMTP provider (Resend recommended) under **Authentication → SMTP Settings**
+
+## Deployment
+
+Deployed at: **https://tairesume.tadstech.dev**
+
+### Vercel (recommended)
+
+1. Import the repo on [vercel.com](https://vercel.com)
+2. Set **Root Directory** to `tairesume`
+3. Add all environment variables from `.env.local`
+4. In Vercel **Settings → Domains**, add `tairesume.tadstech.dev`
+5. Add the CNAME record in your DNS provider:
+   - Name: `tairesume`
+   - Value: `cname.vercel-dns.com`

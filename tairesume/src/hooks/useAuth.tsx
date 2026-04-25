@@ -32,7 +32,7 @@ interface AuthContextType {
   refreshCoins: () => Promise<void>;
   spend: (model: 'standard' | 'advanced') => Promise<boolean>;
   earnFromAd: () => Promise<void>;
-  earnFromPurchase: () => Promise<void>;
+  earnFromPurchase: (amount: number) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -55,18 +55,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const balance = await getBalance(supabaseUser.id);
       setCoins(balance);
     } catch (error) {
+      // AbortError is thrown by Supabase's auth lock when React Strict Mode
+      // double-mounts the component and the second mount steals the lock.
+      // This is harmless in development and never occurs in production.
+      if (error instanceof Error && error.name === 'AbortError') return;
       console.error('Profile sync error:', error);
       setCoins(0);
     }
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!isMounted) return;
       const currentUser = session?.user ?? null;
       setUser(currentUser);
       if (currentUser) {
-        syncProfile(currentUser).finally(() => setLoading(false));
+        syncProfile(currentUser).finally(() => { if (isMounted) setLoading(false); });
       } else {
         setLoading(false);
       }
@@ -74,6 +81,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (!isMounted) return;
       const currentUser = session?.user ?? null;
       setUser(currentUser);
       if (currentUser) {
@@ -83,7 +91,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
   }, [syncProfile]);
 
   const refreshCoins = useCallback(async () => {
@@ -144,10 +155,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setCoins((prev) => prev + AD_REWARD);
   };
 
-  const earnFromPurchase = async () => {
+  const earnFromPurchase = async (amount: number) => {
     if (!user) return;
-    await earnCoins(user.id, PURCHASE_AMOUNT, 'purchase');
-    setCoins((prev) => prev + PURCHASE_AMOUNT);
+    await earnCoins(user.id, amount, 'purchase');
+    setCoins((prev) => prev + amount);
   };
 
   return (

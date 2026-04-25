@@ -1,3 +1,5 @@
+// ── Existing types (kept for backward compatibility with tailor API) ──────────
+
 export interface Project {
   name: string;
   desc: string;
@@ -44,4 +46,68 @@ export interface UserProfile {
   photoURL: string | null;
   coins: number;
   createdAt: number;
+}
+
+// ── Profile System types ──────────────────────────────────────────────────────
+
+/** A project entry stored in the user's profile (Supabase-backed). */
+export interface ProfileProject {
+  id: string;           // UUID — crypto.randomUUID()
+  name: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  location: string | null;
+  placeOfWork: string | null;
+  skills: string[];
+}
+
+/** A work experience entry stored in the user's profile. */
+export interface Experience {
+  id: string;           // UUID
+  jobTitle: string;
+  company: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  description: string;
+  skills: string[];
+}
+
+/** Personal contact and summary information for resume generation. */
+export interface PersonalInfo {
+  fullName: string;
+  jobTitle: string;
+  email: string;
+  phone: string;
+  location: string;
+  linkedIn: string;
+  github: string;
+  portfolio: string;
+  summary: string;
+}
+
+export const EMPTY_PERSONAL_INFO: PersonalInfo = {
+  fullName: '',
+  jobTitle: '',
+  email: '',
+  phone: '',
+  location: '',
+  linkedIn: '',
+  github: '',
+  portfolio: '',
+  summary: '',
+};
+
+/** Maps a ProfileProject to the legacy Project shape used by the tailor API. */
+export function profileProjectToProject(p: ProfileProject): Project {
+  return {
+    name: p.name,
+    desc: p.description,
+    startDate: p.startDate,
+    endDate: p.endDate,
+    location: p.location,
+    placeOfWork: p.placeOfWork,
+    skills: p.skills,
+  };
 }

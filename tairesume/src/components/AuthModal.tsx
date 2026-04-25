@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useMemo, useState } from 'react';
+import { X, Check, Circle } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
 
@@ -103,7 +104,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     return (
       <div className="modal-overlay" onClick={onClose}>
         <div className="modal modal--auth" onClick={(e) => e.stopPropagation()}>
-          <button className="modal__close" onClick={onClose} type="button">×</button>
+          <button className="modal__close" onClick={onClose} type="button"><X size={18} aria-hidden="true" /></button>
           <h3 className="modal__title">Check your inbox</h3>
           <p className="modal__desc">
             We sent a confirmation link to <strong>{email}</strong>. Click it to activate
@@ -126,7 +127,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     return (
       <div className="modal-overlay" onClick={onClose}>
         <div className="modal modal--auth" onClick={(e) => e.stopPropagation()}>
-          <button className="modal__close" onClick={onClose} type="button">×</button>
+          <button className="modal__close" onClick={onClose} type="button"><X size={18} aria-hidden="true" /></button>
           <h3 className="modal__title">Reset link sent</h3>
           <p className="modal__desc">
             Check <strong>{email}</strong> for a password reset link. It expires in 1 hour.
@@ -148,7 +149,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     return (
       <div className="modal-overlay" onClick={onClose}>
         <div className="modal modal--auth" onClick={(e) => e.stopPropagation()}>
-          <button className="modal__close" onClick={onClose} type="button">×</button>
+          <button className="modal__close" onClick={onClose} type="button"><X size={18} aria-hidden="true" /></button>
           <h3 className="modal__title">Forgot your password?</h3>
           <p className="modal__desc">
             Enter your email and we'll send you a link to choose a new one.
@@ -196,13 +197,13 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal modal--auth" onClick={(event) => event.stopPropagation()}>
-        <button className="modal__close" onClick={onClose} type="button">×</button>
+        <button className="modal__close" onClick={onClose} type="button"><X size={18} aria-hidden="true" /></button>
         <h3 className="modal__title">Welcome to TaiResume</h3>
         <p className="modal__desc">
           Sign in or create an account to manage your coin wallet.
         </p>
 
-        <div className="auth-tabs">
+        <div className="auth-tabs__track">
           <button
             type="button"
             className={`auth-tab ${mode === 'signin' ? 'auth-tab--active' : ''}`}
@@ -275,15 +276,19 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <p className="password-rules__title">Password requirements</p>
               <ul className="password-rules__list">
                 <li className={`password-rules__item${passwordRules.uppercase ? ' password-rules__item--met' : ''}`}>
+                  {passwordRules.uppercase ? <Check size={12} aria-hidden="true" style={{ color: 'var(--success)', flexShrink: 0 }} /> : <Circle size={12} aria-hidden="true" style={{ color: 'var(--text-muted)', flexShrink: 0 }} />}
                   Require uppercase character
                 </li>
                 <li className={`password-rules__item${passwordRules.lowercase ? ' password-rules__item--met' : ''}`}>
+                  {passwordRules.lowercase ? <Check size={12} aria-hidden="true" style={{ color: 'var(--success)', flexShrink: 0 }} /> : <Circle size={12} aria-hidden="true" style={{ color: 'var(--text-muted)', flexShrink: 0 }} />}
                   Require lowercase character
                 </li>
                 <li className={`password-rules__item${passwordRules.special ? ' password-rules__item--met' : ''}`}>
+                  {passwordRules.special ? <Check size={12} aria-hidden="true" style={{ color: 'var(--success)', flexShrink: 0 }} /> : <Circle size={12} aria-hidden="true" style={{ color: 'var(--text-muted)', flexShrink: 0 }} />}
                   Require special character
                 </li>
                 <li className={`password-rules__item${passwordRules.numeric ? ' password-rules__item--met' : ''}`}>
+                  {passwordRules.numeric ? <Check size={12} aria-hidden="true" style={{ color: 'var(--success)', flexShrink: 0 }} /> : <Circle size={12} aria-hidden="true" style={{ color: 'var(--text-muted)', flexShrink: 0 }} />}
                   Require numeric character
                 </li>
               </ul>

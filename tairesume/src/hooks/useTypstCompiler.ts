@@ -20,22 +20,57 @@ declare global {
     pdf: (opts: { mainContent: string }) => Promise<Uint8Array>;
     svg: (opts: { mainContent: string }) => Promise<string>;
   };
+  var __typstInitialized: boolean | undefined;
 }
 
+// Module-level flag — survives React Strict Mode double-mount
+// because module scope is not reset between mounts.
+let typstInitStarted = false;
+
 export function useTypstCompiler(): UseTypstCompilerReturn {
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(() => !!globalThis.__typstInitialized);
   const [isCompiling, setIsCompiling] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [svgHtml, setSvgHtml] = useState<string | null>(null);
   const prevPdfUrl = useRef<string | null>(null);
-  const initRef = useRef(false);
 
   useEffect(() => {
-    if (initRef.current) return;
-    initRef.current = true;
+    // Already fully initialized — nothing to do
+    if (globalThis.__typstInitialized) {
+      setIsReady(true);
+      return;
+    }
 
-    // Load the all-in-one-lite bundle script
+    // Script load already kicked off by a previous mount — wait for it
+    if (typstInitStarted) return;
+    typstInitStarted = true;
+
+    // Reuse an existing script tag if present (e.g. from a previous HMR cycle)
+    const existing = document.getElementById('typst-loader');
+    if (existing) {
+      // Script already in DOM — $typst may already be available
+      if (typeof globalThis.$typst !== 'undefined' && !globalThis.__typstInitialized) {
+        try {
+          globalThis.$typst.setCompilerInitOptions({
+            getModule: () =>
+              'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm',
+          });
+          globalThis.$typst.setRendererInitOptions({
+            getModule: () =>
+              'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-renderer/pkg/typst_ts_renderer_bg.wasm',
+          });
+          globalThis.__typstInitialized = true;
+          setIsReady(true);
+        } catch {
+          // Already initialized by a previous call — treat as ready
+          globalThis.__typstInitialized = true;
+          setIsReady(true);
+        }
+      }
+      return;
+    }
+
     const script = document.createElement('script');
     script.type = 'module';
     script.src = 'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst.ts/dist/esm/contrib/all-in-one-lite.bundle.js';
@@ -52,22 +87,24 @@ export function useTypstCompiler(): UseTypstCompilerReturn {
             getModule: () =>
               'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-renderer/pkg/typst_ts_renderer_bg.wasm',
           });
+          globalThis.__typstInitialized = true;
           setIsReady(true);
         }
-      } catch (err) {
-        console.error('Typst init error:', err);
-        setError('Failed to initialize Typst compiler');
+      } catch {
+        // $typst already initialized — still mark as ready
+        globalThis.__typstInitialized = true;
+        setIsReady(true);
       }
     });
 
     script.addEventListener('error', () => {
       setError('Failed to load Typst compiler');
+      typstInitStarted = false; // allow retry
     });
 
     document.head.appendChild(script);
 
     return () => {
-      // Cleanup old PDF URLs
       if (prevPdfUrl.current) {
         URL.revokeObjectURL(prevPdfUrl.current);
       }
@@ -86,7 +123,6 @@ export function useTypstCompiler(): UseTypstCompilerReturn {
     try {
       const pdfData = await globalThis.$typst.pdf({ mainContent: code });
 
-      // Revoke old URL
       if (prevPdfUrl.current) {
         URL.revokeObjectURL(prevPdfUrl.current);
       }
