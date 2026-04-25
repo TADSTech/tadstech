@@ -16,3 +16,10 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();
+
+// Configure Google OAuth with client ID
+if (process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID) {
+  googleProvider.setCustomParameters({
+    client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+  });
+}
