@@ -1,8 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
+import AuthModal from '@/components/AuthModal';
 import ResumeInput from '@/components/ResumeInput';
 import JobInput from '@/components/JobInput';
 import ProjectSelector from '@/components/ProjectSelector';
@@ -26,7 +26,6 @@ const DEFAULT_MODEL = 'standard' as const;
 const DEFAULT_COST = 1;
 
 export default function AppPage() {
-  const router = useRouter();
   const projects = useMemo(() => getProjects(), []);
   const { user, coins, loading, signInWithGoogle, spend, earnFromAd, earnFromPurchase } = useAuth();
   const { output, isStreaming, error: tailorError, startTailor } = useStreamingTailor();
@@ -46,13 +45,6 @@ export default function AppPage() {
   const [showBuyModal, setShowBuyModal] = useState(false);
   const [toast, setToast] = useState<ToastState | null>(null);
   const compileStatus = compileError ? 'error' : pdfUrl ? 'success' : null;
-
-  // Auth guard: redirect to home if not authenticated
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/');
-    }
-  }, [user, loading, router]);
 
   const showToast = useCallback((type: ToastKind, message: string) => {
     setToast({ type, message });
@@ -153,6 +145,16 @@ export default function AppPage() {
     await earnFromPurchase();
     showToast('success', 'Purchase confirmed. 10 coins added.');
   }, [earnFromPurchase, showToast]);
+
+  // Show auth modal when not authenticated
+  if (!loading && !user) {
+    return (
+      <div className="app">
+        <Header />
+        <AuthModal isOpen={true} onClose={() => {}} />
+      </div>
+    );
+  }
 
   // Show loading state while auth check is in progress
   if (loading || !user) {
