@@ -1,6 +1,6 @@
 # TaiResume
 
-TaiResume is an AI resume tailoring app for Typst resumes. Users provide their Typst resume and a target job description, then generate tailored output with standard or advanced AI models.
+TaiResume is an AI resume tailoring app for Typst resumes and PDF resumes. Users can upload an existing PDF resume to extract text, upload a Typst file directly, or paste Typst manually before tailoring against a target job description.
 
 ## Final Stack
 
@@ -66,6 +66,8 @@ GROQ_API_KEY=
 
 - Google sign-in and automatic signup bonus
 - Coin wallet display and transaction-backed updates
+- PDF resume upload with automatic text extraction
+- Typst file upload for direct editor import
 - Job description scrape endpoint
 - Standard and advanced model selection with coin costs
 - Tailoring endpoint with streaming Typst output
@@ -73,9 +75,16 @@ GROQ_API_KEY=
 - Rewarded ad modal for free coins
 - Paystack modal to purchase coins
 
+## Resume Import Flow
+
+- Upload a PDF resume to extract its text into the tailoring input.
+- Upload a Typst file to load the source directly into the editor.
+- You can still paste Typst manually if you prefer.
+
 ## Production Notes
 
 - Configure domain: tairesume.tadstech.dev
 - Ensure Firestore security rules are applied before public launch
 - Add server-side payment verification webhook for Paystack in production
+- Keep Firestore coin writes merge-safe so payment and reward callbacks do not fail on a missing profile document
 - Replace ad placeholder container with live Adsterra script in production

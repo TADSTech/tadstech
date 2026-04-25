@@ -14,6 +14,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useStreamingTailor } from '@/hooks/useStreamingTailor';
 import { useTypstCompiler } from '@/hooks/useTypstCompiler';
 import { getProjects } from '@/lib/projects';
+import { extractTextFromPdfFile, readTextFile } from '@/lib/pdf';
 
 type ToastKind = 'success' | 'error';
 
@@ -41,6 +42,10 @@ export default function AppPage() {
   const [jobDescription, setJobDescription] = useState('');
   const [selectedProjects, setSelectedProjects] = useState<string[]>([]);
   const [typstCode, setTypstCode] = useState('');
+  const [resumeImporting, setResumeImporting] = useState(false);
+  const [typstImporting, setTypstImporting] = useState(false);
+  const [resumeSourceLabel, setResumeSourceLabel] = useState<string | null>(null);
+  const [typstSourceLabel, setTypstSourceLabel] = useState<string | null>(null);
   const [showAdModal, setShowAdModal] = useState(false);
   const [showBuyModal, setShowBuyModal] = useState(false);
   const [toast, setToast] = useState<ToastState | null>(null);
@@ -95,6 +100,50 @@ export default function AppPage() {
     link.remove();
   }, [pdfUrl, showToast]);
 
+  const handleResumePdfUpload = useCallback(async (file: File) => {
+    setResumeImporting(true);
+    try {
+      const extracted = await extractTextFromPdfFile(file);
+      if (!extracted.trim()) {
+        showToast('error', 'No text could be extracted from that PDF.');
+        return;
+      }
+
+      setResume(extracted);
+      setResumeSourceLabel(file.name);
+      setTypstCode('');
+      setTypstSourceLabel(null);
+      showToast('success', `Imported resume text from ${file.name}.`);
+    } catch (error) {
+      console.error('PDF import failed:', error);
+      showToast('error', 'Could not read that PDF. Try another resume file.');
+    } finally {
+      setResumeImporting(false);
+    }
+  }, [showToast]);
+
+  const handleTypstUpload = useCallback(async (file: File) => {
+    setTypstImporting(true);
+    try {
+      const text = await readTextFile(file);
+      if (!text.trim()) {
+        showToast('error', 'That Typst file is empty.');
+        return;
+      }
+
+      setResume(text);
+      setTypstCode(text);
+      setResumeSourceLabel(file.name);
+      setTypstSourceLabel(file.name);
+      showToast('success', `Loaded Typst from ${file.name}.`);
+    } catch (error) {
+      console.error('Typst import failed:', error);
+      showToast('error', 'Could not read that Typst file.');
+    } finally {
+      setTypstImporting(false);
+    }
+  }, [showToast]);
+
   const handleTailor = useCallback(async () => {
     if (!user) {
       await signInWithGoogle();
@@ -137,13 +186,23 @@ export default function AppPage() {
   ]);
 
   const handleAdReward = useCallback(async () => {
-    await earnFromAd();
-    showToast('success', 'You earned 1 coin.');
+    try {
+      await earnFromAd();
+      showToast('success', 'You earned 1 coin.');
+    } catch (error) {
+      console.error('Ad reward failed:', error);
+      showToast('error', 'We could not credit the ad reward yet. Please try again.');
+    }
   }, [earnFromAd, showToast]);
 
   const handlePurchaseReward = useCallback(async () => {
-    await earnFromPurchase();
-    showToast('success', 'Purchase confirmed. 10 coins added.');
+    try {
+      await earnFromPurchase();
+      showToast('success', 'Purchase confirmed. 10 coins added.');
+    } catch (error) {
+      console.error('Purchase credit failed:', error);
+      showToast('error', 'Payment completed, but coins could not be credited yet. Refresh the page and try again.');
+    }
   }, [earnFromPurchase, showToast]);
 
   // Show auth modal when not authenticated
@@ -178,7 +237,13 @@ export default function AppPage() {
       <main className="main">
         <div className="workspace">
           <section className="panel panel--inputs">
-            <ResumeInput value={resume} onChange={setResume} />
+            <ResumeInput
+              value={resume}
+              onChange={setResume}
+              onUploadPdf={handleResumePdfUpload}
+              isImporting={resumeImporting}
+              sourceLabel={resumeSourceLabel}
+            />
             <JobInput value={jobDescription} onChange={setJobDescription} />
             <ProjectSelector
               projects={projects}
@@ -218,11 +283,14 @@ export default function AppPage() {
             <TypstEditor
               code={typstCode}
               onChange={setTypstCode}
+              onUploadTypst={handleTypstUpload}
               isStreaming={isStreaming}
               onCompile={handleCompile}
               onDownload={handleDownload}
               isCompiling={isCompiling}
               compileStatus={compileStatus}
+              isImporting={typstImporting}
+              sourceLabel={typstSourceLabel}
             />
             <PdfPreview pdfUrl={pdfUrl} isCompiling={isCompiling} compilerReady={isReady} />
           </section>

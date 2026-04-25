@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc, arrayUnion, increment } from 'firebase/firestore';
+import { doc, getDoc, setDoc, arrayUnion, increment } from 'firebase/firestore';
 import { db } from './firebase';
 import { CoinTransaction, UserProfile } from '@/types';
 
@@ -35,7 +35,7 @@ export async function createUserProfile(
   };
 
   const ref = doc(db, 'users', uid);
-  await setDoc(ref, profile);
+  await setDoc(ref, profile, { merge: true });
 
   // Record signup bonus transaction
   await addTransaction(uid, {
@@ -58,9 +58,9 @@ export async function spendCoins(uid: string, amount: number, type: 'tailor_stan
   if (balance < amount) return false;
 
   const ref = doc(db, 'users', uid);
-  await updateDoc(ref, {
+  await setDoc(ref, {
     coins: increment(-amount),
-  });
+  }, { merge: true });
 
   await addTransaction(uid, {
     type,
@@ -74,9 +74,9 @@ export async function spendCoins(uid: string, amount: number, type: 'tailor_stan
 
 export async function earnCoins(uid: string, amount: number, type: 'ad_reward' | 'purchase'): Promise<void> {
   const ref = doc(db, 'users', uid);
-  await updateDoc(ref, {
+  await setDoc(ref, {
     coins: increment(amount),
-  });
+  }, { merge: true });
 
   await addTransaction(uid, {
     type,
@@ -88,7 +88,7 @@ export async function earnCoins(uid: string, amount: number, type: 'ad_reward' |
 
 async function addTransaction(uid: string, transaction: CoinTransaction): Promise<void> {
   const ref = doc(db, 'users', uid);
-  await updateDoc(ref, {
+  await setDoc(ref, {
     transactions: arrayUnion(transaction),
-  });
+  }, { merge: true });
 }

@@ -1,24 +1,45 @@
 'use client';
 
+import { useRef, type ChangeEvent } from 'react';
+
 interface TypstEditorProps {
   code: string;
   onChange: (code: string) => void;
+  onUploadTypst: (file: File) => Promise<void>;
   isStreaming: boolean;
   onCompile: () => void;
   onDownload: () => void;
   isCompiling: boolean;
   compileStatus: string | null;
+  isImporting: boolean;
+  sourceLabel: string | null;
 }
 
 export default function TypstEditor({
   code,
   onChange,
+  onUploadTypst,
   isStreaming,
   onCompile,
   onDownload,
   isCompiling,
   compileStatus,
+  isImporting,
+  sourceLabel,
 }: TypstEditorProps) {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+
+    if (!file) {
+      return;
+    }
+
+    await onUploadTypst(file);
+  };
+
   return (
     <div className="editor-wrapper">
       <div className="editor-toolbar">
@@ -38,8 +59,19 @@ export default function TypstEditor({
         <div className="editor-toolbar__right">
           <button
             className="btn btn--ghost"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={isImporting || isStreaming}
+            title="Upload Typst file"
+            type="button"
+          >
+            {isImporting ? <span className="spinner" /> : 'Upload'}
+          </button>
+          <input ref={fileInputRef} type="file" accept=".typ,.typst,.txt,text/plain,application/octet-stream" hidden onChange={handleFileChange} />
+          <button
+            className="btn btn--ghost"
             onClick={onCompile}
             disabled={!code || isCompiling || isStreaming}
+            type="button"
             title="Compile to PDF"
           >
             {isCompiling ? <span className="spinner" /> : '▶'} Compile
@@ -48,6 +80,7 @@ export default function TypstEditor({
             className="btn btn--ghost"
             onClick={onDownload}
             disabled={!code}
+            type="button"
             title="Download PDF"
           >
             ↓ PDF
@@ -56,12 +89,15 @@ export default function TypstEditor({
             className="btn btn--ghost"
             onClick={() => navigator.clipboard.writeText(code)}
             disabled={!code}
+            type="button"
             title="Copy Typst code"
           >
             Copy
           </button>
         </div>
       </div>
+
+      {sourceLabel && <p className="editor-source-label">Loaded from {sourceLabel}</p>}
 
       <textarea
         className="editor-textarea"

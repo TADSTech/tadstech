@@ -98,14 +98,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const earnFromAd = async () => {
     if (!user) return;
-    await earnCoins(user.uid, AD_REWARD, 'ad_reward');
-    setCoins(prev => prev + AD_REWARD);
+    try {
+      await earnCoins(user.uid, AD_REWARD, 'ad_reward');
+      setCoins(prev => prev + AD_REWARD);
+    } catch (error) {
+      console.error('Ad reward failed:', error);
+      throw error;
+    }
   };
 
   const earnFromPurchase = async () => {
     if (!user) return;
-    await earnCoins(user.uid, PURCHASE_AMOUNT, 'purchase');
-    setCoins(prev => prev + PURCHASE_AMOUNT);
+    try {
+      await earnCoins(user.uid, PURCHASE_AMOUNT, 'purchase');
+      setCoins(prev => prev + PURCHASE_AMOUNT);
+    } catch (error) {
+      console.error('Purchase reward failed:', error);
+      throw error;
+    }
   };
 
   return (

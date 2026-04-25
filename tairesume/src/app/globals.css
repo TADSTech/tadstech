@@ -973,6 +973,40 @@ input, textarea {
   color: var(--success);
 }
 
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn--sm {
+  padding: 8px 12px;
+  font-size: 0.76rem;
+}
+
+.card__meta,
+.card__hint,
+.editor-source-label {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+.card__hint {
+  margin-top: 12px;
+}
+
+.editor-source-label {
+  margin: 0 0 10px;
+}
+
 .content-page {
   width: min(1100px, calc(100% - 32px));
   margin: 28px auto 48px;

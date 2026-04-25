@@ -11,11 +11,12 @@ const groqClient = new OpenAI({
   baseURL: 'https://api.groq.com/openai/v1',
 });
 
-const SYSTEM_PROMPT = `You are an expert resume tailor. Your task is to modify a Typst-formatted resume to perfectly match a job description.
+const SYSTEM_PROMPT = `You are an expert resume tailor. Your task is to modify a resume source to perfectly match a job description.
 
 RULES:
 1. Output ONLY valid Typst markup. No markdown, no explanations, no commentary.
-2. Preserve the original Typst formatting conventions (headings, bullet points, layout commands).
+2. If the source resume is Typst, preserve the original Typst formatting conventions (headings, bullet points, layout commands).
+3. If the source resume is plain text extracted from a PDF, convert it into clean, professional Typst markup.
 3. Analyze the job description for key requirements, skills, and keywords.
 4. Restructure and reword resume sections to highlight the most relevant experience.
 5. Incorporate selected projects that match the role — emphasize relevant skills and outcomes.
@@ -39,7 +40,7 @@ export async function POST(request: NextRequest) {
         ).join('\n')}`
       : '';
 
-    const userPrompt = `CURRENT RESUME (Typst format):
+    const userPrompt = `CURRENT RESUME SOURCE:
 \`\`\`typst
 ${resume}
 \`\`\`
@@ -48,7 +49,7 @@ JOB DESCRIPTION:
 ${jobDescription}
 ${projectContext}
 
-Now produce the tailored Typst resume. Output ONLY the Typst code, nothing else.`;
+  Now produce the tailored Typst resume. Output ONLY the Typst code, nothing else.`;
 
     const client = model === 'advanced' ? groqClient : nvidiaClient;
     const modelId = model === 'advanced' ? 'llama-3.1-8b-instant' : 'google/gemma-2-2b-it';

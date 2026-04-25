@@ -6,7 +6,7 @@ import { PURCHASE_AMOUNT } from '@/lib/coins';
 interface BuyCoinsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onComplete: () => void;
+  onComplete: () => Promise<void> | void;
   userEmail: string | null;
 }
 
@@ -35,10 +35,16 @@ export default function BuyCoinsModal({ isOpen, onClose, onComplete, userEmail }
           { display_name: 'Coins', variable_name: 'coins', value: PURCHASE_AMOUNT.toString() },
         ],
       },
-      callback: () => {
-        setIsProcessing(false);
-        onComplete();
-        onClose();
+      callback: async () => {
+        try {
+          await onComplete();
+          onClose();
+        } catch (error) {
+          console.error('Purchase completion failed:', error);
+          alert('Payment succeeded, but the coin credit failed. Please refresh the page.');
+        } finally {
+          setIsProcessing(false);
+        }
       },
       onClose: () => {
         setIsProcessing(false);
