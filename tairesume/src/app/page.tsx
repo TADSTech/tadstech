@@ -48,7 +48,7 @@ export default function Home() {
           <h2>Simple Coin Economy</h2>
           <div className="pricing__grid">
             <div className="pricing__item">
-              <span>Google sign up bonus</span>
+              <span>Sign up bonus</span>
               <strong>+5</strong>
             </div>
             <div className="pricing__item">

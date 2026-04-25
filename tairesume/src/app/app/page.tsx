@@ -28,7 +28,8 @@ const DEFAULT_COST = 1;
 
 export default function AppPage() {
   const projects = useMemo(() => getProjects(), []);
-  const { user, coins, loading, signInWithGoogle, spend, earnFromAd, earnFromPurchase } = useAuth();
+  const { user, coins, loading, spend, earnFromAd, earnFromPurchase } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const { output, isStreaming, error: tailorError, startTailor } = useStreamingTailor();
   const {
     isReady,
@@ -146,7 +147,7 @@ export default function AppPage() {
 
   const handleTailor = useCallback(async () => {
     if (!user) {
-      await signInWithGoogle();
+      setShowAuthModal(true);
       return;
     }
 
@@ -179,7 +180,6 @@ export default function AppPage() {
     resume,
     selectedProjects,
     showToast,
-    signInWithGoogle,
     spend,
     startTailor,
     user,
@@ -210,7 +210,7 @@ export default function AppPage() {
     return (
       <div className="app">
         <Header />
-        <AuthModal isOpen={true} onClose={() => {}} />
+        <AuthModal isOpen={true} onClose={() => setShowAuthModal(false)} />
       </div>
     );
   }
@@ -308,6 +308,7 @@ export default function AppPage() {
         onComplete={handlePurchaseReward}
         userEmail={user?.email ?? null}
       />
+      <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
 
       {toast && (
         <div className={`toast ${toast.type === 'error' ? 'toast--error' : 'toast--success'}`}>

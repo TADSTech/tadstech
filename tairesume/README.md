@@ -5,8 +5,8 @@ TaiResume is an AI resume tailoring app for Typst resumes and PDF resumes. Users
 ## Final Stack
 
 - Framework: Next.js + React + Bun runtime support
-- Auth: Firebase Google Sign-In
-- Database: Firestore (coin balances and transactions)
+- Auth: Supabase Auth (email/password + email confirmation)
+- Database: Supabase Postgres (coin balances and transactions)
 - Payments: Paystack (N1,440 for 10 coins)
 - Ads: Adsterra-style rewarded ad flow (+1 coin)
 - AI Standard: NVIDIA Gemma 2 2B-IT (1 coin)
@@ -18,7 +18,7 @@ TaiResume is an AI resume tailoring app for Typst resumes and PDF resumes. Users
 
 | Action | Coins |
 | --- | --- |
-| Sign up with Google | +5 |
+| Sign up | +5 |
 | Watch rewarded ad | +1 |
 | Buy with Paystack (N1,440) | +10 |
 | Standard tailor (Gemma 2B) | -1 |
@@ -49,14 +49,11 @@ npm run dev
 Create a .env.local file in this directory:
 
 ```env
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 
 NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY=
+PAYSTACK_SECRET_KEY=
 
 NVIDIA_API_KEY=
 GROQ_API_KEY=
@@ -89,16 +86,10 @@ GROQ_API_KEY=
 - Keep Firestore coin writes merge-safe so payment and reward callbacks do not fail on a missing profile document
 - Replace ad placeholder container with live Adsterra script in production
 
-## Firestore Rules Setup
+## Supabase Setup
 
-The app needs authenticated users to read/write only their own profile at `users/{uid}`.
-
-1. Install Firebase CLI if needed:
-	`npm i -g firebase-tools`
-2. Login and select project:
-	`firebase login`
-	`firebase use tadstech`
-3. Deploy Firestore rules and indexes from this folder:
-	`firebase deploy --only firestore:rules,firestore:indexes`
-
-If rules are not deployed, sign-in can succeed but coin/profile operations will fail with `Missing or insufficient permissions`, and new users may appear with `0` coins instead of the signup bonus.
+1. Create a project at [supabase.com](https://supabase.com)
+2. Go to **Settings → API** and copy your Project URL and anon key into `.env.local`
+3. Open **SQL Editor** and run the contents of `supabase-setup.sql` — this creates the `users` table, RLS policies, and the `spend_coins` / `earn_coins` RPC functions
+4. In **Authentication → Email**, make sure "Enable email confirmations" is on (it is by default). Supabase sends confirmation emails for free via its built-in mailer.
+5. Optionally configure a custom SMTP provider (e.g. Resend free tier) under **Authentication → SMTP Settings** for branded emails.

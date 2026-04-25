@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import AuthModal from '@/components/AuthModal';
 import { useAuth } from '@/hooks/useAuth';
@@ -9,6 +8,12 @@ import { useAuth } from '@/hooks/useAuth';
 export default function Header() {
   const { user, coins, loading, logout } = useAuth();
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+
+  const displayName =
+    (user?.user_metadata?.display_name as string | undefined) ||
+    (user?.user_metadata?.full_name as string | undefined) ||
+    user?.email?.split('@')[0] ||
+    'User';
 
   return (
     <header className="header">
@@ -35,18 +40,7 @@ export default function Header() {
           </div>
         ) : user ? (
           <button className="auth-btn" onClick={logout} title="Sign out">
-            {user.photoURL && (
-              <Image
-                src={user.photoURL}
-                alt=""
-                className="auth-btn__avatar"
-                referrerPolicy="no-referrer"
-                width={24}
-                height={24}
-                unoptimized
-              />
-            )}
-            <span>{user.displayName?.split(' ')[0] || 'User'}</span>
+            <span>{displayName.split(' ')[0]}</span>
           </button>
         ) : (
           <button className="auth-btn auth-btn--signin" onClick={() => setIsAuthOpen(true)}>

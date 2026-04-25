@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import BuyCoinsModal from '@/components/BuyCoinsModal';
+import AuthModal from '@/components/AuthModal';
 import { useAuth } from '@/hooks/useAuth';
 
 const plans = [
@@ -27,15 +28,15 @@ const plans = [
 ];
 
 export default function PricingPage() {
-  const { user, signInWithGoogle, earnFromPurchase } = useAuth();
+  const { user, earnFromPurchase } = useAuth();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   const handleCheckout = async () => {
     if (!user) {
-      await signInWithGoogle();
+      setIsAuthOpen(true);
       return;
     }
-
     setIsCheckoutOpen(true);
   };
 
@@ -55,7 +56,7 @@ export default function PricingPage() {
           <p className="hero__eyebrow">Pricing</p>
           <h1 className="hero__title">A simple coin system that keeps tailoring transparent.</h1>
           <p className="hero__subtitle">
-            Sign in once, earn a starter bonus, and decide whether to top up with an ad or a Paystack pack.
+            Sign up once, earn a starter bonus, and decide whether to top up with an ad or a Paystack pack.
           </p>
         </section>
 
@@ -86,6 +87,7 @@ export default function PricingPage() {
         onComplete={earnFromPurchase}
         userEmail={user?.email ?? null}
       />
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </div>
   );
 }

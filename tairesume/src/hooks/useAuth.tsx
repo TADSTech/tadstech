@@ -1,17 +1,33 @@
 'use client';
 
-import { useState, useEffect, useCallback, createContext, useContext, ReactNode } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithRedirect, signOut, updateProfile, User } from 'firebase/auth';
-import { auth, googleProvider } from '@/lib/firebase';
-import { getUserProfile, createUserProfile, getBalance, spendCoins, earnCoins, STANDARD_COST, ADVANCED_COST, AD_REWARD, PURCHASE_AMOUNT } from '@/lib/coins';
+import {
+  useState,
+  useEffect,
+  useCallback,
+  createContext,
+  useContext,
+  ReactNode,
+} from 'react';
+import type { User } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase';
+import {
+  getUserProfile,
+  createUserProfile,
+  getBalance,
+  spendCoins,
+  earnCoins,
+  STANDARD_COST,
+  ADVANCED_COST,
+  AD_REWARD,
+  PURCHASE_AMOUNT,
+} from '@/lib/coins';
 
 interface AuthContextType {
   user: User | null;
   coins: number;
   loading: boolean;
-  signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
-  signUpWithEmail: (email: string, password: string, displayName?: string | null) => Promise<void>;
+  signUpWithEmail: (email: string, password: string, displayName?: string | null) => Promise<{ needsConfirmation: boolean }>;
   logout: () => Promise<void>;
   refreshCoins: () => Promise<void>;
   spend: (model: 'standard' | 'advanced') => Promise<boolean>;
@@ -26,112 +42,129 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [coins, setCoins] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const refreshCoins = useCallback(async () => {
-    if (!user) {
+  const syncProfile = useCallback(async (supabaseUser: User) => {
+    try {
+      const profile = await getUserProfile(supabaseUser.id);
+      if (!profile) {
+        await createUserProfile(
+          supabaseUser.id,
+          supabaseUser.email ?? null,
+          supabaseUser.user_metadata?.display_name ?? supabaseUser.user_metadata?.full_name ?? null,
+        );
+      }
+      const balance = await getBalance(supabaseUser.id);
+      setCoins(balance);
+    } catch (error) {
+      console.error('Profile sync error:', error);
       setCoins(0);
-      return;
     }
-    const balance = await getBalance(user.uid);
-    setCoins(balance);
-  }, [user]);
+  }, []);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      setUser(firebaseUser);
-      if (firebaseUser) {
-        try {
-          const profile = await getUserProfile(firebaseUser.uid);
-          if (!profile) {
-            await createUserProfile(
-              firebaseUser.uid,
-              firebaseUser.email,
-              firebaseUser.displayName,
-              firebaseUser.photoURL
-            );
-          }
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      const currentUser = session?.user ?? null;
+      setUser(currentUser);
+      if (currentUser) {
+        syncProfile(currentUser).finally(() => setLoading(false));
+      } else {
+        setLoading(false);
+      }
+    });
 
-          const balance = await getBalance(firebaseUser.uid);
-          setCoins(balance);
-        } catch (error) {
-          console.error('Profile sync error:', error);
-          setCoins(0);
-        }
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      const currentUser = session?.user ?? null;
+      setUser(currentUser);
+      if (currentUser) {
+        await syncProfile(currentUser);
       } else {
         setCoins(0);
       }
-      setLoading(false);
     });
 
-    return () => unsubscribe();
-  }, []);
+    return () => subscription.unsubscribe();
+  }, [syncProfile]);
 
-  const signInWithGoogle = async () => {
-    await signInWithRedirect(auth, googleProvider);
-  };
+  const refreshCoins = useCallback(async () => {
+    if (!user) { setCoins(0); return; }
+    const balance = await getBalance(user.id);
+    setCoins(balance);
+  }, [user]);
 
   const signInWithEmail = async (email: string, password: string) => {
-    await signInWithEmailAndPassword(auth, email, password);
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw new Error(error.message);
   };
 
-  const signUpWithEmail = async (email: string, password: string, displayName: string | null = null) => {
-    const credentials = await createUserWithEmailAndPassword(auth, email, password);
+  const signUpWithEmail = async (
+    email: string,
+    password: string,
+    displayName: string | null = null
+  ): Promise<{ needsConfirmation: boolean }> => {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { display_name: displayName?.trim() || null },
+        emailRedirectTo: `${window.location.origin}/app`,
+      },
+    });
 
-    if (displayName?.trim()) {
-      await updateProfile(credentials.user, { displayName: displayName.trim() });
+    if (error) throw new Error(error.message);
+
+    // If identities is empty the user already exists
+    if (data.user && data.user.identities?.length === 0) {
+      throw new Error('An account with this email already exists. Please sign in.');
     }
+
+    // Supabase sends a confirmation email; session is null until confirmed
+    const needsConfirmation = !data.session;
+    return { needsConfirmation };
   };
 
   const logout = async () => {
-    await signOut(auth);
+    await supabase.auth.signOut();
+    setUser(null);
+    setCoins(0);
   };
 
   const spend = async (model: 'standard' | 'advanced'): Promise<boolean> => {
     if (!user) return false;
     const cost = model === 'standard' ? STANDARD_COST : ADVANCED_COST;
     const type = model === 'standard' ? 'tailor_standard' as const : 'tailor_advanced' as const;
-    const success = await spendCoins(user.uid, cost, type);
-    if (success) {
-      setCoins(prev => prev - cost);
-    }
+    const success = await spendCoins(user.id, cost, type);
+    if (success) setCoins((prev) => prev - cost);
     return success;
   };
 
   const earnFromAd = async () => {
     if (!user) return;
-    try {
-      await earnCoins(user.uid, AD_REWARD, 'ad_reward');
-      setCoins(prev => prev + AD_REWARD);
-    } catch (error) {
-      console.error('Ad reward failed:', error);
-      throw error;
-    }
+    await earnCoins(user.id, AD_REWARD, 'ad_reward');
+    setCoins((prev) => prev + AD_REWARD);
   };
 
   const earnFromPurchase = async () => {
     if (!user) return;
-    try {
-      await earnCoins(user.uid, PURCHASE_AMOUNT, 'purchase');
-      setCoins(prev => prev + PURCHASE_AMOUNT);
-    } catch (error) {
-      console.error('Purchase reward failed:', error);
-      throw error;
-    }
+    await earnCoins(user.id, PURCHASE_AMOUNT, 'purchase');
+    setCoins((prev) => prev + PURCHASE_AMOUNT);
   };
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      coins,
-      loading,
-      signInWithGoogle,
-      signInWithEmail,
-      signUpWithEmail,
-      logout,
-      refreshCoins,
-      spend,
-      earnFromAd,
-      earnFromPurchase,
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        coins,
+        loading,
+        signInWithEmail,
+        signUpWithEmail,
+        logout,
+        refreshCoins,
+        spend,
+        earnFromAd,
+        earnFromPurchase,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -139,8 +172,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
   return context;
 }
