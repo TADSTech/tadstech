@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, createContext, useContext, ReactNode } from 'react';
-import { onAuthStateChanged, signInWithPopup, signOut, User } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from 'firebase/auth';
 import { auth, googleProvider } from '@/lib/firebase';
 import { getUserProfile, createUserProfile, getBalance, spendCoins, earnCoins, STANDARD_COST, ADVANCED_COST, AD_REWARD, PURCHASE_AMOUNT } from '@/lib/coins';
 
@@ -10,6 +10,8 @@ interface AuthContextType {
   coins: number;
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
+  signInWithEmail: (email: string, password: string) => Promise<void>;
+  signUpWithEmail: (email: string, password: string, displayName?: string | null) => Promise<void>;
   logout: () => Promise<void>;
   refreshCoins: () => Promise<void>;
   spend: (model: 'standard' | 'advanced') => Promise<boolean>;
@@ -66,6 +68,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const signInWithEmail = async (email: string, password: string) => {
+    await signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const signUpWithEmail = async (email: string, password: string, displayName: string | null = null) => {
+    const credentials = await createUserWithEmailAndPassword(auth, email, password);
+
+    if (displayName?.trim()) {
+      await updateProfile(credentials.user, { displayName: displayName.trim() });
+    }
+  };
+
   const logout = async () => {
     await signOut(auth);
   };
@@ -99,6 +113,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       coins,
       loading,
       signInWithGoogle,
+      signInWithEmail,
+      signUpWithEmail,
       logout,
       refreshCoins,
       spend,

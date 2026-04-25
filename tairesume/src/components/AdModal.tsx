@@ -45,9 +45,9 @@ export default function AdModal({ isOpen, onClose, onComplete }: AdModalProps) {
     <div className="modal-overlay" onClick={adFinished ? onClose : undefined}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button className="modal__close" onClick={onClose}>×</button>
-        <h3 className="modal__title">Watch Ad — Earn 5 Coins</h3>
+        <h3 className="modal__title">Watch Ad — Earn 1 Coin</h3>
         <p className="modal__desc">
-          Watch a short ad to earn 5 coins for free.
+          Watch a short ad to earn 1 coin for free.
         </p>
 
         {/* Adsterra ad container */}
@@ -65,7 +65,7 @@ export default function AdModal({ isOpen, onClose, onComplete }: AdModalProps) {
           </div>
         ) : (
           <button className="btn btn--gold btn--full btn--large" onClick={handleClaim}>
-            🪙 Claim 5 Coins
+            🪙 Claim 1 Coin
           </button>
         )}
       </div>

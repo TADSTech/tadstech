@@ -16,6 +16,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  overflow-x: hidden;
 }
 
 html::-webkit-scrollbar {
@@ -26,6 +27,7 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.5;
   overflow-x: hidden;
+  max-width: 100vw;
   background: #FAFAF9;
   color: #1A1A1A;
   scrollbar-width: none;

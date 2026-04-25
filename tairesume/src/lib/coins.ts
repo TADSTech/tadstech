@@ -5,7 +5,7 @@ import { CoinTransaction, UserProfile } from '@/types';
 const SIGNUP_BONUS = 5;
 const STANDARD_COST = 1;
 const ADVANCED_COST = 5;
-const AD_REWARD = 5;
+const AD_REWARD = 1;
 const PURCHASE_AMOUNT = 10;
 
 export { SIGNUP_BONUS, STANDARD_COST, ADVANCED_COST, AD_REWARD, PURCHASE_AMOUNT };
@@ -82,7 +82,7 @@ export async function earnCoins(uid: string, amount: number, type: 'ad_reward' |
     type,
     amount,
     timestamp: Date.now(),
-    description: type === 'ad_reward' ? 'Watched ad — earned 5 coins' : `Purchased ${amount} coins`,
+    description: type === 'ad_reward' ? 'Watched ad — earned 1 coin' : `Purchased ${amount} coins`,
   });
 }
 

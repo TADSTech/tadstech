@@ -1,16 +1,21 @@
 'use client';
 
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import AuthModal from '@/components/AuthModal';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function Header() {
-  const { user, coins, loading, signInWithGoogle, logout } = useAuth();
+  const { user, coins, loading, logout } = useAuth();
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   return (
     <header className="header">
       <div className="header__left">
-        <a href="https://tadstech.dev" className="header__back" target="_blank" rel="noopener">
-          ← tadstech.dev
-        </a>
+        <Link href="/" className="header__back">
+          ← back to home
+        </Link>
         <div className="header__brand">
           Tai<span>Resume</span>
         </div>
@@ -31,16 +36,26 @@ export default function Header() {
         ) : user ? (
           <button className="auth-btn" onClick={logout} title="Sign out">
             {user.photoURL && (
-              <img src={user.photoURL} alt="" className="auth-btn__avatar" referrerPolicy="no-referrer" />
+              <Image
+                src={user.photoURL}
+                alt=""
+                className="auth-btn__avatar"
+                referrerPolicy="no-referrer"
+                width={24}
+                height={24}
+                unoptimized
+              />
             )}
             <span>{user.displayName?.split(' ')[0] || 'User'}</span>
           </button>
         ) : (
-          <button className="auth-btn auth-btn--signin" onClick={signInWithGoogle}>
+          <button className="auth-btn auth-btn--signin" onClick={() => setIsAuthOpen(true)}>
             Sign in
           </button>
         )}
       </div>
+
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </header>
   );
 }

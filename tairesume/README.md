@@ -8,7 +8,7 @@ TaiResume is an AI resume tailoring app for Typst resumes. Users provide their T
 - Auth: Firebase Google Sign-In
 - Database: Firestore (coin balances and transactions)
 - Payments: Paystack (N1,440 for 10 coins)
-- Ads: Adsterra-style rewarded ad flow (+5 coins)
+- Ads: Adsterra-style rewarded ad flow (+1 coin)
 - AI Standard: NVIDIA Gemma 2 2B-IT (1 coin)
 - AI Advanced: Groq Llama 3.1 8B (5 coins)
 - Typst: In-browser WASM compilation with @myriaddreamin/typst.ts
@@ -19,7 +19,7 @@ TaiResume is an AI resume tailoring app for Typst resumes. Users provide their T
 | Action | Coins |
 | --- | --- |
 | Sign up with Google | +5 |
-| Watch rewarded ad | +5 |
+| Watch rewarded ad | +1 |
 | Buy with Paystack (N1,440) | +10 |
 | Standard tailor (Gemma 2B) | -1 |
 | Advanced tailor (Llama 3.1 8B) | -5 |
