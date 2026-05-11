@@ -12,8 +12,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
     rel="stylesheet" />
-  <script type="module" crossorigin src="/assets/index-Bxi-l-sy.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-mY7g_PJE.css">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <script type="module" crossorigin src="/assets/index-yC1yYrYz.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BDGa-r6T.css">
 </head>
 
 <body>
@@ -251,12 +252,10 @@
 
     <!-- SECTION 3 | THE LAB (Green) | Two-column fit -->
     <section id="lab" class="panel panel--green" data-section="2">
-      <canvas id="hero-canvas-lab" class="hero-canvas"></canvas>
       <div class="panel__inner panel__fit">
         <h2 class="section__heading section__heading--green">The Lab</h2>
-        <p class="lab__subtitle">// where things get interesting</p>
         <div class="lab-columns">
-          <!-- Left: skills + terminal -->
+          <!-- Left: skills -->
           <div class="lab-left">
             <div class="skills-matrix" id="skills-matrix">
               <h3>Technical Arsenal</h3>
@@ -293,59 +292,18 @@
                 </div>
               </div>
             </div>
-            <div class="terminal" id="terminal">
-              <div class="terminal__header">
-                <div class="terminal__dots"><span></span><span></span><span></span></div>
-                <span class="terminal__title">michael@lunixdv:~$</span>
-              </div>
-              <div class="terminal__body" id="terminal-body">
-                <div class="terminal__line"><span class="terminal__prompt">$</span> <span
-                    class="terminal__cmd">whoami</span></div>
-                <div class="terminal__output">Michael Tunwashe | Data & Systems Engineer</div>
-                <div class="terminal__line"><span class="terminal__prompt">$</span> <span class="terminal__cmd">echo
-                    $CURRENT_MISSION</span></div>
-                <div class="terminal__output">Industrializing data science, one pipeline at a time.</div>
-                <div class="terminal__line terminal__line--input">
-                  <span class="terminal__prompt">$</span>
-                  <input type="text" id="terminal-input" class="terminal__input" placeholder="type a command..."
-                    autocomplete="off" />
-                </div>
-              </div>
-            </div>
           </div>
-          <!-- Right: easter eggs + dyk + footer -->
+          <!-- Right: Tairesume ad + DYK -->
           <div class="lab-right">
-            <div class="easter-zone" id="easter-zone">
-              <h3>Extras</h3>
-              <div class="easter-grid">
-                <div class="easter-card" id="easter-click-counter">
-                  <h4>Click Counter</h4>
-                  <p>Clicked <strong><span id="click-count">0</span></strong> times.</p>
-                  <p class="easter-card__hint" id="click-hint">Keep going...</p>
+            <div class="tairesume-ad" id="tairesume-ad">
+              <a href="https://tairesume.tadstech.dev" target="_blank" rel="noopener" class="tairesume-ad__link">
+                <img src="/assets/TResume-DJeheXBk.png" alt="Tairesume" class="tairesume-ad__logo" />
+                <div class="tairesume-ad__content">
+                  <h4>Tairesume</h4>
+                  <p>AI-powered resume builder</p>
+                  <span class="tairesume-ad__cta">Try for free &rarr;</span>
                 </div>
-                <div class="easter-card" id="easter-time">
-                  <h4>Time Check</h4>
-                  <p id="time-message">Loading...</p>
-                </div>
-                <div class="easter-card" id="easter-konami">
-                  <h4>Konami Code</h4>
-                  <p class="mono-text">up up down down left right left right B A</p>
-                </div>
-                <div class="easter-card" id="easter-fact">
-                  <h4>Random Fact</h4>
-                  <p id="random-fact">Click to generate.</p>
-                </div>
-                <div class="easter-card" id="easter-binary">
-                  <h4>Binary Name</h4>
-                  <p class="binary-text" id="binary-output">01001101 01101001 01100011 01101000 01100001 01100101
-                    01101100</p>
-                  <p class="easter-card__hint">That's "Michael" in binary.</p>
-                </div>
-                <div class="easter-card" id="easter-uptime">
-                  <h4>Page Uptime</h4>
-                  <p>Open for <strong><span id="uptime-counter">0s</span></strong></p>
-                </div>
-              </div>
+              </a>
             </div>
             <div class="did-you-know did-you-know--green" id="dyk-lab">
               <span class="dyk-label">Did you know?</span>
@@ -359,34 +317,6 @@
         </div>
       </div>
     </section>
-  </div>
-
-  <!-- Project Modal -->
-  <div id="project-modal" class="modal">
-    <div class="modal__overlay"></div>
-    <div class="modal__content">
-      <button class="modal__close" aria-label="Close modal">&times;</button>
-      <h3 id="modal-title">Project Title</h3>
-      <p id="modal-details">Project details go here...</p>
-      <div class="modal__links">
-        <a href="#" id="modal-github" class="btn btn--subtle" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
-          GitHub
-        </a>
-        <a href="#" id="modal-live" class="btn btn--primary" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-            <polyline points="15 3 21 3 21 9" />
-            <line x1="10" y1="14" x2="21" y2="3" />
-          </svg>
-          Live Demo
-        </a>
-      </div>
-    </div>
   </div>
 
 </body>
